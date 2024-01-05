@@ -1,5 +1,9 @@
 <?php 
-    class RouteHandler {
-        
+    class RouteController extends Router {
+        public function __construct() {
+            
+        }
+
+
     }
 ?>

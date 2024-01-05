@@ -19,7 +19,7 @@ class Router {
         ];
     }
 
-    public function useRoute(string $path, Router $router) {
+    public function useRoute(string $path, RouteController $router) {
         
     }
 
