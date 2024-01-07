@@ -14,12 +14,31 @@ spl_autoload_register(function ($className) {
 });
 
 $router = new app\libraries\Router();
-$router->setGlobalHeaderVariables($_PUT, $_DELETE);
+// $router->setGlobalHeaderVariables($_PUT, $_DELETE);
 $router->setViews('app/views');
 
 $router->get('/login', function ($req, $res) {
     $res->render('/users/login');
 }); 
+
+class Test
+{
+    public function __construct()
+    {
+        echo "User";
+    }
+
+    public function wow($req, $res) {
+        $res->send('wtf');
+    }
+
+    public function wtf() {
+        echo "test";
+    }
+}
+
+// $router->get('/callable', 'Test@wow');
+app\libraries\RouterHelper::getStringToCallable('Test@wtf');
 
 $router->get('/users/posts', function ($req, $res) {
     $res->render('/users/posts');
@@ -56,30 +75,7 @@ $route = isset($_GET['route']) ? $_GET['route'] : '';
 
 echo '<pre>';
 var_dump(app\libraries\RouterHelper::getRouteParams("/users/update/{id}"));
-print_r($_PUT());
+// print_r($_PUT());
 echo '</pre>';
 
-
-// switch ($route) {
-//     case $case1:
-//         // Include login page content
-//         include 'login.php';
-//         break;
-//     case $case2:
-//         // Include register page content
-//         include 'register.php';
-//         break;
-
-//     case $case3:
-//         // Include profile page content
-//         include 'profile.php';
-//         break;
-
-//     case $case4:
-//         // Include about page content
-//         include 'about.php';
-//         break;
-//     default:
-//         // Handle default route (e.g., display homepage)
-
-// }
+echo parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

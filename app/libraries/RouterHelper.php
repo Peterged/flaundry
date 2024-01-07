@@ -71,4 +71,30 @@ class RouterHelper
         }
         return $params;
     }
+
+    public static function convertToCallable($string) {
+        list($class, $method) = explode('@', $string);
+        if(!class_exists($class)) {
+            throw new \Exception("Class $class does not exist");
+        }
+        if(!method_exists($class, $method)) {
+            throw new \Exception("Method $method does not exist");
+        }
+        
+        return [new $class, $method];
+    }
+
+    public static function getStringToCallable($callback) {
+        if (is_string($callback) && strpos($callback, '@') !== false) {
+            $callback = self::convertToCallable($callback);
+            
+        }
+        // var_dump($callback);
+        $callableClass = new $callback[0]();
+        var_dump($callableClass);
+        $callbackFunc = $callableClass->{$callback[1]};
+        // $callbackFunc = $callableClass->{$callback[1]};
+        // echo is_callable($callbackFunc) ? 'true' : 'false';
+        // return $callbackFunc;
+    }
 }

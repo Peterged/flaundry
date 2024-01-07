@@ -142,8 +142,16 @@ class Router
         // }
     }
 
-    private function handleResponse(string $requestMethod, string $route, callable | string $callback)
+    private function handleResponse(string $requestMethod, string $route, $callback)
     {
+        if (!is_callable($callback) && !is_string($callback)) {
+            throw new \InvalidArgumentException('Callback must be a callable or a string');
+        }
+
+        // if(!is_string($callback)) {
+        //     $callback = RouterHelper::getStringToCallable($callback);
+        //     $callback();
+        // }
 
         if ($route == '*') {
             $this->handleUnhandledRoutes();
@@ -153,7 +161,7 @@ class Router
             throw new \Exception("Route already handled: " . $requestMethod . " -> " . $route);
         }
 
-       $this->addRoute($route, $requestMethod);
+        $this->addRoute($route, $requestMethod);
 
         $req = new Request();
         $res = new Response();
@@ -188,19 +196,20 @@ class Router
 
         //  $this->print_array($log);
 
-        
+
 
         $this->processFunction($requestMethod, $isMatch, $filteredRoute, $req, $res, $callback);
     }
 
-    public function redirect(string $route) {
+    public function redirect(string $route)
+    {
         $route = '/' . $this->filterRoute($route);
         $root = PROJECT_ROOT;
         header("Location:" . $this->filterRoute($root . $route));
         exit;
     }
 
-    public function get(string $route, callable | string $callback)
+    public function get(string $route, callable $callback)
     {
         if ($route == '*') {
             $this->handleUnhandledRoutes();
@@ -209,7 +218,7 @@ class Router
         $this->handleResponse('GET', $route, $callback);
     }
 
-    public function post(string $route, callable | string $callback)
+    public function post(string $route, callable $callback)
     {
 
         if ($route == '*') {
