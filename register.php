@@ -3,7 +3,7 @@
 $data = [
     '_METHOD' => 'PUT',
     '_PARAMS' => [
-        'id' => 1
+        'id' => 'KreshnaDhana09'
     ],
     '_BODY' => [
         'name' => 'John Doe',

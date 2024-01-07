@@ -19,13 +19,17 @@ $router->setViews('app/views');
 
 $router->get('/login', function ($req, $res) {
     $res->render('/users/login');
-}); 
+});
+
+// $router->useRouteController('/users', $userRouteController);
+
+
 
 $router->get('/users', 'app\controllers\AuthController@index');
 $router->get('/users/profile/{id}', 'app\controllers\AuthController@profile');
 $router->get('/auth/register', 'app\controllers\AuthController@register');
 
-$router->get('/users/posts', function ($req, $res) {    
+$router->get('/users/posts', function ($req, $res) {
     $res->render('/users/posts');
 });
 
