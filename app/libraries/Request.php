@@ -1,5 +1,8 @@
 <?php 
-    class Request {
+
+namespace app\libraries;
+
+    final class Request {
         public $route;
         public $params;
 

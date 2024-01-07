@@ -1,0 +1,43 @@
+<?php 
+namespace app\routers;
+
+    class UserRouter extends \app\libraries\Router {
+        public function __construct() {
+            $this->get('/users', 'UserController@index');
+            $this->get('/users/create', 'UserController@create');
+            $this->post('/users', 'UserController@store');
+            $this->get('/users/{id}', 'UserController@show');
+            $this->get('/users/{id}/edit', 'UserController@edit');
+            $this->put('/users/{id}', 'UserController@update');
+            $this->delete('/users/{id}', 'UserController@destroy');
+            // fetch('/users/{id}', {
+            //     method: 'PUT',
+            //     body: JSON.stringify(data),
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }
+            // })
+            // .then(response => response.json())
+            // .then(data => console.log(data))
+            // .catch(error => console.error(error));
+
+            $data = [
+                'name' => 'John Doe',
+                'job' => 'Web Developer'
+            ];
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, 'http://example.com/users/{id}');
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data, JSON_THROW_ON_ERROR));
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+            $result = curl_exec($ch);
+
+            if ($result === false) {
+                echo 'Error: ' . curl_error($ch);
+            }
+
+            curl_close($ch);
+        }
+    }
+?>

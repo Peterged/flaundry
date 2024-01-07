@@ -1,13 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
+namespace app\libraries;
+
+// include_once __DIR__ . "/../config/config.php";
+
 class Router
 {
     private $req;
     private $res;
     private $routes;
     private $headerData;
-    private $currentPath;
-    private $viewsDirectory;
+    private $views;
     private $isListening;
 
     public function __construct()
@@ -15,25 +20,20 @@ class Router
         $this->req = new Request();
         $this->res = new Response();
         $this->routes = [];
-        $this->currentPath = [
-            "currentPath" => "/",
-            "previousPath" => "/"
-        ];
         $this->headerData = [
             "path" => $this->req->getRequestUri(),
             "isSent" => false
         ];
         $this->isListening = false;
+        $this->views = [
+            "directory" => null,
+            "extension" => '.php'
+        ];
     }
 
-    public function listen() {
+    public function listen()
+    {
         $this->isListening = true;
-    }
-
-    private function throwExceptionIfNotListening() {
-        if($this->isListening == false) {
-            throw new Exception("please use the listen function to start the router!");
-        }
     }
 
     public function useRoute(string $path, RouteController $router)
@@ -44,7 +44,17 @@ class Router
     // Middleware
     public function setViews(string $path, string $ext = '.php')
     {
-        $this->viewsDirectory = $path;
+        $this->views = [
+            "directory" => $path,
+            "extension" => $ext
+        ];
+    }
+
+    private function throwExceptionIfNotListening()
+    {
+        if ($this->isListening == false) {
+            throw new \Exception("please use the listen function to start the router!");
+        }
     }
 
     private function resetHeader()
@@ -52,12 +62,12 @@ class Router
         header_remove();
     }
 
-    private function isRouteHandled(string $requestType, string $route)
+    private function isRouteHandled(string $headerType, string $route)
     {
         $isHandled = false;
 
         foreach ($this->routes as $routeItem) {
-            if ($routeItem['route'] == $route && $routeItem['requestType'] == $requestType) {
+            if ($routeItem['route'] == $route && $routeItem['requestMethod'] == $headerType) {
                 $isHandled = true;
                 break;
             }
@@ -66,9 +76,22 @@ class Router
         return $isHandled;
     }
 
-    private function handleUnknownRoute()
+    private function addRoute(string $route, string $requestMethod)
     {
-        // TODO: Implement handleUnknownRoute method
+        array_push($this->routes, [
+            "route" => $route,
+            "requestMethod" => $requestMethod
+        ]);
+    }
+
+    private function isRouteMatch(string $filteredRoute)
+    {
+        return RouterHelper::isRouteMatchWithCurrentUri($filteredRoute);
+    }
+
+    private function filterRoute(string $route, Request $request = null)
+    {
+        return RouterHelper::filterRoute($route, $request);
     }
 
     private function print_array($array)
@@ -89,96 +112,96 @@ class Router
         }
         return $routeData ?? [
             "route" => null,
-            "requestType" => null
+            "requestMethod" => null
         ];
     }
 
-    private function handleResponse(string $requestType, string $route, callable $callback)
+    private function setHeaderData(bool $isSent, $path = null)
+    {
+        $this->headerData = RouterHelper::setHeaderData($isSent, $path);
+    }
+
+    private function processFunction(string $requestMethod, bool $isMatch, string $filteredRoute, Request $request, Response $response, callable $callback)
+    {
+        $currentRequestMethod = $request->getMethod();
+
+        if ($currentRequestMethod == $requestMethod && $isMatch) {
+            if ($requestMethod == 'POST') {
+                $request->setBody($_POST);
+            }
+            // echo "<code>Handling $requestMethod $filteredRoute</code>";
+
+            $this->setHeaderData(true);
+            $callback($request, $response);
+            $this->resetHeader();
+        }
+
+        // elseif ($this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestMethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
+        //     echo "<code>Cannot handle $requestMethod $filteredRoute</code>";
+        //     $this->resetHeader();
+        // }
+    }
+
+    private function handleResponse(string $requestMethod, string $route, callable | string $callback)
     {
 
         if ($route == '*') {
             $this->handleUnhandledRoutes();
         }
 
-        if ($this->isRouteHandled($requestType, $route)) {
-            throw new Exception("Route already handled: " . $requestType . " -> " . $route);
+        if ($this->isRouteHandled($requestMethod, $route)) {
+            throw new \Exception("Route already handled: " . $requestMethod . " -> " . $route);
         }
 
-        array_push($this->routes, [
-            "route" => $route,
-            "requestType" => $requestType
-        ]);
+       $this->addRoute($route, $requestMethod);
 
         $req = new Request();
         $res = new Response();
 
-        $res->viewsDirectory = $this->viewsDirectory;
-        $filterRoute = '/';
+        $res->views = $this->views;
+        $filteredRoute = '/';
         $isMatch = false;
         $routeParam = $req->getRequestUri();
         $routeParam = $routeParam == '/' ? '' : $routeParam;
-        $requestUri = $_SERVER['REQUEST_URI'];
-        $requestMethod = $_SERVER['REQUEST_METHOD'];
-        $this->currentPath['currentPage'] = $requestUri;
+        $currentRequestMethod = $_SERVER['REQUEST_METHOD'];
 
-        if ($route == '/') {
-            $route = $requestUri . $route;
-            $route = preg_replace('#(?<!:)//#', '/', $route);
-            $route = str_replace($routeParam, '', $route);
-            $filteredRoute = preg_replace('#(?<!:)//#', '/', $route);
-            $isMatch = $requestUri === $filteredRoute;
-        } else {
-            $filteredRoute = preg_replace('#(?<!:)//#', '/', $route);
-            $isMatch = str_ends_with($requestUri, $filteredRoute);
-        }
+        $filteredRoute = $this->filterRoute($route, $req);
+        $isMatch = $this->isRouteMatch($filteredRoute);
         $req->setRoute($filteredRoute);
 
-        if ($requestMethod !== $requestType && !$isMatch) {
+        $routeListData = $this->getRouteOnList($route);
+        // $this->print_array($routeListData);
+
+        if ($currentRequestMethod !== $requestMethod && !$isMatch) {
             return;
         }
 
         $log = [
             "path" => $route,
-            "requestPassed" => $requestType,
-            "Header" => $requestMethod,
+            "requestPassed" => $requestMethod,
+            "Header" => $currentRequestMethod,
             "isMatch" => $isMatch ? 'match' : 'not match',
-            "POST" => empty($_POST) ? 'undefined' : 'defined'
-        ];
-
-        $unhandledRouteLog = [
-            "isRouteHandled" => $this->isRouteHandled($requestType, $filteredRoute),
+            "POST" => empty($_POST) ? 'undefined' : 'defined',
+            "isRouteHandled" => $this->isRouteHandled($requestMethod, $filteredRoute),
             "headerData" => $this->headerData,
-            "POST" => empty($_POST) ? 'undefined' : 'defined'
         ];
 
-        //  $this->print_array(array_merge($log, $unhandledRouteLog));
+        //  $this->print_array($log);
 
-        $routeListData = $this->getRouteOnList($route);
+        
 
-        if ($requestMethod == $requestType && $isMatch) {
-            if ($requestType == 'POST') {
-                $req->setBody($_POST);
-            }
-
-            $this->headerData = [
-                "path" => $this->req->getRequestUri(),
-                "isSent" => true
-            ];
-            // Clears the page
-            echo "<script>document.write('');</script>";
-            $callback($req, $res);
-            $this->resetHeader();
-        }
-
-        elseif ($this->isRouteHandled($requestType, $filteredRoute) && $requestMethod !== $requestType && $isMatch && !$this->headerData['isSent']) {
-            // echo "<code>Cannot handle $requestMethod $filteredRoute</code>";
-            // $this->resetHeader();
-        }
+        $this->processFunction($requestMethod, $isMatch, $filteredRoute, $req, $res, $callback);
     }
 
-    public function get(string $route, callable $callback)
-    {
+    public function redirect(string $route) {
+        $route = '/' . $this->filterRoute($route);
+        $root = PROJECT_ROOT;
+        header("Location:" . $this->filterRoute($root . $route));
+        exit;
+    }
 
+    public function get(string $route, callable | string $callback)
+    {
         if ($route == '*') {
             $this->handleUnhandledRoutes();
             return;
@@ -186,7 +209,7 @@ class Router
         $this->handleResponse('GET', $route, $callback);
     }
 
-    public function post(string $route, callable $callback)
+    public function post(string $route, callable | string $callback)
     {
 
         if ($route == '*') {
@@ -194,6 +217,16 @@ class Router
             return;
         }
         $this->handleResponse('POST', $route, $callback);
+    }
+
+    public function group(string $route, callable $callback)
+    {
+        $this->routes = [];
+        $callback();
+        $this->routes = array_map(function ($routeItem) use ($route) {
+            $routeItem['route'] = $route . $routeItem['route'];
+            return $routeItem;
+        }, $this->routes);
     }
 
     public function handleUnhandledRoutes()
@@ -215,7 +248,7 @@ class Router
 
         // If the request_uri is not handled, throw an error
         if (!$isHandled) {
-            throw new Exception("Route not found");
+            throw new \Exception("Route not found");
         }
     }
 }
