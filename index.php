@@ -21,36 +21,17 @@ $router->get('/login', function ($req, $res) {
     $res->render('/users/login');
 }); 
 
-class Test
-{
-    public function __construct()
-    {
-        echo "User";
-    }
+$router->get('/users', 'app\controllers\AuthController@index');
+$router->get('/users/profile/{id}', 'app\controllers\AuthController@profile');
+$router->get('/auth/register', 'app\controllers\AuthController@register');
 
-    public function wow($req, $res) {
-        $res->send('wtf');
-    }
-
-    public function wtf() {
-        echo "test";
-    }
-}
-
-// $router->get('/callable', 'Test@wow');
-app\libraries\RouterHelper::getStringToCallable('Test@wtf');
-
-$router->get('/users/posts', function ($req, $res) {
+$router->get('/users/posts', function ($req, $res) {    
     $res->render('/users/posts');
 });
 
-$router->get('/', function ($req, $res) {
-    echo "Hello";
-    $res->render('/pages/index');
-});
 
-$router->get('/users/register', function ($req, $res) {
-    $res->render('/users/register');
+$router->get('/', function ($req, $res) {
+    $res->render('/pages/index');
 });
 
 
@@ -73,9 +54,9 @@ $router->listen();
 
 $route = isset($_GET['route']) ? $_GET['route'] : '';
 
-echo '<pre>';
-var_dump(app\libraries\RouterHelper::getRouteParams("/users/update/{id}"));
-// print_r($_PUT());
-echo '</pre>';
+// echo '<pre>';
+// var_dump(app\libraries\RouterHelper::getRouteParams("/users/update/{id}"));
+// // print_r($_PUT());
+// echo '</pre>';
 
-echo parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+// echo parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

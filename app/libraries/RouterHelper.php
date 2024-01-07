@@ -87,14 +87,9 @@ class RouterHelper
     public static function getStringToCallable($callback) {
         if (is_string($callback) && strpos($callback, '@') !== false) {
             $callback = self::convertToCallable($callback);
-            
         }
         // var_dump($callback);
         $callableClass = new $callback[0]();
-        var_dump($callableClass);
-        $callbackFunc = $callableClass->{$callback[1]};
-        // $callbackFunc = $callableClass->{$callback[1]};
-        // echo is_callable($callbackFunc) ? 'true' : 'false';
-        // return $callbackFunc;
+        return [$callableClass, $callback[1]];
     }
 }

@@ -21,6 +21,8 @@ namespace app\routers;
             // .then(data => console.log(data))
             // .catch(error => console.error(error));
 
+            // $_PARAMS = $this->getRouteParams('/users/{id}');
+            // $_PARAMS will be accessible to the .php files in the views folder as a global variable
             $data = [
                 'name' => 'John Doe',
                 'job' => 'Web Developer'

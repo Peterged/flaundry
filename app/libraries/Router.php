@@ -8,8 +8,8 @@ namespace app\libraries;
 
 class Router
 {
-    private $req;
-    private $res;
+    private $request;
+    private $response;
     private $routes;
     private $headerData;
     private $views;
@@ -17,11 +17,10 @@ class Router
 
     public function __construct()
     {
-        $this->req = new Request();
-        $this->res = new Response();
+        $request = new Request();
         $this->routes = [];
         $this->headerData = [
-            "path" => $this->req->getRequestUri(),
+            "path" => $request->getRequestUri(),
             "isSent" => false
         ];
         $this->isListening = false;
@@ -36,7 +35,7 @@ class Router
         $this->isListening = true;
     }
 
-    public function useRoute(string $path, RouteController $router)
+    public function useRouteController(string $path, RouteController $router)
     {
         // TODO: Implement useRoute method
     }
@@ -148,10 +147,9 @@ class Router
             throw new \InvalidArgumentException('Callback must be a callable or a string');
         }
 
-        // if(!is_string($callback)) {
-        //     $callback = RouterHelper::getStringToCallable($callback);
-        //     $callback();
-        // }
+        if(is_string($callback)) {
+            $callback = RouterHelper::getStringToCallable($callback);
+        }
 
         if ($route == '*') {
             $this->handleUnhandledRoutes();
@@ -163,22 +161,19 @@ class Router
 
         $this->addRoute($route, $requestMethod);
 
-        $req = new Request();
-        $res = new Response();
+        $request = new Request();
+        $response = new Response();
 
-        $res->views = $this->views;
+        $response->views = $this->views;
         $filteredRoute = '/';
         $isMatch = false;
-        $routeParam = $req->getRequestUri();
+        $routeParam = $request->getRequestUri();
         $routeParam = $routeParam == '/' ? '' : $routeParam;
         $currentRequestMethod = $_SERVER['REQUEST_METHOD'];
 
-        $filteredRoute = $this->filterRoute($route, $req);
+        $filteredRoute = $this->filterRoute($route, $request);
         $isMatch = $this->isRouteMatch($filteredRoute);
-        $req->setRoute($filteredRoute);
-
-        $routeListData = $this->getRouteOnList($route);
-        // $this->print_array($routeListData);
+        $request->setRoute($filteredRoute);
 
         if ($currentRequestMethod !== $requestMethod && !$isMatch) {
             return;
@@ -198,7 +193,7 @@ class Router
 
 
 
-        $this->processFunction($requestMethod, $isMatch, $filteredRoute, $req, $res, $callback);
+        $this->processFunction($requestMethod, $isMatch, $filteredRoute, $request, $response, $callback);
     }
 
     public function redirect(string $route)
@@ -209,7 +204,7 @@ class Router
         exit;
     }
 
-    public function get(string $route, callable $callback)
+    public function get(string $route, callable | string $callback)
     {
         if ($route == '*') {
             $this->handleUnhandledRoutes();
@@ -218,7 +213,7 @@ class Router
         $this->handleResponse('GET', $route, $callback);
     }
 
-    public function post(string $route, callable $callback)
+    public function post(string $route, callable | string $callback)
     {
 
         if ($route == '*') {
