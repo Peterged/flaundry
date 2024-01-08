@@ -2,12 +2,12 @@
 
 namespace app\libraries;
 
-    class RouteController extends Router {
+    class RouterController extends Router {
         public function __construct() {
             
         }
 
-
+        
     }
 
     // FOCUS

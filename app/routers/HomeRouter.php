@@ -1,12 +1,10 @@
 <?php
-// Initial Route = '/'
-$router = new app\libraries\RouteController();
+$homeRouter = new app\libraries\Router();
 
-// $router->get('/', function($req, $res) {
-//     $res->render('/pages/index');
-// });
-
-$router->get('/about', function ($req, $res) { // /about
-    $res->render('/users/login');
+$homeRouter->get('/', function ($req, $res) { // /contact
+    $res->render('/pages/index');
 });
 
+$homeRouter->get('/about', function ($req, $res) { // /about
+    $res->render('/pages/about');
+});

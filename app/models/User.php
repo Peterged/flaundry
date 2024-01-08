@@ -6,7 +6,7 @@ class User
     private $id;
     private $name;
     private $email;
-    private $dbConnection; // Database connection object
+    private \PDO $dbConnection; // Database connection object
 
     public function __construct($id, $name, $email, $dbConnection)
     {
