@@ -17,12 +17,22 @@ $router = new app\libraries\Router();
 // $router->setGlobalHeaderVariables($_PUT, $_DELETE);
 $router->setViews('app/views');
 
-$router->get('/login', function ($req, $res) {
-    $res->render('/users/login');
+$router->post('/login', function ($req, $res) {
+    $body = $req->getBody();
+
+    echo "<pre>";
+    print_r($body);
+    echo "</pre>";
+
+    echo "<h1>LOGIN POST SUCCESSFUL!</h1>";
+});
+
+$router->get('/login', function($req, $res) {
+    echo "GET LOGIN";
+    $res->render('/auth/login');
 });
 
 // $router->useRouteController('/users', $userRouteController);
-
 
 
 $router->get('/users', 'app\controllers\AuthController@index');
@@ -38,20 +48,12 @@ $router->get('/', function ($req, $res) {
     $res->render('/pages/index');
 });
 
+$router->get('/discount', function($req, $res) {
+    $res->render('/pages/discount');
+});
 
 // $router->get('/users/wtf', 'app\libraries\Router@addRoute');
-// $router->get('/users/wtf', [app\libraries\Router::class, 'addRoute']);
-
-$router->get('/users/profile', function ($req, $res) use ($router) {
-    $res->render('/users/profile');
-
-    $router->redirect('users/login');
-});
-
-$router->post('/users/profile-process', function ($req, $res) use ($router) {
-    $data = $req->getBody();
-    $router->redirect('/users/profile');
-});
+// $router->get('/users/wtf', [app\libraries\Router::class, 'addRoute'])
 
 
 $router->listen();

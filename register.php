@@ -1,9 +1,11 @@
 <?php
 
-$data = [
+$dataUser = [
+    'dataUsers' => 'blabla',
     '_METHOD' => 'PUT',
     '_PARAMS' => [
-        'id' => 'KreshnaDhana09'
+        'id' => 'KreshnaDhana09',
+        'nama' => 'Robert Dananjaya'
     ],
     '_BODY' => [
         'name' => 'John Doe',
@@ -11,6 +13,6 @@ $data = [
     ]
 ];
 
-extract($data);
+extract($dataUser);
 
 include 'profile.php';

@@ -14,6 +14,7 @@ class Router
     private $headerData;
     private $views;
     private $isListening;
+    private $routeQueue;
 
     public function __construct()
     {
@@ -28,11 +29,45 @@ class Router
             "directory" => null,
             "extension" => '.php'
         ];
+        $this->routeQueue = [];
+    }
+
+    private function sortRequestQueue() {
+        usort($this->routeQueue, function($a, $b) {
+            $order = ['GET' => 1, 'POST' => 2];
+
+            $aOrder = $order[$a['method']] ?? 3;
+            $bOrder = $order[$b['method']] ?? 3;
+
+            return $aOrder <=> $bOrder;
+        });
     }
 
     public function listen()
     {
+
         $this->isListening = true;
+        $this->sortRequestQueue();
+        $requestQueue = $this->routeQueue;
+        // $this->print_array($this->routeQueue);
+        if(!empty($requestQueue)) {
+            foreach($requestQueue as $key => $requestArray) {
+                if(!empty($requestArray)) {
+                    $method = (string) $requestArray['method'];
+                    $route = (string) $requestArray['route'];
+                    $callback = $requestArray['callback'];
+                    $this->handleResponse($method, $route, $requestArray['callback']);
+                }
+            }
+        }
+    }
+
+    private function addRequestToQueue(string $route, string $method, callable $callback) {
+        array_push($this->routeQueue, [
+            "method" => $method,
+            "route" => $route,
+            "callback" => $callback
+        ]);
     }
 
     public function useRouteController(string $path, RouteController $router)
@@ -64,12 +99,24 @@ class Router
     private function isRouteHandled(string $headerType, string $route)
     {
         $isHandled = false;
+        $newArray = $this->routes;
 
-        foreach ($this->routes as $routeItem) {
-            if ($routeItem['route'] == $route && $routeItem['requestMethod'] == $headerType) {
+        foreach ($newArray as $routeItem) {
+            // $this->print_array($this->routes);
+            //$this->print_array([
+              //  "route" => preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', ('/' . $route)),
+                //"requestType" => $headerType
+            // ]);
+
+
+            if ($routeItem['route'] == $route && $routeItem['requestMethod'] == $headerType && $routeItem['isHandled'] === 1) {
                 $isHandled = true;
                 break;
             }
+            elseif($this->isListening){
+                $routeItem['isHandled'] = 1;
+            }
+
         }
 
         return $isHandled;
@@ -79,7 +126,8 @@ class Router
     {
         array_push($this->routes, [
             "route" => $route,
-            "requestMethod" => $requestMethod
+            "requestMethod" => $requestMethod,
+            "isHandled" => 0
         ]);
     }
 
@@ -134,11 +182,22 @@ class Router
             $callback($request, $response);
             $this->resetHeader();
         }
+        elseif (!$this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestMethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
+            echo "<code>Cannot handle $currentRequestMethod $filteredRoute</code>";
+            $this->resetHeader();
+        }
 
-        // elseif ($this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestMethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
-        //     echo "<code>Cannot handle $requestMethod $filteredRoute</code>";
-        //     $this->resetHeader();
-        // }
+        if($filteredRoute == '/damn') {
+
+            $this->print_array([
+                "isRouteHandled" => $this->isRouteHandled($requestMethod, $filteredRoute) ? 'true' : 'false',
+                "currentRequestMethod" => $currentRequestMethod,
+                "requestMethod" => $requestMethod,
+                "filteredRoute" => $filteredRoute,
+                "isMatch" => $isMatch,
+                "isHeaderSent" => $this->headerData['isSent']
+            ]);
+        }
     }
 
     private function handleResponse(string $requestMethod, string $route, $callback)
@@ -155,9 +214,15 @@ class Router
             $this->handleUnhandledRoutes();
         }
 
-        if ($this->isRouteHandled($requestMethod, $route)) {
+        if ($this->isListening == true && $this->isRouteHandled($requestMethod, $route)) {
             throw new \Exception("Route already handled: " . $requestMethod . " -> " . $route);
         }
+
+        if($this->isListening == false) {
+            $this->addRequestToQueue($route, $requestMethod, $callback);
+            return;
+        }
+
 
         $this->addRoute($route, $requestMethod);
 
@@ -173,9 +238,11 @@ class Router
 
         $filteredRoute = $this->filterRoute($route, $request);
         $isMatch = $this->isRouteMatch($filteredRoute);
+
+
         $request->setRoute($filteredRoute);
 
-        if ($currentRequestMethod !== $requestMethod && !$isMatch) {
+        if (!$isMatch) {
             return;
         }
 
@@ -206,20 +273,11 @@ class Router
 
     public function get(string $route, callable | string $callback)
     {
-        if ($route == '*') {
-            $this->handleUnhandledRoutes();
-            return;
-        }
         $this->handleResponse('GET', $route, $callback);
     }
 
     public function post(string $route, callable | string $callback)
     {
-
-        if ($route == '*') {
-            $this->handleUnhandledRoutes();
-            return;
-        }
         $this->handleResponse('POST', $route, $callback);
     }
 

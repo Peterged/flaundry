@@ -16,9 +16,9 @@ class RouterHelper
             $route = $request->getRequestUri() . $route;
             $route = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $route);
             $route = str_replace($request->getRequestUri(), '', $route);
-            $filteredRoute = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $route);
+            $filteredRoute = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', '/' . $route);
         } else {
-            $filteredRoute = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $route);
+            $filteredRoute = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', '/' . $route);
         }
 
         return $filteredRoute;
@@ -42,10 +42,11 @@ class RouterHelper
         $isMatch = false;
         $requestUri = $request->getRequestUri();
 
-        $requestUri = '/' . ltrim($requestUri, '/');
-        $filteredRoute = '/' . ltrim($filteredRoute, '/');
-        $isMatch = mb_substr($requestUri, -mb_strlen($filteredRoute), mb_strlen($filteredRoute)) == $filteredRoute;
-        return $isMatch;
+        $requestUri = '/' . ltrim($requestUri, '/'); // /auth/login
+        $filteredRoute = '/' . ltrim($filteredRoute, '/'); // /login
+        $isMatch = $requestUri === $filteredRoute;
+
+        return $isMatch == $filteredRoute;
     }
 
     public static function getRouteParams(string $filteredRoute) {
@@ -59,10 +60,10 @@ class RouterHelper
         $filteredRoute = trim($filteredRoute, '/');
         $filteredRoute = explode('/', $filteredRoute);
 
-        
+
         foreach ($filteredRoute as $key => $value) {
             $keyName = preg_replace('/\{(.*)\}/', '$1', $value);
-            
+
             if (preg_match('/\{(.*)\}/', $value)) {
                 if(isset($requestUri[$key])) {
                     $params->$keyName = $requestUri[$key];
@@ -80,7 +81,7 @@ class RouterHelper
         if(!method_exists($class, $method)) {
             throw new \Exception("Method $method does not exist");
         }
-        
+
         return [new $class, $method];
     }
 
@@ -92,4 +93,6 @@ class RouterHelper
         $callableClass = new $callback[0]();
         return [$callableClass, $callback[1]];
     }
+
+
 }
