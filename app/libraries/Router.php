@@ -81,10 +81,12 @@ class Router
         }
         
         if(isset($router->routeQueue)) {
-            foreach($router->routeQueue as $route) {
+            foreach($router->routeQueue as &$route) {
                 $route['route'] = $path . $route['route'];
+                $route['route'] = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $route['route']);
             }
             $this->routeQueue = array_merge($this->routeQueue, $router->routeQueue);
+            
         }
     }
 
