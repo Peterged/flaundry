@@ -44,10 +44,6 @@ final class Response
         } else {
             throw new \Exception("Sorry, the directory is not set");
         }
-        $path = str_replace('.', '/', $path);
-        $path = str_replace('/', DIRECTORY_SEPARATOR, $path);
-        $path = str_replace('\\', DIRECTORY_SEPARATOR, $path);
-        $path = str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $path);
     }
 
     public function send(mixed $data)
@@ -66,13 +62,16 @@ final class Response
         }
     }
 
-    public function setHeader(string $header, string $value)
+    public function setHeader(string $header, string $value = null)
     {
         header($header . ": " . $value);
     }
 
-    protected function sendOutput($data, $httpHeaders = array())
+    public function setCode(int $code) {
+        http_response_code($code);
+    }
 
+    protected function sendOutput($data, $httpHeaders = array())
     {
 
         header_remove('Set-Cookie');

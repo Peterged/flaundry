@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace app\libraries;
 
-// include_once __DIR__ . "/../config/config.php";
-
 class Router
 {
+    private Request $request;
+    private Response $response;
     private $routes;
     private $headerData;
     private $views;
@@ -20,6 +20,7 @@ class Router
     public function __construct()
     {
         $request = new Request();
+        $this->response = new Response();
         $this->routes = [];
         $this->headerData = [
             "path" => $request->getRequestUri(),
@@ -47,7 +48,6 @@ class Router
 
     public function listen()
     {
-
         $this->isListening = true;
         $this->sortRequestQueue();
         $requestQueue = $this->routeQueue;
@@ -61,11 +61,15 @@ class Router
                     $this->handleResponse($method, $route, $callback);
                 }
             }
+            $this->handleUnhandledRoutes();
         }
     }
 
     private function addRequestToQueue(string $route, string $method, callable $callback)
     {
+        if (is_string($callback)) {
+            $callback = RouterHelper::getStringToCallable($callback);
+        }
         array_push($this->routeQueue, [
             "method" => $method,
             "route" => $route,
@@ -75,7 +79,6 @@ class Router
 
     public function use(string $path, Router $router)
     {
-        // FOCUS -- FINISH THIS
         if ($this->isListening) {
             throw new \Exception("Cannot use middleware after listening");
         }
@@ -114,16 +117,8 @@ class Router
     private function isRouteHandled(string $headerType, string $route)
     {
         $isHandled = false;
-        $newArray = $this->routes;
 
-        foreach ($newArray as $routeItem) {
-            // $this->print_array($this->routes);
-            //$this->print_array([
-            //  "route" => preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', ('/' . $route)),
-            //"requestType" => $headerType
-            // ]);
-
-
+        foreach ($this->routes as $routeItem) {
             if ($routeItem['route'] == $route && $routeItem['requestMethod'] == $headerType && $routeItem['isHandled'] === 1) {
                 $isHandled = true;
                 break;
@@ -133,15 +128,6 @@ class Router
         }
 
         return $isHandled;
-    }
-
-    private function addRoute(string $route, string $requestMethod)
-    {
-        array_push($this->routes, [
-            "route" => $route,
-            "requestMethod" => $requestMethod,
-            "isHandled" => 0
-        ]);
     }
 
     private function isRouteMatch(string $filteredRoute)
@@ -159,21 +145,6 @@ class Router
         echo "<pre>";
         print_r($array);
         echo "</pre>";
-    }
-
-    private function getRouteOnList(string $route): array
-    {
-        $routeData = [];
-        foreach ($this->routes as $routeItem) {
-            if ($routeItem['route'] == $route) {
-                $routeData = $routeItem;
-                break;
-            }
-        }
-        return $routeData ?? [
-            "route" => null,
-            "requestMethod" => null
-        ];
     }
 
     private function setHeaderData(bool $isSent, $path = null)
@@ -200,7 +171,6 @@ class Router
         }
 
         if ($filteredRoute == '/damn') {
-
             $this->print_array([
                 "isRouteHandled" => $this->isRouteHandled($requestMethod, $filteredRoute) ? 'true' : 'false',
                 "currentRequestMethod" => $currentRequestMethod,
@@ -212,37 +182,21 @@ class Router
         }
     }
 
-    private function handleResponse(string $requestMethod, string $route, $callback)
+    private function handleResponse(string $requestMethod, string $route, callable | string $callback)
     {
-        if (!is_callable($callback) && !is_string($callback)) {
-            throw new \InvalidArgumentException('Callback must be a callable or a string');
+        $request = new Request();
+        $this->response = new Response();
+
+        
+        if ($route === "*") {
+            $this->handleUnhandledRoutes($route, $callback);
         }
 
-        if (is_string($callback)) {
-            $callback = RouterHelper::getStringToCallable($callback);
-        }
-
-        $UNHANDLED_ROUTE = '*';
-        if ($route == $UNHANDLED_ROUTE) {
-            $this->handleUnhandledRoutes();
-        }
-
-        if ($this->isListening && $this->isRouteHandled($requestMethod, $route)) {
+        if ($this->isRouteHandled($requestMethod, $route)) {
             throw new \Exception("Route already handled: " . $requestMethod . " -> " . $route);
         }
 
-        if (!$this->isListening) {
-            $this->addRequestToQueue($route, $requestMethod, $callback);
-            return;
-        }
-
-
-        $this->addRoute($route, $requestMethod);
-
-        $request = new Request();
-        $response = new Response();
-
-        $response->views = $this->views;
+        $this->response->views = $this->views;
         $filteredRoute = '/';
         $isMatch = false;
         $routeParam = $request->getRequestUri();
@@ -266,9 +220,9 @@ class Router
             "POST" => empty($_POST) ? 'undefined' : 'defined',
             "isRouteHandled" => $this->isRouteHandled($requestMethod, $filteredRoute),
             "headerData" => $this->headerData,
-        ];
+        ];     
 
-        $this->processFunction($requestMethod, $isMatch, $filteredRoute, $request, $response, $callback);
+        $this->processFunction($requestMethod, $isMatch, $filteredRoute, $request, $this->response, $callback);
     }
 
     public function redirect(string $route)
@@ -281,11 +235,24 @@ class Router
 
     public function get(string $route, callable | string $callback)
     {
-        $this->handleResponse('GET', $route, $callback);
+        if(!$this->isListening) {
+            if($route === '*') {
+
+                return;
+            }
+            
+            $this->addRequestToQueue($route, 'GET', $callback);
+        }
+        else {
+            $this->handleResponse('GET', $route, $callback);
+        }
     }
 
     public function post(string $route, callable | string $callback)
     {
+        if(!$this->isListening) {
+            
+        }
         $this->handleResponse('POST', $route, $callback);
     }
 
@@ -294,36 +261,47 @@ class Router
         $this->handleResponse('PUT', $route, $callback);
     }
 
+    /**
+     * @deprecated Use $this->use() instead
+     */
     public function group(string $route, callable $callback)
     {
-        $this->routes = [];
-        $callback();
-        $this->routes = array_map(function ($routeItem) use ($route) {
-            $routeItem['route'] = $route . $routeItem['route'];
-            return $routeItem;
-        }, $this->routes);
+        
     }
 
-    private function handleUnhandledRoutes()
+    private function handleUnhandledRoutes(string $currentRoute = null, callable $callback = null)
     {
-
         $req = new Request();
-        $res = new Response();
-        $requestUri = $req->getRequestUri();
+        $error = new \stdClass();
+        $requestUri = $this->filterRoute($req->getRequestUri());
 
-        // Check if the request_uri matches any of the routes
         $isHandled = false;
-        foreach ($this->routes as $route) {
-            $filteredRoute = preg_replace('#(?<!:)//#', '/', $route);
-            if ($requestUri === $filteredRoute) {
-                $isHandled = true;
-                break;
+        $requestQueue = $this->routeQueue;
+
+        if (!empty($requestQueue)) {
+            foreach ($requestQueue as $key => $requestArray) {
+                if (!empty($requestArray)) {
+                    $method = (string) $requestArray['method'];
+                    $route = (string) $requestArray['route'];
+                    $callback = $requestArray['callback'];
+                    if($requestUri == $route) {
+                        $isHandled = true;
+                    }
+                }
             }
         }
-
-        // If the request_uri is not handled, throw an error
+        
+        // If the request_uri is not handled, return an error
         if (!$isHandled) {
-            throw new \Exception("Route not found");
+            // echo "<code>Cannot handle $currentRequestMethod $requestUri</code>";
+            // $res->setHeader('HTTP/1.0 404 Not Found');
+            // $res->setCode(404);
+            $error->code = 404;
+            $error->message = "Not Found";
+            $error->description = "The requested URL was not found on this server.";
+            if($currentRoute === "*" && $callback !== null) {
+                $callback($req, $this->response, $error);
+            }
         }
     }
 }

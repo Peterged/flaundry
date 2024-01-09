@@ -12,6 +12,9 @@ class RouterHelper
         $route = trim($route, '/');
         $route = filter_var($route, FILTER_SANITIZE_URL);
 
+        if($route == '*'){
+            return $route;
+        }
         if ($route == '/') {
             $route = $request->getRequestUri() . $route;
             $route = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $route);

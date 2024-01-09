@@ -30,7 +30,7 @@ namespace app\libraries;
         public function getRequestUri() {
             $uri = $_GET['route'] ?? '/';
             // return parse_url($uri, PHP_URL_PATH);
-            return $uri;
+            return '/' . $uri;
         }
 
         public function getFullPath(){
