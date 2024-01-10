@@ -17,8 +17,14 @@ final class Response
     private function extractData($data)
     {
         if (isset($data)) {
+            
             foreach ($data as $dataItem) {
-                extract($dataItem);
+                if(is_array($dataItem)) {
+                    extract($dataItem);
+                }
+                else {
+                    extract(compact('dataItem'));
+                }
             }
         }
     }

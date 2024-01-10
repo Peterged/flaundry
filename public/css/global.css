@@ -1,28 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 400;
-    text-decoration: none;
-    list-style-type: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  list-style-type: none;
 }
 
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #c4c4c4;
+    border-radius: 12px;
+    transition: background 0.3s ease; /* Add transition property for background */
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #4895EF;
+}
 
 table .table-min-w-md {
-    min-width: 8rem;
+  min-width: 8rem;
 }
 
 table .table-min-w-lg {
-    min-width: 16rem;
+  min-width: 16rem;
 }
 
-table .table-min-w-sm  {
-    min-width: 4rem;
+table .table-min-w-sm {
+  min-width: 4rem;
 }
 
 table .table-min-w-xl {
-    min-width: 32rem;
+  min-width: 32rem;
 }

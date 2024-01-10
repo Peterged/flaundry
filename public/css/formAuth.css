@@ -54,8 +54,8 @@ body {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -104,8 +104,9 @@ body {
 .container .wrapper input {
   width: 100%;
   padding: 0.8rem 2.75rem;
+  font-size: 1rem;
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   outline: none;
   border-radius: 0.5rem;
   color: var(--dark-box-background);
@@ -127,7 +128,7 @@ body {
   border: none;
   margin-bottom: 0.75rem;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.15rem;
   cursor: pointer;
   transition: 350ms ease-in-out all;
   box-shadow: 0 0 15px 0.1rem rgba(var(--blue-vivid-sky-10), 0.5);
@@ -138,4 +139,40 @@ body {
 .container .wrapper input[type="submit"]:focus {
   /* background-image: linear-gradient(to right, var(--purple-grape-3), var(--blue-chrysler-4)); */
   box-shadow: 0 0 20px 0.05rem var(--blue-vivid-sky-10);
+}
+
+/* <============= .goback-btn =============> */
+.container .goback-btn {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    
+}
+
+.container .goback-btn button {
+    color: white;
+    border: none;
+    background-color: transparent;
+    border-radius: 0.5rem;
+    text-align: center;
+    transition: 50ms ease-in-out all;
+    outline: none;
+
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    padding: 0.5rem .75rem;
+
+    cursor: pointer;
+    transition: 250ms ease-in-out;
+}
+
+.container .goback-btn button:hover {
+    background-color: var(--blue--chefchaouen-9);
+}
+
+.container .goback-btn button svg {
+    size: 1.5rem;
 }

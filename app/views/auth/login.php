@@ -10,13 +10,13 @@
 
 <body>
     <div class="container">
-        <form action="" class="wrapper">
+        <form method="post" class="wrapper">
             <h1 class="title">Login</h1>
             <div class="input-group">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
                     <path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
                 </svg>
-                <input type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+                <input autofocus type="text" name="username" id="username" placeholder="Username" autocomplete="off">
             </div>
             <div class="input-group">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
@@ -25,8 +25,13 @@
                 <input type="password" name="password" id="password" placeholder="Password" autocomplete="off">
             </div>
             <input type="submit" name="submit" value="LOGIN">
-
         </form>
+        <div class="goback-btn">
+            <button onclick="history.back()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path></svg>
+                Return
+            </button>
+        </div>
     </div>
 
 </body>
