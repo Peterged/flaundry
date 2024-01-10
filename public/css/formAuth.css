@@ -1,0 +1,141 @@
+:root {
+  --pink-1: #f72585;
+  --purple-fandango-2: #b5179e;
+  --purple-grape-3: #7209b7;
+  --blue-chrysler-4: #560bad;
+  --blue-dark-5: #480ca8;
+  --blue-zaffre-6: #3a0ca3;
+  --blue-palatinate-7: #3f37c9;
+  --blue-neon-8: #4361ee;
+  --blue--chefchaouen-9: #4895ef;
+  --blue-vivid-sky-10: #4cc9f0;
+
+  /* Dark mode colors */
+  --dark-background: #1e1e1e;
+  --dark-foreground: #fff;
+  --dark-box-background: #232323; /* with a semi-transparent overlay */
+  --dark-box-content: #34495e;
+  --dark-box-close-button: #fff; /* With some glow */
+  --dark-secondary-accent: #e74c3c;
+
+  --input-width: 98%;
+}
+
+body {
+  background-image: url("../images/background/wavy-background-blue.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container form.wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  border-radius: 10px;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.container .wrapper .title {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 2.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.container .wrapper .link-center {
+  color: white;
+  padding: 0.75rem 1.25rem;
+
+  border-radius: 0.5rem;
+  text-align: center;
+  margin-top: 2rem;
+  transition: 50ms ease-in-out all;
+  outline: none;
+}
+
+.container .wrapper .link-center:hover,
+.container .wrapper .link-center:focus {
+  background-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 15px 0.1rem rgba(0, 0, 0, 0.2);
+}
+
+.container .wrapper .input-group {
+  width: var(--input-width);
+  position: relative;
+  margin-bottom: 1.25rem;
+  display: grid;
+  place-items: center;
+}
+
+.container .wrapper .input-group i,
+.container .wrapper .input-group svg {
+  fill: rgba(255, 255, 255, 0.75) !important;
+  position: absolute;
+  top: 48%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+}
+
+.container .wrapper input {
+  width: 100%;
+  padding: 0.8rem 2.75rem;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  outline: none;
+  border-radius: 0.5rem;
+  color: var(--dark-box-background);
+  transition: 300ms ease-in-out;
+}
+
+.container .wrapper input[type="text"]:focus {
+  border-color: var(--blue-vivid-sky-10);
+}
+
+.container .wrapper input[type="submit"] {
+  width: var(--input-width);
+  background-image: linear-gradient(
+    to right,
+    var(--blue--chefchaouen-9),
+    var(--blue-vivid-sky-10)
+  );
+  color: #fff;
+  border: none;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 350ms ease-in-out all;
+  box-shadow: 0 0 15px 0.1rem rgba(var(--blue-vivid-sky-10), 0.5);
+  /* transition: background-image 0.35s linear; */
+}
+
+.container .wrapper input[type="submit"]:hover,
+.container .wrapper input[type="submit"]:focus {
+  /* background-image: linear-gradient(to right, var(--purple-grape-3), var(--blue-chrysler-4)); */
+  box-shadow: 0 0 20px 0.05rem var(--blue-vivid-sky-10);
+}

@@ -1,0 +1,87 @@
+:root {
+    --pink-1: #f72585;
+    --purple-fandango-2: #b5179e;
+    --purple-grape-3: #7209B7;
+    --blue-chrysler-4: #560BAD;
+    --blue-dark-5: #480CA8;
+    --blue-zaffre-6: #3A0CA3;
+    --blue-palatinate-7: #3F37C9;
+    --blue-neon-8: #4361EE;
+    --blue--chefchaouen-9: #4895EF;
+    --blue-vivid-sky-10: #4CC9F0;
+
+    /* Dark mode colors */
+    --dark-background: #121212;
+    --dark-foreground: #fff;
+    --dark-box-background: #232323; /* with a semi-transparent overlay */
+    --dark-box-content: #34495E;
+    --dark-box-close-button: #FFF; /* With some glow */
+    --dark-secondary-accent: #E74C3C;
+
+    --light-background: #FFF;
+
+    /* Variables for this file */
+    --input-width: 98%;
+}
+
+body {
+    background-color: var(--light-background);
+    color: var(--dark-background);
+    height: 100%;
+}
+
+main {
+    height: 100vh;
+}
+
+main .container {
+    display: flex;
+    flex-direction: column;
+}
+
+main .container .header {
+    min-height: 70px;
+    padding: 1rem;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+main .container .header .menu {
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+main .container .header .menu ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+    gap: 1rem 1.5rem;
+}
+
+main .container .header .menu ul li {
+    display: flex;
+    height: auto;
+    width: auto;
+    border-radius: 0.5rem;
+    transition: 200ms ease-in-out;
+}
+main .container .header .menu ul li a {
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    
+}
+
+main .container .header .menu ul li:hover {
+    background-color: rgb(227, 227, 227, 0.4);
+    cursor: pointer;
+}
+
+main .container .header .menu ul li a {
+    color: var(--dark-box-background);
+    font-weight: 500;
+}

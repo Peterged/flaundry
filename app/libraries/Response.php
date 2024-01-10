@@ -29,15 +29,18 @@ final class Response
             $path = $this->views['directory'] . $path . $this->views['extension'];
             $path = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $path);
             
-            if (file_exists($path) && !headers_sent()) {
+            if (file_exists($path)) {
                 $this->extractData($data);
+                
                 extract([
                     'PROJECT_ROOT' => PROJECT_ROOT,
                     'URLROOT' => URLROOT,
                     'routeTo' => 'routeTo',
                     'fetch' => 'fetch'
                 ]);
-                require_once $path;
+                
+                include_once __DIR__ . "/../views/layouts/header.php";
+                include_once $path;
             } else {
                 throw new \Exception("Sorry, the file does not exist");
             }
