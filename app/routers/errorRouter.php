@@ -1,7 +1,7 @@
 <?php
 namespace app\routers;
-use app\libraries\Router;
-$errorRouter = new Router();
+use app\libraries\PHPExpress;
+$errorRouter = new PHPExpress();
 // initial route = /auth
 $errorRouter->get('/error/404', function ($req, $res) {
     if (http_response_code() === 404) {

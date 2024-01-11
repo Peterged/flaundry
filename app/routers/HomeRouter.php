@@ -1,7 +1,10 @@
 <?php
 namespace app\routers;
-use app\libraries\Router;
-$homeRouter = new Router();
+use app\libraries\PHPExpress;
+use DateTimeZone;
+use Directory;
+
+$homeRouter = new PHPExpress();
 // initial route = /
 $homeRouter->get('/', function ($req, $res) { // /contact
     $res->render('/layouts/navbar');
@@ -13,13 +16,14 @@ $data = [
     'username' => 'Petergedon',
     'email' => 'roberto@gmail.com',
     'age' => 28,
-    'date' => date('M d-m-y')
+    'date' => date('M d-m-y'),
 ];
+
 
 
 $homeRouter->get('/about', function ($req, $res) use ($data) { // /about
     $res->render('/layouts/navbar');
-    $res->render('/pages/about', $data);
+    $res->render('/pages/about', array(...$data));
 });
 
 $homeRouter->get('/service', function($req, $res) {

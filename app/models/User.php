@@ -52,6 +52,7 @@ class User
 
             // Logic to save the user data to the database
             // ...
+            mysqli_query($this->dbConnection, "INSERT INTO users (name) VALUES ({$this->name})");
 
             // Commit the transaction
             $this->dbConnection->commit();
@@ -94,3 +95,7 @@ class User
     // Other methods and properties specific to the User model
 
 }
+
+$connection = new \PDO('mysql:host=localhost;dbname=example', 'root', '');
+$user = new User('1', 'John Doe', '', $connection);
+$user->save();

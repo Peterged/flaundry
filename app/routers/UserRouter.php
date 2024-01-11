@@ -1,7 +1,7 @@
 <?php 
 namespace app\routers;
 
-    class UserRouter extends \app\libraries\Router {
+    class UserRouter extends \app\libraries\PHPExpress {
         public function __construct() {
             $this->get('/users', 'UserController@index');
             $this->get('/users/create', 'UserController@create');

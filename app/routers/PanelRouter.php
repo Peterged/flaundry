@@ -1,21 +1,44 @@
 <?php
 namespace app\routers;
-use app\libraries\Router;
+use app\libraries\PHPExpress;
 
-$panelRouter = new Router();
+$panelRouter = new PHPExpress();
+
+$panelRouter->get('/{{always}}', function($req, $res) {
+    $res->render('/panel/inc/sidebar');
+});
 
 $panelRouter->get('/admin', function($req, $res) {
     $data = [
-        'username' => 'kreshna'
+        'username' => 'kreshna',
+        'title' => 'Dashboard'
     ];
     $res->render('/panel/inc/sidebar', $data);
     $res->render('/panel/index');
 });
 
-$panelRouter->get('/admin/dashboard', function($req, $res) {
+$panelRouter->get('/dashboard', function($req, $res) {
     $data = [
         'sales' => 500
     ];
-    $res->render('/panel/dashboard', $data);
+    $res->render('/panel/inc/sidebar', $data);
+    $res->render('/panel/dashboard');
 });
+
+$panelRouter->get('/outlet', function($req, $res) {
+    $data = [
+        'sales' => 500
+    ];
+    $res->render('/panel/inc/sidebar', $data);
+    $res->render('/panel/outlet');
+});
+
+$panelRouter->get('/settings', function($req, $res) {
+    $data = [
+        'sales' => 500
+    ];
+    $res->render('/panel/inc/sidebar', $data);
+    $res->render('/panel/settings');
+});
+
 ?>

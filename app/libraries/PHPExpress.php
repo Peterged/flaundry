@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\libraries;
 
-class Router
+class PHPExpress
 {
     private Request $request;
     private Response $response;
@@ -46,6 +46,7 @@ class Router
         });
     }
 
+    
     public function listen()
     {
         $this->isListening = true;
@@ -65,7 +66,7 @@ class Router
             $this->handleUnhandledRoutes();
         }
     }
-
+    
     private function addRequestToQueue(string $route, string $method, callable | string $callback)
     {
         if (is_string($callback)) {
@@ -78,13 +79,13 @@ class Router
             "isHandled" => true
         ]);
     }
-
-    public function use(string $path, Router $router)
+    
+    public function use(string $path, PHPExpress $router)
     {
         if ($this->isListening) {
             throw new \Exception("Cannot use middleware after listening");
         }
-
+        
         if (isset($router->routeQueue)) {
             foreach ($router->routeQueue as &$route) {
                 $route['route'] = $path . $route['route'];
@@ -93,28 +94,37 @@ class Router
             $this->routeQueue = array_merge($this->routeQueue, $router->routeQueue);
         }
     }
-
+    
     // Middleware
-    public function setViews(string $path, string $ext = '.php')
-    {
-        $this->views = [
-            "directory" => $path,
-            "extension" => $ext
-        ];
+    public function set(string $command, string $option) {
+        if($command == 'view engine') {
+            $this->views = [
+                "directory" => null,
+                "extension" => $option
+            ];
+            return;
+        }
+        elseif($command == 'views') {
+            $this->views['directory'] = $option;
+            return;
+        }
     }
-
+    
+    
     private function throwExceptionIfNotListening()
     {
         if ($this->isListening == false) {
             throw new \Exception("please use the listen function to start the router!");
         }
     }
-
+    
     private function resetHeader()
     {
-        header_remove();
+        if(!headers_sent()){
+            header_remove();
+        }
     }
-
+    
     private function isRouteHandled(string $headerType, string $route)
     {
         $isHandled = false;
@@ -264,6 +274,7 @@ class Router
         } else {
             $this->handleResponse('GET', $route, $callback);
         }
+        return $this;
     }
 
     public function post(string $route, callable | string $callback)

@@ -2,7 +2,7 @@
 
 namespace app\libraries;
 
-    class RouterController extends Router {
+    class RouterController extends PHPExpress {
         public function __construct() {
             
         }

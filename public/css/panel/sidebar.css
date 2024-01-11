@@ -26,20 +26,26 @@
 
     /* Variables for this file */
     --input-width: 98%;
+    --global-left-padding: 0.9rem;
 }
 
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
-    min-width: 350px;
+    min-width: 60px;
+    width: 300px;
     height: 100vh;
-    width: auto;
 
     display: flex;
     flex-direction: column;
     background-color: #f6f6f6;
-    padding: 1rem 1.5rem;
+    padding: 0.6rem 1rem;
+    overflow: hidden;
+    overflow-y: auto;
+
+    transition: 250ms ease-in-out;
+    resize: vertical;
 }
 
 .sidebar .line {
@@ -53,7 +59,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 0 1.5rem;
+    padding: 0.8rem 0 0;
 }
 
 .sidebar .header .logo {
@@ -64,13 +70,13 @@
     width: 100%;
 }
 
-.sidebar .header .toggle-undock {
+.sidebar .header .toggle-button {
     margin-left: auto;
     cursor: pointer;
     transform: rotate(90deg);
 }
 
-.sidebar .header .toggle-undock img {
+.sidebar .header .toggle-button img {
     width: 22px;
     height: 22px;
 }
@@ -80,15 +86,15 @@
     display: flex;
     flex-direction: column;
     padding: 1rem 0;
-    gap: 0rem 1rem;
 }
 
 .sidebar .button-group .button {
     display: flex;
     gap: 1rem;
     font-weight: 500;
-    padding-block: 0.9rem;
-    padding-left: 0.9rem;
+    margin-block: 0.25rem;
+    padding-block: 0.7rem;
+    padding-left: var(--global-left-padding);
     border-radius: 0.5rem;
     align-items: center;
     margin-left: 0.45rem;
@@ -97,9 +103,23 @@
     transition: 200ms ease-in-out;
 }
 
+.sidebar .button-group .button svg path {
+    fill: rgba(0, 0, 0, 0.65);
+    transition: 200ms ease-in-out;
+}
+
 .sidebar .button-group .button:hover {
     background-color: rgba(var(--blue-vivid-sky-10-rgb), 0.15);
-    color: var(--blue--chefchaouen-9) !important;
+    color: #4895ef;
+    text-shadow: 0 0 15px rgba(var(--blue-vivid-sky-10-rgb), 0.15);
+}
+
+.sidebar .button-group .button:hover svg:not(.stroke-only) path {
+    fill: #4895ef !important;
+}
+
+.sidebar .button-group .button:hover svg.stroke-only path {
+    stroke: #4895ef !important;
 }
 
 .sidebar .button-group .button img,
@@ -114,7 +134,24 @@
     text-transform: uppercase;
     font-size: 0.85rem;
     font-weight: 500;
+    padding-left: calc(var(--global-left-padding) - 0.35rem);
     letter-spacing: 0.1rem;
     color: rgba(0, 0, 0, 0.6);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.sidebar .section-title.section-title--xl-margin {
+    margin-top: 3rem;
+}
+
+/* SIDEBAR UNTOGGLED */
+.sidebar--collapsed {
+    min-width: 60px;
+    width: 60px;
+    padding: 0.6rem 0.5rem;
+}
+
+.sidebar--collapsed .header .toggle-button {
+    transform: rotate(-90deg);
 }

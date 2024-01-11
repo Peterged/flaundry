@@ -32,9 +32,10 @@ final class Response
     public function render(string $path, $data = [])
     {
         if (!empty($this->views['directory'])) {
-            $path = $this->views['directory'] . $path . $this->views['extension'];
+            $extension = '.' . preg_replace('#(\.)$#', '', $this->views['extension']);
+            $path = $this->views['directory'] . $path . $extension;
             $path = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $path);
-            
+
             if (file_exists($path)) {
                 $this->extractData($data);
                 
@@ -52,12 +53,17 @@ final class Response
             }
         } else {
             throw new \Exception("Sorry, the directory is not set");
+            // throw new \Exception("Sorry, the directory is not set");
         }
     }
 
     public function send(mixed $data)
     {
-        var_dump($data);
+        if(is_array($data)) {
+            var_dump($data);
+            return;
+        }
+        echo $data;
     }
 
     public function sendFile(string $path)

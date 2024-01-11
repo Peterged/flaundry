@@ -1,7 +1,7 @@
 <?php
 namespace app\routers;
-use app\libraries\Router;
-$apiRouter = new Router();
+use app\libraries\PHPExpress;
+$apiRouter = new PHPExpress();
 // initial route = /api
 $apiRouter->get('/', function ($req, $res) { // /contact
     $res->render('/pages/index');
