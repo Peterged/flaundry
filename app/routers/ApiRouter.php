@@ -1,5 +1,7 @@
 <?php
-$apiRouter = new app\libraries\Router();
+namespace app\routers;
+use app\libraries\Router;
+$apiRouter = new Router();
 // initial route = /api
 $apiRouter->get('/', function ($req, $res) { // /contact
     $res->render('/pages/index');

@@ -1,5 +1,7 @@
 <?php
-$authRouter = new app\libraries\Router();
+namespace app\routers;
+use app\libraries\Router;
+$authRouter = new Router();
 // initial route = /auth
 
 $authRouter->get('/login', function($req, $res) {

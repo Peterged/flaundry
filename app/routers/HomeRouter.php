@@ -1,20 +1,25 @@
 <?php
-$homeRouter = new app\libraries\Router();
+namespace app\routers;
+use app\libraries\Router;
+$homeRouter = new Router();
 // initial route = /
 $homeRouter->get('/', function ($req, $res) { // /contact
     $res->render('/layouts/navbar');
     $res->render('/home');
 });
 
+
 $data = [
     'username' => 'Petergedon',
     'email' => 'roberto@gmail.com',
-    'age' => 28
+    'age' => 28,
+    'date' => date('M d-m-y')
 ];
 
+
 $homeRouter->get('/about', function ($req, $res) use ($data) { // /about
-    $res->render('/layouts/navbar', $data);
-    $res->render('/pages/about');
+    $res->render('/layouts/navbar');
+    $res->render('/pages/about', $data);
 });
 
 $homeRouter->get('/service', function($req, $res) {
