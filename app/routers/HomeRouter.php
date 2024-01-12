@@ -5,6 +5,7 @@ use DateTimeZone;
 use Directory;
 
 $homeRouter = new PHPExpress();
+
 // initial route = /
 $homeRouter->get('/', function ($req, $res) { // /contact
     $res->render('/layouts/navbar');
@@ -35,6 +36,12 @@ $homeRouter->get('/contact', function ($req, $res) { // /contact
     $res->render('/layouts/navbar');
     $res->render('/pages/contact');
 });
+
+$homeRouter->get('/profile', function ($req, $res) { // Profile
+    $res->render('/layouts/navbar');
+    $res->render('/pages/contact');
+});
+
 
 
 

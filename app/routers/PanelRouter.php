@@ -8,11 +8,12 @@ $panelRouter->get('/{{always}}', function($req, $res) {
     $res->render('/panel/inc/sidebar');
 });
 
-$panelRouter->get('/admin', function($req, $res) {
+$panelRouter->get('/', function($req, $res) {
     $data = [
         'username' => 'kreshna',
         'title' => 'Dashboard'
     ];
+    $res->render('/panel/inc/navbar');
     $res->render('/panel/inc/sidebar', $data);
     $res->render('/panel/index');
 });
