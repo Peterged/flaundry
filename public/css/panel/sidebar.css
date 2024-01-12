@@ -7,11 +7,18 @@
     --blue-zaffre-6: #3a0ca3;
     --blue-palatinate-7: #3f37c9;
     --blue-neon-8: #4361ee;
-    --blue--chefchaouen-9: #4895ef;
+    --blue-chefchaouen-9: #4895ef;
     --blue-vivid-sky-10: #4cc9f0;
 
 
-    --blue--chefchaouen-9: 72, 149, 239;
+    --pink-1-rgb: 247, 37, 133;
+    --purple-fandango-2-rgb: 181, 23, 158;
+    --purple-grape-3-rgb: 114, 9, 183;
+    --blue-chrysler-4-rgb: 86, 11, 173;
+    --blue-dark-5-rgb: 72, 12, 168;
+    --blue-palatinate-7-rgb: 63, 55, 201;
+    --blue-neon-8-rgb: 67, 97, 238;
+    --blue-chefchaouen-9-rgb: 72, 149, 239;
     --blue-vivid-sky-10-rgb: 76, 201, 240;
 
     /* Dark mode colors */
@@ -29,9 +36,15 @@
     --global-left-padding: 0.9rem;
 }
 
+body:has(.sidebar.collapsed) {
+    padding-left: 60px;
+}
+
 body {
     padding-left: 300px;
+    
 }
+
 
 .sidebar {
     position: fixed;
@@ -40,6 +53,8 @@ body {
     min-width: 60px;
     width: 300px;
     height: 100vh;
+    z-index: 9000;
+    background-color: #FFFFFF;
 
     display: flex;
     flex-direction: column;
@@ -49,7 +64,6 @@ body {
     overflow-y: auto;
 
     transition: 250ms ease-in-out;
-
 }
 
 .sidebar .line {
@@ -80,9 +94,14 @@ body {
     transform: rotate(90deg);
 }
 
-.sidebar .header .toggle-button img {
+.sidebar .header .toggle-button svg {
     width: 22px;
     height: 22px;
+}
+
+.sidebar .header .toggle-button svg path {
+    fill: rgba(0, 0, 0, 0.65);
+    transition: 200ms ease-in-out;
 }
 
 /* SIDEBAR BUTTON-GROUP */
@@ -118,11 +137,11 @@ body {
 }
 
 .sidebar .button-group .button:hover svg:not(.stroke-only) path {
-    fill: #4895ef !important;
+    fill: var(--blue-chefchaouen-9) !important;
 }
 
 .sidebar .button-group .button:hover svg.stroke-only path {
-    stroke: #4895ef !important;
+    stroke: var(--blue-chefchaouen-9) !important;
 }
 
 .sidebar .button-group .button img,
@@ -149,12 +168,16 @@ body {
 }
 
 /* SIDEBAR UNTOGGLED */
-.sidebar--collapsed {
+.sidebar.collapsed {
     min-width: 60px;
     width: 60px;
     padding: 0.6rem 0.5rem;
 }
 
-.sidebar--collapsed .header .toggle-button {
+.sidebar.collapsed .header .toggle-button {
     transform: rotate(-90deg);
 }
+
+
+
+/* DO NOT DELETE  */

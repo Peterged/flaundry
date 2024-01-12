@@ -4,12 +4,17 @@
 <div class="sidebar">
     <div class="header">
         <div class="logo">
-            <img src="<?= PROJECT_ROOT ?>/public/images/logo.svg" alt="">
+            <a href="<?= routeTo('/panel') ?>">
 
-
+                <img src="<?= PROJECT_ROOT ?>/public/images/logo.svg" alt="">
+            </a>
         </div>
         <div class="toggle-button">
-            <img src="<?= PROJECT_ROOT ?>/public/images/icons/panel/undock.svg" alt="">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.46967 7.46967C8.76256 7.17678 9.23744 7.17678 9.53033 7.46967L12 9.93934L14.4697 7.46967C14.7626 7.17678 15.2374 7.17678 15.5303 7.46967C15.8232 7.76256 15.8232 8.23744 15.5303 8.53033L12.5303 11.5303C12.2374 11.8232 11.7626 11.8232 11.4697 11.5303L8.46967 8.53033C8.17678 8.23744 8.17678 7.76256 8.46967 7.46967ZM2.75 15C2.75 14.5858 3.08579 14.25 3.5 14.25H20.5C20.9142 14.25 21.25 14.5858 21.25 15C21.25 15.4142 20.9142 15.75 20.5 15.75H3.5C3.08579 15.75 2.75 15.4142 2.75 15Z" fill="#121212" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.16243 3.90806C6.02005 4.06164 5.34473 4.35193 4.84833 4.84833C4.3519 5.34476 4.06163 6.01987 3.90806 7.16206C3.75159 8.32585 3.75 9.8573 3.75 12C3.75 14.1422 3.75159 15.6737 3.90806 16.8376C4.06164 17.98 4.35193 18.6553 4.84833 19.1517C5.34476 19.6481 6.01987 19.9384 7.16206 20.0919C8.32585 20.2484 9.8573 20.25 12 20.25C14.1422 20.25 15.6737 20.2484 16.8376 20.0919C17.98 19.9384 18.6553 19.6481 19.1517 19.1517C19.6481 18.6552 19.9384 17.9801 20.0919 16.8379C20.2484 15.6742 20.25 14.1427 20.25 12C20.25 9.8578 20.2484 8.32634 20.0919 7.16243C19.9384 6.02005 19.6481 5.34473 19.1517 4.84833C18.6552 4.3519 17.9801 4.06163 16.8379 3.90806C15.6742 3.75159 14.1427 3.75 12 3.75C9.8578 3.75 8.32634 3.75159 7.16243 3.90806ZM11.9431 2.25H12.057C14.1302 2.24999 15.7625 2.24997 17.0378 2.42144C18.3464 2.59737 19.3908 2.9661 20.2123 3.78767C21.0339 4.60927 21.4026 5.65395 21.5786 6.96257C21.75 8.238 21.75 9.87033 21.75 11.9431V12.0569C21.75 14.1302 21.75 15.7625 21.5786 17.0378C21.4026 18.3464 21.0339 19.3908 20.2123 20.2123C19.3907 21.0339 18.346 21.4026 17.0374 21.5786C15.762 21.75 14.1297 21.75 12.0569 21.75H11.9431C9.86984 21.75 8.2375 21.75 6.96219 21.5786C5.65363 21.4026 4.60924 21.0339 3.78767 20.2123C2.96607 19.3907 2.59736 18.346 2.42144 17.0374C2.24997 15.762 2.24999 14.1297 2.25 12.0569V11.943C2.24999 9.86984 2.24997 8.2375 2.42144 6.96219C2.59737 5.65363 2.9661 4.60924 3.78767 3.78767C4.60927 2.96607 5.65395 2.59736 6.96257 2.42144C8.238 2.24997 9.87034 2.24999 11.9431 2.25Z" fill="#121212" />
+            </svg>
+
         </div>
     </div>
     <!-- <span class="line"></span> -->
@@ -99,47 +104,17 @@
 </div>
 
 <script>
+    const body = document.querySelector('body');
+    /* FILEPATH: /c:/xampp/htdocs/flaundry/app/views/panel/inc/sidebar.css */
+
+    window.onload = function() {
+        const body = document.querySelector('body');
+        body.style.transition = '250ms ease-in-out';
+    };
     const sidebar = document.querySelector('.sidebar');
     const toggleButton = sidebar.querySelector('.header .toggle-button');
 
     toggleButton.addEventListener('click', (e) => {
-        sidebar.classList.toggle('sidebar--collapsed');
+        sidebar.classList.toggle('collapsed');
     })
 </script>
-
-
-
-<!-- <nav>
-    <div class="logo">
-        <img src="" alt="">
-    </div>
-    <div class="kotak-tombol">
-        <a href="">Home</a>
-        <a href="">Menu</a>
-        <a href="">About Us</a>
-        <a href="">Contact</a>
-    </div>
-</nav>
-
-
-<style>
-    nav {
-        display: flex;
-        width: 100%;
-        height: 80px;
-        background-color: black;
-    }
-
-    nav .logo {
-        width: 100px;
-        height: 100%;
-        background-color: white;
-    }
-
-    nav .kotak-tombol {
-        width: 100%;
-        height: 100%;
-        background-color: red;
-        margin-left: auto;
-    }
-</style> -->
