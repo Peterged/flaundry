@@ -18,4 +18,8 @@ $app->use('/auth', $authRouter);
 $app->use('/error', $errorRouter);
 $app->use('/panel', $panelRouter);
 
+$app->get('/excel-test', function($req, $res) {
+    $res->render('/eka-navbar');
+});
+
 $app->listen();

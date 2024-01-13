@@ -1,85 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        nav {
-            background-color: #583838;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo img {
-            width: 50px;
-            height: auto;
-            border-radius: 1000px;
-        }
+<?php
+header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+header("Content-Disposition: attachment; filename=student_list.xlsx");
+header("Pragma: no-cache");
+header("Expires: 0");
 
 
-        .kotak-tombol {
-            display: flex;
-        }
+echo '<html xmlns:x="urn:schemas-microsoft-com:office:excel">
+        <head>
+            <!--[if gte mso 9]>
+            <xml>
+                <x:ExcelWorkbook>
+                    <x:ExcelWorksheets>
+                        <x:ExcelWorksheet>
+                            <x:Name>Sheet1</x:Name>
+                            <x:WorksheetOptions>
+                                <x:DisplayGridlines/>
+                            </x:WorksheetOptions>
+                        </x:ExcelWorksheet>
+                    </x:ExcelWorksheets>
+                </x:ExcelWorkbook>
+            </xml>
+            <![endif]-->
+        </head>
+        <body>';
 
-        .kotak-tombol a {
-            color: white;
-            display: block;
-            float: right;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-        }
+echo '<table border="1">
+        <tr>
+            <th style="background-color: #f2f2f2; font-weight: bold;">Name</th>
+            <th style="background-color: #f2f2f2; font-weight: bold;">Email</th>
+            <th style="background-color: #f2f2f2; font-weight: bold;">Phone</th>
+        </tr>
+        <tr>
+            <td>John Doe</td>
+            <td>john@example.com</td>
+            <td>123-456-7890</td>
+        </tr>
+        <tr>
+            <td>Jane Smith</td>
+            <td>jane@example.com</td>
+            <td>987-654-3210</td>
+        </tr>
+    </table>';
 
-        .kotak-tombol a:hover {
-            color: #ddd;
-            border-bottom: 2px solid #fff;
-        }
-
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            color: #161414;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 20px;
-        }
-    </style>
-</head>
-
-<body>
-    <nav>
-        <div class="logo">
-            <img src="img/logo.jpg" alt="">
-        </div>
-        <div class="kotak-tombol">
-            <a href="#Home">Home</a>
-            <a href="#Menu">Menu</a>
-            <a class="active" href="#">About Us</a>
-            <a href="#Contact">Contact</a>
-        </div>
-    </nav>
-
-    <div style="padding:20px">
-        <h3>Isi Konten</h3>
-        <p>Contoh halaman dengan navbar sederhana.</p>
-    </div>
-
-</body>
-
-</html>
+echo '</body></html>';
+exit;

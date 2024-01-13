@@ -14,6 +14,7 @@
             <li><a href="<?= routeTo('/panel') ?>">Panel</a></li>
             <li><a class="login-button" href="<?= routeTo('/auth/login') ?>">Login</a></li>
             <li><a href="<?= routeTo('/profile') ?>">Profile</a></li>
+            <li><a href="<?= routeTo('/excel-test') ?>">Download Excel</a></li>
         </ul>
     </div>
 </div>

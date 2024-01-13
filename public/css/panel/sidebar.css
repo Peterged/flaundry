@@ -42,7 +42,7 @@ body:has(.sidebar.collapsed) {
 
 body {
     padding-left: 300px;
-    
+
 }
 
 
@@ -136,12 +136,8 @@ body {
     text-shadow: 0 0 15px rgba(var(--blue-vivid-sky-10-rgb), 0.15);
 }
 
-.sidebar .button-group .button:hover svg:not(.stroke-only) path {
+.sidebar .button-group .button:hover svg path {
     fill: var(--blue-chefchaouen-9) !important;
-}
-
-.sidebar .button-group .button:hover svg.stroke-only path {
-    stroke: var(--blue-chefchaouen-9) !important;
 }
 
 .sidebar .button-group .button img,

@@ -116,7 +116,7 @@
   width: 100%;
 }
 
-.panel-navbar .search-box .search-content .shortcut-icon-box {
+.panel-navbar .search-box .shortcut-icon-box {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
@@ -131,12 +131,12 @@
   pointer-events: none;
 }
 
-.panel-navbar .search-box .search-content .shortcut-icon-box .shortcut-key {
+.panel-navbar .search-box .shortcut-icon-box .shortcut-key {
   font-size: 0.85rem;
   font-weight: 500;
 }
 
-.panel-navbar .search-box .search-content .shortcut-icon-box svg.shortcut-icon {
+.panel-navbar .search-box .shortcut-icon-box svg.shortcut-icon {
   width: 16px;
   height: 16px;
 }
@@ -218,10 +218,10 @@
 }
 
 /* TOOLTIPS */
-.panel-navbar .search-box .search-content {
+.panel-navbar .search-box {
     position: relative;
 }
-.panel-navbar .search-box .search-content .shortcut-icon-box .icon-tooltip {
+.panel-navbar .search-box .shortcut-icon-box .icon-tooltip {
   display: flex;
   pointer-events: none;
   visibility: hidden;
@@ -231,22 +231,22 @@
   left: 50%;
   transform: translateX(-50%);
   max-width: 250px;
-  width: fit-content;
+  width: max-content;
   border-radius: 0.25rem;
   padding: 0.2rem 0.5rem;
   background-color: var(--blue-chefchaouen-9);
   color: #fff;
   opacity: 0;
-  
+  z-index: 8000;
+
   font-size: 0.75rem;
-  transition: 100ms ease-in-out;
+  transition: 150ms ease-in-out;
 }
 
-.panel-navbar .search-box .search-content:hover .shortcut-icon-box .icon-tooltip {
+.panel-navbar .search-box .shortcut-icon-box:hover .icon-tooltip {
     display: flex;
     pointer-events: visible;
     visibility: visible;
     opacity: 1;
     text-align: center;
-    
 }
