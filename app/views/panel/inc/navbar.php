@@ -52,20 +52,6 @@
     </div>
 </div>
 
-<?php
-$variable = 5;
-
-$tabel = "
-        <table>
-            <tr>
-                <th>$variable</th>
-                <th>{$data['username']}</th>
-
-            </tr>
-        </table>
-    ";
-?>
-
 <script>
     const searchBox = document.querySelector('.search-box');
     const searchContent = searchBox.querySelector('.search-content');
@@ -83,4 +69,17 @@ $tabel = "
             e.preventDefault();
         }
     });
+
+    fetch('<?= routeTo('/api/users/robots') ?>', {
+            method: 'GET',
+        })
+        .then(response => response.json())
+        .then(data => {
+            // const profileName = document.querySelector('.profile-name p');
+            // const avatar = document.querySelector('.avatar img');
+
+            // profileName.innerHTML = data.name;
+            // avatar.src = data.avatar;
+            console.log(data);
+        })
 </script>
