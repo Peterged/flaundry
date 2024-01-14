@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+
 class User
 {
     private $id;
@@ -8,12 +9,11 @@ class User
     private $email;
     private \PDO $dbConnection; // Database connection object
 
-    public function __construct($id, $name, $email, $dbConnection)
+    public function __construct($id, $name, $email)
     {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
-        $this->dbConnection = $dbConnection;
     }
 
     public function getId()

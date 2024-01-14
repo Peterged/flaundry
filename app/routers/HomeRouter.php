@@ -51,3 +51,4 @@ $homeRouter->get('/api-test', function ($req, $res) {
     $data = fetch(URLROOT . '/api/users/robertos');
     $res->render('/test/api_test', $data);
 });
+

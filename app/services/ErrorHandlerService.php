@@ -5,7 +5,7 @@
             return;
         }
         if($error->code === 404) {
-            echo 'woah';
+            $res->render('/errors/404');
             exit;
         }
     }

@@ -15,7 +15,7 @@ class RouterHelper
         if($route == '*'){
             return $route;
         }
-        if ($route == '/') {
+        if ($route === '/') {
             $route = $request->getRequestUri() . $route;
             $route = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $route);
             $route = str_replace($request->getRequestUri(), '', $route);

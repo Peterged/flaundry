@@ -1,7 +1,7 @@
 <?php 
     namespace app\core;
 
-    class Controller {
+    abstract class Application {
         public function __construct() {
             
         }
