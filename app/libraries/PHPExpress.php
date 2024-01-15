@@ -53,14 +53,14 @@ class PHPExpress
         $this->sortRequestQueue();
         $requestQueue = $this->routeQueue;
         $this->handleDuplicateRoutes();
-        
+
         if (!empty($requestQueue)) {
             foreach ($requestQueue as $key => $requestArray) {
                 if (!empty($requestArray)) {
                     $method = (string) $requestArray['method'];
                     $route = (string) $requestArray['route'];
                     $callback = $requestArray['callback'];
-                    
+
                     $this->handleResponse($method, $route, $callback);
                 }
             }
@@ -87,9 +87,21 @@ class PHPExpress
         }
 
         foreach ($router->routeQueue as &$route) {
-            echo 'ROUTE: ', $route['route'], "<br>";
+            $newRoute = preg_replace('#(\\{1,}|\/{2,})+#', '/', $path . $route['route']);
+            $isHomeRoute = $newRoute === '/' ? true : false;
+
+            if ($isHomeRoute) {
+                $route['route'] = $newRoute;
+                continue;
+            }
+
+            $path = $path == '/' ? '' : $path;
+            $route['route'] = $route['route'] == '/' ? '' : $route['route'];
+
             $route['route'] = $path . $route['route'];
-            $route['route'] = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $route['route']);
+
+
+            $route['route'] = preg_replace('#(\\{1,}|\/{2,})+#', '/', $route['route']);
         }
         $this->routeQueue = array_merge($this->routeQueue, $router->routeQueue);
     }
@@ -107,14 +119,6 @@ class PHPExpress
         }
     }
 
-
-    private function throwExceptionIfNotListening()
-    {
-        if ($this->isListening == false) {
-            throw new \Exception("please use the listen function to start the router!");
-        }
-    }
-
     private function resetHeader()
     {
         if (!headers_sent()) {
@@ -125,11 +129,15 @@ class PHPExpress
     private function isRouteHandled(string $headerType, string $route)
     {
         $isHandled = false;
-        
-        foreach ($this->routeQueue as $routeItem) {
+        foreach ($this->routeQueue as &$routeItem) {
+            // echo $routeItem['route'] . " | " . $route, "<br>";
+
+            if ($routeItem['route'] === '*') {
+                continue;
+            }
+            // echo "<code>" .  $routeItem['route'] . ' | ' . $route . "</code><br>";
             if ($routeItem['route'] == $route && $routeItem['method'] == $headerType) {
                 $isHandled = true;
-                
             }
         }
 
@@ -141,20 +149,20 @@ class PHPExpress
         $routeQueue = $this->routeQueue;
         $indexedArray = [];
 
-        echo "<h1>BEFORE</h1>", "<br>";
-        $this->print_array($routeQueue);
+        // echo "<h1>BEFORE</h1>", "<br>";
+        // $this->print_array($routeQueue);
         $routeQueueLength = count($routeQueue);
         for ($i = 0; $i < $routeQueueLength; $i++) {
             $key = $routeQueue[$i]['route'] . '_' . $routeQueue[$i]['method'];
-            
+
             if (isset($indexedArray[$key])) {
-                // Duplicate found, delete the old data 
+                // Duplicate found, delete the old data
                 unset($indexedArray[$key]);
             }
             $indexedArray[$key] = $routeQueue[$i];
         }
-        echo "<h1>AFTER</h1>", "<br>";
-        $this->print_array($indexedArray); 
+        // echo "<h1>AFTER</h1>", "<br>";
+        // $this->print_array($indexedArray);
 
         $this->routeQueue = $indexedArray;
     }
@@ -216,14 +224,9 @@ class PHPExpress
         $this->response = new Response();
         $this->response->views = $this->views;
 
-
         if ($route === "*") {
             $this->handleUnhandledRoutes($route, $callback);
             return;
-        }
-
-        if ($this->isRouteHandled($requestMethod, $route)) {
-            throw new \Exception("Route already handled: " . $requestMethod . " -> " . $route);
         }
 
         $filteredRoute = '/';
@@ -294,6 +297,12 @@ class PHPExpress
     {
     }
 
+    private function setError(\stdClass &$error, int $code, string $message, string $description = null) {
+        $error->code = $code;
+        $error->message = $message;
+        $error->description = $description;
+    }
+
     private function handleUnhandledRoutes(string $currentRoute, callable $callback)
     {
 
@@ -303,18 +312,19 @@ class PHPExpress
         $req = new Request();
         $error = new \stdClass();
         $requestUri = $this->filterRoute($req->getRequestUri());
-        $isHandled = $this->isRouteHandled($_SERVER['REQUEST_METHOD'], $requestUri);
+        $route = $this->filterRoute($requestUri . '/');
+
+        $isHandled = $this->isRouteHandled($_SERVER['REQUEST_METHOD'], $route);
 
         // If the request_uri is not handled, return an error
-
-        if (!$isHandled) {
+        if(http_response_code() == 403) {
+            $this->setError($error, 403, "Forbidden");
+        }
+        elseif (!$isHandled) {
             // echo "<code>Cannot handle $currentRequestMethod $requestUri</code>";
             // $res->setHeader('HTTP/1.0 404 Not Found');
             // $res->setCode(404);
-            echo $currentRoute;
-            $error->code = 404;
-            $error->message = "Not Found";
-            $error->description = "The requested URL was not found on this server.";
+            $this->setError($error, 404, "Not Found");
             $callback($req, $this->response, $error);
         }
     }

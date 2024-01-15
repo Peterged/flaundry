@@ -1,12 +1,18 @@
-<?php 
+<?php
     $errorHandlerService = function($req, $res, $error) {
-        echo 'hey';
         if(!$error) {
             return;
         }
-        if($error->code === 404) {
-            $res->render('/errors/404');
-            exit;
+        if($error->code) {
+            $code = $error->code;
+            try {
+                $res->render("/errors/$code");
+            }
+            catch (\Exception $e) {
+
+            }
         }
+        
+
     }
 ?>

@@ -4,9 +4,7 @@ use app\libraries\PHPExpress;
 
 $panelRouter = new PHPExpress();
 
-$panelRouter->get('/{{always}}', function($req, $res) {
-    $res->render('/panel/inc/sidebar');
-});
+
 
 $panelRouter->get('/', function($req, $res) {
     $data = [

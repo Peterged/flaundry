@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 | Not Found</title>
+    <title>500 | Not Found</title>
 </head>
 <body>
     <style>
@@ -39,9 +39,9 @@
     <div class="container">
 
         <div class="error-box">
-            <p>404</p>
+            <p>500</p>
             <span>|</span>
-            <p>Not Found</p>
+            <p>Internal Server Error</p>
         </div>
     </div>
 </body>

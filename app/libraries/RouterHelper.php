@@ -5,6 +5,7 @@ class RouterHelper
 {
     public static function filterRoute(string $route, Request $request = null)
     {
+        $regex = "#(\\{1,}|\/{2,})+#";
         if(is_null($request)) {
             $request = new Request();
         }
@@ -12,17 +13,22 @@ class RouterHelper
         $route = trim($route, '/');
         $route = filter_var($route, FILTER_SANITIZE_URL);
 
+
+
         if($route == '*'){
             return $route;
         }
         if ($route === '/') {
             $route = $request->getRequestUri() . $route;
-            $route = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $route);
+            $route = preg_replace($regex, '/', $route);
             $route = str_replace($request->getRequestUri(), '', $route);
-            $filteredRoute = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', '/' . $route);
+            $filteredRoute = preg_replace($regex, '/', '/' . $route);
         } else {
-            $filteredRoute = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', '/' . $route);
+            $filteredRoute = preg_replace($regex, '/', ('/' . $route));
+
         }
+
+
 
         return $filteredRoute;
     }

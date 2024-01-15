@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 | Not Found</title>
+    <title>403 | Forbidden</title>
 </head>
 <body>
     <style>
@@ -39,9 +39,9 @@
     <div class="container">
 
         <div class="error-box">
-            <p>404</p>
+            <p>403</p>
             <span>|</span>
-            <p>Not Found</p>
+            <p>Forbidden</p>
         </div>
     </div>
 </body>

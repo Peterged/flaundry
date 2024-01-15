@@ -1,7 +1,7 @@
 <head>
     <link rel="stylesheet" href="<?= routeTo('/public/css/eka/style.css') ?>">
 </head>
-  
+
   <body>
     <nav>
       <img src="src/assets/logo.png" alt="" srcset="">
@@ -19,7 +19,7 @@
         <button>Order Now</button>
       </section>
     <main>
-      
+
       <section id="menu">
         <h1 class="menu-heading">Popular Menu</h1>
         <div class="menu-section">

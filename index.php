@@ -12,11 +12,13 @@ $app->set('view engine', 'php');
 $app->set('views', 'app/views');
 
 $app->get("*", $errorHandlerService);
+
 $app->use('/', $homeRouter);
 $app->use('/api', $apiRouter);
 $app->use('/auth', $authRouter);
 $app->use('/error', $errorRouter);
 $app->use('/panel', $panelRouter);
+
 
 $app->get('/eka', function($req, $res) {
     $res->render('/ekas');
