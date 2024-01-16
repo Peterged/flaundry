@@ -10,3 +10,4 @@ set_error_handler(function ($severity, $message, $file, $line) {
 // set_exception_handler(function ($exception) {
 //     echo "Uncaught exception: " , $exception->getMessage(), " on line " . $exception->getLine() . "\n";
 // });
+

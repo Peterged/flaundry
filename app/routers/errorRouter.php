@@ -1,6 +1,9 @@
 <?php
+
 namespace app\routers;
+
 use app\libraries\PHPExpress;
+
 $errorRouter = new PHPExpress();
 // initial route = /auth
 $errorRouter->get('/404', function ($req, $res) {
@@ -8,3 +11,4 @@ $errorRouter->get('/404', function ($req, $res) {
         $res->render('/errors/404');
     }
 });
+

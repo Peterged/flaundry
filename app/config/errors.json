@@ -1,0 +1,16 @@
+{
+    "HTTP_ERRORS": {
+        "404": {
+            "message": "Not Found",
+            "description": ""
+        },
+        "500": {
+            "message": "Internal Server Error",
+            "description": ""
+        },
+        "503": {
+            "message": "Service Unavailable",
+            "description": ""
+        }
+    }
+}
