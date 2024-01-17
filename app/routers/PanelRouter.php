@@ -1,12 +1,14 @@
 <?php
-namespace app\routers;
-use app\libraries\PHPExpress;
+
+namespace App\routers;
+
+use App\libraries\PHPExpress;
 
 $panelRouter = new PHPExpress();
 
 
 
-$panelRouter->get('/', function($req, $res) {
+$panelRouter->get('/', function ($req, $res) {
     $data = [
         'username' => 'kreshna',
         'title' => 'Dashboard'
@@ -16,15 +18,15 @@ $panelRouter->get('/', function($req, $res) {
     $res->render('/panel/index');
 });
 
-$panelRouter->get('/dashboard', function($req, $res) {
+$panelRouter->get('/dashboard', function ($req, $res) {
     $data = [
         'sales' => 500
     ];
-    $res->render('/panel/inc/sidebar', $data);
+    $res->render('/panel/inc/sidebar', $data); 
     $res->render('/panel/dashboard');
 });
 
-$panelRouter->get('/outlet', function($req, $res) {
+$panelRouter->get('/outlet', function ($req, $res) {
     $data = [
         'sales' => 500
     ];
@@ -32,12 +34,10 @@ $panelRouter->get('/outlet', function($req, $res) {
     $res->render('/panel/outlet');
 });
 
-$panelRouter->get('/settings', function($req, $res) {
+$panelRouter->get('/settings', function ($req, $res) {
     $data = [
         'sales' => 500
     ];
     $res->render('/panel/inc/sidebar', $data);
     $res->render('/panel/settings');
 });
-
-?>

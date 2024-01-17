@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace app\libraries;
+namespace App\libraries;
 
 class PHPExpress
 {
@@ -12,6 +12,7 @@ class PHPExpress
     private $headerData;
     private $views;
     private $isListening;
+    private \App\libraries\Database $con;
     private $routeQueue;
 
     // For Middleware
@@ -44,6 +45,10 @@ class PHPExpress
 
             return $aOrder <=> $bOrder;
         });
+    }
+
+    public function setDatabaseObject(\App\libraries\Database $con) {
+        $this->con = $con;
     }
 
 

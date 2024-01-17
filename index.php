@@ -1,5 +1,6 @@
 <?php
 include 'app/libraries/autoload.php';
+$con = new App\libraries\Database(\DB_USER, \DB_PASS);
 
 foreach (glob("app/routers/*.php") as $filename) {
     include $filename;
@@ -7,7 +8,8 @@ foreach (glob("app/routers/*.php") as $filename) {
 
 include_once "app/services/ErrorHandlerService.php";
 
-$app = new app\libraries\PHPExpress();
+$app = new App\libraries\PHPExpress();
+
 $app->set('view engine', 'php');
 $app->set('views', 'app/views');
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\controllers;
+namespace App\controllers;
 
-use app\core\Controller;
+use App\core\Controller;
 
 class AuthController extends Controller
 {
@@ -15,9 +15,9 @@ class AuthController extends Controller
     {
         $res->render('/users/index');
 
-        // $router->get('/users', 'app\controllers\AuthController@index');
-        // $router->get('/users/profile/{id}', 'app\controllers\AuthController@profile');
-        // $router->get('/auth/register', 'app\controllers\AuthController@register');
+        // $router->get('/users', 'App\controllers\AuthController@index');
+        // $router->get('/users/profile/{id}', 'App\controllers\AuthController@profile');
+        // $router->get('/auth/register', 'App\controllers\AuthController@register');
     }
 
     public function profile($req, $res)

@@ -1,6 +1,7 @@
 <?php
-namespace app\routers;
-use app\libraries\PHPExpress;
+namespace App\routers;
+
+use App\libraries\PHPExpress;
 $authRouter = new PHPExpress();
 // initial route = /auth
 

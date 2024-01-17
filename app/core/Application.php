@@ -1,5 +1,5 @@
 <?php 
-    namespace app\core;
+    namespace App\core;
 
     abstract class Application {
         public function __construct() {
@@ -7,7 +7,7 @@
         }
 
         public function middleware(string $middleware) {
-            // $middleware = 'app\middlewares\\' . $middleware;
+            // $middleware = 'App\middlewares\\' . $middleware;
             // $middleware = new $middleware();
             // $middleware->handle();
         }

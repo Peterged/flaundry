@@ -1,6 +1,6 @@
 <?php
-namespace app\interfaces;
-use app\libraries\Route;
+namespace App\interfaces;
+use App\libraries\Route;
 interface RouterInterface
 {
     public function get(string $route, callable $callback): void;

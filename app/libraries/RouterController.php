@@ -1,6 +1,6 @@
 <?php 
 
-namespace app\libraries;
+namespace App\libraries;
 
     class RouterController extends PHPExpress {
         public function __construct() {
@@ -12,4 +12,3 @@ namespace app\libraries;
 
     // FOCUS
     
-?>

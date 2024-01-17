@@ -50,4 +50,3 @@
             return isset($_COOKIE[$key]);
         }
     }
-?>

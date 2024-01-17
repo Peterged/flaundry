@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace App\controllers;
 
 class PagesController
 {

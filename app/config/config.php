@@ -1,12 +1,12 @@
 <?php
 
-namespace app\config;
+namespace App\config;
 
 // Global namespace code here
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'UK');
+define('DB_NAME', 'laundry');
 
 define('APPROOT', dirname(dirname(dirname(__FILE__))));
 define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);

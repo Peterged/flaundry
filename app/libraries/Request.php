@@ -1,6 +1,6 @@
 <?php
 
-namespace app\libraries;
+namespace App\libraries;
 
     final class Request {
         public $route;
