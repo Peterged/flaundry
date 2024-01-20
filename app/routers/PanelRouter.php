@@ -8,11 +8,17 @@ $panelRouter = new PHPExpress();
 
 
 
-$panelRouter->get('/', function ($req, $res) {
+$panelRouter->get('/', function ($req, $res) use ($con) {
     $data = [
         'username' => 'kreshna',
         'title' => 'Dashboard'
     ];
+    $uuid = uniqid();
+    $quer = $con->query("INSERT INTO tb_user VALUES ('$uuid', 'GSAP', 'gsa', 'wtfbro', '1', 'admin')");
+    echo "<pre>";
+    print_r($quer->fetchAll());
+    echo "</pre>";
+
     $res->render('/panel/inc/navbar');
     $res->render('/panel/inc/sidebar', $data);
     $res->render('/panel/index');
@@ -22,7 +28,7 @@ $panelRouter->get('/dashboard', function ($req, $res) {
     $data = [
         'sales' => 500
     ];
-    $res->render('/panel/inc/sidebar', $data); 
+    $res->render('/panel/inc/sidebar', $data);
     $res->render('/panel/dashboard');
 });
 

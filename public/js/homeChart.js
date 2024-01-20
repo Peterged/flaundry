@@ -1,7 +1,7 @@
 const ctx = document.querySelector(".sample-chart").getContext("2d");
 
-console.log(window.location.origin + "/flaundry/api/users/robots");
-fetch(window.location.origin + "/flaundry/api/users/robots", {
+console.log(window.location.origin + "/laundry/api/users/robots");
+fetch(window.location.origin + "/laundry/api/users/robots", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -40,7 +40,7 @@ fetch(window.location.origin + "/flaundry/api/users/robots", {
     let gradient = ctx.createLinearGradient(0, 0, 0, 400);
     gradient.addColorStop(0, "#4C8EF0");
     gradient.addColorStop(1, "#5AD6F2");
-    
+
     let chartData = {
         labels: [...dateArray],
         datasets: [
