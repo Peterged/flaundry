@@ -4,14 +4,14 @@ namespace App\libraries;
 use Respect\Validation\Validator as v;
 
 interface ModelInterface  {
-    public function save(): bool | \Exception;
+    public function save(): array;
     public function updateOne(array $searchCriteria, array $newData);
     public function updateMany(array | bool $searchCriteria, array $newData);
 
     public function deleteOne(array $searchCriteria);
     public function deleteMany(array $searchCriteria);
     public function selectOne(array $searchCriteria);
-    public function selectAll(array | bool $searchCriteria);
+    public function selectMany(array | bool $searchCriteria);
 }
 
 abstract class Model implements ModelInterface
@@ -19,16 +19,12 @@ abstract class Model implements ModelInterface
     protected string $tableName;
     protected \PDO $dbConnection;
 
-    public function __construct(\PDO $PDO)
-    {
-        $this->dbConnection = $PDO;
-    }
-
     public function updateOne(array $searchCriteria, array $newData)
     {
-        $this->dbConnection->beginTransaction();
         $tableName = $this->tableName;
         try {
+            $this->dbConnection->exec("LOCK TABLES $tableName UPDATE");
+            $this->dbConnection->beginTransaction();
             $query = $this->handleUpdateQuery($searchCriteria, $newData) . " LIMIT 1";
 
             $statement = $this->dbConnection->prepare($query);
@@ -45,11 +41,11 @@ abstract class Model implements ModelInterface
 
     public function updateMany(array | bool $searchCriteria, array $newData)
     {
-        $this->dbConnection->beginTransaction();
         $tableName = $this->tableName;
-
+        
         try {
-            $this->dbConnection->exec("LOCK TABLES $tableName WRITE");
+            $this->dbConnection->exec("LOCK TABLES $tableName UPDATE");
+            $this->dbConnection->beginTransaction();
             if(gettype($searchCriteria) == 'boolean' && $searchCriteria == true) {
                 $query = "UPDATE $tableName SET ";
                 $query .= implode(', ', array_map(function ($value) {
@@ -67,10 +63,11 @@ abstract class Model implements ModelInterface
 
     public function deleteOne(array $searchCriteria)
     {
-        $this->dbConnection->beginTransaction();
         $tableName = $this->tableName;
-
+        
         try {
+            $this->dbConnection->exec("LOCK TABLES $tableName DELETE");
+            $this->dbConnection->beginTransaction();
             $query = $this->handleDeleteQuery($searchCriteria);
 
             $query .= " LIMIT 1";
@@ -89,11 +86,11 @@ abstract class Model implements ModelInterface
 
     public function deleteMany(array $searchCriteria)
     {
-        $this->dbConnection->beginTransaction();
         $tableName = $this->tableName;
-
+        
         try {
             $this->dbConnection->exec("LOCK TABLES $tableName DELETE");
+            $this->dbConnection->beginTransaction();
             $query = "DELETE FROM $tableName WHERE ";
             $query .= implode(' AND ', array_map(function($value) {
                 return "{$value} = :{$value}";
@@ -112,11 +109,11 @@ abstract class Model implements ModelInterface
     }
 
     public function selectOne(array $searchCriteria) {
-        $this->dbConnection->beginTransaction();
         $tableName = $this->tableName;
-
+        
         try {
             $this->dbConnection->exec("LOCK TABLES $tableName READ");
+            $this->dbConnection->beginTransaction();
             $query = $this->handleSelectQuery($searchCriteria);
 
             $query .= " LIMIT 1";
@@ -134,12 +131,12 @@ abstract class Model implements ModelInterface
         }
     }
 
-    public function selectAll(array | bool $searchCriteria) {
-        $this->dbConnection->beginTransaction();
+    public function selectMany(array | bool $searchCriteria) {
         $tableName = $this->tableName;
-
+        
         try {
             $this->dbConnection->exec("LOCK TABLES $tableName READ");
+            $this->dbConnection->beginTransaction();
             if(gettype($searchCriteria) == 'boolean' && $searchCriteria == true) {
                 $query = "SELECT * FROM $tableName";
             } else {
@@ -171,7 +168,7 @@ abstract class Model implements ModelInterface
      */
     protected function handleForbiddenColumns(array $data, array $requiredProperties) {
 
-        $requiredProperties = ['id_outlet', 'nama', 'username', 'password', 'role'];
+        $requiredProperties = ['id', 'id_outlet', 'nama', 'username', 'password', 'role'];
         // Kita mengambil array_keys yang ada di $options, lalu kita mengurangi dengan $includedProperties
         // Hasilnya harusnya kosong, jika tidak kosong, berarti ada property yang tidak diizinkan
         // Didalam funsi __construct() ini, yang harusnya didalam forbiddenProperties adalah
@@ -179,10 +176,8 @@ abstract class Model implements ModelInterface
         $dataKeys = array_keys($data);
         $forbiddenProperties = array_diff($dataKeys, $requiredProperties);
 
-        $isForbiddenPropertyKeysInOptions = array_diff($dataKeys, $forbiddenProperties);
-
-        if(!empty($isForbiddenPropertyKeysInOptions)) {
-            $message = 'Property(s) [' . implode(', ', $isForbiddenPropertyKeysInOptions) . '] is not allowed';
+        if(!empty($forbiddenProperties)) {
+            $message = 'Property(s) [' . implode(', ', $forbiddenProperties) . '] is not allowed';
             throw new \Exception($message);
         }
     }

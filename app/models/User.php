@@ -1,11 +1,12 @@
 <?php
 
 namespace App\models;
+
 use App\libraries\Model;
+use Respect\Validation\Validator as v;
 
 class User extends Model
 {
-    private string $tableName = 'tb_user';
     private string $id;
     private int $id_outlet;
     private string $nama;
@@ -13,14 +14,17 @@ class User extends Model
     private string $password;
     private string $role;
 
-    
-    public function __construct(array | null $valuesArray)
+
+    public function __construct(\PDO $PDO, array | null $valuesArray = null)
     {
+        $this->tableName = 'tb_user';
+        $this->dbConnection = $PDO;
         if (empty($valuesArray)) {
             return;
         }
+
         $requiredProperties = ['id_outlet', 'nama', 'username', 'password', 'role'];
-        
+
         $this->handleForbiddenColumns($valuesArray, $requiredProperties);
 
         $this->id_outlet = $valuesArray['id_outlet'];
@@ -28,22 +32,34 @@ class User extends Model
         $this->username = $valuesArray['username'];
         $this->password = $valuesArray['password'];
         $this->role = $valuesArray['role'];
+
+
+        $this->username = v::type('string')->notEmpty()->validate($this->username) ? $this->username : null;
+        $this->password = v::type('string')->notEmpty()->validate($this->password) ? password_hash($this->password, PASSWORD_DEFAULT) : null;
+        $this->role = v::in(['admin', 'kasir', 'owner'])->validate($this->role) ? $this->role : null;
     }
 
-    public function save(): bool | \Exception
+    public function save(): array
     {
         // Begin transaction
-        $this->dbConnection->beginTransaction();
+        $result = [
+            'errorMessage' => null,
+            'success' => false,
+            'status' => 'commited'
+        ];
 
+        $con = $this->dbConnection;
+        
         try {
+            
             // Lock the user table
-            $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
-
+            $con->exec("LOCK TABLES {$this->tableName} WRITE");
+            $con->beginTransaction();
             $stmt = $this->dbConnection->prepare("
             INSERT INTO {$this->tableName} (id_outlet, nama, username, password, role)
             VALUES (:idOutlet, :nama, :username, :password, :role)
             ");
-
+            
             $stmt->execute([
                 'idOutlet' => $this->id_outlet,
                 'nama' => $this->nama,
@@ -51,64 +67,32 @@ class User extends Model
                 'password' => $this->password,
                 'role' => $this->role
             ]);
+            echo $con->inTransaction() ? 'true' : 'false';
 
-            // Commit supaya dapat berjalan
-            $this->dbConnection->commit();
+            
+            if($this->username == 'kreshna') {
+                throw new \Exception('Nama tidak boleh kreshna');
+            }
+
+            $con->commit();
+            
+            $result['success'] = true;
         } catch (\Exception $e) {
             // Rollback the transaction jika terjadi error
-            $this->dbConnection->rollback();
-            throw $e;
+            echo $e->getMessage();
+            $con->rollBack();
+            $result['errorMessage'] = $e->getMessage();
+            $result['status'] = 'rollbacked';
         } finally {
             // Unlock tabelnya supaya dapat diakses kembali seperti biasa
-            $this->dbConnection->exec('UNLOCK TABLES');
+            $con->exec('UNLOCK TABLES');
         }
-        return true;
+
+
+        return $result;
     }
 
-    public function getUsers(array $keys)
-    {
-        $this->dbConnection->beginTransaction();
-
-        try {
-            $this->dbConnection->exec("LOCK TABLES {$this->tableName} READ");
-            $stmt = $this->dbConnection->prepare("SELECT * FROM {$this->tableName}");
-            $stmt->execute();
-
-            $this->dbConnection->commit();
-            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        } catch (\Exception $e) {
-            $this->dbConnection->rollBack();
-            throw $e;
-        } finally {
-            $this->dbConnection->exec('UNLOCK TABLES');
-        }
-    }
-
-    public function delete()
-    {
-        // Begin transaction
-        $this->dbConnection->beginTransaction();
-
-        try {
-            // Lock the user table
-            $this->dbConnection->exec('LOCK TABLES tb_user WRITE');
-
-            $stmt = $this->dbConnection->prepare("DELETE FROM {$this->tableName} WHERE id = :id");
-
-            $stmt->execute([
-                'id' => $this->id
-            ]);
-            
-            $this->dbConnection->commit();
-        } catch (\Exception $e) {
-            // Rollback the transaction jika terjadi error
-            $this->dbConnection->rollback();
-            throw $e;
-        } finally {
-            // Unlock tablenya supaya dapat diakses kembali seperti biasa
-            $this->dbConnection->exec('UNLOCK TABLES');
-        }
-    }
+    
 
     // Other methods and properties specific to the User model
     public function getIdOutlet()
