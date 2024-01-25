@@ -1,6 +1,7 @@
 <?php
 
 namespace App\libraries;
+use Respect\Validation\Validator as v;
 
     final class Request {
         public $route;
@@ -11,6 +12,7 @@ namespace App\libraries;
             $this->params = [];
         }
 
+
         public function setRoute(string $route) {
             $this->route = $route;
         }
@@ -19,7 +21,25 @@ namespace App\libraries;
             $this->body = $body;
         }
 
+        /**
+         * @param array|null $body
+         * @return array
+         * @description filterBody() is a method to filter the body ($_POST) request
+         */
+        public function filterBody(array $body = null): array {
+            $body = $body ?? $this->body;
+            foreach($body as $key => $value) {
+                $body[$key] = trim($value);
+                $body[$key] = stripslashes($value);
+                $body[$key] = htmlspecialchars($value);
+            }
+            $this->body = $body;
+            return $body;
+        }
+
         public function getBody() {
+            // filtering enabled as default 
+            $this->filterBody();
             return $this->body;
         }
 
@@ -48,4 +68,3 @@ namespace App\libraries;
         }
 
     }
-?>

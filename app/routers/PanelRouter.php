@@ -3,6 +3,7 @@
 namespace App\routers;
 
 use App\libraries\PHPExpress;
+use App\models\User;
 
 $panelRouter = new PHPExpress();
 
@@ -14,10 +15,17 @@ $panelRouter->get('/', function ($req, $res) use ($con) {
         'title' => 'Dashboard'
     ];
     $uuid = uniqid();
-    $quer = $con->query("INSERT INTO tb_user VALUES ('$uuid', '1', 'gsa', 'wtfbro', 'GSAP', 'admin')");
+
+    
+    $user = new User($con);
+
+    $data = $user->selectMany(['id_outlet' => '1']);
+
     echo "<pre>";
-    print_r($quer->fetchAll());
+    print_r($data);
     echo "</pre>";
+
+    // echo "Success: {$result['success']}<br>";
 
     $res->render('/panel/inc/navbar');
     $res->render('/panel/inc/sidebar', $data);
