@@ -1,7 +1,7 @@
 const ctx = document.querySelector(".sample-chart").getContext("2d");
 
-console.log(window.location.origin + "/laundry/api/users/robots");
-fetch(window.location.origin + "/laundry/api/users/robots", {
+console.log(window.location.origin + "/flaundry/api/users/robots");
+fetch(window.location.origin + "/flaundry/api/users/robots", {
   method: "GET",
   headers: {
     "Content-Type": "application/json",

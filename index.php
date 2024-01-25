@@ -1,6 +1,7 @@
 <?php
+include 'vendor/autoload.php';
 include 'app/libraries/autoload.php';
-$con = new App\libraries\Database(\DB_USER, \DB_PASS);
+include 'app/config/database.php';
 
 foreach (glob("app/routers/*.php") as $filename) {
     include $filename;
