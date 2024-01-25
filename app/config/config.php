@@ -6,7 +6,7 @@ namespace App\config;
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'uk');
+define('DB_NAME', 'laundry');
 
 define('APPROOT', dirname(dirname(dirname(__FILE__))));
 define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);

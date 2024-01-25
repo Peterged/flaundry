@@ -14,7 +14,7 @@ $panelRouter->get('/', function ($req, $res) use ($con) {
         'title' => 'Dashboard'
     ];
     $uuid = uniqid();
-    $quer = $con->query("INSERT INTO tb_user VALUES ('$uuid', 'GSAP', 'gsa', 'wtfbro', '1', 'admin')");
+    $quer = $con->query("INSERT INTO tb_user VALUES ('$uuid', '1', 'gsa', 'wtfbro', 'GSAP', 'admin')");
     echo "<pre>";
     print_r($quer->fetchAll());
     echo "</pre>";
