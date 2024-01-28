@@ -62,6 +62,7 @@
 
 .panel-navbar .header .breadcrumb {
   font-size: 0.75rem;
+  width: max-content;
 }
 
 .panel-navbar .header .breadcrumb * {

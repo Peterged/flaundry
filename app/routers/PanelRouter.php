@@ -24,7 +24,7 @@ $panelRouter->get('/', function ($req, $res) use ($con) {
 
     // PrintArray::run($data);
 
-    $query = $user->select()->where('id', '=', 1)->get();
+    // $query = $user->select()->where('id', '=', 1)->get();
 
     // biasanya begini
     // $query = "UPDATE tb_user SET nama = 'Kreshna' WHERE id = 1";
@@ -33,30 +33,6 @@ $panelRouter->get('/', function ($req, $res) use ($con) {
 
     // $data = mysqli_fetch_assoc($result);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // PrintArray::run($data);
     // echo "Success: {$result['success']}<br>";
 
@@ -64,8 +40,8 @@ $panelRouter->get('/', function ($req, $res) use ($con) {
         'username' => 'kreshna',
         'title' => 'Dashboard'
     ];
-    $res->render('/panel/inc/navbar');
-    $res->render('/panel/inc/sidebar', $data);
+    // $res->render('/panel/inc/navbar');
+    // $res->render('/panel/inc/sidebar', $data);
     $res->render('/panel/index');
 });
 

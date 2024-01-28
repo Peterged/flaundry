@@ -1,6 +1,4 @@
-<head>
-    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/sidebar.css">
-</head>
+
 <div class="sidebar">
     <div class="header">
         <div class="logo">

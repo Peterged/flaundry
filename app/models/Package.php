@@ -13,6 +13,8 @@ class Package extends Model {
     private string $nama_paket;
     private int $harga;
 
+    private array $requiredProperties = ['id_outlet', 'jenis', 'nama_paket', 'harga'];
+
     public function __construct(\PDO $PDO, array | null $valuesArray = null) {
         $this->tableName = 'tb_user';
         $this->dbConnection = $PDO;
@@ -21,5 +23,22 @@ class Package extends Model {
         }
 
         
+    }
+
+    public function save() {
+        $con = $this->dbConnection;
+        $stmt = $con->prepare("
+            INSERT INTO {$this->tableName} (id_outlet, jenis, nama_paket, harga)
+            VALUES (:idOutlet, :jenis, :nama_paket, :harga)
+        ");
+
+        $this->tryCatchWrapper(function() use ($stmt) {
+            $stmt->bindParam(':idOutlet', $this->id_outlet);
+            $stmt->bindParam(':jenis', $this->jenis);
+            $stmt->bindParam(':nama_paket', $this->nama_paket);
+            $stmt->bindParam(':harga', $this->harga);
+        });
+
+        return $con;
     }
 }

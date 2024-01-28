@@ -1,6 +1,4 @@
-<head>
-    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/navbar.css">
-</head>
+
 
 <div class="panel-navbar">
     <div class="header">
