@@ -89,7 +89,10 @@
 
     <!-- Random Shit -->
     <script>
-        var ctx = document.querySelector('canvas.income');
+        var ctx = document.querySelector('canvas.income').getContext('2d');
+        let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, "rgba(72, 149, 239, 0.22)");
+        gradient.addColorStop(1, "transparent");
         var chart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -97,38 +100,60 @@
                 datasets: [{
                     label: 'Income',
                     data: [100, 200, 150, 300, 250],
-                    backgroundColor: '#4895ef',
+                    fill: true,
+                    backgroundColor: gradient,
                     borderColor: '#4895ef',
-                    borderWidth: 2
+                    pointBackgroundColor: "#fff",
+                    pointBorderColor: "#4C8EF0",
+                    pointBorderWidth: 2,
+                    borderWidth: 2,
+                    tension: 0.5
                 }]
             },
             options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: false,
-                            fontColor: '#fff',
-                            fontSize: 10,
-                            padding: 10,
-                            fontFamily: 'Poppins'
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            beginAtZero: false,
-                            fontColor: '#fff',
-                            fontSize: 10,
-                            padding: 10,
-                            fontFamily: 'Poppins'
-                        }
-                    }]
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
                 },
-                legend: {
-                    labels: {
-                        fontColor: '#fff',
-                        fontSize: 10
+                radius: 5,
+                hitRadius: 30,
+                hoverRadius: 12,
+                scales: {
+                    y: {
+                        ticks: {
+                            display: false,
+                            beginAtZero: false,
+                            fontColor: '#fff',
+                            fontSize: 10,
+                            padding: 10,
+                            fontFamily: 'Poppins'
+                        },
+
+                        border: {
+                            display: false
+                        },
+                    },
+                    x: {
+                        ticks: {
+
+                            beginAtZero: false,
+                            color: 'rgba(0, 0, 0, 0.45)',
+                            fontSize: 10,
+                            padding: 10,
+                            fontFamily: 'Poppins'
+                        },
+                        grid: {
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false,
+                        },
+                        border: {
+                            display: false
+                        }
                     }
-                }
+                },
+
             }
         });
     </script>
@@ -144,7 +169,10 @@
                     label: 'Income',
                     data: [100, 200, 150, 300, 250],
                     backgroundColor: '#4895ef', // Set the background color for the bars
-                    borderWidth: 0, // Remove the border width
+                    borderWidth: 0, // Remove the border width,
+                    barThickness: 42,
+                    barPercentage: 1,
+                    // barBorderRadius: 5,
                 }]
             },
             options: {
@@ -166,11 +194,7 @@
                         border: {
                             display: false
                         },
-                        grid: {
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
+                        
                         ticks: {
                             display: false
                         }
