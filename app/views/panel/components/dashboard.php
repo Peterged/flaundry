@@ -96,7 +96,7 @@
         var chart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei'],
+                labels: ['J', 'Feb', 'Mar', 'Apr', 'Mei'],
                 datasets: [{
                     label: 'Income',
                     data: [100, 200, 150, 300, 250],
@@ -194,7 +194,7 @@
                         border: {
                             display: false
                         },
-                        
+
                         ticks: {
                             display: false
                         }

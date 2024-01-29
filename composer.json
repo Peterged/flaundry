@@ -1,6 +1,10 @@
 {
     "require": {
         "phpoffice/phpspreadsheet": "^2.0",
-        "respect/validation": "^2.2"
+        "respect/validation": "^2.3",
+        "symfony/polyfill-intl-normalizer": "^1.28"
+    },
+    "require-dev": {
+        "symfony/symfony": "^7.0"
     }
 }
