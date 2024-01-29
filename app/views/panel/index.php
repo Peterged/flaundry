@@ -8,6 +8,9 @@
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        Charts.defaults.font = "Open Sans";
+    </script>
     <?php
     include_once 'inc/sidebar.php';
     include_once 'inc/navbar.php';

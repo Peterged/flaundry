@@ -96,10 +96,10 @@
         var chart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei'],
+                labels: ['S', 'S', 'R', 'K', 'J', 'S', 'M'],
                 datasets: [{
                     label: 'Income',
-                    data: [100, 200, 150, 300, 250],
+                    data: [100, 200, 150, 300, 250, 400, 350],
                     fill: true,
                     backgroundColor: gradient,
                     borderColor: '#4895ef',
@@ -164,18 +164,30 @@
         var chart = new Chart(ctx, {
             type: 'bar', // Change the type to 'bar'
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei'],
+                labels: ['S', 'S', 'R', 'K', 'J', 'S', 'M'],
                 datasets: [{
                     label: 'Income',
-                    data: [100, 200, 150, 300, 250],
+                    data: [100, 200, 150, 300, 250, 400, 350],
                     backgroundColor: '#4895ef', // Set the background color for the bars
                     borderWidth: 0, // Remove the border width,
                     barThickness: 42,
                     barPercentage: 1,
-                    // barBorderRadius: 5,
+                    barBorderRadius: 10,
                 }]
             },
             options: {
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: ((tooltipItem, data) => {
+                                return tooltipItem.formattedValue
+                            }) 
+                        }
+                    }
+                },
                 scales: {
                     x: {
                         border: {
@@ -187,14 +199,22 @@
                             drawTicks: false,
                         },
                         ticks: {
-                            display: false
+                            padding: 10
                         }
+                        // ticks: {
+                        //     display: false
+                        // }
                     },
                     y: {
                         border: {
                             display: false
                         },
-                        
+                        grid: {
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false,
+                        },
+
                         ticks: {
                             display: false
                         }
