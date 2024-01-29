@@ -1,12 +1,8 @@
 <?php
 
 /*
- * This file is part of Respect/Validation.
- *
- * (c) Alexandre Gomes Gaigalas <alganet@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE file
- * that was distributed with this source code.
+ * Copyright (c) Alexandre Gomes Gaigalas <alganet@gmail.com>
+ * SPDX-License-Identifier: MIT
  */
 
 declare(strict_types=1);
@@ -29,28 +25,27 @@ final class Tld extends AbstractRule
 {
     /**
      * List extracted from https://data.iana.org/TLD/tlds-alpha-by-domain.txt
-     * Version 2023021200, Last Updated Sun Feb 12 07:07:01 2023 UTC
      */
     private const TLD_LIST = [
-        'AAA', 'AARP', 'ABARTH', 'ABB', 'ABBOTT', 'ABBVIE', 'ABC', 'ABLE',
-        'ABOGADO', 'ABUDHABI', 'AC', 'ACADEMY', 'ACCENTURE', 'ACCOUNTANT',
-        'ACCOUNTANTS', 'ACO', 'ACTOR', 'AD', 'ADS', 'ADULT', 'AE', 'AEG',
-        'AERO', 'AETNA', 'AF', 'AFL', 'AFRICA', 'AG', 'AGAKHAN', 'AGENCY',
-        'AI', 'AIG', 'AIRBUS', 'AIRFORCE', 'AIRTEL', 'AKDN', 'AL', 'ALFAROMEO',
-        'ALIBABA', 'ALIPAY', 'ALLFINANZ', 'ALLSTATE', 'ALLY', 'ALSACE',
-        'ALSTOM', 'AM', 'AMAZON', 'AMERICANEXPRESS', 'AMERICANFAMILY', 'AMEX',
-        'AMFAM', 'AMICA', 'AMSTERDAM', 'ANALYTICS', 'ANDROID', 'ANQUAN', 'ANZ',
-        'AO', 'AOL', 'APARTMENTS', 'APP', 'APPLE', 'AQ', 'AQUARELLE', 'AR',
-        'ARAB', 'ARAMCO', 'ARCHI', 'ARMY', 'ARPA', 'ART', 'ARTE', 'AS', 'ASDA',
-        'ASIA', 'ASSOCIATES', 'AT', 'ATHLETA', 'ATTORNEY', 'AU', 'AUCTION',
-        'AUDI', 'AUDIBLE', 'AUDIO', 'AUSPOST', 'AUTHOR', 'AUTO', 'AUTOS',
-        'AVIANCA', 'AW', 'AWS', 'AX', 'AXA', 'AZ', 'AZURE', 'BA', 'BABY',
-        'BAIDU', 'BANAMEX', 'BANANAREPUBLIC', 'BAND', 'BANK', 'BAR',
-        'BARCELONA', 'BARCLAYCARD', 'BARCLAYS', 'BAREFOOT', 'BARGAINS',
-        'BASEBALL', 'BASKETBALL', 'BAUHAUS', 'BAYERN', 'BB', 'BBC', 'BBT',
-        'BBVA', 'BCG', 'BCN', 'BD', 'BE', 'BEATS', 'BEAUTY', 'BEER', 'BENTLEY',
-        'BERLIN', 'BEST', 'BESTBUY', 'BET', 'BF', 'BG', 'BH', 'BHARTI', 'BI',
-        'BIBLE', 'BID', 'BIKE', 'BING', 'BINGO', 'BIO', 'BIZ', 'BJ', 'BLACK',
+        'AAA', 'AARP', 'ABB', 'ABBOTT', 'ABBVIE', 'ABC', 'ABLE', 'ABOGADO',
+        'ABUDHABI', 'AC', 'ACADEMY', 'ACCENTURE', 'ACCOUNTANT', 'ACCOUNTANTS',
+        'ACO', 'ACTOR', 'AD', 'ADS', 'ADULT', 'AE', 'AEG', 'AERO', 'AETNA',
+        'AF', 'AFL', 'AFRICA', 'AG', 'AGAKHAN', 'AGENCY', 'AI', 'AIG',
+        'AIRBUS', 'AIRFORCE', 'AIRTEL', 'AKDN', 'AL', 'ALIBABA', 'ALIPAY',
+        'ALLFINANZ', 'ALLSTATE', 'ALLY', 'ALSACE', 'ALSTOM', 'AM', 'AMAZON',
+        'AMERICANEXPRESS', 'AMERICANFAMILY', 'AMEX', 'AMFAM', 'AMICA',
+        'AMSTERDAM', 'ANALYTICS', 'ANDROID', 'ANQUAN', 'ANZ', 'AO', 'AOL',
+        'APARTMENTS', 'APP', 'APPLE', 'AQ', 'AQUARELLE', 'AR', 'ARAB',
+        'ARAMCO', 'ARCHI', 'ARMY', 'ARPA', 'ART', 'ARTE', 'AS', 'ASDA', 'ASIA',
+        'ASSOCIATES', 'AT', 'ATHLETA', 'ATTORNEY', 'AU', 'AUCTION', 'AUDI',
+        'AUDIBLE', 'AUDIO', 'AUSPOST', 'AUTHOR', 'AUTO', 'AUTOS', 'AVIANCA',
+        'AW', 'AWS', 'AX', 'AXA', 'AZ', 'AZURE', 'BA', 'BABY', 'BAIDU',
+        'BANAMEX', 'BANANAREPUBLIC', 'BAND', 'BANK', 'BAR', 'BARCELONA',
+        'BARCLAYCARD', 'BARCLAYS', 'BAREFOOT', 'BARGAINS', 'BASEBALL',
+        'BASKETBALL', 'BAUHAUS', 'BAYERN', 'BB', 'BBC', 'BBT', 'BBVA', 'BCG',
+        'BCN', 'BD', 'BE', 'BEATS', 'BEAUTY', 'BEER', 'BENTLEY', 'BERLIN',
+        'BEST', 'BESTBUY', 'BET', 'BF', 'BG', 'BH', 'BHARTI', 'BI', 'BIBLE',
+        'BID', 'BIKE', 'BING', 'BINGO', 'BIO', 'BIZ', 'BJ', 'BLACK',
         'BLACKFRIDAY', 'BLOCKBUSTER', 'BLOG', 'BLOOMBERG', 'BLUE', 'BM', 'BMS',
         'BMW', 'BN', 'BNPPARIBAS', 'BO', 'BOATS', 'BOEHRINGER', 'BOFA', 'BOM',
         'BOND', 'BOO', 'BOOK', 'BOOKING', 'BOSCH', 'BOSTIK', 'BOSTON', 'BOT',
@@ -87,11 +82,11 @@ final class Tld extends AbstractRule
         'EUROVISION', 'EUS', 'EVENTS', 'EXCHANGE', 'EXPERT', 'EXPOSED',
         'EXPRESS', 'EXTRASPACE', 'FAGE', 'FAIL', 'FAIRWINDS', 'FAITH',
         'FAMILY', 'FAN', 'FANS', 'FARM', 'FARMERS', 'FASHION', 'FAST', 'FEDEX',
-        'FEEDBACK', 'FERRARI', 'FERRERO', 'FI', 'FIAT', 'FIDELITY', 'FIDO',
-        'FILM', 'FINAL', 'FINANCE', 'FINANCIAL', 'FIRE', 'FIRESTONE',
-        'FIRMDALE', 'FISH', 'FISHING', 'FIT', 'FITNESS', 'FJ', 'FK', 'FLICKR',
-        'FLIGHTS', 'FLIR', 'FLORIST', 'FLOWERS', 'FLY', 'FM', 'FO', 'FOO',
-        'FOOD', 'FOODNETWORK', 'FOOTBALL', 'FORD', 'FOREX', 'FORSALE', 'FORUM',
+        'FEEDBACK', 'FERRARI', 'FERRERO', 'FI', 'FIDELITY', 'FIDO', 'FILM',
+        'FINAL', 'FINANCE', 'FINANCIAL', 'FIRE', 'FIRESTONE', 'FIRMDALE',
+        'FISH', 'FISHING', 'FIT', 'FITNESS', 'FJ', 'FK', 'FLICKR', 'FLIGHTS',
+        'FLIR', 'FLORIST', 'FLOWERS', 'FLY', 'FM', 'FO', 'FOO', 'FOOD',
+        'FOODNETWORK', 'FOOTBALL', 'FORD', 'FOREX', 'FORSALE', 'FORUM',
         'FOUNDATION', 'FOX', 'FR', 'FREE', 'FRESENIUS', 'FRL', 'FROGANS',
         'FRONTDOOR', 'FRONTIER', 'FTR', 'FUJITSU', 'FUN', 'FUND', 'FURNITURE',
         'FUTBOL', 'FYI', 'GA', 'GAL', 'GALLERY', 'GALLO', 'GALLUP', 'GAME',
@@ -122,18 +117,17 @@ final class Tld extends AbstractRule
         'KINDER', 'KINDLE', 'KITCHEN', 'KIWI', 'KM', 'KN', 'KOELN', 'KOMATSU',
         'KOSHER', 'KP', 'KPMG', 'KPN', 'KR', 'KRD', 'KRED', 'KUOKGROUP', 'KW',
         'KY', 'KYOTO', 'KZ', 'LA', 'LACAIXA', 'LAMBORGHINI', 'LAMER',
-        'LANCASTER', 'LANCIA', 'LAND', 'LANDROVER', 'LANXESS', 'LASALLE',
-        'LAT', 'LATINO', 'LATROBE', 'LAW', 'LAWYER', 'LB', 'LC', 'LDS',
-        'LEASE', 'LECLERC', 'LEFRAK', 'LEGAL', 'LEGO', 'LEXUS', 'LGBT', 'LI',
-        'LIDL', 'LIFE', 'LIFEINSURANCE', 'LIFESTYLE', 'LIGHTING', 'LIKE',
-        'LILLY', 'LIMITED', 'LIMO', 'LINCOLN', 'LINDE', 'LINK', 'LIPSY',
-        'LIVE', 'LIVING', 'LK', 'LLC', 'LLP', 'LOAN', 'LOANS', 'LOCKER',
-        'LOCUS', 'LOL', 'LONDON', 'LOTTE', 'LOTTO', 'LOVE', 'LPL',
-        'LPLFINANCIAL', 'LR', 'LS', 'LT', 'LTD', 'LTDA', 'LU', 'LUNDBECK',
-        'LUXE', 'LUXURY', 'LV', 'LY', 'MA', 'MACYS', 'MADRID', 'MAIF',
-        'MAISON', 'MAKEUP', 'MAN', 'MANAGEMENT', 'MANGO', 'MAP', 'MARKET',
-        'MARKETING', 'MARKETS', 'MARRIOTT', 'MARSHALLS', 'MASERATI', 'MATTEL',
-        'MBA', 'MC', 'MCKINSEY', 'MD', 'ME', 'MED', 'MEDIA', 'MEET',
+        'LANCASTER', 'LAND', 'LANDROVER', 'LANXESS', 'LASALLE', 'LAT',
+        'LATINO', 'LATROBE', 'LAW', 'LAWYER', 'LB', 'LC', 'LDS', 'LEASE',
+        'LECLERC', 'LEFRAK', 'LEGAL', 'LEGO', 'LEXUS', 'LGBT', 'LI', 'LIDL',
+        'LIFE', 'LIFEINSURANCE', 'LIFESTYLE', 'LIGHTING', 'LIKE', 'LILLY',
+        'LIMITED', 'LIMO', 'LINCOLN', 'LINK', 'LIPSY', 'LIVE', 'LIVING', 'LK',
+        'LLC', 'LLP', 'LOAN', 'LOANS', 'LOCKER', 'LOCUS', 'LOL', 'LONDON',
+        'LOTTE', 'LOTTO', 'LOVE', 'LPL', 'LPLFINANCIAL', 'LR', 'LS', 'LT',
+        'LTD', 'LTDA', 'LU', 'LUNDBECK', 'LUXE', 'LUXURY', 'LV', 'LY', 'MA',
+        'MADRID', 'MAIF', 'MAISON', 'MAKEUP', 'MAN', 'MANAGEMENT', 'MANGO',
+        'MAP', 'MARKET', 'MARKETING', 'MARKETS', 'MARRIOTT', 'MARSHALLS',
+        'MATTEL', 'MBA', 'MC', 'MCKINSEY', 'MD', 'ME', 'MED', 'MEDIA', 'MEET',
         'MELBOURNE', 'MEME', 'MEMORIAL', 'MEN', 'MENU', 'MERCKMSD', 'MG', 'MH',
         'MIAMI', 'MICROSOFT', 'MIL', 'MINI', 'MINT', 'MIT', 'MITSUBISHI', 'MK',
         'ML', 'MLB', 'MLS', 'MM', 'MMA', 'MN', 'MO', 'MOBI', 'MOBILE', 'MODA',

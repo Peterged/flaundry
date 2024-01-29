@@ -96,7 +96,11 @@
         var chart = new Chart(ctx, {
             type: 'line',
             data: {
+<<<<<<< HEAD
                 labels: ['S', 'S', 'R', 'K', 'J', 'S', 'M'],
+=======
+                labels: ['J', 'Feb', 'Mar', 'Apr', 'Mei'],
+>>>>>>> 55d6188ef06c62b24a2840465bcf112b52252064
                 datasets: [{
                     label: 'Income',
                     data: [100, 200, 150, 300, 250, 400, 350],
@@ -209,11 +213,14 @@
                         border: {
                             display: false
                         },
+<<<<<<< HEAD
                         grid: {
                             display: false,
                             drawOnChartArea: false,
                             drawTicks: false,
                         },
+=======
+>>>>>>> 55d6188ef06c62b24a2840465bcf112b52252064
 
                         ticks: {
                             display: false
