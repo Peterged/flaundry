@@ -41,7 +41,7 @@
         </div>
         <div class="identity">
             <div class="profile-name">
-                <p>My name here</p>
+                <p>Kreshna</p>
             </div>
             <div class="avatar">
                 <img src="" alt="">

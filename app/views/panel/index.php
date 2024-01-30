@@ -9,7 +9,8 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        Charts.defaults.font = "Open Sans";
+        Chart.defaults.font.family = "Arial";
+        Chart.defaults.font.weight = "bold";
     </script>
     <?php
     include_once 'inc/sidebar.php';

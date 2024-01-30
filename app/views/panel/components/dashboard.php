@@ -6,7 +6,7 @@
         <div class="title">
             <h1 class="title-text">Dashboard</h1>
             <div class="title-date">
-                <p class="title-date-text">Minggu, 28 Januari 2023 · 19:14 PM</p>
+                <p class="title-date-text">Selasa, 30 Januari 2024 · 11:12 PM</p>
             </div>
         </div>
         <span class="divider"></span>
@@ -17,7 +17,7 @@
                         <div class="card-title">
                             <p>Welcome back, Kreshna</p>
                         </div>
-                        <div class="card-description">
+                        <div class="card-chart">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis totam autem amet necessitatibus assumenda voluptatum omnis nostrum qui</p>
                         </div>
                         <div class="card-button">
@@ -96,11 +96,7 @@
         var chart = new Chart(ctx, {
             type: 'line',
             data: {
-<<<<<<< HEAD
-                labels: ['S', 'S', 'R', 'K', 'J', 'S', 'M'],
-=======
                 labels: ['J', 'Feb', 'Mar', 'Apr', 'Mei'],
->>>>>>> 55d6188ef06c62b24a2840465bcf112b52252064
                 datasets: [{
                     label: 'Income',
                     data: [100, 200, 150, 300, 250, 400, 350],
@@ -165,6 +161,7 @@
     <!-- Welcome column chart -->
     <script>
         var ctx = document.querySelector('canvas.report-income-statistics');
+        let delayed;
         var chart = new Chart(ctx, {
             type: 'bar', // Change the type to 'bar'
             data: {
@@ -174,12 +171,27 @@
                     data: [100, 200, 150, 300, 250, 400, 350],
                     backgroundColor: '#4895ef', // Set the background color for the bars
                     borderWidth: 0, // Remove the border width,
-                    barThickness: 42,
+                    barThickness: 30,
                     barPercentage: 1,
-                    barBorderRadius: 10,
+                    borderSkipped: false,
+                    barBorderRadius: 7,
                 }]
             },
             options: {
+                responsive: true,
+                responsiveAnimationDuration: 5000,
+                animation: {
+                    onComplete: () => {
+                        delayed = true;
+                    },
+                    delay: (context) => {
+                        let delay = 0;
+                        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                            delay = context.dataIndex * 500 + context.datasetIndex * 350;
+                        }
+                        return delay;
+                    },
+                },
                 plugins: {
                     legend: {
                         display: false,
@@ -188,7 +200,7 @@
                         callbacks: {
                             label: ((tooltipItem, data) => {
                                 return tooltipItem.formattedValue
-                            }) 
+                            })
                         }
                     }
                 },
@@ -213,15 +225,11 @@
                         border: {
                             display: false
                         },
-<<<<<<< HEAD
                         grid: {
                             display: false,
                             drawOnChartArea: false,
                             drawTicks: false,
                         },
-=======
->>>>>>> 55d6188ef06c62b24a2840465bcf112b52252064
-
                         ticks: {
                             display: false
                         }
