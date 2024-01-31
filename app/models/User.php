@@ -40,12 +40,14 @@ class User extends Model
         $this->role = v::in(['admin', 'kasir', 'owner'])->validate($this->role) ? $this->role : null;
     }
 
+
     public static function logout()
     {
         if(session_status() == PHP_SESSION_ACTIVE) {
             session_destroy();
         }
     }
+
     public function save(): array
     {
         $requiredProperties = ['id_outlet', 'nama', 'username', 'password', 'role'];
@@ -58,10 +60,10 @@ class User extends Model
             'status' => 'commited'
         ];
 
+
         $con = $this->dbConnection;
-
+        
         try {
-
             // Lock the user table
             $con->beginTransaction();
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
@@ -69,7 +71,7 @@ class User extends Model
             INSERT INTO {$this->tableName} (id_outlet, nama, username, password, role)
             VALUES (:idOutlet, :nama, :username, :password, :role)
             ");
-
+            
             $stmt->execute([
                 'idOutlet' => $this->id_outlet,
                 'nama' => $this->nama,
@@ -77,7 +79,12 @@ class User extends Model
                 'password' => $this->password,
                 'role' => $this->role
             ]);
+            echo $con->inTransaction() ? 'true' : 'false';
 
+            
+            if($this->username == 'kreshna') {
+                throw new \Exception('Nama tidak boleh kreshna');
+            }
 
             if ($this->username == 'kreshna') {
                 throw new \Exception('Nama tidak boleh kreshna');
@@ -100,7 +107,6 @@ class User extends Model
 
         return $result;
     }
-
     public function login(): array {
         $result = [
             'errorMessage' => null,

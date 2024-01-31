@@ -97,7 +97,7 @@ abstract class Model implements ModelInterface
     public function deleteOne(array $searchCriteria)
     {
         $tableName = $this->tableName;
-
+        
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName WRITE");
@@ -121,7 +121,7 @@ abstract class Model implements ModelInterface
     public function deleteMany(array $searchCriteria, array $options = null)
     {
         $tableName = $this->tableName;
-
+        
         try {
             $this->dbConnection->exec("LOCK TABLES $tableName DELETE");
             $this->dbConnection->beginTransaction();
@@ -141,10 +141,9 @@ abstract class Model implements ModelInterface
             $this->dbConnection->exec("UNLOCK TABLES");
         }
     }
-
     public function selectOne(array $searchCriteria, array $includedProperties = null) {
         $tableName = $this->tableName;
-
+        
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName READ");
@@ -167,7 +166,7 @@ abstract class Model implements ModelInterface
 
     public function selectMany(array | bool $searchCriteria, array $includedProperties = null) {
         $tableName = $this->tableName;
-
+        
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName READ");
@@ -206,7 +205,6 @@ abstract class Model implements ModelInterface
      * @description handleRequiredColumns() is a method to handle forbidden columns
      */
     protected function handleForbiddenColumns(array $data, array $requiredProperties) {
-
         if(!empty($requiredProperties['exclude'])) {
             $requiredProperties = array_diff($requiredProperties, $requiredProperties['exclude']);
         }
@@ -219,7 +217,6 @@ abstract class Model implements ModelInterface
         else {
             $requiredProperties = $this->getTableColumns();
         }
-
         // Kita mengambil array_keys yang ada di $options, lalu kita mengurangi dengan $includedProperties
         // Hasilnya harusnya kosong, jika tidak kosong, berarti ada property yang tidak diizinkan
         // Didalam funsi __construct() ini, yang harusnya didalam forbiddenProperties adalah
