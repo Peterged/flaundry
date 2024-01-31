@@ -37,9 +37,11 @@ use Respect\Validation\Validator as v;
             return $body;
         }
 
-        public function getBody() {
-            // filtering enabled as default 
-            $this->filterBody();
+        public function getBody(bool $filter = true) {
+            // filtering enabled as default
+            if($filter) {
+                $this->filterBody();
+            }
             return $this->body;
         }
 

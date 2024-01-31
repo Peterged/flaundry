@@ -17,7 +17,7 @@ final class Response
     private function extractData($data)
     {
         if (isset($data)) {
-            
+
             foreach ($data as $dataItem) {
                 if(is_array($dataItem)) {
                     extract($dataItem);
@@ -38,14 +38,14 @@ final class Response
 
             if (file_exists($path)) {
                 $this->extractData($data);
-                
+
                 extract([
                     'PROJECT_ROOT' => PROJECT_ROOT,
                     'URLROOT' => URLROOT,
                     'routeTo' => 'routeTo',
                     'fetch' => 'fetch'
                 ]);
-                
+
                 include_once __DIR__ . "/../views/layouts/header.php";
                 include_once $path;
             } else {
@@ -64,6 +64,13 @@ final class Response
             return;
         }
         echo $data;
+    }
+
+    public function redirect(string $route) {
+        header_register_callback(function() use ($route) {
+            $newRoute = PROJECT_ROOT . $route;
+            header("Location: $newRoute");
+        });
     }
 
     public function sendFile(string $path)

@@ -1,0 +1,139 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+}
+
+.content-box {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    max-width: 1440px;
+    width: 100%;
+    background-color: #fff;
+}
+
+.content-box .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content-box .title .title-text {
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.content-box .title .title-date .title-date-text {
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.content-box .divider {
+    width: 100%;
+    height: 1.5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.content-box .first-column {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 200px;
+}
+
+.content-box .first-column .card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 200px;
+}
+
+.content-box .first-column .card .card-body {
+    width: 100%;
+}
+
+.first-column .card:not(div.card:last-child) {
+    padding-right: 1rem;
+}
+
+.first-column .card:not(.card-1) {
+    padding-left: 1rem;
+}
+
+.card .card-content .card-chart:has(canvas.report-income-statistics) {
+    width: 40%;
+    max-width: 40% !important;
+    justify-content: flex-end;
+}
+
+.card.card-introduction .card-content .card-body {
+    max-width: 40%;
+}
+
+
+
+@media (min-width: 1000px) {
+    .card .card-content .card-chart:has(canvas.report-income-statistics) {
+        width: 55%;
+        max-width: 55% !important;
+        justify-content: flex-end;
+    }
+}
+@media (min-width: 1200px) {
+
+    .content-box .first-column .card {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .content-box .first-column .card.card-1 {
+        margin-bottom: 1.5rem !important;
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    .card .card-content .card-chart:has(canvas.report-income-statistics) {
+        width: 45%;
+        max-width: 45% !important;
+        justify-content: flex-end;
+    }
+}
+
+
+
+@media (min-width: 1500px) {
+    .first-column .card:not(div.card:last-child, .card-1) {
+        padding-right: 1rem;
+    }
+    .first-column .card:last-child {
+        padding-left: 1rem;
+    }
+    .content-box .first-column .card {
+        flex: 0 0 auto;
+        width: 33.333333% !important;
+    }
+    .content-box .first-column .card.card-1 {
+        margin-bottom: 0 !important;
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+}
+
+
+.content-box .second-column {
+    height: 500px
+}
+
+.content-box .third-column {
+    height: 450px;
+}
+

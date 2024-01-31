@@ -1,6 +1,4 @@
-<head>
-    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/navbar.css">
-</head>
+
 
 <div class="panel-navbar">
     <div class="header">
@@ -43,7 +41,7 @@
         </div>
         <div class="identity">
             <div class="profile-name">
-                <p>My name here</p>
+                <p><?= $data['username'] ?? 'Unknown' ?></p>
             </div>
             <div class="avatar">
                 <img src="" alt="">

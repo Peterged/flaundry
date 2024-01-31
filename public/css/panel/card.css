@@ -1,0 +1,82 @@
+.card {
+    width: 100%;
+    display: flex;
+    height: auto;    
+}
+
+.card .card-content {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    background-color: white;
+    justify-content: space-between;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1.75rem;
+}
+
+.card .card-content .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+
+.card .card-content .card-body:has(.card-image, .card-chart) .card-body {
+    max-width: 60%;
+}
+
+.card .card-content .card-body .card-title p{
+    font-size: 1.75rem;
+    font-weight: 400;
+}
+
+.card .card-content .card-body .card-description {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.card .card-content .card-body .card-description p {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.card .card-content .card-body .card-button {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card .card-content .card-body .card-button a.card-button-link {
+    padding: 0.65rem 1rem;
+    border-radius: 0.25rem;
+    background-color: var(--blue-chefchaouen-9);
+    color: #fff;
+}
+
+.card .card-content .card-body .card-button a.card-button-link:hover {
+    background-color: var(--blue-chefchaouen-9);
+}
+
+.card .card-content .card-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.card .card-content .card-image img {
+    width: 250px;
+    height: auto;
+}
+
+.card .card-content .card-chart {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 100%;
+    height: auto;
+}

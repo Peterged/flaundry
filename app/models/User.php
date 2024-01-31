@@ -23,7 +23,8 @@ class User extends Model
             return;
         }
 
-        $requiredProperties = ['id_outlet', 'nama', 'username', 'password', 'role'];
+        // $requiredProperties = ['id_outlet', 'nama', 'username', 'password', 'role'];
+        $requiredProperties = ['username', 'password'];
 
         $this->handleForbiddenColumns($valuesArray, $requiredProperties);
 
@@ -39,8 +40,19 @@ class User extends Model
         $this->role = v::in(['admin', 'kasir', 'owner'])->validate($this->role) ? $this->role : null;
     }
 
+
+    public static function logout()
+    {
+        if(session_status() == PHP_SESSION_ACTIVE) {
+            session_destroy();
+        }
+    }
+
     public function save(): array
     {
+        $requiredProperties = ['id_outlet', 'nama', 'username', 'password', 'role'];
+
+        $this->handleForbiddenColumns($valuesArray, $requiredProperties);
         // Begin transaction
         $result = [
             'errorMessage' => null,
@@ -48,13 +60,13 @@ class User extends Model
             'status' => 'commited'
         ];
 
+
         $con = $this->dbConnection;
         
         try {
-            
             // Lock the user table
-            $con->exec("LOCK TABLES {$this->tableName} WRITE");
             $con->beginTransaction();
+            $con->exec("LOCK TABLES {$this->tableName} WRITE");
             $stmt = $this->dbConnection->prepare("
             INSERT INTO {$this->tableName} (id_outlet, nama, username, password, role)
             VALUES (:idOutlet, :nama, :username, :password, :role)
@@ -74,8 +86,12 @@ class User extends Model
                 throw new \Exception('Nama tidak boleh kreshna');
             }
 
+            if ($this->username == 'kreshna') {
+                throw new \Exception('Nama tidak boleh kreshna');
+            }
+
             $con->commit();
-            
+
             $result['success'] = true;
         } catch (\Exception $e) {
             // Rollback the transaction jika terjadi error
@@ -91,8 +107,53 @@ class User extends Model
 
         return $result;
     }
+    public function login(): array {
+        $result = [
+            'errorMessage' => null,
+            'success' => false,
+            'status' => 'commited'
+        ];
 
-    
+        $con = $this->dbConnection;
+
+        try {
+            $con->beginTransaction();
+            $con->exec("LOCK TABLES {$this->tableName} READ");
+
+            $stmt = $con->prepare("
+            SELECT * FROM {$this->tableName} WHERE username = :username
+            ");
+
+            $stmt->execute([
+                'username' => $this->username
+            ]);
+
+            $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+            if(!$user) {
+                throw new \Exception('User tidak ditemukan');
+            }
+
+            if(!password_verify($this->password, $user['password'])) {
+                throw new \Exception('Password salah');
+            }
+
+            $con->commit();
+
+            $result['success'] = true;
+            $result['user'] = $user;
+        } catch (\Exception $e) {
+            $con->rollBack();
+            $result['errorMessage'] = $e->getMessage();
+            $result['status'] = 'rollbacked';
+        } finally {
+            $con->exec('UNLOCK TABLES');
+        }
+
+        return $result;
+    }
+
+
 
     // Other methods and properties specific to the User model
     public function getIdOutlet()
