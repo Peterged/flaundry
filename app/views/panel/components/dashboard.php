@@ -40,7 +40,7 @@
                         <div class="card-title">
                             <p>Today's Income</p>
                         </div>
-                        <div class="card-description">
+                        <div class="card-description" style="aspect-ratio: 16/9">
                             <canvas class="income"></canvas>
                         </div>
                     </div>

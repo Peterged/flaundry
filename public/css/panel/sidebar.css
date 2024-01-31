@@ -278,3 +278,10 @@ body {
 .sidebar .btn-group #dropdown-group .dropdown .dropdown-item svg path {
   fill: #999999;
 }
+
+
+
+/* * CHECKBOX */
+.checkbox:checked span {
+
+}

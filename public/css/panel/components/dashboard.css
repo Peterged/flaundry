@@ -82,7 +82,13 @@
 
 
 
-
+@media (min-width: 1000px) {
+    .card .card-content .card-chart:has(canvas.report-income-statistics) {
+        width: 55%;
+        max-width: 55% !important;
+        justify-content: flex-end;
+    }
+}
 @media (min-width: 1200px) {
 
     .content-box .first-column .card {
@@ -100,6 +106,8 @@
         justify-content: flex-end;
     }
 }
+
+
 
 @media (min-width: 1500px) {
     .first-column .card:not(div.card:last-child, .card-1) {

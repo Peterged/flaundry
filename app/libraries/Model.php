@@ -21,6 +21,8 @@ abstract class Model implements ModelInterface
     protected string $tableName;
     protected \PDO $dbConnection;
 
+    protected array $currentRequiredProperties;
+
     private function tryCatchWrapper(\Closure $callback) {
         try {
             $this->dbConnection->beginTransaction();
@@ -77,7 +79,7 @@ abstract class Model implements ModelInterface
             } else {
                 $query = $this->handleUpdateQuery($searchCriteria, $newData);
             }
-            
+
 
             $statement = $this->dbConnection->prepare($query);
 
@@ -95,7 +97,7 @@ abstract class Model implements ModelInterface
     public function deleteOne(array $searchCriteria)
     {
         $tableName = $this->tableName;
-        
+
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName WRITE");
@@ -119,7 +121,7 @@ abstract class Model implements ModelInterface
     public function deleteMany(array $searchCriteria, array $options = null)
     {
         $tableName = $this->tableName;
-        
+
         try {
             $this->dbConnection->exec("LOCK TABLES $tableName DELETE");
             $this->dbConnection->beginTransaction();
@@ -142,7 +144,7 @@ abstract class Model implements ModelInterface
 
     public function selectOne(array $searchCriteria, array $includedProperties = null) {
         $tableName = $this->tableName;
-        
+
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName READ");
@@ -165,7 +167,7 @@ abstract class Model implements ModelInterface
 
     public function selectMany(array | bool $searchCriteria, array $includedProperties = null) {
         $tableName = $this->tableName;
-        
+
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName READ");
@@ -177,7 +179,7 @@ abstract class Model implements ModelInterface
 
             $statement = $this->dbConnection->prepare($query);
             $statement->execute($searchCriteria);
-            
+
             $this->dbConnection->commit();
             return $statement->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\Exception $e) {
@@ -185,6 +187,14 @@ abstract class Model implements ModelInterface
             trigger_error($e->getMessage());
         } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
+        }
+    }
+
+    protected function setRequiredProperties(array $requiredProperties) {
+        $this->currentRequiredProperties = $requiredProperties;
+        foreach($requiredProperties as $key => $value) {
+            if($this->{$key})
+            $this->{$key} = $value;
         }
     }
 
@@ -209,7 +219,7 @@ abstract class Model implements ModelInterface
         else {
             $requiredProperties = $this->getTableColumns();
         }
-        
+
         // Kita mengambil array_keys yang ada di $options, lalu kita mengurangi dengan $includedProperties
         // Hasilnya harusnya kosong, jika tidak kosong, berarti ada property yang tidak diizinkan
         // Didalam funsi __construct() ini, yang harusnya didalam forbiddenProperties adalah
@@ -266,7 +276,7 @@ abstract class Model implements ModelInterface
         $tableName = $this->tableName;
         try {
             $includedProperties = $this->handleIncludedAndExcludedKeys($includedProperties);
-            
+
             if($searchCriteria == true) {
                 $query = "SELECT * FROM $tableName";
             } else {

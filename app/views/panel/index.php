@@ -12,6 +12,7 @@
         Chart.defaults.font.family = "Arial";
         Chart.defaults.font.weight = "bold";
     </script>
+    
     <?php
     include_once 'inc/sidebar.php';
     include_once 'inc/navbar.php';

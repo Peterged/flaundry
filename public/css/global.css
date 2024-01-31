@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 :root {
-    --sidebar-icon-size: 22px;
+  --sidebar-icon-size: 22px;
+  --toggle-button-size: 16px;
 }
 
 * {
@@ -15,18 +16,18 @@
 
 /* Width of the scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+  background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-    background: #c4c4c4;
-    border-radius: 12px;
-    transition: background 0.3s ease; /* Add transition property for background */
+  background: #c4c4c4;
+  border-radius: 12px;
+  transition: background 0.3s ease; /* Add transition property for background */
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #4895EF;
+  background: #4895ef;
 }
 
 table .table-min-w-md {
@@ -43,4 +44,71 @@ table .table-min-w-sm {
 
 table .table-min-w-xl {
   min-width: 32rem;
+}
+
+.checkbox-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: calc((var(--toggle-button-size) * 1.2) + var(--toggle-button-size) * 1.023);
+  height: calc(var(--toggle-button-size) * 1.2);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--toggle-button-size);
+  width: var(--toggle-button-size);
+  left: calc((var(--toggle-button-size) * 1.1) - var(--toggle-button-size));
+  bottom: calc(var(--toggle-button-size) / 10);
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(var(--toggle-button-size));
+  -ms-transform: translateX(var(--toggle-button-size));
+  transform: translateX(var(--toggle-button-size));
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: calc(var(--toggle-button-size) + 8px);
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

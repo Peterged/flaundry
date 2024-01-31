@@ -41,7 +41,7 @@
         </div>
         <div class="identity">
             <div class="profile-name">
-                <p>Kreshna</p>
+                <p><?= $data['username'] ?? 'Unknown' ?></p>
             </div>
             <div class="avatar">
                 <img src="" alt="">
