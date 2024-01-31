@@ -42,9 +42,6 @@ $homeRouter->get('/profile', function ($req, $res) { // Profile
     $res->render('/pages/contact');
 });
 
-
-
-
 // Testing
 $homeRouter->get('/api-test', function ($req, $res) {
     // BEFORE: mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");

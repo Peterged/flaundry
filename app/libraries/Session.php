@@ -1,5 +1,5 @@
 <?php 
-
+    namespace App\libraries;
 
     class Session {
         public function __construct() {
@@ -7,20 +7,31 @@
                 session_start();
             }
         }
+        
+        public static function getSessionKeyValueAndRemoveOnRefresh($key) {
+            if(isset($_SESSION[$key])) {
+                $value = $_SESSION[$key];
+                unset($_SESSION[$key]);
+                return $value;
+            }
+            else {
+                return false;
+            }
+        }
 
-        public function set(string $key, $value) {
+        public static function set(string $key, $value) {
             $_SESSION[$key] = $value;
         }
 
-        public function get(string $key) {
+        public static function get(string $key) {
             return $_SESSION[$key] ?? null;
         }
 
-        public function remove(string $key) {
+        public static function remove(string $key) {
             unset($_SESSION[$key]);
         }
 
-        public function destroy() {
+        public static function destroy() {
             session_destroy();
         }
     }

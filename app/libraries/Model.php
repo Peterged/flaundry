@@ -5,7 +5,8 @@ namespace App\libraries;
 use Respect\Validation\Rules\Callback;
 use Respect\Validation\Validator as v;
 
-interface ModelInterface {
+interface ModelInterface
+{
     public function save(): array;
     public function updateOne(array $searchCriteria, array $newData);
     public function updateMany(array | bool $searchCriteria, array $newData);
@@ -22,8 +23,15 @@ abstract class Model implements ModelInterface
     protected \PDO $dbConnection;
 
     protected array $currentRequiredProperties;
+    protected array $valuesArray;
 
-    private function tryCatchWrapper(\Closure $callback) {
+    public function __construct(\PDO $PDO, array | null $valuesArray = null) {
+        $this->dbConnection = $PDO;
+        $this->setValuesArray($valuesArray);
+    }
+
+    private function tryCatchWrapper(\Closure $callback)
+    {
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
@@ -43,7 +51,7 @@ abstract class Model implements ModelInterface
         if (isset($newData['password'])) {
             $newData['password'] = password_hash($newData['password'], PASSWORD_DEFAULT);
         }
-        $this->tryCatchWrapper(function() use ($searchCriteria, $newData) {
+        $this->tryCatchWrapper(function () use ($searchCriteria, $newData) {
             $query = $this->handleUpdateQuery($searchCriteria, $newData);
             $statement = $this->dbConnection->prepare($query);
 
@@ -58,7 +66,7 @@ abstract class Model implements ModelInterface
             $newData['password'] = password_hash($newData['password'], PASSWORD_DEFAULT);
         }
 
-        $this->tryCatchWrapper(function() use ($searchCriteria, $newData, $tableName) {
+        $this->tryCatchWrapper(function () use ($searchCriteria, $newData, $tableName) {
             $query = "UPDATE $tableName SET ";
             $query .= implode(', ', array_map(function ($value) {
                 return "{$value} = :{$value}";
@@ -71,7 +79,7 @@ abstract class Model implements ModelInterface
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName WRITE");
-            if(gettype($searchCriteria) == 'boolean' && $searchCriteria == true) {
+            if (gettype($searchCriteria) == 'boolean' && $searchCriteria == true) {
                 $query = "UPDATE $tableName SET ";
                 $query .= implode(', ', array_map(function ($value) {
                     return "{$value} = :{$value}";
@@ -126,7 +134,7 @@ abstract class Model implements ModelInterface
             $this->dbConnection->exec("LOCK TABLES $tableName DELETE");
             $this->dbConnection->beginTransaction();
             $query = "DELETE FROM $tableName WHERE ";
-            $query .= implode(' AND ', array_map(function($value) {
+            $query .= implode(' AND ', array_map(function ($value) {
                 return "{$value} = :{$value}";
             }, array_keys($searchCriteria)));
 
@@ -142,7 +150,8 @@ abstract class Model implements ModelInterface
         }
     }
 
-    public function selectOne(array $searchCriteria, array $includedProperties = null) {
+    public function selectOne(array $searchCriteria, array $includedProperties = null)
+    {
         $tableName = $this->tableName;
 
         try {
@@ -165,13 +174,15 @@ abstract class Model implements ModelInterface
         }
     }
 
-    public function selectMany(array | bool $searchCriteria, array $includedProperties = null) {
+    // ! selectMany and selectOne are not fixed yet!
+    public function selectMany(array | bool $searchCriteria, array $includedProperties = null)
+    {
         $tableName = $this->tableName;
 
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName READ");
-            if($searchCriteria == true) {
+            if ($searchCriteria == true) {
                 $query = "SELECT * FROM $tableName";
             } else {
                 $query = $this->handleSelectQuery($searchCriteria, $includedProperties);
@@ -190,11 +201,37 @@ abstract class Model implements ModelInterface
         }
     }
 
-    protected function setRequiredProperties(array $requiredProperties) {
+    protected function setRequiredProperties(array $requiredProperties)
+    {
         $this->currentRequiredProperties = $requiredProperties;
-        foreach($requiredProperties as $key => $value) {
-            if($this->{$key})
-            $this->{$key} = $value;
+    }
+
+    protected function checkIfRequiredPropertiesExistsOnClass() { 
+        $requiredProperties = $this->currentRequiredProperties;
+
+        $requiredProperties = array_diff($requiredProperties, $this->valuesArray);
+        if (!empty($requiredProperties)) {
+            $message = 'Property(s) [' . implode(', ', $requiredProperties) . '] is not defined';
+            return [
+                'message' => $message,
+                'error' => true
+            ];
+        }
+        $error = false;
+        return compact('error');
+    }
+
+    protected function setValuesArray(array | null $valuesArray) {
+        $this->valuesArray = $valuesArray;
+    }
+
+    protected function checkIfRequiredPropertyValuesAreDefined() {
+        $requiredProperties = $this->currentRequiredProperties;
+        foreach ($requiredProperties as $requiredProperty) {
+            if (!isset($this->$requiredProperty)) {
+                $message = "Property {$requiredProperty} is not defined";
+                throw new \Exception($message);
+            }
         }
     }
 
@@ -205,18 +242,16 @@ abstract class Model implements ModelInterface
      * @throws \Exception
      * @description handleRequiredColumns() is a method to handle forbidden columns
      */
-    protected function handleForbiddenColumns(array $data, array $requiredProperties) {
+    protected function handleForbiddenColumns(array $data, array $requiredProperties)
+    {
 
-        if(!empty($requiredProperties['exclude'])) {
+        if (!empty($requiredProperties['exclude'])) {
             $requiredProperties = array_diff($requiredProperties, $requiredProperties['exclude']);
-        }
-        elseif(!empty($requiredProperties['include'])) {
+        } elseif (!empty($requiredProperties['include'])) {
             $requiredProperties = array_intersect($requiredProperties, $requiredProperties['include']);
-        }
-        elseif(!empty($requiredProperties['include']) && !empty($requiredProperties['exclude'])) {
+        } elseif (!empty($requiredProperties['include']) && !empty($requiredProperties['exclude'])) {
             $requiredProperties = array_diff($requiredProperties['include'], $requiredProperties['exclude']);
-        }
-        else {
+        } else {
             $requiredProperties = $this->getTableColumns();
         }
 
@@ -227,7 +262,7 @@ abstract class Model implements ModelInterface
         $dataKeys = array_keys($data);
         $forbiddenProperties = array_diff($dataKeys, $requiredProperties);
 
-        if(!empty($forbiddenProperties)) {
+        if (!empty($forbiddenProperties)) {
             $message = 'Property(s) [' . implode(', ', $forbiddenProperties) . '] is not allowed';
             throw new \Exception($message);
         }
@@ -235,17 +270,15 @@ abstract class Model implements ModelInterface
         return $requiredProperties;
     }
 
-    protected function handleIncludedAndExcludedKeys(array $requiredProperties) {
-        if(!empty($requiredProperties['include']) && !empty($requiredProperties['exclude'])) {
+    protected function handleIncludedAndExcludedKeys(array $requiredProperties)
+    {
+        if (!empty($requiredProperties['include']) && !empty($requiredProperties['exclude'])) {
             $requiredProperties = array_diff($requiredProperties['include'], $requiredProperties['exclude']);
-        }
-        elseif(!empty($requiredProperties['exclude'])) {
+        } elseif (!empty($requiredProperties['exclude'])) {
             $requiredProperties = array_diff($requiredProperties, $requiredProperties['exclude']);
-        }
-        elseif(!empty($requiredProperties['include'])) {
+        } elseif (!empty($requiredProperties['include'])) {
             $requiredProperties = array_intersect($requiredProperties, $requiredProperties['include']);
-        }
-        elseif(empty($requiredProperties)) {
+        } elseif (empty($requiredProperties)) {
             $requiredProperties = $this->getTableColumns();
         }
 
@@ -261,7 +294,7 @@ abstract class Model implements ModelInterface
             }, array_keys($newData)));
 
             $query .= " WHERE ";
-            $query .= implode(' AND ', array_map(function($value) {
+            $query .= implode(' AND ', array_map(function ($value) {
                 return "{$value} = :{$value}";
             }, array_keys($searchCriteria)));
 
@@ -277,18 +310,18 @@ abstract class Model implements ModelInterface
         try {
             $includedProperties = $this->handleIncludedAndExcludedKeys($includedProperties);
 
-            if($searchCriteria == true) {
+            if ($searchCriteria == true) {
                 $query = "SELECT * FROM $tableName";
             } else {
                 $query = "SELECT ";
-                if(!empty($includedProperties)) {
-                    $query .= implode(', ', array_map(function($value) {
+                if (!empty($includedProperties)) {
+                    $query .= implode(', ', array_map(function ($value) {
                         return "$value";
                     }, $includedProperties));
                 }
 
                 $query .= " FROM $tableName WHERE ";
-                $query .= implode(' AND ', array_map(function($value) {
+                $query .= implode(' AND ', array_map(function ($value) {
                     return "{$value} = :{$value}";
                 }, array_keys($searchCriteria)));
             }
@@ -304,7 +337,7 @@ abstract class Model implements ModelInterface
         $tableName = $this->tableName;
         try {
             $query = "DELETE FROM $tableName WHERE ";
-            $query .= implode(' AND ', array_map(function($value) {
+            $query .= implode(' AND ', array_map(function ($value) {
                 return "{$value} = :{$value}";
             }, array_keys($searchCriteria)));
 
@@ -319,12 +352,12 @@ abstract class Model implements ModelInterface
         $tableName = $this->tableName;
         try {
             $query = "INSERT INTO $tableName (";
-            $query .= implode(', ', array_map(function($value) {
+            $query .= implode(', ', array_map(function ($value) {
                 return "$value";
             }, array_keys($data)));
 
             $query .= ") VALUES (";
-            $query .= implode(', ', array_map(function($value) {
+            $query .= implode(', ', array_map(function ($value) {
                 return ":{$value}";
             }, array_keys($data)));
 
@@ -336,21 +369,21 @@ abstract class Model implements ModelInterface
         }
     }
 
-    function handleOptionKeys(array $options) {
-        if(!empty($options['exclude'])) {
+    function handleOptionKeys(array $options)
+    {
+        if (!empty($options['exclude'])) {
             $options = array_diff($options, $options['exclude']);
-        }
-        elseif(!empty($options['include'])) {
+        } elseif (!empty($options['include'])) {
             $options = array_intersect($options, $options['include']);
-        }
-        else {
+        } else {
             $options = $this->getTableColumns();
         }
 
         return $options;
     }
-    public function getTableColumns($inTransaction = false) {
-        if($inTransaction) {
+    public function getTableColumns($inTransaction = false)
+    {
+        if ($inTransaction) {
             $this->dbConnection->beginTransaction();
         }
         $tableName = $this->tableName;

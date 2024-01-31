@@ -9,8 +9,9 @@
 </head>
 
 <body>
-    
-
+    <?php 
+        $displayMessage = App\libraries\Session::getSessionKeyValueAndRemoveOnRefresh('displayMessage');
+    ?>
     <div class="container">
         <form method="post" class="wrapper" id="form-login">
             <h1 class="title">Login</h1>
@@ -28,6 +29,7 @@
                 <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" required>
             </div>
             <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">LOGIN</button>
+            <p class="bottomDisplayMessage"><?= $displayMessage ?></p>
         </form>
         <div class="goback-btn">
             <button onclick="history.back()">

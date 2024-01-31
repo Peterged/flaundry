@@ -11,6 +11,8 @@ $apiRouter->get('/about', function ($req, $res) { // /about
     $res->render('/pages/about');
 });
 
+
+
 $apiRouter->get('/users/robots', function ($req, $res) use ($con) {
     $query = "SELECT * FROM tb_user";
     $stmt = $con->prepare($query);

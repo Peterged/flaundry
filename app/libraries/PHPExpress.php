@@ -47,7 +47,8 @@ class PHPExpress
         });
     }
 
-    public function setDatabaseObject(\App\libraries\Database $con) {
+    public function setDatabaseObject(\App\libraries\Database $con)
+    {
         $this->con = $con;
     }
 
@@ -72,16 +73,29 @@ class PHPExpress
         }
     }
 
-    private function addRequestToQueue(string $route, string $method, callable | string $callback)
+    private function addRequestToQueue(string $route, string $method, callable | string ...$callback)
     {
-        if (is_string($callback)) {
+        $callbacks = func_get_arg(2);
+
+        if(is_array($callbacks)) {
+            array_map(function ($call) {
+                if (is_string($call)) {
+                    return RouterHelper::getStringToCallable($call);
+                }
+                return $call;
+            }, $callbacks);
+        }
+
+
+        elseif (is_string($callback)) {
             $callback = RouterHelper::getStringToCallable($callback);
         }
+
 
         array_push($this->routeQueue, [
             "method" => $method,
             "route" => $route,
-            "callback" => $callback,
+            "callback" => count($callback) ? [...$callback] : $callback,
         ]);
     }
 
@@ -194,7 +208,7 @@ class PHPExpress
         $this->headerData = RouterHelper::setHeaderData($isSent, $path);
     }
 
-    private function processFunction(string $requestMethod, bool $isMatch, string $filteredRoute, Request $request, Response $response, callable $callback)
+    private function processFunction(string $requestMethod, bool $isMatch, string $filteredRoute, Request $request, Response $response, callable | array ...$callback)
     {
         $currentRequestMethod = $request->getMethod();
 
@@ -204,11 +218,18 @@ class PHPExpress
             }
 
             $this->setHeaderData(true);
-            $callback($request, $response);
-        } elseif (!$this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestMethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
-            echo $this->isRouteHandled($requestMethod, $filteredRoute) ? 'true' : 'false' . "<br>";
-            echo "<code>Cannot handle $currentRequestMethod $filteredRoute</code>";
+            session_start();
+            if (is_array($callback)) {
+                foreach ($callback as $call) {
+                    $call($request, $response);
+                }
+            } else
+                $callback($request, $response);
         }
+        // elseif (!$this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestMethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
+        //     echo $this->isRouteHandled($requestMethod, $filteredRoute) ? 'true' : 'false' . "<br>";
+        //     echo "<code>Cannot handle $currentRequestMethod $filteredRoute</code>";
+        // }
 
         $this->resetHeader();
         // if ($filteredRoute == '/damn') {
@@ -223,8 +244,9 @@ class PHPExpress
         // }
     }
 
-    private function handleResponse(string $requestMethod, string $route, callable | string $callback)
+    private function handleResponse(string $requestMethod, string $route, callable | string | array ...$callback)
     {
+        $callbacks = func_get_arg(2);
         $request = new Request();
         $this->response = new Response();
         $this->response->views = $this->views;
@@ -259,7 +281,7 @@ class PHPExpress
             "headerData" => $this->headerData,
         ];
 
-        $this->processFunction($requestMethod, $isMatch, $filteredRoute, $request, $this->response, $callback);
+        $this->processFunction($requestMethod, $isMatch, $filteredRoute, $request, $this->response, ...$callbacks);
     }
 
     public function redirect(string $route)
@@ -270,24 +292,24 @@ class PHPExpress
         exit;
     }
 
-    public function get(string $route, callable | string $callback)
+    public function get(string $route, callable | string | array ...$callback)
     {
         if (!$this->isListening) {
-            $this->addRequestToQueue($route, 'GET', $callback);
+            $this->addRequestToQueue($route, 'GET', ...$callback);
             return;
         } else {
-            $this->handleResponse('GET', $route, $callback);
+            $this->handleResponse('GET', $route, ...$callback);
         }
         return $this;
     }
 
-    public function post(string $route, callable | string $callback)
+    public function post(string $route, callable | string | array ...$callback)
     {
         if (!$this->isListening) {
-            $this->addRequestToQueue($route, 'POST', $callback);
+            $this->addRequestToQueue($route, 'POST', ...$callback);
             return;
         }
-        $this->handleResponse('POST', $route, $callback);
+        $this->handleResponse('POST', $route, ...$callback);
     }
 
     public function put(string $route, callable | string $callback)
@@ -302,15 +324,18 @@ class PHPExpress
     {
     }
 
-    private function setError(\stdClass &$error, int $code, string $message, string $description = null) {
+    private function setError(\stdClass &$error, int $code, string $message, string $description = null)
+    {
         $error->code = $code;
         $error->message = $message;
         $error->description = $description;
     }
 
-    private function handleUnhandledRoutes(string $currentRoute, callable $callback)
+    private function handleUnhandledRoutes(string $currentRoute, callable | array $callback)
     {
-
+        if (is_array($callback) && count($callback) > 1) {
+            die('why you do this');
+        }
         if ($currentRoute !== "*") {
             return;
         }
@@ -322,10 +347,9 @@ class PHPExpress
         $isHandled = $this->isRouteHandled($_SERVER['REQUEST_METHOD'], $route);
 
         // If the request_uri is not handled, return an error
-        if(http_response_code() == 403) {
+        if (http_response_code() == 403) {
             $this->setError($error, 403, "Forbidden");
-        }
-        elseif (!$isHandled) {
+        } elseif (!$isHandled) {
             // echo "<code>Cannot handle $currentRequestMethod $requestUri</code>";
             // $res->setHeader('HTTP/1.0 404 Not Found');
             // $res->setCode(404);

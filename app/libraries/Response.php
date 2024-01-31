@@ -46,6 +46,7 @@ final class Response
                     'fetch' => 'fetch'
                 ]);
 
+                // include_once __DIR__ . "/../libraries/Session.php";
                 include_once __DIR__ . "/../views/layouts/header.php";
                 include_once $path;
             } else {
@@ -70,6 +71,12 @@ final class Response
         header_register_callback(function() use ($route) {
             $newRoute = PROJECT_ROOT . $route;
             header("Location: $newRoute");
+        });
+    }
+
+    public function refreshPage(int $seconds = 0) {
+        header_register_callback(function() use ($seconds) {
+            header("Refresh: $seconds");
         });
     }
 
