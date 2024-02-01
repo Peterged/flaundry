@@ -4,7 +4,9 @@ namespace App\routers;
 
 use App\libraries\PHPExpress;
 use App\models\User;
+
 use App\utils\PrintArray;
+
 
 $panelRouter = new PHPExpress();
 global $con, $panelRouter;
@@ -40,8 +42,7 @@ $panelRouter->get('/', function ($req, $res) use ($con) {
         'username' => 'kreshna',
         'title' => 'Dashboard'
     ];
-    // $res->render('/panel/inc/navbar');
-    // $res->render('/panel/inc/sidebar', $data);
+
     $res->render('/panel/index');
 });
 

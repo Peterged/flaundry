@@ -33,17 +33,17 @@ class User extends Model
 
     }
 
+
     public static function logout()
     {
         if (session_status() == PHP_SESSION_ACTIVE) {
             session_destroy();
         }
     }
+
     public function save(): array
     {
         $this->setRequiredProperties(['id_outlet', 'nama', 'username', 'password', 'role']);
-
-        $this->checkIfRequiredPropertyValuesAreDefined();
 
         $this->role = v::in(['admin', 'kasir', 'owner'])->validate($this->role) ? $this->role : null;
 
@@ -53,12 +53,10 @@ class User extends Model
             'status' => 'commited'
         ];
 
+
         $con = $this->dbConnection;
-
+        
         try {
-            // Begin transaction
-            $con->beginTransaction();
-
             // Lock the user table
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
 
@@ -66,7 +64,7 @@ class User extends Model
             INSERT INTO {$this->tableName} (id_outlet, nama, username, password, role)
             VALUES (:id_outlet, :nama, :username, :password, :role)
             ");
-
+            
             $stmt->execute([
                 'id_outlet' => $this->id_outlet,
                 'nama' => $this->nama,
@@ -74,8 +72,18 @@ class User extends Model
                 'password' => $this->password,
                 'role' => $this->role
             ]);
+            echo $con->inTransaction() ? 'true' : 'false';
 
-            $con->commit();
+            
+            if($this->username == 'kreshna') {
+                throw new \Exception('Nama tidak boleh kreshna');
+            }
+
+            if ($this->username == 'kreshna') {
+                throw new \Exception('Nama tidak boleh kreshna');
+            }
+
+            $con->commit();   
 
             $result['success'] = true;
         } catch (\Exception $e) {
@@ -92,16 +100,8 @@ class User extends Model
 
         return $result;
     }
-
-    public function login(): array
-    {
-        $this->username = v::type('string')->notEmpty()->validate($this->username) ? $this->username : null;
-        $this->password = v::type('string')->notEmpty()->validate($this->password) ? password_hash($this->password, PASSWORD_DEFAULT) : null;
-        $result = [
-            'errorMessage' => null,
-            'success' => false,
-            'status' => 'commited'
-        ];
+    public function login(): array {
+        
 
         $con = $this->dbConnection;
 
@@ -139,6 +139,43 @@ class User extends Model
             $result['status'] = 'rollbacked';
         } finally {
             $con->exec('UNLOCK TABLES');
+        }
+
+        return $result;
+    }
+
+    public function register(): array {
+        $result = [
+            'errorMessage' => null,
+            'success' => false,
+            'status' => 'commited'
+        ];
+
+        try {
+            $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
+
+            $this->dbConnection->beginTransaction();
+
+            $columnsToBeInsertedTo = implode(", ", $this->getRequiredProperties());
+            $columnsPrepareValues = implode(", ", array_map(function($prop) {
+                return ":$prop";
+            }, $this->getRequiredProperties()));
+
+            $stmt = $this->dbConnection->prepare("INSERT INTO {$this->tableName} ($columnsToBeInsertedTo) VALUES ($columnsPrepareValues)");
+
+            $stmt->execute($this->valuesArray);
+
+            $this->dbConnection->commit();
+            $result['success'] = true;
+        }
+        catch(\Exception $e) {
+            $result['errorMessage'] = $e->getMessage();
+            $result['status'] = 'rollbacked';
+            $this->dbConnection->rollBack();
+            trigger_error($e->getMessage() . " | Line: " . $e->getLine());
+        }
+        finally {
+            $this->dbConnection->exec("UNLOCK TABLES");
         }
 
         return $result;

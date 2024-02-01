@@ -8,7 +8,7 @@ class Database extends \PDO
 {
     public function __construct($username = null, $password = null)
     {
-        $options = array(\PDO::ATTR_PERSISTENT => true, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION);
+        $options = array(\PDO::ATTR_PERSISTENT => true, \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, \PDO::ATTR_AUTOCOMMIT => 0);
         $dsn = "mysql:host=" . \DB_HOST . ";dbname=" . \DB_NAME;
 
         try {

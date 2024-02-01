@@ -48,7 +48,7 @@ $authRouter->post('/register', function($req, $res) {
     $user = new User($con, $data);
 
     $result = $user->register();
-})
+});
 
 // $authRouter->get('/admin/login', function($req, $res) {
 //     $res->render('/auth/admin/login');
