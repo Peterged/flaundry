@@ -1,7 +1,7 @@
 <?php
 include 'vendor/autoload.php';
 include 'app/libraries/autoload.php';
-include 'app/config/database.php';
+// include 'app/config/database.php';
 
 foreach (glob("app/routers/*.php") as $filename) {
     include $filename;

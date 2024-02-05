@@ -8,8 +8,7 @@ $homeRouter = new PHPExpress();
 
 // initial route = /
 $homeRouter->get('/', function ($req, $res) { // /contact
-    $res->render('/layouts/navbar');
-    $res->render('/home');
+    $res->render('/home', $res); 
 });
 
 

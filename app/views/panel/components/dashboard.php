@@ -1,6 +1,4 @@
-<head>
-    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/dashboard.css">
-</head>
+
 <div class="container">
     <div class="content-box">
         <div class="title">

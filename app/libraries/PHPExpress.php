@@ -35,17 +35,7 @@ class PHPExpress
         $this->routeQueue = [];
     }
 
-    private function sortRequestQueue()
-    {
-        usort($this->routeQueue, function ($a, $b) {
-            $order = ['GET' => 1, 'POST' => 2];
-
-            $aOrder = $order[$a['method']] ?? 3;
-            $bOrder = $order[$b['method']] ?? 3;
-
-            return $aOrder <=> $bOrder;
-        });
-    }
+    
 
     public function setDatabaseObject(\App\libraries\Database $con)
     {
@@ -85,18 +75,27 @@ class PHPExpress
                 return $call;
             }, $callbacks);
         }
-
-
         elseif (is_string($callback)) {
             $callback = RouterHelper::getStringToCallable($callback);
         }
-
 
         array_push($this->routeQueue, [
             "method" => $method,
             "route" => $route,
             "callback" => count($callback) ? [...$callback] : $callback,
         ]);
+    }
+
+    private function sortRequestQueue()
+    {
+        usort($this->routeQueue, function ($a, $b) {
+            $order = ['GET' => 1, 'POST' => 2];
+
+            $aOrder = $order[$a['method']] ?? 3;
+            $bOrder = $order[$b['method']] ?? 3;
+
+            return $aOrder <=> $bOrder;
+        });
     }
 
     public function use(string $path, PHPExpress $router)
@@ -123,6 +122,34 @@ class PHPExpress
             $route['route'] = preg_replace('#(\\{1,}|\/{2,})+#', '/', $route['route']);
         }
         $this->routeQueue = array_merge($this->routeQueue, $router->routeQueue);
+    }
+
+    public function redirect(string $route)
+    {
+        $route = '/' . $this->filterRoute($route);
+        $root = PROJECT_ROOT;
+        header("Location:" . $this->filterRoute($root . $route));
+        exit;
+    }
+
+    public function get(string $route, callable | string | array ...$callback)
+    {
+        if (!$this->isListening) {
+            $this->addRequestToQueue($route, 'GET', ...$callback);
+            return;
+        } else {
+            $this->handleResponse('GET', $route, ...$callback);
+        }
+        return $this;
+    }
+
+    public function post(string $route, callable | string | array ...$callback)
+    {
+        if (!$this->isListening) {
+            $this->addRequestToQueue($route, 'POST', ...$callback);
+            return;
+        }
+        $this->handleResponse('POST', $route, ...$callback);
     }
 
     // Middleware
@@ -213,18 +240,32 @@ class PHPExpress
         $currentRequestMethod = $request->getMethod();
 
         if ($currentRequestMethod == $requestMethod && $isMatch) {
+            session_start(); // global session_start()
             if ($requestMethod == 'POST') {
                 $request->setBody($_POST);
             }
 
             $this->setHeaderData(true);
-            session_start();
-            if (is_array($callback)) {
-                foreach ($callback as $call) {
-                    $call($request, $response);
+
+            try {
+                if (is_array($callback)) {
+                    foreach ($callback as $call) {
+                        $call($request, $response);
+                    }
+                } else {
+                    $callback($request, $response);
                 }
-            } else
-                $callback($request, $response);
+            }
+            catch(\Exception $e) {
+                extract(array('error' => $e));
+                include_once "app/views/error/404.php";
+                echo "<pre>";
+                print_r($e);
+                echo "</pre>";
+                
+                throw new \Exception($e->getMessage());
+            }
+            
         }
         // elseif (!$this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestMethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
         //     echo $this->isRouteHandled($requestMethod, $filteredRoute) ? 'true' : 'false' . "<br>";
@@ -284,33 +325,7 @@ class PHPExpress
         $this->processFunction($requestMethod, $isMatch, $filteredRoute, $request, $this->response, ...$callbacks);
     }
 
-    public function redirect(string $route)
-    {
-        $route = '/' . $this->filterRoute($route);
-        $root = PROJECT_ROOT;
-        header("Location:" . $this->filterRoute($root . $route));
-        exit;
-    }
-
-    public function get(string $route, callable | string | array ...$callback)
-    {
-        if (!$this->isListening) {
-            $this->addRequestToQueue($route, 'GET', ...$callback);
-            return;
-        } else {
-            $this->handleResponse('GET', $route, ...$callback);
-        }
-        return $this;
-    }
-
-    public function post(string $route, callable | string | array ...$callback)
-    {
-        if (!$this->isListening) {
-            $this->addRequestToQueue($route, 'POST', ...$callback);
-            return;
-        }
-        $this->handleResponse('POST', $route, ...$callback);
-    }
+    
 
     public function put(string $route, callable | string $callback)
     {
@@ -324,7 +339,7 @@ class PHPExpress
     {
     }
 
-    private function setError(\stdClass &$error, int $code, string $message, string $description = null)
+    private function setStdClassError(\stdClass &$error, int $code, string $message, string $description = null)
     {
         $error->code = $code;
         $error->message = $message;
@@ -348,12 +363,12 @@ class PHPExpress
 
         // If the request_uri is not handled, return an error
         if (http_response_code() == 403) {
-            $this->setError($error, 403, "Forbidden");
+            $this->setStdClassError($error, 403, "Forbidden");
         } elseif (!$isHandled) {
             // echo "<code>Cannot handle $currentRequestMethod $requestUri</code>";
             // $res->setHeader('HTTP/1.0 404 Not Found');
             // $res->setCode(404);
-            $this->setError($error, 404, "Not Found");
+            $this->setStdClassError($error, 404, "Not Found");
             $callback($req, $this->response, $error);
         }
     }

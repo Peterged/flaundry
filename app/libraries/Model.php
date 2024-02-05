@@ -2,12 +2,14 @@
 
 namespace App\libraries;
 
+use App\models\SaveResult;
+use App\Attributes\Table;
 use Respect\Validation\Rules\Callback;
 use Respect\Validation\Validator as v;
 
 interface ModelInterface
 {
-    public function save(): array;
+    public function save(): array | object;
     public function updateOne(array $searchCriteria, array $newData);
     public function updateMany(array | bool $searchCriteria, array $newData);
 
@@ -17,6 +19,7 @@ interface ModelInterface
     public function selectMany(array | bool $searchCriteria, array $includedProperties = null);
 }
 
+#[\Attribute]
 abstract class Model implements ModelInterface
 {
     protected string $tableName;
@@ -25,21 +28,30 @@ abstract class Model implements ModelInterface
     protected array $currentRequiredProperties;
     protected array $valuesArray;
 
-    public function __construct(\PDO $PDO, array | null $valuesArray = null) {
+    public function __construct(\PDO $PDO, array | null $valuesArray = null, $class = null) {
+        if ($class != null) {
+            $reflector = new \ReflectionMethod($class, '__construct');
+            $attributes = $reflector->getAttributes(Table::class);
+
+            if($tableName = $attributes[0]->newInstance()->tableName) {
+                $this->tableName = $tableName;
+            }
+        }
         $this->dbConnection = $PDO;
         $this->setValuesArray($valuesArray);
     }
 
-    private function tryCatchWrapper(\Closure $callback)
+    protected function tryCatchWrapper(\Closure $callback, SaveResult &$result = null)
     {
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
-            $callback();
+            $result = $callback();
             $this->dbConnection->commit();
         } catch (\Exception $e) {
             $this->dbConnection->rollBack();
-            trigger_error($e->getMessage());
+            $result->message = $e->getMessage() . " | Line: " . $e->getLine();
+            trigger_error($result->message);
         } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
         }
@@ -298,10 +310,10 @@ abstract class Model implements ModelInterface
                 return "{$value} = :{$value}";
             }, array_keys($searchCriteria)));
 
-            return $query;
         } catch (\Exception $e) {
             trigger_error($e->getMessage());
         }
+        return $query;
     }
 
     function handleSelectQuery(array | bool $searchCriteria, array $includedProperties = null)

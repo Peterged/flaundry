@@ -7,6 +7,7 @@ set_error_handler(function ($severity, $message, $file, $line) {
     throw new ErrorException($message, 0, $severity, $file, $line);
 });
 
+include_once __DIR__ . '/../config/database.php';
 // set_exception_handler(function ($exception) {
 //     echo "Uncaught exception: " , $exception->getMessage(), " on line " . $exception->getLine() . "\n";
 // });

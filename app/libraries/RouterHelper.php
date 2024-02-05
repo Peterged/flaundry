@@ -1,19 +1,21 @@
 <?php
+
 namespace App\libraries;
+
 include_once __DIR__ . "/../config/config.php";
 class RouterHelper
 {
     public static function filterRoute(string $route, Request $request = null)
     {
         $regex = "#(\\{1,}|\/{2,})+#";
-        if(is_null($request)) {
+        if (is_null($request)) {
             $request = new Request();
         }
         $filteredRoute = '/';
         $route = trim($route, '/');
         $route = filter_var($route, FILTER_SANITIZE_URL);
 
-        if($route == '*'){
+        if ($route == '*') {
             return $route;
         }
         if ($route === '/') {
@@ -23,10 +25,7 @@ class RouterHelper
             $filteredRoute = preg_replace($regex, '/', '/' . $route);
         } else {
             $filteredRoute = preg_replace($regex, '/', ('/' . $route));
-
         }
-
-
 
         return $filteredRoute;
     }
@@ -44,7 +43,8 @@ class RouterHelper
         ];
     }
 
-    public static function isRouteMatchWithCurrentUri(string $filteredRoute) {
+    public static function isRouteMatchWithCurrentUri(string $filteredRoute)
+    {
         $request = new Request();
         $isMatch = false;
         $requestUri = $request->getRequestUri();
@@ -56,7 +56,8 @@ class RouterHelper
         return $isMatch == $filteredRoute;
     }
 
-    public static function getRouteParams(string $filteredRoute) {
+    public static function getRouteParams(string $filteredRoute)
+    {
         $request = new Request();
         $requestUri = $request->getRequestUri();
         $requestUri = '/' . ltrim($requestUri, '/');
@@ -72,7 +73,7 @@ class RouterHelper
             $keyName = preg_replace('/\{(.*)\}/', '$1', $value);
 
             if (preg_match('/\{(.*)\}/', $value)) {
-                if(isset($requestUri[$key])) {
+                if (isset($requestUri[$key])) {
                     $params->$keyName = $requestUri[$key];
                 }
             }
@@ -80,19 +81,21 @@ class RouterHelper
         return $params;
     }
 
-    public static function convertToCallable($string) {
+    public static function convertToCallable($string)
+    {
         list($class, $method) = explode('@', $string);
-        if(!class_exists($class)) {
+        if (!class_exists($class)) {
             throw new \Exception("Class $class does not exist");
         }
-        if(!method_exists($class, $method)) {
+        if (!method_exists($class, $method)) {
             throw new \Exception("Method $method does not exist");
         }
 
         return [new $class, $method];
     }
 
-    public static function getStringToCallable($callback) {
+    public static function getStringToCallable($callback)
+    {
         if (is_string($callback) && strpos($callback, '@') !== false) {
             $callback = self::convertToCallable($callback);
         }
@@ -100,6 +103,4 @@ class RouterHelper
         $callableClass = new $callback[0]();
         return [$callableClass, $callback[1]];
     }
-
-
 }

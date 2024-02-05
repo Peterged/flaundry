@@ -11,10 +11,10 @@ use App\utils\PrintArray;
 $panelRouter = new PHPExpress();
 global $con, $panelRouter;
 
+// $panelRouter->setLayout('/panel/inc/header', '/panel/inc/footer');
 
 
-$panelRouter->get('/', function ($req, $res) use ($con) {
-
+$panelRouter->get('/', function ($req, $res) use ($con, $panelRouter) {
     // $user = new User($con);
 
     // $data = $user->selectMany([ 'id_outlet' => '1' ], [
@@ -39,11 +39,12 @@ $panelRouter->get('/', function ($req, $res) use ($con) {
     // echo "Success: {$result['success']}<br>";
 
     $data = [
+        'title' => 'Home | Admin Panel',
+        'head' => ["<link rel='stylesheet' href='\$PROJECT_ROOT/assets/css/panel.css'>"],
         'username' => 'kreshna',
-        'title' => 'Dashboard'
     ];
 
-    $res->render('/panel/index');
+    $res->render('/panel/index', $data);
 });
 
 $panelRouter->get('/dashboard', function ($req, $res) {
