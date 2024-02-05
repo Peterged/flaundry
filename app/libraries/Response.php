@@ -4,6 +4,7 @@ namespace App\libraries;
 
 include_once __DIR__ . "/../config/config.php";
 include_once __DIR__ . "/../utils/routeTo.php";
+include_once __DIR__ . "/../utils/includeFile.php";
 include_once __DIR__ . "/../utils/fetch.php";
 
 final class Response
@@ -42,7 +43,9 @@ final class Response
                 extract([
                     'PROJECT_ROOT' => PROJECT_ROOT,
                     'URLROOT' => URLROOT,
+                    'base' => $this->views['directory'],
                     'routeTo' => 'routeTo',
+                    'includeFile' => 'includeFile',
                     'fetch' => 'fetch'
                 ]);
 
@@ -73,6 +76,12 @@ final class Response
         });
     }
 
+    public function refreshPage(int $seconds = 0) {
+        header_register_callback(function() use ($seconds) {
+            header("Refresh: $seconds");
+        });
+    }
+
     public function sendFile(string $path)
     {
         $path = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '/', $path);
@@ -95,19 +104,15 @@ final class Response
 
     protected function sendOutput($data, $httpHeaders = array())
     {
-
         header_remove('Set-Cookie');
 
         if (is_array($httpHeaders) && count($httpHeaders)) {
-
             foreach ($httpHeaders as $httpHeader) {
-
                 header($httpHeader);
             }
         }
 
         echo $data;
-
         exit;
     }
 }

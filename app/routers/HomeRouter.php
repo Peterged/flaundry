@@ -8,8 +8,7 @@ $homeRouter = new PHPExpress();
 
 // initial route = /
 $homeRouter->get('/', function ($req, $res) { // /contact
-    $res->render('/layouts/navbar');
-    $res->render('/home');
+    $res->render('/home', $res); 
 });
 
 
@@ -41,9 +40,6 @@ $homeRouter->get('/profile', function ($req, $res) { // Profile
     $res->render('/layouts/navbar');
     $res->render('/pages/contact');
 });
-
-
-
 
 // Testing
 $homeRouter->get('/api-test', function ($req, $res) {

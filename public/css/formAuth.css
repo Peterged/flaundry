@@ -18,7 +18,7 @@
   --dark-box-close-button: #fff; /* With some glow */
   --dark-secondary-accent: #e74c3c;
 
-  --input-width: 98%;
+  --input-width: 100%;
 }
 
 body {
@@ -49,6 +49,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 
   background-color: #fff;
   border-radius: 5px;
@@ -57,7 +58,9 @@ body {
 
 .container .wrapper .title {
   position: absolute;
-  top: -100%;
+  width: max-content;
+  color: rgba(0, 0, 0, 0.65);
+  top: -20%;
   left: 50%;
   transform: translateX(-50%);
   font-size: 2.25rem;
@@ -102,6 +105,11 @@ body {
   top: 48%;
   left: 0.85rem;
   transform: translateY(-50%);
+}
+
+.container .wrapper .input-group svg {
+    width: 24px;
+    height: 24px;
 }
 
 .container .wrapper input,
@@ -174,4 +182,23 @@ body {
 }
 .container .goback-btn button svg {
     size: 1.5rem;
+}
+
+.bottomDisplayMessage {
+    font-weight: 600;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    background-color: #ffe6e6;
+    padding: 0.25rem;
+    padding-inline: 0.5rem;
+    width: 100%;
+    color: #ff0000;
+    border: 1px solid red;
+    text-align: center;
+    border-radius: 0.25rem;
+}
+
+.bottomDisplayMessage:empty {
+    display: none;
+    padding: 0;
 }

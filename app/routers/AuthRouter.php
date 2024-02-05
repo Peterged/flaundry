@@ -8,7 +8,13 @@ use App\models\User;
 $authRouter = new PHPExpress();
 // initial route = /auth
 
-$authRouter->get('/login', function ($req, $res) {
+function authenticateUser($req, $res) {
+    if(isset($_SESSION['role']) && isset($_SESSION['token'])) {
+        $res->render("/panel");
+    }
+}
+$authRouter->get('/login', function ($req, $res){
+    authenticateUser($req, $res);
     $res->render('/auth/login');
 });
 
@@ -21,14 +27,27 @@ $authRouter->post('/login', function ($req, $res) use ($con) {
     $data = $req->getBody();
     unset($data['submit']);
 
-    $uri = $_SERVER;
+    $user = new User($con, $data);
+    $result = $user->login();
+    if(!$result['success']) {
+        $res->redirect('/auth/login');
+    }
+    else {
+        $res->redirect('/panel');
+    }
+});
 
-    // $user = new User($con, $data);
-    // echo "<pre>";
-    // print_r($user);
-    // echo "</pre>";
-    // $user = new User($con, compact($req->body));
-    // $user->save();
+$authRouter->get('/register', function($req, $res) use ($con) {
+    $res->render('/auth/register');
+});
+
+$authRouter->post('/register', function($req, $res) {
+    $data = $req->getBody();
+    unset($data['submit']);
+
+    $user = new User($con, $data);
+
+    $result = $user->register();
 });
 
 // $authRouter->get('/admin/login', function($req, $res) {

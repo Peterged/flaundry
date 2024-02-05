@@ -17,43 +17,36 @@ class User extends Model
 
     public function __construct(\PDO $PDO, array | null $valuesArray = null)
     {
+        parent::__construct($PDO, $valuesArray);
+
+        // Set the required properties 
+        $this->setRequiredProperties(['username', 'password']);
         $this->tableName = 'tb_user';
-        $this->dbConnection = $PDO;
-        if (empty($valuesArray)) {
-            return;
+
+        // Compare 2 arrays, if empty, the properties are set, if not empty
+        // then throw an exception
+        $this->checkIfRequiredPropertiesExistsOnClass();
+
+        foreach($valuesArray as $key => $value) {
+            $this->{$key} = $value;
         }
 
-        // $requiredProperties = ['id_outlet', 'nama', 'username', 'password', 'role'];
-        $requiredProperties = ['username', 'password'];
-
-        $this->handleForbiddenColumns($valuesArray, $requiredProperties);
-
-        $this->id_outlet = $valuesArray['id_outlet'];
-        $this->nama = $valuesArray['nama'];
-        $this->username = $valuesArray['username'];
-        $this->password = $valuesArray['password'];
-        $this->role = $valuesArray['role'];
-
-
-        $this->username = v::type('string')->notEmpty()->validate($this->username) ? $this->username : null;
-        $this->password = v::type('string')->notEmpty()->validate($this->password) ? password_hash($this->password, PASSWORD_DEFAULT) : null;
-        $this->role = v::in(['admin', 'kasir', 'owner'])->validate($this->role) ? $this->role : null;
     }
 
 
     public static function logout()
     {
-        if(session_status() == PHP_SESSION_ACTIVE) {
+        if (session_status() == PHP_SESSION_ACTIVE) {
             session_destroy();
         }
     }
 
     public function save(): array
     {
-        $requiredProperties = ['id_outlet', 'nama', 'username', 'password', 'role'];
+        $this->setRequiredProperties(['id_outlet', 'nama', 'username', 'password', 'role']);
 
-        $this->handleForbiddenColumns($valuesArray, $requiredProperties);
-        // Begin transaction
+        $this->role = v::in(['admin', 'kasir', 'owner'])->validate($this->role) ? $this->role : null;
+
         $result = [
             'errorMessage' => null,
             'success' => false,
@@ -65,15 +58,15 @@ class User extends Model
         
         try {
             // Lock the user table
-            $con->beginTransaction();
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
+
             $stmt = $this->dbConnection->prepare("
             INSERT INTO {$this->tableName} (id_outlet, nama, username, password, role)
-            VALUES (:idOutlet, :nama, :username, :password, :role)
+            VALUES (:id_outlet, :nama, :username, :password, :role)
             ");
             
             $stmt->execute([
-                'idOutlet' => $this->id_outlet,
+                'id_outlet' => $this->id_outlet,
                 'nama' => $this->nama,
                 'username' => $this->username,
                 'password' => $this->password,
@@ -90,7 +83,7 @@ class User extends Model
                 throw new \Exception('Nama tidak boleh kreshna');
             }
 
-            $con->commit();
+            $con->commit();   
 
             $result['success'] = true;
         } catch (\Exception $e) {
@@ -108,17 +101,13 @@ class User extends Model
         return $result;
     }
     public function login(): array {
-        $result = [
-            'errorMessage' => null,
-            'success' => false,
-            'status' => 'commited'
-        ];
+        
 
         $con = $this->dbConnection;
 
         try {
+            $con->exec("LOCK TABLES {$this->tableName} WRITE");
             $con->beginTransaction();
-            $con->exec("LOCK TABLES {$this->tableName} READ");
 
             $stmt = $con->prepare("
             SELECT * FROM {$this->tableName} WHERE username = :username
@@ -129,13 +118,15 @@ class User extends Model
             ]);
 
             $user = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-            if(!$user) {
-                throw new \Exception('User tidak ditemukan');
+            
+            if (!$user) {
+                $_SESSION['displayMessage'] = 'User not found!';
+                throw new \Exception('User not found!');
             }
 
-            if(!password_verify($this->password, $user['password'])) {
-                throw new \Exception('Password salah');
+            if (!password_verify($this->password, $user['password'])) {
+                $_SESSION['displayMessage'] = 'Username / Password salah!';
+                throw new \Exception('Username / Password salah!');
             }
 
             $con->commit();
@@ -144,10 +135,47 @@ class User extends Model
             $result['user'] = $user;
         } catch (\Exception $e) {
             $con->rollBack();
-            $result['errorMessage'] = $e->getMessage();
+            $result['errorMessage'] = $e->getMessage() . " | Line: " . $e->getLine();
             $result['status'] = 'rollbacked';
         } finally {
             $con->exec('UNLOCK TABLES');
+        }
+
+        return $result;
+    }
+
+    public function register(): array {
+        $result = [
+            'errorMessage' => null,
+            'success' => false,
+            'status' => 'commited'
+        ];
+
+        try {
+            $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
+
+            $this->dbConnection->beginTransaction();
+
+            $columnsToBeInsertedTo = implode(", ", $this->getRequiredProperties());
+            $columnsPrepareValues = implode(", ", array_map(function($prop) {
+                return ":$prop";
+            }, $this->getRequiredProperties()));
+
+            $stmt = $this->dbConnection->prepare("INSERT INTO {$this->tableName} ($columnsToBeInsertedTo) VALUES ($columnsPrepareValues)");
+
+            $stmt->execute($this->valuesArray);
+
+            $this->dbConnection->commit();
+            $result['success'] = true;
+        }
+        catch(\Exception $e) {
+            $result['errorMessage'] = $e->getMessage();
+            $result['status'] = 'rollbacked';
+            $this->dbConnection->rollBack();
+            trigger_error($e->getMessage() . " | Line: " . $e->getLine());
+        }
+        finally {
+            $this->dbConnection->exec("UNLOCK TABLES");
         }
 
         return $result;
