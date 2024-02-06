@@ -30,7 +30,7 @@ class SaveResult extends \stdClass {
         $this->status = $status;
     }
 
-    public function getData(): string {
+    public function getData(): mixed {
         return $this->data;
     }
 

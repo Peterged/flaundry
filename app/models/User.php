@@ -101,7 +101,6 @@ class User extends Model
         return $result;
     }
     public function login(): object {
-        
 
         $con = $this->dbConnection;
         $result = new SaveResult();
@@ -132,13 +131,19 @@ class User extends Model
             $con->commit();
             $result->setSuccess(true);
             $result->setData($user);
+
+            $_SESSION['username'] = $result->getData()['username'];
+            $_SESSION['role'] = $result->getData()['role'];
         } catch (\Exception $e) {
             $con->rollBack();
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
+            trigger_error($e->getMessage() . " | Line: " . $e->getLine());
         } finally {
             $con->exec('UNLOCK TABLES');
         }
+
+
 
         return $result;
     }

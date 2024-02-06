@@ -68,3 +68,15 @@ body {
     color: var(--dark-box-background);
     font-weight: 500;
 }
+
+.header .menu ul li a.special-button {
+    color: var(--dark-box-background);
+    border: 1px solid var(--dark-box-background);
+    
+    transition: 200ms ease-in-out;
+}
+
+.header .menu ul li a.special-button:hover {
+    color: #fff;
+    background-color: var(--dark-box-background);
+}
