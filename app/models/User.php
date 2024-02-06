@@ -4,6 +4,9 @@ namespace App\models;
 
 use App\libraries\Model;
 use Respect\Validation\Validator as v;
+use App\Attributes\Table;
+use App\Exceptions\AuthException;
+use App\Exceptions\ModelException;
 
 class User extends Model
 {
@@ -15,13 +18,13 @@ class User extends Model
     private string $role;
 
 
+    #[Table('tb_user')]
     public function __construct(\PDO $PDO, array | null $valuesArray = null)
     {
-        parent::__construct($PDO, $valuesArray);
+        parent::__construct($PDO, $valuesArray, __CLASS__);
 
         // Set the required properties 
         $this->setRequiredProperties(['username', 'password']);
-        $this->tableName = 'tb_user';
 
         // Compare 2 arrays, if empty, the properties are set, if not empty
         // then throw an exception
@@ -41,17 +44,13 @@ class User extends Model
         }
     }
 
-    public function save(): array
+    public function save(): object
     {
         $this->setRequiredProperties(['id_outlet', 'nama', 'username', 'password', 'role']);
 
         $this->role = v::in(['admin', 'kasir', 'owner'])->validate($this->role) ? $this->role : null;
 
-        $result = [
-            'errorMessage' => null,
-            'success' => false,
-            'status' => 'commited'
-        ];
+        $result = new SaveResult();
 
 
         $con = $this->dbConnection;
@@ -85,29 +84,29 @@ class User extends Model
 
             $con->commit();   
 
-            $result['success'] = true;
-        } catch (\Exception $e) {
+            $result->success = true;
+        } catch (ModelException $e) {
             // Rollback the transaction jika terjadi error
             echo $e->getMessage();
             $con->rollBack();
-            $result['errorMessage'] = $e->getMessage();
-            $result['status'] = 'rollbacked';
+
+            $result->message = $e->getMessage();
+            $result->errorMessage = $e->getMessage();
+            $result->status = $e->getStatus();
         } finally {
             // Unlock tabelnya supaya dapat diakses kembali seperti biasa
             $con->exec('UNLOCK TABLES');
         }
 
-
         return $result;
     }
-    public function login(): array {
-        
+    public function login(): object {
 
         $con = $this->dbConnection;
-
+        $result = new SaveResult();
+        $con->beginTransaction();
         try {
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
-            $con->beginTransaction();
 
             $stmt = $con->prepare("
             SELECT * FROM {$this->tableName} WHERE username = :username
@@ -121,25 +120,30 @@ class User extends Model
             
             if (!$user) {
                 $_SESSION['displayMessage'] = 'User not found!';
-                throw new \Exception('User not found!');
+                throw new AuthException('User not found!');
             }
 
             if (!password_verify($this->password, $user['password'])) {
                 $_SESSION['displayMessage'] = 'Username / Password salah!';
-                throw new \Exception('Username / Password salah!');
+                throw new AuthException('Username / Password salah!');
             }
 
             $con->commit();
+            $result->setSuccess(true);
+            $result->setData($user);
 
-            $result['success'] = true;
-            $result['user'] = $user;
+            $_SESSION['username'] = $result->getData()['username'];
+            $_SESSION['role'] = $result->getData()['role'];
         } catch (\Exception $e) {
             $con->rollBack();
-            $result['errorMessage'] = $e->getMessage() . " | Line: " . $e->getLine();
-            $result['status'] = 'rollbacked';
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            $result->setStatus('rollbacked');
+            trigger_error($e->getMessage() . " | Line: " . $e->getLine());
         } finally {
             $con->exec('UNLOCK TABLES');
         }
+
+
 
         return $result;
     }

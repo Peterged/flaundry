@@ -1,6 +1,7 @@
 <?php 
 namespace App\Attributes;
     
-abstract class Table {
+#[\Attribute(\Attribute::TARGET_ALL)]
+class Table {
     public function __construct(public string $tableName) {}
 }

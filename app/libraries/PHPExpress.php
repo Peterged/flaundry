@@ -12,7 +12,7 @@ class PHPExpress
     private $headerData;
     private $views;
     private $isListening;
-    private \App\libraries\Database $con;
+    private Database $con;
     private $routeQueue;
 
     // For Middleware
@@ -35,7 +35,7 @@ class PHPExpress
         $this->routeQueue = [];
     }
 
-    
+
 
     public function setDatabaseObject(\App\libraries\Database $con)
     {
@@ -257,15 +257,12 @@ class PHPExpress
                 }
             }
             catch(\Exception $e) {
+                $message = $e->getMessage();
+                // $e->getTraceAsString();
                 extract(array('error' => $e));
-                include_once "app/views/error/404.php";
-                echo "<pre>";
-                print_r($e);
-                echo "</pre>";
-                
-                throw new \Exception($e->getMessage());
+                include_once "app/views/errors/errorException.php";
             }
-            
+
         }
         // elseif (!$this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestMethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
         //     echo $this->isRouteHandled($requestMethod, $filteredRoute) ? 'true' : 'false' . "<br>";
@@ -293,7 +290,7 @@ class PHPExpress
         $this->response->views = $this->views;
 
         if ($route === "*") {
-            $this->handleUnhandledRoutes($route, $callback);
+            $this->handleUnhandledRoutes($route, ...$callbacks);
             return;
         }
 
@@ -325,7 +322,7 @@ class PHPExpress
         $this->processFunction($requestMethod, $isMatch, $filteredRoute, $request, $this->response, ...$callbacks);
     }
 
-    
+
 
     public function put(string $route, callable | string $callback)
     {
@@ -346,7 +343,7 @@ class PHPExpress
         $error->description = $description;
     }
 
-    private function handleUnhandledRoutes(string $currentRoute, callable | array $callback)
+    private function handleUnhandledRoutes(string $currentRoute, callable | array ...$callback)
     {
         if (is_array($callback) && count($callback) > 1) {
             die('why you do this');
@@ -369,7 +366,14 @@ class PHPExpress
             // $res->setHeader('HTTP/1.0 404 Not Found');
             // $res->setCode(404);
             $this->setStdClassError($error, 404, "Not Found");
-            $callback($req, $this->response, $error);
+            if (is_array($callback)) {
+                foreach ($callback as $call) {
+                    $call($req, $this->response, $error);
+                }
+            }
+            else {
+                $callback($req, $this->response, $error);
+            }
         }
     }
 }

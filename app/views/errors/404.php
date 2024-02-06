@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/global.css">
     <title>404 | Not Found</title>
 </head>
 <body>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
         .container {
             width: 100%;
             height: 100vh;

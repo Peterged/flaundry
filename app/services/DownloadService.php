@@ -1,4 +1,6 @@
 <?php
+
+namespace App\Services;
 class DownloadService
 {
     public static function download($path, $filename = null)
