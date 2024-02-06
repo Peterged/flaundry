@@ -35,7 +35,7 @@ class PHPExpress
         $this->routeQueue = [];
     }
 
-    
+
 
     public function setDatabaseObject(\App\libraries\Database $con)
     {
@@ -257,15 +257,12 @@ class PHPExpress
                 }
             }
             catch(\Exception $e) {
+                $message = $e->getMessage();
+                // $e->getTraceAsString();
                 extract(array('error' => $e));
-                include_once "app/views/error/404.php";
-                echo "<pre>";
-                print_r($e);
-                echo "</pre>";
-                
-                throw new \Exception($e->getMessage());
+                include_once "app/views/errors/errorException.php";
             }
-            
+
         }
         // elseif (!$this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestMethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
         //     echo $this->isRouteHandled($requestMethod, $filteredRoute) ? 'true' : 'false' . "<br>";
@@ -325,7 +322,7 @@ class PHPExpress
         $this->processFunction($requestMethod, $isMatch, $filteredRoute, $request, $this->response, ...$callbacks);
     }
 
-    
+
 
     public function put(string $route, callable | string $callback)
     {
