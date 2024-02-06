@@ -27,9 +27,14 @@ $authRouter->post('/login', function ($req, $res) use ($con) {
     $data = $req->getBody();
     unset($data['submit']);
 
+    // echo "<pre>";
+    // print_r($data);
+    // echo "</pre>";
+
     $user = new User($con, $data);
     $result = $user->login();
-    if(!$result['success']) {
+    $isSuccess = $result->getSuccess();
+    if(!$isSuccess) {
         $res->redirect('/auth/login');
     }
     else {

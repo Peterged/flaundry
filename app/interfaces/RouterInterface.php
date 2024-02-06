@@ -1,5 +1,5 @@
 <?php
-namespace App\interfaces;
+namespace App\Interfaces;
 use App\libraries\PHPExpress;
 interface RouterInterface
 {

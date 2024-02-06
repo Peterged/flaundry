@@ -37,6 +37,8 @@
         }
 
         .container .error-box {
+            max-width: 740px;
+            width: auto;
             display: flex;
             align-items: baseline;
             justify-content: center;
@@ -95,13 +97,62 @@
         .container .error-box .error-test p.style-test span {
             float: right;
         }
+
+        .container .error-box .raw-error-text {
+            width: 100%;
+            height: min-content;
+        }
+
+        .container .error-box .raw-error-text button {
+            width: 100%;
+            height: 2rem;
+            background-color: #121212;
+            color: rgba(255, 255, 255, 0.5);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 300;
+            text-align: left;
+            padding-inline: 1rem;
+        }
+
+        .container .error-box .raw-error-text button::before {
+            content: 'Show Raw Error';
+        }
+
+        .container .error-box .raw-error-text button::after {
+            content: '▼';
+            float: right;
+        }
+
+        .container .error-box .raw-error-text.active button::after {
+            content: '▲';
+        }
+
+        .container .error-box .raw-error-text .raw-error-text-content {
+            width: 100%;
+            height: 0;
+            display: flex;
+            overflow: hidden;
+            background-color: #121212;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            font-weight: 300;
+            transition: 150ms ease-in-out;
+        }
+
+        .container .error-box .raw-error-text.active .raw-error-text-content {
+            height: 100%;
+        }
+
+        .container .error-box .raw-error-text .raw-error-text-content code {
+            font-family: monospace;
+        }
     </style>
     <div class="container">
 
         <div class="error-box">
-            <!-- <div class="error-test">
-                <p class="style-test">Kreshna<span>12:19</span></p>
-            </div> -->
             <div class="error-object">
                 <?php
                     echo "<pre>";
@@ -112,7 +163,7 @@
             <div class="error-box-message">
                 <p>Error</p>
                 <span>|</span>
-                <p>Exception</p>
+                <p><?= get_class($error) ?? 'Exception' ?></p>
             </div>
             <div class="error-content">
                 <div class="error-title">
@@ -135,17 +186,25 @@
                     // echo "</pre>";
                 ?>
                 </ol>
+                
+                <div class="raw-error-text">
+                    <button type="button" onclick="toggleRawErrorText()" aria-autocomplete="none"></button>
+                    <div class="raw-error-text-content">
+                        <code><?= $error->__toString() ?></code>
+                    </div>
+                </div>
             </div>
             <?php
                 // $wow = throw new \Exception($error);
-            ?>
-            <p></p>
-            <p>
-
-            </p>
-            <p>
-            </p>
+                ?>
+            
         </div>
     </div>
+    <script>
+        let rawErrorTextContainer = document.querySelector('.container .error-box .raw-error-text');
+        function toggleRawErrorText() {
+            rawErrorTextContainer.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

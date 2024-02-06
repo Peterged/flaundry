@@ -6,18 +6,7 @@ use App\models\SaveResult;
 use App\Attributes\Table;
 use Respect\Validation\Rules\Callback;
 use Respect\Validation\Validator as v;
-
-interface ModelInterface
-{
-    public function save(): array | object;
-    public function updateOne(array $searchCriteria, array $newData);
-    public function updateMany(array | bool $searchCriteria, array $newData);
-
-    public function deleteOne(array $searchCriteria);
-    public function deleteMany(array $searchCriteria, array $options = null);
-    public function selectOne(array $searchCriteria, array $includedProperties = null);
-    public function selectMany(array | bool $searchCriteria, array $includedProperties = null);
-}
+use App\Interfaces\ModelInterface;
 
 #[\Attribute]
 abstract class Model implements ModelInterface
@@ -26,7 +15,7 @@ abstract class Model implements ModelInterface
     protected \PDO $dbConnection;
 
     protected array $currentRequiredProperties;
-    protected array $valuesArray;
+    protected array $valuesArray = [];
 
     public function __construct(\PDO $PDO, array | null $valuesArray = null, $class = null) {
         if ($class != null) {
@@ -214,7 +203,7 @@ abstract class Model implements ModelInterface
     protected function setRequiredProperties(array $requiredProperties)
     {
         $this->currentRequiredProperties = $requiredProperties;
-        $this->checkIfRequiredPropertyValuesAreDefined();
+        // $this->checkIfRequiredPropertyValuesAreDefined();
     }
 
     protected function getRequiredProperties() {
@@ -237,7 +226,17 @@ abstract class Model implements ModelInterface
     }
 
     protected function setValuesArray(array | null $valuesArray) {
-        $this->valuesArray = $valuesArray;
+        try {
+            if(array_is_list($valuesArray)) {
+                $this->valuesArray = $valuesArray;
+                foreach($valuesArray as $key => $value) {
+                    if(isset($this->{$key})) {
+                        $this->{$key} = $value;
+                    }
+                }
+            }
+        }
+        catch(\Exception $e) { }
     }
 
     protected function checkIfRequiredPropertyValuesAreDefined() {
