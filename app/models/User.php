@@ -7,6 +7,7 @@ use Respect\Validation\Validator as v;
 use App\Attributes\Table;
 use App\Exceptions\AuthException;
 use App\Exceptions\ModelException;
+use App\libaries\Session;
 
 class User extends Model
 {
@@ -147,12 +148,8 @@ class User extends Model
         return $result;
     }
 
-    public function register(): array {
-        $result = [
-            'errorMessage' => null,
-            'success' => false,
-            'status' => 'commited'
-        ];
+    public function register(): object {
+        $result = new SaveResult();
 
         try {
             $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
@@ -169,13 +166,12 @@ class User extends Model
             $stmt->execute($this->valuesArray);
 
             $this->dbConnection->commit();
-            $result['success'] = true;
+            $result->setSuccess(true);
         }
         catch(\Exception $e) {
-            $result['errorMessage'] = $e->getMessage();
-            $result['status'] = 'rollbacked';
             $this->dbConnection->rollBack();
-            trigger_error($e->getMessage() . " | Line: " . $e->getLine());
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            $result->setStatus('rollbacked');
         }
         finally {
             $this->dbConnection->exec("UNLOCK TABLES");

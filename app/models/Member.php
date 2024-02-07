@@ -4,6 +4,7 @@ use App\libraries\Model;
 use App\Attributes\Table;
 
 use Respect\Validation\Validator as v;
+use App\Exceptions\ValidationException;
     
 class Member extends Model {
     private string $id;
@@ -12,7 +13,7 @@ class Member extends Model {
     private string $jenis_kelamin;
     private string $tlp;
 
-    #[Table('tb_user')]
+    #[Table('tb_member')]
     public function __construct(\PDO $PDO, array | null $valuesArray = null)
     {
         parent::__construct($PDO, $valuesArray, __CLASS__);
@@ -22,20 +23,19 @@ class Member extends Model {
 
     public function save(): array | object {
         $result = new SaveResult();
-
-        if(!v::in(['L', 'P'])->validate($this->jenis_kelamin)) {
-            $this->jenis_kelamin = null;
-        }
+        $this->validateSave();
 
         $this->tryCatchWrapper(function() use ($result) {
             $con = $this->dbConnection;
             $sql = "INSERT INTO tb_member (nama, alamat, jenis_kelamin, tlp) VALUES (:nama, :alamat, :jenis_kelamin, :tlp)";
             $stmt = $con->prepare($sql);
-            $stmt->bindParam(':nama', $this->nama);
-            $stmt->bindParam(':alamat', $this->alamat);
-            $stmt->bindParam(':jenis_kelamin', $this->jenis_kelamin);
-            $stmt->bindParam(':tlp', $this->tlp);
-            $data = $stmt->execute();
+            $data = $stmt->execute([
+                'nama' => $this->nama,
+                'alamat' => $this->alamat,
+                'jenis_kelamin' => $this->jenis_kelamin,
+                'tlp' => $this->tlp
+            ]);
+
             $result->data = $data;
             return $result;
         }, $result);
@@ -58,25 +58,25 @@ class Member extends Model {
         return false;
     }
 
-    private function validate() {
+    private function validateSave() {
         if(!$this->validateEmpty()) {
-            throw new \Exception('All properties are required');
+            throw new ValidationException('All properties are required');
         }
 
         if(!v::stringType()->min(3)->validate($this->nama)) {
-            throw new \Exception('Nama must contain atleast 3 characters');
+            throw new ValidationException('Nama must contain atleast 3 characters');
         }
 
         if(!v::stringType()->min(5)->validate($this->alamat)) {
-            throw new \Exception('Alamat must contain atleast 5 characters');
+            throw new ValidationException('Alamat must contain atleast 5 characters');
         }
 
         if(!v::stringType()->in(["L", "P"])->validate($this->jenis_kelamin)) {
-            throw new \Exception('Jenis Kelamin must be a string and either "L" or "P"');
+            throw new ValidationException('Jenis Kelamin must be a string and either "L" or "P"');
         }
 
         if(!v::stringType()->min(10)->regex("/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/")->validate($this->tlp)) {
-            throw new \Exception('Telepon must contain atleast 10 characters');
+            throw new ValidationException('Telepon must contain atleast 10 characters');
         }
 
         return true;

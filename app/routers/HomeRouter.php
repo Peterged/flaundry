@@ -9,6 +9,7 @@ $homeRouter = new PHPExpress();
 // initial route = /
 $homeRouter->get('/', function ($req, $res) { // /contact
     $res->render('/home', $res); 
+    echo bin2hex(openssl_random_pseudo_bytes(32));
 });
 
 
@@ -18,8 +19,6 @@ $data = [
     'age' => 28,
     'date' => date('M d-m-y'),
 ];
-
-
 
 $homeRouter->get('/about', function ($req, $res) use ($data) { // /about
     $res->render('/layouts/navbar');
