@@ -10,7 +10,7 @@
 
 <body>
     <?php
-    $displayMessage = App\libraries\Session::getSessionKeyValueAndRemoveOnRefresh('displayMessage');
+        $displayMessage = App\libraries\Session::getSessionKeyValueAndRemoveOnRefresh('displayMessage');
     ?>
     <div class="container">
         <form method="post" class="wrapper" id="form-login">

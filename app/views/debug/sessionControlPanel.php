@@ -179,14 +179,14 @@
                 </tr>
                 <tr>
                     <td>Session Data</td>
-                    <td><?php print_r($_SESSION); ?></td>
+                    <td><?php echo "<pre>"; print_r($_SESSION); echo "</pre>"; ?></td>
                 </tr>
             </table>
             <table class="session-list">
                 <tr>
                     <th>Session Name</th>
                     <th>Value</th>
-                    <th colspan="2">Actions</th>
+                    <!-- <th colspan="2">Actions</th> -->
                 </tr>
                 <?php
                 if (count($_SESSION)) {
@@ -196,11 +196,17 @@
 
                         echo "<td><input data-prev-value='$key' data-input='form' data-id='$no' id='key' name='session_key' placeholder='Key' value='$key'></td>";
                         echo "<td><input data-input='form' data-id='$no' id='value' name='session_value' placeholder='Value' value='$value'></td>";
-                        echo "<td><a href='delete.php?session_name=" . $key . "'>Delete</a></td>";
                         $no++;
                     }
                 }
                 ?>
+                <tr data-form-id="<?= count($_SESSION) || 1 ?>">
+                    <?php
+                    $no = count($_SESSION) || 1;
+                    echo "<td><input data-input='form' data-id='$no' id='key' name='session_key' placeholder='Type a new Key' value=''></td>";
+                    echo "<td><input data-input='form' data-id='$no' id='value' name='session_value' placeholder='Type a value' value=''></td>";
+                    ?>
+                </tr>
             </table>
         </div>
     </div>
@@ -233,10 +239,13 @@
 
                             // For each input in the row, add its value to the formData object
                             formItems.forEach(item => {
+                                item.value = item.value.replace(/(['\'])+/, '"');
+                                item.value = item.value.replace(/([\"])+/, "\$1");
+
                                 if(item.getAttribute('id') == 'key' && item.getAttribute('data-prev-value') != item.value) {
                                     formData['old_key'] = item.getAttribute('data-prev-value');
                                 }
-                                
+
                                 formData[item.getAttribute('id')] = item.value;
                             });
 
@@ -252,7 +261,7 @@
                                 .then(response => response.json())
                                 .then(data => {
                                     window.location.reload();
-                                    console.log(formData);
+                                    // console.log(formData);
                                 })
                                 .catch(error => console.error(error));
                         }, 10);

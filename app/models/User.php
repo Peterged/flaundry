@@ -23,7 +23,7 @@ class User extends Model
     {
         parent::__construct($PDO, $valuesArray, __CLASS__);
 
-        // Set the required properties 
+        // Set the required properties
         $this->setRequiredProperties(['username', 'password']);
 
         // Compare 2 arrays, if empty, the properties are set, if not empty
@@ -54,7 +54,7 @@ class User extends Model
 
 
         $con = $this->dbConnection;
-        
+
         try {
             // Lock the user table
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
@@ -63,7 +63,7 @@ class User extends Model
             INSERT INTO {$this->tableName} (id_outlet, nama, username, password, role)
             VALUES (:id_outlet, :nama, :username, :password, :role)
             ");
-            
+
             $stmt->execute([
                 'id_outlet' => $this->id_outlet,
                 'nama' => $this->nama,
@@ -73,7 +73,7 @@ class User extends Model
             ]);
             echo $con->inTransaction() ? 'true' : 'false';
 
-            
+
             if($this->username == 'kreshna') {
                 throw new \Exception('Nama tidak boleh kreshna');
             }
@@ -82,7 +82,7 @@ class User extends Model
                 throw new \Exception('Nama tidak boleh kreshna');
             }
 
-            $con->commit();   
+            $con->commit();
 
             $result->success = true;
         } catch (ModelException $e) {
@@ -117,7 +117,7 @@ class User extends Model
             ]);
 
             $user = $stmt->fetch(\PDO::FETCH_ASSOC);
-            
+
             if (!$user) {
                 $_SESSION['displayMessage'] = 'User not found!';
                 throw new AuthException('User not found!');
@@ -138,7 +138,6 @@ class User extends Model
             $con->rollBack();
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
-            trigger_error($e->getMessage() . " | Line: " . $e->getLine());
         } finally {
             $con->exec('UNLOCK TABLES');
         }

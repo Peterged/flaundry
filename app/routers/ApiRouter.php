@@ -52,13 +52,24 @@ $apiRouter->post('/session', function ($req, $res) {
                 }
                 $key = $jsonData['key'];
                 $value = $jsonData['value'];
+                // // $value = preg_replace("#([\'\"])+#", "\\$1", $value);
+                // $value = preg_replace_callback("#([\'\"])+#", function($matches) {
+                //     return '\\' . "$matches[0]";
+                // }, $value);
 
                 if(isset($_SESSION[$old_key]) && $old_key != $key && $old_key) {
                     unset($_SESSION[$old_key]);
                 }
+                if(strlen($key) == 0) {
+                    unset($_SESSION[$old_key]);
+                }
+                else {
+
+                    $_SESSION[$key] = $value;
+                }
+
                 // echo "Key: $key, Value: $value";
-                
-                $_SESSION[$key] = $value;
+
             }
         }
 

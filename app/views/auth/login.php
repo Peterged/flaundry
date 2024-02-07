@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <?php 
+    <?php
         $displayMessage = App\libraries\Session::getSessionKeyValueAndRemoveOnRefresh('displayMessage');
     ?>
     <div class="container">
@@ -28,7 +28,7 @@
                 </svg>
                 <input type="password" name="password" id="password" placeholder="Password" autocomplete="off" required>
             </div>
-            
+
             <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">LOGIN</button>
             <p class="bottomDisplayMessage"><?= $displayMessage ?></p>
         </form>

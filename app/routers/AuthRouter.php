@@ -4,13 +4,15 @@ namespace App\routers;
 
 use App\libraries\PHPExpress;
 use App\models\User;
+use App\libraries\Session;
 
 $authRouter = new PHPExpress();
 // initial route = /auth
 
 function authenticateUser($req, $res) {
-    if(isset($_SESSION['role']) && isset($_SESSION['token'])) {
-        $res->render("/panel");
+    $sesh = $_SESSION;
+    if(isset($sesh['username'])){
+        $res->redirect('/panel');
     }
 }
 $authRouter->get('/login', function ($req, $res){
@@ -24,6 +26,7 @@ $authRouter->get('/logout', function ($req, $res) {
 });
 
 $authRouter->post('/login', function ($req, $res) use ($con) {
+    authenticateUser($req, $res);
     $data = $req->getBody();
     unset($data['submit']);
 
@@ -62,3 +65,7 @@ $authRouter->post('/register', function($req, $res) {
 // $authRouter->get('/admin/register', function($req, $res) {
 //     $res->render('/auth/admin/register');
 // });
+
+
+
+// remember_me_until -> 29/02/2024 05:23:59

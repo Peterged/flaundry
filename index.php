@@ -1,5 +1,4 @@
 <?php
-
 include 'vendor/autoload.php';
 include 'app/libraries/autoload.php';
 // include 'app/config/database.php';
