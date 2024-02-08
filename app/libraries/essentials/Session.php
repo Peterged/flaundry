@@ -1,7 +1,7 @@
 <?php 
-    namespace App\libraries;
+namespace App\Libraries\Essentials;
 
-use EncryptedCookie;
+
 
     class Session {
         public function __construct() {
@@ -20,7 +20,7 @@ use EncryptedCookie;
                 )
             );
 
-            self::set('__SID', $tokenValue);
+            self::set('__TID', $tokenValue);
         }
 
         public static function generateToken() {

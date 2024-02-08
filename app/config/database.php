@@ -1,4 +1,4 @@
 <?php
 
 namespace App\config;
-$con = new \App\libraries\Database(\DB_USER, \DB_PASS);
+$con = new \App\Libraries\Database(\DB_USER, \DB_PASS);

@@ -2,7 +2,7 @@
 
 namespace App\routers;
 
-use App\libraries\PHPExpress;
+use App\Libraries\PHPExpress;
 
 $debugRouter = new PHPExpress();
 

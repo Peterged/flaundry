@@ -1,10 +1,9 @@
 <?php
-
 namespace App\routers;
 
-use App\libraries\PHPExpress;
+use App\Libraries\PHPExpress;
 use App\models\User;
-use App\libraries\Session;
+use App\Libraries\Essentials\Session;
 
 $authRouter = new PHPExpress();
 // initial route = /auth
@@ -15,6 +14,7 @@ function authenticateUser($req, $res) {
         $res->redirect('/panel');
     }
 }
+
 $authRouter->get('/login', function ($req, $res){
     authenticateUser($req, $res);
     $res->render('/auth/login');
@@ -57,14 +57,6 @@ $authRouter->post('/register', function($req, $res) {
 
     $result = $user->register();
 });
-
-// $authRouter->get('/admin/login', function($req, $res) {
-//     $res->render('/auth/admin/login');
-// });
-
-// $authRouter->get('/admin/register', function($req, $res) {
-//     $res->render('/auth/admin/register');
-// });
 
 
 

@@ -2,12 +2,12 @@
 
 namespace App\models;
 
-use App\libraries\Model;
+use App\Libraries\Model;
 use Respect\Validation\Validator as v;
 use App\Attributes\Table;
 use App\Exceptions\AuthException;
 use App\Exceptions\ModelException;
-use App\libaries\Session;
+use App\libaries\Import\Session;
 
 class User extends Model
 {

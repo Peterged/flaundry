@@ -1,6 +1,6 @@
 <?php
 
-namespace App\libraries;
+namespace App\Libraries;
 
 include_once __DIR__ . "/../config/config.php";
 class RouterHelper

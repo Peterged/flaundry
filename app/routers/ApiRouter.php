@@ -2,7 +2,7 @@
 
 namespace App\routers;
 
-use App\libraries\PHPExpress;
+use App\Libraries\PHPExpress;
 
 $apiRouter = new PHPExpress();
 // initial route = /api

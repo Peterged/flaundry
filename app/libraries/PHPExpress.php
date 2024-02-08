@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\libraries;
+namespace App\Libraries;
 
 class PHPExpress
 {
@@ -37,7 +37,7 @@ class PHPExpress
 
 
 
-    public function setDatabaseObject(\App\libraries\Database $con)
+    public function setDatabaseObject(\App\Libraries\Database $con)
     {
         $this->con = $con;
     }

@@ -1,3 +1,8 @@
+<?php
+use App\Libraries\Essentials\Session;
+$displayMessage = Session::getSessionKeyValueAndRemoveOnRefresh('displayMessage');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,9 +14,6 @@
 </head>
 
 <body>
-    <?php
-        $displayMessage = App\libraries\Session::getSessionKeyValueAndRemoveOnRefresh('displayMessage');
-    ?>
     <div class="container">
         <form method="post" class="wrapper" id="form-login">
             <h1 class="title">Login</h1>
@@ -41,7 +43,5 @@
             </button>
         </div>
     </div>
-
 </body>
-
 </html>

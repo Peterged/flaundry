@@ -1,6 +1,6 @@
 <?php 
 namespace App\models;
-use App\libraries\Model;
+use App\Libraries\Model;
 use App\Attributes\Table;
 
 use Respect\Validation\Validator as v;

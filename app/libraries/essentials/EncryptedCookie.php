@@ -1,5 +1,5 @@
 <?php 
-    
+namespace App\Libraries\Essentials;
 class EncryptedCookie {
     public function __construct() {
         

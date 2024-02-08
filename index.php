@@ -11,9 +11,9 @@ foreach (glob("script/*.php") as $filename) {
     include $filename;
 }
 
-include_once "app/services/ErrorHandlerService.php";
+include_once 'app/services/ErrorHandlerService.php';
 
-$app = new App\libraries\PHPExpress();
+$app = new App\Libraries\PHPExpress();
 
 
 $app->set('view engine', 'php');

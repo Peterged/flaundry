@@ -1,6 +1,6 @@
 <?php 
     
-namespace App\libraries;
+namespace App\Libraries\Essentials;
 
 class Validation {
     public static function validateEmpty($requiredProperties, $object) {
@@ -26,6 +26,4 @@ class Validation {
             throw new \App\Exceptions\ValidationException('All fields are required');
         }
     }
-
-    public static function 
 }

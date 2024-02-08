@@ -1,6 +1,6 @@
 <?php
 
-namespace App\libraries;
+namespace App\Libraries;
 
 use App\models\SaveResult;
 use App\Attributes\Table;

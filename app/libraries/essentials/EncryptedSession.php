@@ -1,4 +1,5 @@
 <?php 
+namespace App\Libraries\Essentials;
     
 class EncryptedSession {
     public function __construct() {
