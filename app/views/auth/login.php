@@ -1,6 +1,6 @@
 <?php
-use App\Libraries\Essentials\Session;
-$displayMessage = Session::getSessionKeyValueAndRemoveOnRefresh('displayMessage');
+use App\Services\FlashMessage as fm;
+$message = fm::getMessagesByKeyIdentifier('flash-message-login')[0];
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ $displayMessage = Session::getSessionKeyValueAndRemoveOnRefresh('displayMessage'
             </div>
 
             <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">LOGIN</button>
-            <p class="bottomDisplayMessage"><?= $displayMessage ?></p>
+            <p class="flash-message error"><?= $message ?></p>
         </form>
         <div class="goback-btn">
             <button onclick="history.back()">

@@ -15,5 +15,4 @@ interface RouterInterface
     // private function throwExceptionIfNotListening();
     // private function resetHeader();
     // private isRouteHandled(string $headerType, string $route);
-    
 }

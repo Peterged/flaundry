@@ -8,9 +8,6 @@
 
 <body>
     <style>
-        body {
-            height: 110vh;
-        }
         .session-container * {
             font-family: monospace;
         }

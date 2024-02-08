@@ -23,11 +23,11 @@
             min-height: 100vh;
             overflow-y: auto;
         }
-        .container {
+        .error-container {
             width: 100%;
-            height: 100vh;
-            overflow-x: hidden;
-            overflow-y: auto;
+            padding: 1rem;
+            height: auto;
+            overflow: auto;
 
             display: grid;
             place-items: center;
@@ -36,7 +36,7 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        .container .error-box {
+        .error-container .error-box {
             max-width: 740px;
             width: auto;
             display: flex;
@@ -47,63 +47,63 @@
             padding-block: 1rem;
         }
 
-        .container .error-box .error-box-message {
+        .error-container .error-box .error-box-message {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .container .error-box .error-content {
+        .error-container .error-box .error-content {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
 
-        .container .error-box .error-content .error-text {
+        .error-container .error-box .error-content .error-text {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
         }
 
-        .container .error-box .error-content .error-text li {
+        .error-container .error-box .error-content .error-text li {
             list-style-type: circle;
             clear: both;
         }
 
-        .container .error-box .error-content .error-text li span {
+        .error-container .error-box .error-content .error-text li span {
             color: rgba(255, 255, 255 0.3);
             font-size: 0.85rem;
             font-weight: 300;
             float: right;
         }
 
-        .container .error-box .error-content .error-text li br {
+        .error-container .error-box .error-content .error-text li br {
             display: none
         }
 
-        .container .error-box span {
+        .error-container .error-box span {
             height: 100%;
         }
 
-        .container .error-box p,
-        .container .error-box span {
+        .error-container .error-box p,
+        .error-container .error-box span {
             font-size: 1.4rem;
             font-weight: 300;
         }
 
-        .container .error-box .error-test {
+        .error-container .error-box .error-test {
             width: 100%;
         }
-        .container .error-box .error-test p.style-test span {
+        .error-container .error-box .error-test p.style-test span {
             float: right;
         }
 
-        .container .error-box .raw-error-text {
+        .error-container .error-box .raw-error-text {
             width: 100%;
             height: min-content;
         }
 
-        .container .error-box .raw-error-text button {
+        .error-container .error-box .raw-error-text button {
             width: 100%;
             height: 2rem;
             background-color: #121212;
@@ -117,20 +117,20 @@
             padding-inline: 1rem;
         }
 
-        .container .error-box .raw-error-text button::before {
+        .error-container .error-box .raw-error-text button::before {
             content: 'Show Raw Error';
         }
 
-        .container .error-box .raw-error-text button::after {
+        .error-container .error-box .raw-error-text button::after {
             content: '▼';
             float: right;
         }
 
-        .container .error-box .raw-error-text.active button::after {
+        .error-container .error-box .raw-error-text.active button::after {
             content: '▲';
         }
 
-        .container .error-box .raw-error-text .raw-error-text-content {
+        .error-container .error-box .raw-error-text .raw-error-text-content {
             width: 100%;
             height: 0;
             display: flex;
@@ -142,15 +142,15 @@
             transition: 150ms ease-in-out;
         }
 
-        .container .error-box .raw-error-text.active .raw-error-text-content {
+        .error-container .error-box .raw-error-text.active .raw-error-text-content {
             height: 100%;
         }
 
-        .container .error-box .raw-error-text .raw-error-text-content code {
+        .error-container .error-box .raw-error-text .raw-error-text-content code {
             font-family: monospace;
         }
     </style>
-    <div class="container">
+    <div class="error-container">
 
         <div class="error-box">
             <div class="error-object">
@@ -201,7 +201,7 @@
         </div>
     </div>
     <script>
-        let rawErrorTextContainer = document.querySelector('.container .error-box .raw-error-text');
+        let rawErrorTextContainer = document.querySelector('.error-container .error-box .raw-error-text');
         function toggleRawErrorText() {
             rawErrorTextContainer.classList.toggle('active');
         }
