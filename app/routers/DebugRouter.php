@@ -1,7 +1,6 @@
 <?php
 
 namespace App\routers;
-
 use App\Libraries\PHPExpress;
 
 $debugRouter = new PHPExpress();

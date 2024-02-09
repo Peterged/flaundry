@@ -202,6 +202,7 @@
                     }
                 }
                 ?>
+
                 <tr data-form-id="<?= count($_SESSION) || 1 ?>">
                     <?php
                     $no = count($_SESSION) || 1;
@@ -209,6 +210,7 @@
                     echo "<td><input data-input='form' data-id='$no' id='value' name='session_value' placeholder='Type a value' value=''></td>";
                     ?>
                 </tr>
+
             </table>
         </div>
     </div>
@@ -222,6 +224,7 @@
                 sessionContainer.classList.add('active');
             }
         })
+
 
         function isJsonString(str) {
             try {
@@ -250,6 +253,7 @@
 
                             // For each input in the row, add its value to the formData object
                             formItems.forEach(item => {
+
                                 if(!isJsonString(item.value)) {
                                     item.value = item.value.replace(/(['\'])+/, '"');
                                     item.value = item.value.replace(/([\"])+/, "\$1");
@@ -262,6 +266,7 @@
                                 }
 
                                 formData['old_value'] = item.getAttribute('data-prev-value') || '';
+
                                 formData[item.getAttribute('id')] = item.value;
                             });
 
@@ -277,7 +282,7 @@
                                 .then(response => response.json())
                                 .then(data => {
                                     window.location.reload();
-                                    // console.log(formData);
+
                                 })
                                 .catch(error => console.error(error));
                         }, 10);

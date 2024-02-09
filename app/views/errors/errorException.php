@@ -23,6 +23,7 @@
             min-height: 100vh;
             overflow-y: auto;
         }
+
         .error-container {
             width: 100%;
             padding: 1rem;
@@ -36,7 +37,9 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+
         .error-container .error-box {
+
             max-width: 740px;
             width: auto;
             display: flex;
@@ -47,35 +50,46 @@
             padding-block: 1rem;
         }
 
+
         .error-container .error-box .error-box-message {
+
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
+
         .error-container .error-box .error-content {
+
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
 
+
         .error-container .error-box .error-content .error-text {
+
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
         }
 
+
         .error-container .error-box .error-content .error-text li {
+
             list-style-type: circle;
             clear: both;
         }
 
+
         .error-container .error-box .error-content .error-text li span {
+
             color: rgba(255, 255, 255 0.3);
             font-size: 0.85rem;
             font-weight: 300;
             float: right;
         }
+
 
         .error-container .error-box .error-content .error-text li br {
             display: none
@@ -87,9 +101,11 @@
 
         .error-container .error-box p,
         .error-container .error-box span {
+
             font-size: 1.4rem;
             font-weight: 300;
         }
+
 
         .error-container .error-box .error-test {
             width: 100%;
@@ -99,11 +115,14 @@
         }
 
         .error-container .error-box .raw-error-text {
+
             width: 100%;
             height: min-content;
         }
 
+
         .error-container .error-box .raw-error-text button {
+
             width: 100%;
             height: 2rem;
             background-color: #121212;
@@ -117,11 +136,13 @@
             padding-inline: 1rem;
         }
 
+
         .error-container .error-box .raw-error-text button::before {
             content: 'Show Raw Error';
         }
 
         .error-container .error-box .raw-error-text button::after {
+
             content: '▼';
             float: right;
         }
@@ -131,6 +152,7 @@
         }
 
         .error-container .error-box .raw-error-text .raw-error-text-content {
+
             width: 100%;
             height: 0;
             display: flex;
@@ -142,6 +164,7 @@
             transition: 150ms ease-in-out;
         }
 
+
         .error-container .error-box .raw-error-text.active .raw-error-text-content {
             height: 100%;
         }
@@ -151,6 +174,7 @@
         }
     </style>
     <div class="error-container">
+
 
         <div class="error-box">
             <div class="error-object">
@@ -201,6 +225,7 @@
         </div>
     </div>
     <script>
+
         let rawErrorTextContainer = document.querySelector('.error-container .error-box .raw-error-text');
         function toggleRawErrorText() {
             rawErrorTextContainer.classList.toggle('active');

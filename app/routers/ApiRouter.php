@@ -45,6 +45,7 @@ $apiRouter->post('/session', function ($req, $res) {
 
         if ((array)!$jsonData) {
             if (isset($jsonData['key']) && isset($jsonData['value'])) {
+
                 $oldValue = $jsonData['old_value'] ?? '';
                 if(json_validate($jsonData['old_value'])) {
                     return;
@@ -56,11 +57,6 @@ $apiRouter->post('/session', function ($req, $res) {
                 }
                 $key = $jsonData['key'];
                 $value = $jsonData['value'];
-                // // $value = preg_replace("#([\'\"])+#", "\\$1", $value);
-                // $value = preg_replace_callback("#([\'\"])+#", function($matches) {
-                //     return '\\' . "$matches[0]";
-                // }, $value);
-
                 if(isset($_SESSION[$old_key]) && $old_key != $key && $old_key) {
                     unset($_SESSION[$old_key]);
                 }
