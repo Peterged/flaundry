@@ -4,6 +4,7 @@ namespace App\Libraries\Essentials;
 
 
     class Session {
+        private string $tokenName = '__TID';
         public function __construct() {
             if(session_status() == PHP_SESSION_DISABLED) {
                 session_start();
@@ -11,7 +12,7 @@ namespace App\Libraries\Essentials;
         }
 
         public static function start() {
-            $cookie = EncryptedCookie::get('__SID') ?? self::generateToken();
+            $cookie = EncryptedCookie::get(self::$tokenName) ?? self::generateToken();
             $tokenValue = bin2hex(
                 openssl_encrypt(
                     openssl_random_pseudo_bytes(32),

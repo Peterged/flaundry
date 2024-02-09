@@ -241,6 +241,8 @@ class PHPExpress
 
         if ($currentRequestMethod == $requestMethod && $isMatch) {
             session_start(); // global session_start()
+            \App\Services\FlashMessage::initiate();
+
             if ($requestMethod == 'POST') {
                 $request->setBody($_POST);
             }
@@ -257,8 +259,6 @@ class PHPExpress
                 }
             }
             catch(\Exception $e) {
-                $message = $e->getMessage();
-                // $e->getTraceAsString();
                 extract(array('error' => $e));
                 include_once "app/views/errors/errorException.php";
             }

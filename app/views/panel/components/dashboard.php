@@ -1,4 +1,8 @@
+<?php 
+    use App\Services\FlashMessage as fm;
 
+    $message = fm::getMessageByContext('welcome-message');
+?>
 <div class="container">
     <div class="content-box">
         <div class="title">

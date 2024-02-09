@@ -35,7 +35,6 @@ $apiRouter->get('/users/robots', function ($req, $res) use ($con) {
 $apiRouter->post('/session', function ($req, $res) {
 
     header("Content-Type: application/json");
-
     function update($data)
     {
         if (is_string($data)) {
@@ -46,6 +45,11 @@ $apiRouter->post('/session', function ($req, $res) {
 
         if ((array)!$jsonData) {
             if (isset($jsonData['key']) && isset($jsonData['value'])) {
+                $oldValue = $jsonData['old_value'] ?? '';
+                if(json_validate($jsonData['old_value'])) {
+                    return;
+                }
+
                 $old_key = null;
                 if(isset($jsonData['old_key'])) {
                     $old_key = $jsonData['old_key'];
@@ -64,12 +68,8 @@ $apiRouter->post('/session', function ($req, $res) {
                     unset($_SESSION[$old_key]);
                 }
                 else {
-
                     $_SESSION[$key] = $value;
                 }
-
-                // echo "Key: $key, Value: $value";
-
             }
         }
 

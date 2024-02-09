@@ -3,13 +3,25 @@ namespace App\routers;
 use App\Libraries\PHPExpress;
 use DateTimeZone;
 use Directory;
+use App\Services\FlashMessage;
 
 $homeRouter = new PHPExpress();
 
 // initial route = /
 $homeRouter->get('/', function ($req, $res) { // /contact
     $res->render('/home', $res); 
-    echo bin2hex(openssl_random_pseudo_bytes(32));
+    // echo bin2hex(openssl_random_pseudo_bytes(32));
+    $message = FlashMessage::addMessage([
+        'type' => 'success',
+        'message' => 'Welcome to PHPExpress!',
+        'context' => 'flash-message-home',
+        'position' => 'bottom-right'
+    ]);
+
+    // $str = '[{"message":"Welcome to PHPExpres!","type":"success","keyIdentifier":"flash-message-home","position":"bottom-right","_id":"0612846e1a249c640b220d6c2c9ece04"}]';
+    $str = 5;
+    $str = json_decode($str, true);
+    print_r($str);
 });
 
 

@@ -22,6 +22,7 @@ $authRouter->get('/login', function ($req, $res){
 
 $authRouter->get('/logout', function ($req, $res) {
     User::logout();
+    
     $res->redirect('/auth/login');
 });
 
@@ -30,9 +31,6 @@ $authRouter->post('/login', function ($req, $res) use ($con) {
     $data = $req->getBody();
     unset($data['submit']);
 
-    // echo "<pre>";
-    // print_r($data);
-    // echo "</pre>";
 
     $user = new User($con, $data);
     $result = $user->login();

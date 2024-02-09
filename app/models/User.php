@@ -7,7 +7,8 @@ use Respect\Validation\Validator as v;
 use App\Attributes\Table;
 use App\Exceptions\AuthException;
 use App\Exceptions\ModelException;
-use App\libaries\Import\Session;
+use App\libaries\Essentials\Session;
+use App\Services\FlashMessage;
 
 class User extends Model
 {
@@ -118,14 +119,23 @@ class User extends Model
             ]);
 
             $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+            
 
             if (!$user) {
-                $_SESSION['displayMessage'] = 'User not found!';
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'context' => 'login',
+                    'description' => 'User tidak ditemukan!'
+                ]);
                 throw new AuthException('User not found!');
             }
 
             if (!password_verify($this->password, $user['password'])) {
-                $_SESSION['displayMessage'] = 'Username / Password salah!';
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'context' => 'login',
+                    'message' => 'Username / Password salah!'
+                ]);
                 throw new AuthException('Username / Password salah!');
             }
 
@@ -133,6 +143,7 @@ class User extends Model
             $result->setSuccess(true);
             $result->setData($user);
 
+            
             $_SESSION['username'] = $result->getData()['username'];
             $_SESSION['role'] = $result->getData()['role'];
         } catch (\Exception $e) {

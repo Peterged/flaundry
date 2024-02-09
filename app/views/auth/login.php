@@ -1,6 +1,6 @@
 <?php
 use App\Services\FlashMessage as fm;
-$message = fm::getMessagesByKeyIdentifier('flash-message-login')[0];
+$flashMessage = fm::getMessageByContext('login');
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +10,7 @@ $message = fm::getMessagesByKeyIdentifier('flash-message-login')[0];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/formAuth.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
     <title>Login</title>
 </head>
 
@@ -32,7 +33,7 @@ $message = fm::getMessagesByKeyIdentifier('flash-message-login')[0];
             </div>
 
             <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">LOGIN</button>
-            <p class="flash-message error"><?= $message ?></p>
+            <p class="flash-message error"><?= $flashMessage['description'] ?></p>
         </form>
         <div class="goback-btn">
             <button onclick="history.back()">
@@ -43,5 +44,8 @@ $message = fm::getMessagesByKeyIdentifier('flash-message-login')[0];
             </button>
         </div>
     </div>
+
+    <?php fm::displayPopMessagesByContext('login'); ?>
+    <script src="<?= PROJECT_ROOT ?>/public/js/formAuth.js"></script>
 </body>
 </html>

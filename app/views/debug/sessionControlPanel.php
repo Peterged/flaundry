@@ -176,7 +176,9 @@
                 </tr>
                 <tr>
                     <td>Session Data</td>
-                    <td><?php echo "<pre>"; print_r($_SESSION); echo "</pre>"; ?></td>
+                    <td><?php echo "<pre>";
+                        print_r($_SESSION);
+                        echo "</pre>"; ?></td>
                 </tr>
             </table>
             <table class="session-list">
@@ -191,8 +193,11 @@
                     foreach ($_SESSION as $key => $value) {
                         echo "<tr data-form-id='$no'>";
 
-                        echo "<td><input data-prev-value='$key' data-input='form' data-id='$no' id='key' name='session_key' placeholder='Key' value='$key'></td>";
-                        echo "<td><input data-input='form' data-id='$no' id='value' name='session_value' placeholder='Value' value='$value'></td>";
+                        echo "<td><input data-prev-key='$key' data-input='form' data-id='$no' id='key' name='session_key' placeholder='Key' value='$key'></td>";
+                        if (is_array($value)) {
+                            $value = json_encode($value);
+                        }
+                        echo "<td><input data-prev-value='$value' data-input='form' data-id='$no' id='value' name='session_value' placeholder='Value' value='$value'></td>";
                         $no++;
                     }
                 }
@@ -218,6 +223,15 @@
             }
         })
 
+        function isJsonString(str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        }
+
         const form = document.querySelectorAll('.session-container .session-wrapper tr[data-form-id]');
         form.forEach(input => {
             let formId = input.getAttribute('data-form-id');
@@ -236,13 +250,18 @@
 
                             // For each input in the row, add its value to the formData object
                             formItems.forEach(item => {
-                                item.value = item.value.replace(/(['\'])+/, '"');
-                                item.value = item.value.replace(/([\"])+/, "\$1");
-
-                                if(item.getAttribute('id') == 'key' && item.getAttribute('data-prev-value') != item.value) {
-                                    formData['old_key'] = item.getAttribute('data-prev-value');
+                                if(!isJsonString(item.value)) {
+                                    item.value = item.value.replace(/(['\'])+/, '"');
+                                    item.value = item.value.replace(/([\"])+/, "\$1");
                                 }
 
+                                
+
+                                if (item.getAttribute('id') == 'key' && item.getAttribute('data-prev-key') != item.value) {
+                                    formData['old_key'] = item.getAttribute('data-prev-key') || '';
+                                }
+
+                                formData['old_value'] = item.getAttribute('data-prev-value') || '';
                                 formData[item.getAttribute('id')] = item.value;
                             });
 
