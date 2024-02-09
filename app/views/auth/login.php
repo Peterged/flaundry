@@ -1,6 +1,8 @@
 <?php
+
 use App\Services\FlashMessage as fm;
-$flashMessage = fm::getMessageByContext('login');
+
+// $flashMessage = fm::getMessageByContext('login');
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +35,7 @@ $flashMessage = fm::getMessageByContext('login');
             </div>
 
             <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">LOGIN</button>
-            <p class="flash-message error"><?= $flashMessage['description'] ?></p>
+            
         </form>
         <div class="goback-btn">
             <button onclick="history.back()">
@@ -45,7 +47,11 @@ $flashMessage = fm::getMessageByContext('login');
         </div>
     </div>
 
-    <?php fm::displayPopMessagesByContext('login'); ?>
+    <?php 
+    fm::displayPopMessagesByContext('login'); 
+    fm::getMessageByContext('login');
+    ?>
     <script src="<?= PROJECT_ROOT ?>/public/js/formAuth.js"></script>
 </body>
+
 </html>

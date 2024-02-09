@@ -125,8 +125,10 @@ class User extends Model
                 FlashMessage::addMessage([
                     'type' => 'error',
                     'context' => 'login',
+                    'title' => 'Validation Error!',
                     'description' => 'User tidak ditemukan!'
                 ]);
+
                 throw new AuthException('User not found!');
             }
 
@@ -134,8 +136,10 @@ class User extends Model
                 FlashMessage::addMessage([
                     'type' => 'error',
                     'context' => 'login',
-                    'message' => 'Username / Password salah!'
+                    'title' => 'Validation Error!',
+                    'description' => 'Username / Password salah!'
                 ]);
+                
                 throw new AuthException('Username / Password salah!');
             }
 
@@ -143,7 +147,12 @@ class User extends Model
             $result->setSuccess(true);
             $result->setData($user);
 
-            
+            FlashMessage::addMessage([
+                'type' => 'success',
+                'context' => 'welcome-message',
+                'title' => 'Congratulations!',
+                'description' => 'Login berhasil!'
+            ]);
             $_SESSION['username'] = $result->getData()['username'];
             $_SESSION['role'] = $result->getData()['role'];
         } catch (\Exception $e) {

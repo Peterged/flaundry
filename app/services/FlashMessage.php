@@ -5,6 +5,7 @@ namespace App\Services;
 use Respect\Validation\Validator as v;
 use App\Interfaces\FlashMessageInterface;
 
+include_once __DIR__ . '/../config/config.php';
 /**
  * @class FlashMessage 
  * @summary This class is used to add flash messages to the session
@@ -71,19 +72,24 @@ class FlashMessage implements FlashMessageInterface
 
     public static function displayPopMessagesByContext(string $context, string $position = 'top-right'): void
     {
-        $messages = self::getMessagesBycontext($context);
+        $messages = self::getMessagesByContext($context);
+
         foreach ($messages as $message) {
-            if ($message['isPopMessage'] ?? false) {
-                echo <<<HTML
+            $projectRoot = PROJECT_ROOT;
+            $title = $message['title'] ?? 'Validation Error!';
+            $description = $message['description'] ?? 'Please check your input and try again.';
+
+            echo <<<HTML
                 <div class='flash-message-alert alert-{$message['type']} flash-position-{$position}'>
                     <div class='flash-message-content'>
                         <div class='flash-message-icon'>
-                            <img src='{$message['type']}-icon.png' alt='icon'>
+                            <img src='$projectRoot/public/images/flashMessage/{$message['type']}-icon.png' alt='icon'>
                         </div>
                         <div class='flash-message-text'>
-                            <p class='flash-message-title'>{$message['title']}</p>
-                            <p class='flash-message-description'>{$message['description']}</p>
+                            <p class='flash-message-title'>{$title}</p>
+                            <p class='flash-message-description'>{$description}</p>
                         </div>
+                    </div>
                     <div class='flash-message-close'>
                         <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'>
                             <path d='M18 6L6 18M6 6L18 18' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
@@ -91,8 +97,8 @@ class FlashMessage implements FlashMessageInterface
                     </div>
                 </div>
                 HTML;
-            }
         }
+        self::unsetSessionByContext($context);
     }
 
     public static function displayRecentPopMessage(string $position = 'top-right', string $type = 'info'): void
@@ -338,6 +344,17 @@ class FlashMessage implements FlashMessageInterface
         return count($result) ? $result[0] : self::$defaultMessageTemplate;
     }
 
+    public static function unsetSessionByContext(string $context): void
+    {
+        $messages = $_SESSION[self::$sessionName];
+        unset($_SESSION[self::$sessionName]);
+        $result = array_filter($messages, function ($message) use ($context) {
+            return $message['context'] !== $context;
+        });
+
+        $_SESSION[self::$sessionName] = $result;
+    }
+
     /**
      * @param string $type
      * @summary Validate the message type
@@ -420,8 +437,9 @@ class FlashMessage implements FlashMessageInterface
         return $generatedId;
     }
 
-    private static function handleFlashMessageIcon(string $type) {
-        if(!self::validateMessageType($type)) {
+    private static function handleFlashMessageIcon(string $type)
+    {
+        if (!self::validateMessageType($type)) {
             throw new \InvalidArgumentException('Invalid message type');
         }
     }

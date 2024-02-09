@@ -1,7 +1,8 @@
-<?php 
-    use App\Services\FlashMessage as fm;
+<?php
 
-    $message = fm::getMessageByContext('welcome-message');
+use App\Services\FlashMessage as fm;
+
+
 ?>
 <div class="container">
     <div class="content-box">
@@ -88,6 +89,10 @@
 
         </div>
     </div>
+</div>
+<?php 
+fm::displayPopMessagesByContext('welcome-message', 'bottom-right');
+?>
 
     <!-- Random Shit -->
     <script>
