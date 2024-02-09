@@ -2,7 +2,7 @@
 
 namespace App\models;
 
-use App\libraries\Model;
+use App\Libraries\Model;
 use Respect\Validation\Validator as v;
 
 

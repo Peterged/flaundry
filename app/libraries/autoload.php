@@ -1,4 +1,6 @@
 <?php
+
+
 spl_autoload_register(function ($className) {
     include_once "./$className.php";
 });
@@ -19,9 +21,7 @@ set_exception_handler(function ($exception) {
         if (get_class($exception) == $excludedExceptionClass) {
             return;
         }
-        
     }
     extract(array('error' => $exception));
     include_once "app/views/errors/errorException.php";
 });
-

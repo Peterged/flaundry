@@ -1,11 +1,31 @@
 <?php 
-    namespace App\libraries;
+namespace App\Libraries\Essentials;
+
+
 
     class Session {
+        private string $tokenName = '__TID';
         public function __construct() {
             if(session_status() == PHP_SESSION_DISABLED) {
                 session_start();
             }
+        }
+
+        public static function start() {
+            $cookie = EncryptedCookie::get(self::$tokenName) ?? self::generateToken();
+            $tokenValue = bin2hex(
+                openssl_encrypt(
+                    openssl_random_pseudo_bytes(32),
+                    'aes-256-cbc',
+                    $cookie
+                )
+            );
+
+            self::set('__TID', $tokenValue);
+        }
+
+        public static function generateToken() {
+            return bin2hex(openssl_random_pseudo_bytes(32));
         }
         
         public static function getSessionKeyValueAndRemoveOnRefresh($key) {

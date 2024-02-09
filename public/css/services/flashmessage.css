@@ -1,0 +1,48 @@
+:root {
+  --flash-success-background: #28a745;
+  --flash-error-background: #dc3545;
+  --flash-info-background: #17a2b8;
+  --flash-warning-background: #ffc107;
+
+  --flash-success-border: #218838;
+  --flash-error-border: #c82333;
+  --flash-info-border: #138496;
+  --flash-warning-border: #b69500;
+}
+
+.flash-message-alert {
+  transform: translateY(-100%);
+  position: fixed;
+  right: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+  animation: moveIn 0.3s ease-in-out;
+
+  background-color: var(--flash-info-background);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  text-align: center;
+  margin-top: 1rem;
+  min-width: 100px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.flash-message-alert.alert-success {
+  background-color: var(--flash-success-background);
+}
+
+.flash-message-alert.alert-error {
+}
+
+@keyframes moveIn {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

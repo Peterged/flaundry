@@ -19,6 +19,17 @@
   --dark-secondary-accent: #e74c3c;
 
   --input-width: 100%;
+
+  /* Flash Messages */
+  --flash-success-background: #28a745;
+  --flash-error-background: #dc3545;
+  --flash-info-background: #17a2b8;
+  --flash-warning-background: #ffc107;
+
+  --flash-success-border: #218838;
+  --flash-error-border: #c82333;
+  --flash-info-border: #138496;
+  --flash-warning-border: #b69500;
 }
 
 body {
@@ -60,7 +71,7 @@ body {
   position: absolute;
   width: max-content;
   color: rgba(0, 0, 0, 0.65);
-  top: -20%;
+  top: -95px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 2.25rem;
@@ -70,7 +81,7 @@ body {
 
 .container .wrapper img.form-image {
   width: 80px;
-  margin-block: 0.5rem 2.5rem ;
+  margin-block: 0.5rem 2.5rem;
 }
 
 .container .wrapper .link-center {
@@ -108,8 +119,8 @@ body {
 }
 
 .container .wrapper .input-group svg {
-    width: 24px;
-    height: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 .container .wrapper input,
@@ -154,51 +165,70 @@ body {
   border: 1px solid var(--);
 }
 
-
 /* <============= .goback-btn =============> */
 .container .goback-btn {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
 }
 
 .container .goback-btn button {
-    color: white;
-    border: none;
-    border-radius: 0.2rem;
-    text-align: center;
-    transition: 50ms ease-in-out all;
-    outline: none;
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  text-align: center;
+  transition: 50ms ease-in-out all;
+  outline: none;
 
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    padding: 0.5rem .75rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  padding: 0.5rem 0.75rem;
 
-    cursor: pointer;
-    transition: 250ms ease-in-out;
+  cursor: pointer;
+  transition: 250ms ease-in-out;
 }
 .container .goback-btn button svg {
-    size: 1.5rem;
+  size: 1.5rem;
+}
+.flash-message {
+  text-overflow: ellipsis;
+  overflow: hidden !important;
+  font-weight: 600;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  background-color: #ffe6e6;
+  padding: 0.25rem;
+  padding-inline: 0.5rem;
+  width: 100%;
+  color: #ff0000;
+  border: 1px solid red;
+  text-align: center;
+  border-radius: 0.25rem;
+  width: 0;
 }
 
-.bottomDisplayMessage {
-    font-weight: 600;
-    margin-top: 0.75rem;
-    font-size: 0.75rem;
-    background-color: #ffe6e6;
-    padding: 0.25rem;
-    padding-inline: 0.5rem;
-    width: 100%;
-    color: #ff0000;
-    border: 1px solid red;
-    text-align: center;
-    border-radius: 0.25rem;
+.flash-message:empty {
+  display: none;
+  padding: 0;
 }
 
-.bottomDisplayMessage:empty {
-    display: none;
-    padding: 0;
+.flash-message:not(:empty) {
+  display: block;
+}
+
+.flash-message.error {
+  background-color: #fff;
+  color: var(--flash-error-border);
+  padding: 0.5rem;
+  border: 1px solid var(--flash-error-border);
+  border-radius: 0.25rem;
+
+  text-align: center;
+  margin-top: 1rem;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1rem;
 }

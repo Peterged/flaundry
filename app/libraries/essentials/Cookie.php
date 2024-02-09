@@ -1,5 +1,6 @@
 <?php 
 
+namespace App\Libraries\Essentials;
     class Cookie {
 
         /**

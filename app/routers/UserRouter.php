@@ -2,7 +2,7 @@
 
 namespace App\routers;
 
-class UserRouter extends \App\libraries\PHPExpress
+class UserRouter extends \App\Libraries\PHPExpress
 {
     public function __construct()
     {

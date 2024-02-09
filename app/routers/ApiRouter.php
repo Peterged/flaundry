@@ -2,7 +2,7 @@
 
 namespace App\routers;
 
-use App\libraries\PHPExpress;
+use App\Libraries\PHPExpress;
 
 $apiRouter = new PHPExpress();
 // initial route = /api
@@ -35,7 +35,6 @@ $apiRouter->get('/users/robots', function ($req, $res) use ($con) {
 $apiRouter->post('/session', function ($req, $res) {
 
     header("Content-Type: application/json");
-
     function update($data)
     {
         if (is_string($data)) {
@@ -46,19 +45,27 @@ $apiRouter->post('/session', function ($req, $res) {
 
         if ((array)!$jsonData) {
             if (isset($jsonData['key']) && isset($jsonData['value'])) {
+
+                $oldValue = $jsonData['old_value'] ?? '';
+                if(json_validate($jsonData['old_value'])) {
+                    return;
+                }
+
                 $old_key = null;
                 if(isset($jsonData['old_key'])) {
                     $old_key = $jsonData['old_key'];
                 }
                 $key = $jsonData['key'];
                 $value = $jsonData['value'];
-
                 if(isset($_SESSION[$old_key]) && $old_key != $key && $old_key) {
                     unset($_SESSION[$old_key]);
                 }
-                // echo "Key: $key, Value: $value";
-                
-                $_SESSION[$key] = $value;
+                if(strlen($key) == 0) {
+                    unset($_SESSION[$old_key]);
+                }
+                else {
+                    $_SESSION[$key] = $value;
+                }
             }
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\libraries;
+namespace App\Libraries;
 use Respect\Validation\Validator as v;
 
     final class Request {

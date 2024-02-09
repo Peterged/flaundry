@@ -2,11 +2,13 @@
 
 namespace App\models;
 
-use App\libraries\Model;
+use App\Libraries\Model;
 use Respect\Validation\Validator as v;
 use App\Attributes\Table;
 use App\Exceptions\AuthException;
 use App\Exceptions\ModelException;
+use App\libaries\Essentials\Session;
+use App\Services\FlashMessage;
 
 class User extends Model
 {
@@ -23,7 +25,7 @@ class User extends Model
     {
         parent::__construct($PDO, $valuesArray, __CLASS__);
 
-        // Set the required properties 
+        // Set the required properties
         $this->setRequiredProperties(['username', 'password']);
 
         // Compare 2 arrays, if empty, the properties are set, if not empty
@@ -54,7 +56,7 @@ class User extends Model
 
 
         $con = $this->dbConnection;
-        
+
         try {
             // Lock the user table
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
@@ -63,7 +65,7 @@ class User extends Model
             INSERT INTO {$this->tableName} (id_outlet, nama, username, password, role)
             VALUES (:id_outlet, :nama, :username, :password, :role)
             ");
-            
+
             $stmt->execute([
                 'id_outlet' => $this->id_outlet,
                 'nama' => $this->nama,
@@ -73,7 +75,7 @@ class User extends Model
             ]);
             echo $con->inTransaction() ? 'true' : 'false';
 
-            
+
             if($this->username == 'kreshna') {
                 throw new \Exception('Nama tidak boleh kreshna');
             }
@@ -82,7 +84,7 @@ class User extends Model
                 throw new \Exception('Nama tidak boleh kreshna');
             }
 
-            $con->commit();   
+            $con->commit();
 
             $result->success = true;
         } catch (ModelException $e) {
@@ -118,13 +120,27 @@ class User extends Model
 
             $user = $stmt->fetch(\PDO::FETCH_ASSOC);
             
+
             if (!$user) {
-                $_SESSION['displayMessage'] = 'User not found!';
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'context' => 'login',
+                    'title' => 'Validation Error!',
+                    'description' => 'User tidak ditemukan!'
+                ]);
+
                 throw new AuthException('User not found!');
             }
 
             if (!password_verify($this->password, $user['password'])) {
-                $_SESSION['displayMessage'] = 'Username / Password salah!';
+
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'context' => 'login',
+                    'title' => 'Validation Error!',
+                    'description' => 'Username / Password salah!'
+                ]);
+                
                 throw new AuthException('Username / Password salah!');
             }
 
@@ -132,13 +148,19 @@ class User extends Model
             $result->setSuccess(true);
             $result->setData($user);
 
+            FlashMessage::addMessage([
+                'type' => 'success',
+                'context' => 'welcome-message',
+                'title' => 'Congratulations!',
+                'description' => 'Login berhasil!'
+            ]);
+          
             $_SESSION['username'] = $result->getData()['username'];
             $_SESSION['role'] = $result->getData()['role'];
         } catch (\Exception $e) {
             $con->rollBack();
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
-            trigger_error($e->getMessage() . " | Line: " . $e->getLine());
         } finally {
             $con->exec('UNLOCK TABLES');
         }
@@ -148,12 +170,8 @@ class User extends Model
         return $result;
     }
 
-    public function register(): array {
-        $result = [
-            'errorMessage' => null,
-            'success' => false,
-            'status' => 'commited'
-        ];
+    public function register(): object {
+        $result = new SaveResult();
 
         try {
             $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
@@ -170,13 +188,12 @@ class User extends Model
             $stmt->execute($this->valuesArray);
 
             $this->dbConnection->commit();
-            $result['success'] = true;
+            $result->setSuccess(true);
         }
         catch(\Exception $e) {
-            $result['errorMessage'] = $e->getMessage();
-            $result['status'] = 'rollbacked';
             $this->dbConnection->rollBack();
-            trigger_error($e->getMessage() . " | Line: " . $e->getLine());
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            $result->setStatus('rollbacked');
         }
         finally {
             $this->dbConnection->exec("UNLOCK TABLES");
