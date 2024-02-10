@@ -70,13 +70,13 @@ class PHPExpress
         if(is_array($callbacks)) {
             array_map(function ($call) {
                 if (is_string($call)) {
-                    return RouterHelper::getStringToCallable($call);
+                    return RouterHelper::getClassStringToCallable($call);
                 }
                 return $call;
             }, $callbacks);
         }
         elseif (is_string($callback)) {
-            $callback = RouterHelper::getStringToCallable($callback);
+            $callback = RouterHelper::getClassStringToCallable($callback);
         }
 
         array_push($this->routeQueue, [
@@ -235,13 +235,14 @@ class PHPExpress
         $this->headerData = RouterHelper::setHeaderData($isSent, $path);
     }
 
-    private function processFunction(string $requestMethod, bool $isMatch, string $filteredRoute, Request $request, Response $response, callable | array ...$callback)
+    private function processFunction(string $requestMethod, bool $isMatch, string $filteredRoute, Request $request, Response $response, callable | string | array ...$callback)
     {
         $currentRequestMethod = $request->getMethod();
 
         if ($currentRequestMethod == $requestMethod && $isMatch) {
             session_start(); // global session_start()
             \App\Services\FlashMessage::initiate();
+            
 
             if ($requestMethod == 'POST') {
                 $request->setBody($_POST);
@@ -264,7 +265,7 @@ class PHPExpress
             }
 
         }
-        // elseif (!$this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestMethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
+        // elseif (!$this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestM     ethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
         //     echo $this->isRouteHandled($requestMethod, $filteredRoute) ? 'true' : 'false' . "<br>";
         //     echo "<code>Cannot handle $currentRequestMethod $filteredRoute</code>";
         // }

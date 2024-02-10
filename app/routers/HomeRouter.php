@@ -13,7 +13,7 @@ $homeRouter->get('/', function ($req, $res) { // /contact
     // echo bin2hex(openssl_random_pseudo_bytes(32));
     $message = FlashMessage::addMessage([
         'type' => 'success',
-        'message' => 'Welcome to PHPExpress!',
+        'description' => 'Welcome to PHPExpress!',
         'context' => 'flash-message-home',
         'position' => 'bottom-right'
     ]);

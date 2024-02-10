@@ -6,6 +6,7 @@ use App\Services\FlashMessage as fm;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="<?= PROJECT_ROOT ?>/public/images/flaundry-logo-icon.png" type="image/png" />
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/global.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/sidebar.css">
@@ -22,7 +23,7 @@ use App\Services\FlashMessage as fm;
 <div class="container">
     <div class="content-box">
         <div class="title">
-            <h1 class="title-text">Dashboard</h1>
+            <h1 class="title-text">Outlet</h1>
             <div class="title-date">
                 <p class="title-date-text">Selasa, 30 Januari 2024 · 11:12 PM</p>
             </div>

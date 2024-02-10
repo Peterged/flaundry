@@ -3,8 +3,9 @@
 
     
     function includeFile(string $path, array $data = []) {
-        $newPath =  "$path";
-        $newPath = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '', $newPath);
+        $newPath = preg_replace('#(?<!:)(\\{1,}|\/{2,})+#', '', "$path");
+
+        
         if(file_exists($newPath)) {
             if(!empty($data)) {
                 extract($data);
