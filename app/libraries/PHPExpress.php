@@ -36,7 +36,6 @@ class PHPExpress
     }
 
 
-
     public function setDatabaseObject(\App\Libraries\Database $con)
     {
         $this->con = $con;
@@ -260,6 +259,8 @@ class PHPExpress
                 }
             }
             catch(\Exception $e) {
+                $message = $e->getMessage();
+                // $e->getTraceAsString();
                 extract(array('error' => $e));
                 include_once "app/views/errors/errorException.php";
             }

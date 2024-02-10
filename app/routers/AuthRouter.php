@@ -31,7 +31,6 @@ $authRouter->post('/login', function ($req, $res) use ($con) {
     $data = $req->getBody();
     unset($data['submit']);
 
-
     $user = new User($con, $data);
     $result = $user->login();
     $isSuccess = $result->getSuccess();

@@ -133,6 +133,7 @@ class User extends Model
             }
 
             if (!password_verify($this->password, $user['password'])) {
+
                 FlashMessage::addMessage([
                     'type' => 'error',
                     'context' => 'login',
@@ -153,6 +154,7 @@ class User extends Model
                 'title' => 'Congratulations!',
                 'description' => 'Login berhasil!'
             ]);
+          
             $_SESSION['username'] = $result->getData()['username'];
             $_SESSION['role'] = $result->getData()['role'];
         } catch (\Exception $e) {

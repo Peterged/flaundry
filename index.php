@@ -1,4 +1,5 @@
 <?php
+
 include 'vendor/autoload.php';
 include 'app/libraries/autoload.php';
 // include 'app/config/database.php';
@@ -11,9 +12,11 @@ foreach (glob("script/*.php") as $filename) {
     include $filename;
 }
 
+
 include_once 'app/services/ErrorHandlerService.php';
 
 $app = new App\Libraries\PHPExpress();
+
 
 
 $app->set('view engine', 'php');
