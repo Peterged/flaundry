@@ -47,10 +47,9 @@ use App\Services\FlashMessage as fm;
     </div>
 
     <?php
-    fm::displayPopMessagesByContext('login');
+        fm::displayPopMessagesByContext('login', 'top-right', 3000);
     ?>
-    <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageClose.js"></script>
-    <!-- <script src="<?= PROJECT_ROOT ?>/public/js/formAuth.js"></script> -->
+    <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageCloseDelay.js"></script>
 </body>
 
 </html>

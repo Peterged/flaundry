@@ -1,10 +1,10 @@
-<?php 
+<?php
 namespace App\Libraries\Essentials;
 
 
 
     class Session {
-        private string $tokenName = '__TID';
+        private static string $tokenName = '__TID';
         public function __construct() {
             if(session_status() == PHP_SESSION_DISABLED) {
                 session_start();
@@ -12,22 +12,16 @@ namespace App\Libraries\Essentials;
         }
 
         public static function start() {
-            $cookie = EncryptedCookie::get(self::$tokenName) ?? self::generateToken();
-            $tokenValue = bin2hex(
-                openssl_encrypt(
-                    openssl_random_pseudo_bytes(32),
-                    'aes-256-cbc',
-                    $cookie
-                )
-            );
+            $token = EncryptedCookie::get(self::$tokenName) ?? self::generateToken();
+            // $hash = password_hash($salt, PASSWORD_BCRYPT, ['cost' => 12, 'salt' => $salt]);
 
-            self::set('__TID', $tokenValue);
+            self::set('__TID', $token);
         }
 
         public static function generateToken() {
             return bin2hex(openssl_random_pseudo_bytes(32));
         }
-        
+
         public static function getSessionKeyValueAndRemoveOnRefresh($key) {
             if(isset($_SESSION[$key])) {
                 $value = $_SESSION[$key];
