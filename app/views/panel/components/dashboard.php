@@ -3,7 +3,7 @@
 use App\Services\FlashMessage as fm;
 use App\Libraries\Essentials\Session;
 
-Session::start();
+Session::startToken();
 
 ?>
 
@@ -18,6 +18,7 @@ Session::start();
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/card.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Dashboard | FLaundry</title>
 </head>
 <?php includeFile("$base/panel/inc/sidebar.php") ?>

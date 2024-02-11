@@ -39,20 +39,21 @@ final class Response
 
             if (file_exists($path)) {
                 $this->extractData($data);
-
+                $headerContent = file_get_contents(__DIR__ . "/../views/layouts/header.php");
+                
                 extract([
                     'PROJECT_ROOT' => PROJECT_ROOT,
                     'URLROOT' => URLROOT,
                     'base' => $this->views['directory'],
                     'routeTo' => 'routeTo',
                     'includeFile' => 'includeFile',
-                    'fetch' => 'fetch'
+                    'fetch' => 'fetch',
+                    'header' => $headerContent
                 ]);
 
-                include_once __DIR__ . "/../views/layouts/header.php";
                 include_once $path;
             } else {
-                throw new \Exception("Sorry, the file does not exist");
+                // throw new \Exception("Sorry, the file does not exist");
             }
         } else {
             throw new \Exception("Sorry, the directory is not set");

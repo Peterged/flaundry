@@ -13,9 +13,9 @@ include_once __DIR__ . '/../config/config.php';
 
 final class FlashMessage implements FlashMessageInterface
 {
-    private static string $sessionName = 'flash-messages';
-    private static array $flashMessageTypes = ['info', 'success', 'warning', 'error'];
+    private static string $sessionName = 'flash-message';
     private static string $defaultMessageType = 'info';
+    private static array $flashMessageTypes = ['info', 'success', 'warning', 'error'];
     private static array $flashMessagePositions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
     private static array $defaultMessageTemplate = [
         'title' => '',
@@ -387,7 +387,7 @@ final class FlashMessage implements FlashMessageInterface
 
         return v::key('title', v::stringType()->length(0, self::$maxMessagelength), false)
             ->key('description', v::stringType()->length(0, self::$maxMessagelength))
-            ->key('type', v::in(self::$flashMessageTypes))
+            ->key('type', v::in(self::$flashMessageTypes), false)
             ->key('context', v::stringType()->length(0, self::$maxMessagelength), false)
             ->key('position', v::in(self::$flashMessagePositions), false)
             ->validate($options);

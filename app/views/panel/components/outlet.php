@@ -10,12 +10,12 @@ use App\Services\FlashMessage as fm;
     <link rel="shortcut icon" href="<?= PROJECT_ROOT ?>/public/images/flaundry-logo-icon.png" type="image/png" />
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/global.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/sidebar.css">
-    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/sidebar.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/navbar.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/card.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/dashboard.css">
-    <title>Dashboard | FLaundry</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Outlet | FLaundry</title>
 </head>
 <?php includeFile("$base/panel/inc/sidebar.php") ?>
 <?php includeFile("$base/panel/inc/navbar.php") ?>
@@ -107,9 +107,9 @@ use App\Services\FlashMessage as fm;
     </div>
 </div>
 <?php 
-fm::displayPopMessagesByContext('welcome-message', 'bottom-right');
+fm::displayPopMessagesByContext('outlet_testing', 'bottom-right');
 ?>
-<script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessage.js"></script>
+<script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageCloseDelay.js"></script>
     <!-- Random Shit -->
     <script>
         var ctx = document.querySelector('canvas.income').getContext('2d');

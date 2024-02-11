@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="<?= PROJECT_ROOT ?>/public/images/flaundry-logo-icon.png" type="image/png" />
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/global.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/formAuth.css">
     <title>Register User</title>
 </head>

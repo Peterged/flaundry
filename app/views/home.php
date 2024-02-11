@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
+<link rel="shortcut icon" href="<?= PROJECT_ROOT ?>/public/images/flaundry-logo-icon.png" type="image/png" />
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/global.css">
     <link rel="stylesheet" href="public/css/home.css">
-    <link rel="stylesheet" href="public/css/global.css">
     <link rel="stylesheet" href="public/css/layouts/navbar.css">
     <title>FLaundry</title>
 </head>

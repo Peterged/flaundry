@@ -5,6 +5,7 @@ namespace App\routers;
 use App\Libraries\PHPExpress;
 use App\models\User;
 use App\utils\PrintArray;
+use App\Services\FlashMessage as fm;
 
 
 $panelRouter = new PHPExpress();
@@ -18,31 +19,58 @@ function dashboard($req, $res) {
     $res->render('/panel/components/dashboard');
 }
 
-
-$panelRouter->get('/', function ($req, $res) use ($con, $panelRouter) {
+function handleDashboardPostRequest($req, $res) {
     $data = [
-        'title' => 'Home | Admin Panel',
-        'head' => ["<link rel='stylesheet' href='\$PROJECT_ROOT/assets/css/panel.css'>"],
-        'username' => 'kreshna',
+        'sales' => 500
     ];
+    
+    $res->redirect('/panel/dashboard');
+}
 
-    $res->render('/panel/components/dashboard');
-});
-
-$panelRouter->get('/dashboard', 'dashboard');
-
-$panelRouter->get('/outlet', function ($req, $res) {
+function outlet($req, $res) {
     $data = [
         'sales' => 500
     ];
     
     $res->render('/panel/components/outlet');
-});
+}
 
-$panelRouter->get('/settings', function ($req, $res) {
+function settings($req, $res) {
     $data = [
-        'sales' => 500
+
     ];
-    $res->render('/panel/inc/sidebar', $data);
-    $res->render('/panel/settings');
-});
+
+    $res->render('/panel/components/settings');
+}
+
+
+$panelRouter
+    // Route for the homepage
+    ->get('/', function ($req, $res) use ($con, $panelRouter) {
+        dashboard($req, $res);
+    })
+
+    // Route for the dashboard (GET request)
+    ->get('/dashboard', function($req, $res) {
+        dashboard($req, $res);
+    })
+
+    // Route for the dashboard (POST request)
+    ->post('/dashboard', function($req, $res) {
+        handleDashboardPostRequest($req, $res);
+    })
+
+    // Route for the outlet
+    ->get('/outlet', function($req, $res) {
+        fm::addMessage([
+            'context' => 'outlet_testing',
+            'title' => 'Hello World!',
+            'description' => 'This is a success message'
+        ]);
+        outlet($req, $res);
+    })
+
+    // Route for the settings
+    ->get('/settings', function($req, $res) {
+        settings($req, $res);
+    });

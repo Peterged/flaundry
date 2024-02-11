@@ -131,24 +131,26 @@ class PHPExpress
         exit;
     }
 
-    public function get(string $route, callable | string | array ...$callback)
+    public function get(string $route, callable | string | array ...$callback): PHPExpress
     {
         if (!$this->isListening) {
             $this->addRequestToQueue($route, 'GET', ...$callback);
-            return;
         } else {
             $this->handleResponse('GET', $route, ...$callback);
         }
         return $this;
     }
 
-    public function post(string $route, callable | string | array ...$callback)
+    public function post(string $route, callable | string | array ...$callback): PHPExpress
     {
         if (!$this->isListening) {
             $this->addRequestToQueue($route, 'POST', ...$callback);
-            return;
         }
-        $this->handleResponse('POST', $route, ...$callback);
+        else {
+
+            $this->handleResponse('POST', $route, ...$callback);
+        }
+        return $this;
     }
 
     // Middleware
@@ -162,6 +164,7 @@ class PHPExpress
         } elseif ($command == 'views') {
             $this->views['directory'] = $option;
         }
+        
     }
 
     private function resetHeader()
