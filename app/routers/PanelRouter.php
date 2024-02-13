@@ -37,7 +37,7 @@ function outlet($req, $res) {
 
 function settings($req, $res) {
     $data = [
-
+        
     ];
 
     $res->render('/panel/components/settings');

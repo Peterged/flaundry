@@ -12,6 +12,7 @@ use App\Services\FlashMessage as fm;
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/sidebar.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/navbar.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/card.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/table.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

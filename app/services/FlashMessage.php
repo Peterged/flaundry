@@ -34,6 +34,49 @@ final class FlashMessage implements FlashMessageInterface
         }
     }
 
+    /**
+     * @param string $message
+     * @param string $type
+     * @param string $context
+     * @summary Add a message to the session
+     * Add a message to the session
+     *
+     * ```php
+     * // Example usage:
+     * App\Services\FlashMessage::addMessage([]);
+     * // Adds a message to the session with the type 'info' and the key identifier 'user'
+     * ```
+     */
+    public static function addMessage(array $options): array | null
+    {
+        if (!self::validateOptions($options)) {
+            throw new \InvalidArgumentException('Invalid options!');
+        }
+
+        $title = $options['title'] ?? '';
+        $description = $options['description'];
+        $type = $options['type'] ?? self::$defaultMessageType;
+        $context = $options['context'] ?? '';
+        $position = $options['position'] ?? '';
+        $id = self::generateUniqueId();
+
+        if (self::checkIfIdMatchesWithExistingMessage($id)) {
+            return null;
+        }
+
+        $newFlashMessage = [
+            'title' => $title,
+            'description' => $description,
+            'type' => $type,
+            'context' => $context,
+            'position' => $position,
+            '_id' => $id
+        ];
+
+        $_SESSION[self::$sessionName][] = $newFlashMessage;
+        return $newFlashMessage;
+    }
+
     public static function displayCustomPopMessage(string $message, string $type, string $position = 'top-right'): void
     {
         if (!self::validateMessageType($type)) {
@@ -168,48 +211,7 @@ final class FlashMessage implements FlashMessageInterface
         echo "<div class='flash-message-alert alert-{$message['type']}'>{$message['message']}</div>";
     }
 
-    /**
-     * @param string $message
-     * @param string $type
-     * @param string $context
-     * @summary Add a message to the session
-     * Add a message to the session
-     *
-     * ```php
-     * // Example usage:
-     * App\Services\FlashMessage::addMessage([]);
-     * // Adds a message to the session with the type 'info' and the key identifier 'user'
-     * ```
-     */
-    public static function addMessage(array $options): array | null
-    {
-        if (!self::validateOptions($options)) {
-            throw new \InvalidArgumentException('Invalid options!');
-        }
-
-        $title = $options['title'] ?? '';
-        $description = $options['description'];
-        $type = $options['type'] ?? self::$defaultMessageType;
-        $context = $options['context'] ?? '';
-        $position = $options['position'] ?? '';
-        $id = self::generateUniqueId();
-
-        if (self::checkIfIdMatchesWithExistingMessage($id)) {
-            return null;
-        }
-
-        $newFlashMessage = [
-            'title' => $title,
-            'description' => $description,
-            'type' => $type,
-            'context' => $context,
-            'position' => $position,
-            '_id' => $id
-        ];
-
-        $_SESSION[self::$sessionName][] = $newFlashMessage;
-        return $newFlashMessage;
-    }
+    
 
 
     /**
