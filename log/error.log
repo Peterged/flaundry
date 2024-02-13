@@ -1,0 +1,382 @@
+[13-Feb-2024 04:23:27 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:29 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:29 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:29 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:30 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:30 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:30 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:37 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:37 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:37 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:50 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:50 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:50 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:51 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:51 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:52 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:54 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:56 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:56 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:58 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:59 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:59 UTC] Rp 50.000,00
+[13-Feb-2024 04:23:59 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:00 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:02 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:02 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:02 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:04 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:04 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:04 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:18 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:18 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:24:27 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:27 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:24:33 UTC] Rp 50.000,00
+[13-Feb-2024 04:24:33 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:24:44 UTC] Rp 50.000
+[13-Feb-2024 04:24:44 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:24:47 UTC] Rp 50.000,00000
+[13-Feb-2024 04:24:47 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:24:53 UTC] Rp 50.000,00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[13-Feb-2024 04:24:53 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:24:57 UTC] Rp 50.000,000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[13-Feb-2024 04:24:57 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:24:59 UTC] Rp 50.000,000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[13-Feb-2024 04:24:59 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:01 UTC] Rp 50.000,000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[13-Feb-2024 04:25:01 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:03 UTC] Rp 50.000,00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[13-Feb-2024 04:25:03 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:04 UTC] Rp 50.000,00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[13-Feb-2024 04:25:04 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:04 UTC] Rp 50.000,00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[13-Feb-2024 04:25:04 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:08 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:08 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:10 UTC] Rp 50.000,0
+[13-Feb-2024 04:25:10 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:16 UTC] Rp 50.000
+[13-Feb-2024 04:25:16 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:20 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:20 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:21 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:21 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:27 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:27 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:27 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:27 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:30 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:30 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:30 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:30 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:31 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:31 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:31 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:31 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:34 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:34 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:34 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:34 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:25:40 UTC] Rp 50.000,00
+[13-Feb-2024 04:25:40 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:20 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:20 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:20 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:20 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:24 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:24 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:24 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:24 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:26 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:26 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:26 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:26 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:27 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:27 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:28 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:28 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:32 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:32 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:32 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:32 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:32 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:32 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:39 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:39 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:39 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:39 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:40 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:40 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:40 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:40 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:46 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:46 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:47 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:47 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[13-Feb-2024 04:26:47 UTC] Rp 50.000,00
+[13-Feb-2024 04:26:47 UTC] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\laragon\www\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\laragon\\www\\...', 203)
+#1 C:\laragon\www\flaundry\app\libraries\autoload.php(29): include_once('C:\\laragon\\www\\...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203

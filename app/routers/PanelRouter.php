@@ -15,7 +15,7 @@ function dashboard($req, $res) {
     $data = [
         'sales' => 500
     ];
-    
+
     $res->render('/panel/components/dashboard');
 }
 
@@ -23,7 +23,7 @@ function handleDashboardPostRequest($req, $res) {
     $data = [
         'sales' => 500
     ];
-    
+
     $res->redirect('/panel/dashboard');
 }
 
@@ -31,7 +31,7 @@ function outlet($req, $res) {
     $data = [
         'sales' => 500
     ];
-    
+
     $res->render('/panel/components/outlet');
 }
 
@@ -63,8 +63,9 @@ $panelRouter
     // Route for the outlet
     ->get('/outlet', function($req, $res) {
         fm::addMessage([
+            'type' => 'warning',
             'context' => 'outlet_testing',
-            'title' => 'Hello World!',
+            'title' => 'KRESHNA KRESHNA KRESHNA KRESHNA KRESHNA KRESHNA',
             'description' => 'This is a success message'
         ]);
         outlet($req, $res);

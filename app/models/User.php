@@ -119,7 +119,7 @@ class User extends Model
             ]);
 
             $user = $stmt->fetch(\PDO::FETCH_ASSOC);
-            
+
 
             if (!$user) {
                 FlashMessage::addMessage([
@@ -140,7 +140,7 @@ class User extends Model
                     'title' => 'Validation Error!',
                     'description' => 'Username / Password salah!'
                 ]);
-                
+
                 throw new AuthException('Username / Password salah!');
             }
 
@@ -154,7 +154,7 @@ class User extends Model
                 'title' => 'Congratulations!',
                 'description' => 'Login berhasil!'
             ]);
-          
+
             $_SESSION['username'] = $result->getData()['username'];
             $_SESSION['role'] = $result->getData()['role'];
         } catch (\Exception $e) {
