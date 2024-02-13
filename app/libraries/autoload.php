@@ -1,4 +1,6 @@
 <?php
+ini_set('log_errors', '1');
+ini_set('error_log', 'log/error.log');
 
 
 spl_autoload_register(function ($className) {
@@ -26,3 +28,8 @@ set_exception_handler(function ($exception) {
     extract(array('error' => $exception));
     include_once "app/views/errors/errorException.php";
 });
+
+set_include_path('app/views/errors/');
+// Set the include path to its default value
+ini_set('include_path', get_include_path());
+ini_set('display_errors', 0);
