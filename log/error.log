@@ -380,3 +380,129 @@ Stack trace:
 #2 [internal function]: {closure}(Object(ErrorException))
 #3 {main}
   thrown in C:\laragon\www\flaundry\app\views\errors\errorException.php on line 203
+[17-Feb-2024 09:41:05 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[17-Feb-2024 09:41:05 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[17-Feb-2024 09:41:05 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(ErrorException))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:49:11 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:50:00 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:50:00 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:50:01 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:50:05 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:50:06 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:50:11 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:50:11 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:51:57 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:52:33 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:53:30 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:53:39 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:203
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(203): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 203)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 203
+[18-Feb-2024 11:54:17 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:204
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(204): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 204)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 204
+[18-Feb-2024 11:54:18 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:204
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(204): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 204)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 204
+[18-Feb-2024 11:54:36 Europe/Berlin] PHP Fatal error:  Uncaught ErrorException: Undefined array key "line" in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php:209
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\errors\errorException.php(209): {closure}(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 209)
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(29): include_once('C:\\xampp\\htdocs...')
+#2 [internal function]: {closure}(Object(TypeError))
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 209

@@ -2,6 +2,7 @@
 
 namespace App\models;
 
+use App\Exceptions\ValidationException;
 use App\Libraries\Model;
 use Respect\Validation\Validator as v;
 use App\Attributes\Table;
@@ -9,6 +10,7 @@ use App\Exceptions\AuthException;
 use App\Exceptions\ModelException;
 use App\libaries\Essentials\Session;
 use App\Services\FlashMessage;
+use App\Utils\MyLodash as _;
 
 class User extends Model
 {
@@ -32,12 +34,16 @@ class User extends Model
         // then throw an exception
         $this->checkIfRequiredPropertiesExistsOnClass();
 
-        foreach($valuesArray as $key => $value) {
-            $this->{$key} = $value;
-        }
-
+        if ($valuesArray != null)
+            foreach ($valuesArray as $key => $value) {
+                $this->{$key} = $value;
+            }
     }
 
+    public static function isLoggedIn(): bool
+    {
+        return isset($_SESSION['username']);
+    }
 
     public static function logout()
     {
@@ -53,7 +59,6 @@ class User extends Model
         $this->role = v::in(['admin', 'kasir', 'owner'])->validate($this->role) ? $this->role : null;
 
         $result = new SaveResult();
-
 
         $con = $this->dbConnection;
 
@@ -76,7 +81,7 @@ class User extends Model
             echo $con->inTransaction() ? 'true' : 'false';
 
 
-            if($this->username == 'kreshna') {
+            if ($this->username == 'kreshna') {
                 throw new \Exception('Nama tidak boleh kreshna');
             }
 
@@ -102,7 +107,8 @@ class User extends Model
 
         return $result;
     }
-    public function login(): object {
+    public function login(): object
+    {
 
         $con = $this->dbConnection;
         $result = new SaveResult();
@@ -170,16 +176,31 @@ class User extends Model
         return $result;
     }
 
-    public function register(): object {
+    public function register(): object
+    {
         $result = new SaveResult();
 
         try {
+            // This will create a whole new process of getting the user
+
+            if (empty($existingUser) && $existingUser != null) {
+                FlashMessage::addMessage([
+                    'type' => 'warning',
+                    'context' => 'register',
+                    'title' => 'Validation Error!',
+                    'description' => 'Username sudah ada!'
+                ]);
+
+                throw new AuthException('User sudah ada!');
+            }
+
+
             $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
 
             $this->dbConnection->beginTransaction();
 
             $columnsToBeInsertedTo = implode(", ", $this->getRequiredProperties());
-            $columnsPrepareValues = implode(", ", array_map(function($prop) {
+            $columnsPrepareValues = implode(", ", array_map(function ($prop) {
                 return ":$prop";
             }, $this->getRequiredProperties()));
 
@@ -187,15 +208,162 @@ class User extends Model
 
             $stmt->execute($this->valuesArray);
 
+            // 
+
+            if (!$user) {
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'context' => 'login',
+                    'title' => 'Validation Error!',
+                    'description' => 'User tidak ditemukan!'
+                ]);
+
+                throw new AuthException('User not found!');
+            }
+
             $this->dbConnection->commit();
             $result->setSuccess(true);
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->dbConnection->rollBack();
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
+        } finally {
+            $this->dbConnection->exec("UNLOCK TABLES");
         }
-        finally {
+
+        return $result;
+    }
+
+    private function checkIfTableIsLocked(): bool
+    {
+        if ($this->dbConnection->inTransaction()) {
+            return true;
+        }
+        $stmt = $this->dbConnection->prepare("SHOW OPEN TABLES WHERE In_use > 0");
+        $stmt->execute();
+
+        $tables = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        foreach ($tables as $table) {
+            if ($table['Table'] == $this->tableName) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Get a user from the database
+     * @param array $searchCriteria search criteria to be used in the query
+     * @param array | null $valueArray
+     * @param bool $noBeginTransaction
+     * 
+     * 
+     * ```php
+     * // Example usage
+     * ->get([
+     *      'where' => ['nama' => 'kreshna'], 
+     *      'columns' => 'nama,username'
+     * );
+     * ```
+     */
+    public function get(array $searchCriteria, array | null $valuesArray = null, bool $noBeginTransaction = false)
+    {
+        if (!$this->validateGetSearchCriteriaArray($searchCriteria)) {
+            throw new ValidationException('Search criteria is not valid!');
+        }
+
+        
+
+        $result = new SaveResult();
+
+        // get(['nama' => 'kreshna'], ['nama', 'username', 'password']);
+        // get(['nama' => 'kreshna'], 'nama, username, password');
+        // get(['nama' => 'kreshna'], 'nama|username|password');
+        // get(['where' => ['nama' => 'kreshna'], 'columns' => 'nama|username');
+        
+        try {
+            $this->dbConnection->setAttribute(\PDO::ATTR_AUTOCOMMIT, 1);
+            if ($this->dbConnection->inTransaction()) {
+            }
+            $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
+            // $this->dbConnection->beginTransaction();
+
+            if (!$this->checkIfTableIsLocked()) {
+            }
+            
+            
+            
+            
+            
+            $query = $this->convertGetSearchCriteriaIntoQuery($searchCriteria);
+            
+            $stmt = $this->dbConnection->prepare($query);
+            
+            $stmt->execute([
+                'nama' => 'admins'
+            ]);
+            
+            $user = $stmt->fetch();
+            print_r($user); 
+            // $this->dbConnection->commit();
+            
+            $result->setSuccess(true);
+            $result->setData($user);
+        } catch (\Exception $e) {
+            
+            // $this->dbConnection->rollBack();
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            $result->setStatus('rollbacked');
+            trigger_error($e);
+            
+        } finally {
+            $this->dbConnection->exec("UNLOCK TABLES");
+        }
+        
+
+        return $result;
+    }
+
+    public function update(): object
+    {
+        $result = new SaveResult();
+
+        try {
+
+
+            $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
+
+            $this->dbConnection->beginTransaction();
+
+            $columnsToBeInsertedTo = implode(", ", $this->getRequiredProperties());
+            $columnsPrepareValues = implode(", ", array_map(function ($prop) {
+                return ":$prop";
+            }, $this->getRequiredProperties()));
+
+            $stmt = $this->dbConnection->prepare("INSERT INTO {$this->tableName} ($columnsToBeInsertedTo) VALUES ($columnsPrepareValues)");
+
+            $stmt->execute($this->valuesArray);
+
+            if (!$user) {
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'context' => 'login',
+                    'title' => 'Validation Error!',
+                    'description' => 'User tidak ditemukan!'
+                ]);
+
+                throw new AuthException('User not found!');
+            }
+
+            $this->dbConnection->commit();
+            $result->setSuccess(true);
+        } catch (\Exception $e) {
+            $this->dbConnection->rollBack();
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            $result->setStatus('rollbacked');
+        } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
         }
 

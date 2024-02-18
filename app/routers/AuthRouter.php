@@ -15,8 +15,17 @@ function authenticateUser($req, $res) {
     }
 }
 
-$authRouter->get('/login', function ($req, $res){
+$authRouter->get('/login', function ($req, $res) use ($con) {
     authenticateUser($req, $res);
+    $user = new User($con);
+
+    $result = $user->get([
+        'where' => [
+            'nama' => 'admin'
+        ],
+    ], ['nama' => 'admin']);
+
+    $isSuccess = $result->getSuccess();
     $res->render('/auth/login');
 });
 

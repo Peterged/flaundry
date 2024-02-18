@@ -13,14 +13,6 @@ foreach (glob("script/*.php") as $filename) {
     include $filename;
 }
 
-$IDR = new NumberFormatter("id_ID", NumberFormatter::CURRENCY);
-$IDR->setTextAttribute(NumberFormatter::CURRENCY_CODE, "IDR");
-$IDR->setAttribute(NumberFormatter::FRACTION_DIGITS, 2);
-$IDR->setAttribute(NumberFormatter::ROUNDING_MODE, NumberFormatter::ROUND_HALFUP);
-
-
-trigger_error($IDR->format("500001.49") ?? 'OMG');
-
 include_once 'app/services/ErrorHandlerService.php';
 
 $app = new App\Libraries\PHPExpress();
@@ -45,3 +37,6 @@ $app->get('/eka', function($req, $res) {
 });
 $app->listen();
 
+$numf = new NumberFormatter("en", NumberFormatter::CURRENCY);
+$formattedNumber = $numf->formatCurrency(123000.8, 'IDR');
+echo preg_replace('/IDR/', 'Rp', $formattedNumber);
