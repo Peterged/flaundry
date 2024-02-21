@@ -19,13 +19,13 @@ $authRouter->get('/login', function ($req, $res) use ($con) {
     authenticateUser($req, $res);
     $user = new User($con);
 
-    $result = $user->get([
-        'where' => [
-            'nama' => 'admin'
-        ],
-    ], ['nama' => 'admin']);
+    // $result = $user->get([
+    //     'where' => [
+    //         'nama' => 'admin'
+    //     ],
+    // ], ['nama' => 'admin']);
 
-    $isSuccess = $result->getSuccess();
+    // $isSuccess = $result->getSuccess();
     $res->render('/auth/login');
 });
 
@@ -39,7 +39,7 @@ $authRouter->post('/login', function ($req, $res) use ($con) {
     authenticateUser($req, $res);
     $data = $req->getBody();
     unset($data['submit']);
-    
+
     $user = new User($con, $data);
     $result = $user->login();
     $isSuccess = $result->getSuccess();

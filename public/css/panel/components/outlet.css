@@ -21,3 +21,27 @@
     background-color: #fff;
 }
 
+.content-box .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content-box .title .title-text {
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.content-box .title .title-date .title-date-text {
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.content-box .divider {
+    width: 100%;
+    height: 1.5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+

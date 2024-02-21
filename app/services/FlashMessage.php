@@ -211,7 +211,7 @@ final class FlashMessage implements FlashMessageInterface
         echo "<div class='flash-message-alert alert-{$message['type']}'>{$message['message']}</div>";
     }
 
-    
+
 
 
     /**
@@ -386,7 +386,7 @@ final class FlashMessage implements FlashMessageInterface
         if (array_diff_key($options, array_flip($allowedKeys))) {
             throw new \InvalidArgumentException('Invalid key in options!');
         }
-
+        
         return v::key('title', v::stringType()->length(0, self::$maxMessagelength), false)
             ->key('description', v::stringType()->length(0, self::$maxMessagelength))
             ->key('type', v::in(self::$flashMessageTypes), false)

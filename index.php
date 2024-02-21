@@ -37,6 +37,6 @@ $app->get('/eka', function($req, $res) {
 });
 $app->listen();
 
-$numf = new NumberFormatter("en", NumberFormatter::CURRENCY);
-$formattedNumber = $numf->formatCurrency(123000.8, 'IDR');
-echo preg_replace('/IDR/', 'Rp', $formattedNumber);
+// $numf = new NumberFormatter("en", NumberFormatter::CURRENCY);
+// $formattedNumber = $numf->formatCurrency(123000.8, 'IDR');
+// echo preg_replace('/IDR/', 'Rp', $formattedNumber);

@@ -2,7 +2,6 @@
 
 namespace App\models;
 
-use App\Exceptions\ValidationException;
 use App\Libraries\Model;
 use Respect\Validation\Validator as v;
 use App\Attributes\Table;
@@ -112,9 +111,9 @@ class User extends Model
 
         $con = $this->dbConnection;
         $result = new SaveResult();
-        $con->beginTransaction();
         try {
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
+            $con->beginTransaction();
 
             $stmt = $con->prepare("
             SELECT * FROM {$this->tableName} WHERE username = :username
@@ -208,7 +207,7 @@ class User extends Model
 
             $stmt->execute($this->valuesArray);
 
-            // 
+            //
 
             if (!$user) {
                 FlashMessage::addMessage([
@@ -253,78 +252,7 @@ class User extends Model
         return false;
     }
 
-    /**
-     * Get a user from the database
-     * @param array $searchCriteria search criteria to be used in the query
-     * @param array | null $valueArray
-     * @param bool $noBeginTransaction
-     * 
-     * 
-     * ```php
-     * // Example usage
-     * ->get([
-     *      'where' => ['nama' => 'kreshna'], 
-     *      'columns' => 'nama,username'
-     * );
-     * ```
-     */
-    public function get(array $searchCriteria, array | null $valuesArray = null, bool $noBeginTransaction = false)
-    {
-        if (!$this->validateGetSearchCriteriaArray($searchCriteria)) {
-            throw new ValidationException('Search criteria is not valid!');
-        }
 
-        
-
-        $result = new SaveResult();
-
-        // get(['nama' => 'kreshna'], ['nama', 'username', 'password']);
-        // get(['nama' => 'kreshna'], 'nama, username, password');
-        // get(['nama' => 'kreshna'], 'nama|username|password');
-        // get(['where' => ['nama' => 'kreshna'], 'columns' => 'nama|username');
-        
-        try {
-            $this->dbConnection->setAttribute(\PDO::ATTR_AUTOCOMMIT, 1);
-            if ($this->dbConnection->inTransaction()) {
-            }
-            $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
-            // $this->dbConnection->beginTransaction();
-
-            if (!$this->checkIfTableIsLocked()) {
-            }
-            
-            
-            
-            
-            
-            $query = $this->convertGetSearchCriteriaIntoQuery($searchCriteria);
-            
-            $stmt = $this->dbConnection->prepare($query);
-            
-            $stmt->execute([
-                'nama' => 'admins'
-            ]);
-            
-            $user = $stmt->fetch();
-            print_r($user); 
-            // $this->dbConnection->commit();
-            
-            $result->setSuccess(true);
-            $result->setData($user);
-        } catch (\Exception $e) {
-            
-            // $this->dbConnection->rollBack();
-            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
-            $result->setStatus('rollbacked');
-            trigger_error($e);
-            
-        } finally {
-            $this->dbConnection->exec("UNLOCK TABLES");
-        }
-        
-
-        return $result;
-    }
 
     public function update(): object
     {

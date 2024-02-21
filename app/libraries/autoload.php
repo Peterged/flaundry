@@ -14,7 +14,6 @@ set_error_handler(function ($severity, $message, $file, $line) {
     throw new ErrorException($message, 0, $severity, $file, $line);
 });
 
-
 set_exception_handler(function ($exception) {
     $excludedExceptionClasses = [
         'App\Exceptions\AuthException'

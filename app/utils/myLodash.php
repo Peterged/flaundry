@@ -1,7 +1,8 @@
-<?php 
-    
+<?php
+
 namespace App\Utils;
 use App\Exceptions\MyLodashException;
+
 class MyLodash
 {
 

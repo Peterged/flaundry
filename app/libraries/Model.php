@@ -23,7 +23,7 @@ abstract class Model implements ModelInterface
         if ($class != null) {
             $reflector = new \ReflectionMethod($class, '__construct');
             $attributes = $reflector->getAttributes(Table::class);
-
+            
             if ($tableName = $attributes[0]->newInstance()->tableName) {
                 $this->tableName = $tableName;
             }
@@ -48,6 +48,62 @@ abstract class Model implements ModelInterface
         }
     }
 
+    /**
+     * Get a user from the database
+     * @param array $searchCriteria search criteria to be used in the query
+     * @param array | null $valueArray
+     * @param bool $noBeginTransaction
+     *
+     *
+     * ```php
+     * // Example usage
+     * ->get([
+     *      'where' => ['nama' => 'kreshna'],
+     *      'columns' => 'nama,username'
+     * );
+     * ```
+     */
+    public function get(array $searchCriteria, array | null $valuesArray = null, bool $noBeginTransaction = false)
+    {
+        if (!$this->validateGetSearchCriteriaArray($searchCriteria)) {
+            throw new \App\Exceptions\ValidationException('Search criteria is not valid!');
+        }
+
+        $result = new SaveResult();
+
+        try {
+            $this->dbConnection->setAttribute(\PDO::ATTR_AUTOCOMMIT, 1);
+            if ($this->dbConnection->inTransaction()) {
+            }
+            $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
+            // $this->dbConnection->beginTransaction();
+
+            $query = $this->convertGetSearchCriteriaIntoQuery($searchCriteria);
+
+            $stmt = $this->dbConnection->prepare($query);
+
+            $stmt->execute();
+
+            $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+            print_r($user);
+
+            $result->setSuccess(true);
+            $result->setData($user);
+        } catch (\Exception $e) {
+
+            // $this->dbConnection->rollBack();
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            $result->setStatus('rollbacked');
+            trigger_error($e);
+
+        } finally {
+            $this->dbConnection->exec("UNLOCK TABLES");
+        }
+
+
+        return $result;
+    }
+
     protected function validateGetSearchCriteriaArray(array &$searchCriteria): bool
     {
         $isAllContentsOfSearchCriteriaArrayAreStringOrArray = _::every($searchCriteria, function ($value) {
@@ -55,12 +111,8 @@ abstract class Model implements ModelInterface
         });
 
         $columns = $this->getTableColumns();
-        $columns = _::map($columns, function ($column) {
-            return $column;
-        });
 
         $columnsArray = implode("|", $columns);
-
 
 
         $validKeys = [
@@ -138,6 +190,11 @@ abstract class Model implements ModelInterface
         if ($searchCriteria == null) {
             return '';
         }
+        $where = $searchCriteria['where'];
+        if(_::includes($where, '__ALWAYS')) {
+            // $whereStringQuery =
+        }
+
         $query = "SELECT ";
         $query .= $searchCriteria['select'];
         $query .= " FROM $this->tableName WHERE ";
@@ -155,7 +212,7 @@ abstract class Model implements ModelInterface
      * @param string $query
      * @param array $params
      * @throws \Exception
-     * 
+     *
      * @description query() is a method to execute a query
      */
     public function query(string $prepareQuery, array $params = null)

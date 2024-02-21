@@ -6,15 +6,17 @@ use App\Libraries\PHPExpress;
 use App\models\User;
 use App\utils\PrintArray;
 use App\Services\FlashMessage as fm;
-
+use App\models\Outlet;
 
 $panelRouter = new PHPExpress();
 global $con, $panelRouter;
 
-function dashboard($req, $res) {
-    $data = [
-        'sales' => 500
-    ];
+function dashboard($req, $res, $connection) {
+    $outlet = new Outlet($connection);
+
+    // $data = $outlet->get([
+    //     'where' => ['ALWAYS' => true]
+    // ]);
 
     $res->render('/panel/components/dashboard');
 }
@@ -37,7 +39,7 @@ function outlet($req, $res) {
 
 function settings($req, $res) {
     $data = [
-        
+
     ];
 
     $res->render('/panel/components/settings');
@@ -47,12 +49,12 @@ function settings($req, $res) {
 $panelRouter
     // Route for the homepage
     ->get('/', function ($req, $res) use ($con, $panelRouter) {
-        dashboard($req, $res);
+        dashboard($req, $res, $con);
     })
 
     // Route for the dashboard (GET request)
-    ->get('/dashboard', function($req, $res) {
-        dashboard($req, $res);
+    ->get('/dashboard', function($req, $res) use ($con) {
+        dashboard($req, $res, $con);
     })
 
     // Route for the dashboard (POST request)

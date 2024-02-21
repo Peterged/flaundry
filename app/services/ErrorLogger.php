@@ -10,7 +10,7 @@ class FLogger {
             throw new \InvalidArgumentException(sprintf('Invalid log type: %s', $logType));
         }
 
-        $message = printf();
+        // $message = printf();
         error_log($message);
     }
 
