@@ -12,12 +12,6 @@ $panelRouter = new PHPExpress();
 global $con, $panelRouter;
 
 function dashboard($req, $res, $connection) {
-    $outlet = new Outlet($connection);
-
-    // $data = $outlet->get([
-    //     'where' => ['ALWAYS' => true]
-    // ]);
-
     $res->render('/panel/components/dashboard');
 }
 
@@ -29,22 +23,23 @@ function handleDashboardPostRequest($req, $res) {
     $res->redirect('/panel/dashboard');
 }
 
-function outlet($req, $res) {
+function outlet($req, $res, $connection) {
+    $outlet = new Outlet($connection);
+    $data = $outlet->query('SELECT * FROM tb_outlet');
+
+
     $data = [
-        'sales' => 500
+        'outlets' => $data->getData(),
     ];
 
-    $res->render('/panel/components/outlet');
+    $res->render('/panel/components/outlet', $data);
 }
 
-function settings($req, $res) {
-    $data = [
+function outletEdit($req, $res, $connection) {
 
-    ];
 
-    $res->render('/panel/components/settings');
+    $res->render('/panel/components/edit/edit_outlet');
 }
-
 
 $panelRouter
     // Route for the homepage
@@ -63,17 +58,18 @@ $panelRouter
     })
 
     // Route for the outlet
-    ->get('/outlet', function($req, $res) {
+    ->get('/outlet', function($req, $res) use ($con){
         fm::addMessage([
             'type' => 'warning',
             'context' => 'outlet_testing',
             'title' => 'KRESHNA KRESHNA KRESHNA KRESHNA KRESHNA KRESHNA',
             'description' => 'This is a success message'
         ]);
-        outlet($req, $res);
+        outlet($req, $res, $con);
     })
 
-    // Route for the settings
-    ->get('/settings', function($req, $res) {
-        settings($req, $res);
+    // Route for handling post outlet edit request
+    ->get('/outlet/edit/{id}', function($req, $res) use ($con) {
+        print_r($req->getParams());
+        outletEdit($req, $res, $con);
     });

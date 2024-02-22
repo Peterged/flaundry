@@ -23,7 +23,7 @@ abstract class Model implements ModelInterface
         if ($class != null) {
             $reflector = new \ReflectionMethod($class, '__construct');
             $attributes = $reflector->getAttributes(Table::class);
-            
+
             if ($tableName = $attributes[0]->newInstance()->tableName) {
                 $this->tableName = $tableName;
             }
@@ -34,15 +34,17 @@ abstract class Model implements ModelInterface
 
     protected function tryCatchWrapper(\Closure $callback, SaveResult &$result = null)
     {
+        $result = new SaveResult();
         try {
-            $this->dbConnection->beginTransaction();
-            $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
-            $result = $callback();
-            $this->dbConnection->commit();
+            if(isset($this->tableName)) {
+                $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
+            }
+
+            $result = $callback() ?? $result;
         } catch (\Exception $e) {
-            $this->dbConnection->rollBack();
-            $result->message = $e->getMessage() . " | Line: " . $e->getLine();
-            trigger_error($result->message);
+            print_r($result);
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            trigger_error($result->getMessage());
         } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
         }
@@ -217,11 +219,13 @@ abstract class Model implements ModelInterface
      */
     public function query(string $prepareQuery, array $params = null)
     {
-        $this->tryCatchWrapper(function () use ($prepareQuery, $params) {
+        $result = new SaveResult();
+        $this->tryCatchWrapper(function () use ($prepareQuery, $params, &$result) {
             $statement = $this->dbConnection->prepare($prepareQuery);
-            $this->checkIfRequiredPropertiesExistsOnClass();
-            $statement->execute($params);
+            $statement->execute($params ?? []);
+            $result->setData($statement->fetchAll(\PDO::FETCH_ASSOC));
         });
+        return $result;
     }
 
     public function updateOne(array $searchCriteria, array $newData)

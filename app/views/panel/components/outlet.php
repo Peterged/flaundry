@@ -25,7 +25,10 @@ use App\Services\FlashMessage as fm;
 <div class="container">
     <div class="content-box">
         <div class="title">
-            <h1 class="title-text">Outlet</h1>
+            <div class="title-text-box">
+                <h1 class="title-text">Daftar Outlet</h1>
+                <h1 class="title-text-description">Total <?= count($data['outlets']) ?> outlet</h1>
+            </div>
             <div class="title-date">
                 <p class="title-date-text">Selasa, 30 Januari 2024 · 11:12 PM</p>
             </div>
@@ -42,17 +45,23 @@ use App\Services\FlashMessage as fm;
                     <th class="width-medium">Actions</th>
                 </tr>
 
+                <?php
+                    foreach($data['outlets'] as $outlet) {
+                        echo "
+                        <tr>
+                            <td>{$outlet['id']}</td>
+                            <td>{$outlet['nama']}</td>
+                            <td>{$outlet['alamat']}</td>
+                            <td>{$outlet['tlp']}</td>
+                            <td>
+                                <a href=''>EDIT</a>
+                                <a href=''>DELETE</a>
+                            </td>
+                        </tr>
+                        ";
+                    }
+                ?>
 
-                <tr>
-                    <td >1</td>
-                    <td>Testing</td>
-                    <td>Wtf</td>
-                    <td>Jalan batu alam</td>
-                    <td>
-                        <a href="">EDIT</a>
-                        <a href="">DELETE</a>
-                    </td>
-                </tr>
                 <!-- <tr>
                     <td align="center">1</td>
                     <td>Testing</td>

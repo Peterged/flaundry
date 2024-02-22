@@ -164,7 +164,7 @@ class PHPExpress
         } elseif ($command == 'views') {
             $this->views['directory'] = $option;
         }
-        
+
     }
 
     private function resetHeader()
@@ -179,11 +179,14 @@ class PHPExpress
         $isHandled = false;
         foreach ($this->routeQueue as &$routeItem) {
             // echo $routeItem['route'] . " | " . $route, "<br>";
+            // echo $routeItem['route'] . " | " . $route, "<br>";
 
             if ($routeItem['route'] === '*') {
                 continue;
             }
-            // echo "<code>" .  $routeItem['route'] . ' | ' . $route . "</code><br>";
+            echo "<code>" .  $routeItem['route'] . ' | ' . $route . "</code><br>";
+
+
             if ($routeItem['route'] == $route && $routeItem['method'] == $headerType) {
                 $isHandled = true;
             }
@@ -244,7 +247,6 @@ class PHPExpress
         if ($currentRequestMethod == $requestMethod && $isMatch) {
             session_start(); // global session_start()
             \App\Services\FlashMessage::initiate();
-            
 
             if ($requestMethod == 'POST') {
                 $request->setBody($_POST);
@@ -263,11 +265,9 @@ class PHPExpress
             }
             catch(\Exception $e) {
                 $message = $e->getMessage();
-                // $e->getTraceAsString();
                 extract(array('error' => $e));
                 include_once "app/views/errors/errorException.php";
             }
-
         }
         // elseif (!$this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestM     ethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
         //     echo $this->isRouteHandled($requestMethod, $filteredRoute) ? 'true' : 'false' . "<br>";
@@ -360,6 +360,7 @@ class PHPExpress
         $error = new \stdClass();
         $requestUri = $this->filterRoute($req->getRequestUri());
         $route = $this->filterRoute($requestUri . '/');
+
 
         $isHandled = $this->isRouteHandled($_SERVER['REQUEST_METHOD'], $route);
 
