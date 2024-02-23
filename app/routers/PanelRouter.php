@@ -12,11 +12,13 @@ use App\libraries\Model;
 $panelRouter = new PHPExpress();
 global $con, $panelRouter;
 
-function dashboard($req, $res, $connection) {
+function dashboard($req, $res, $connection)
+{
     $res->render('/panel/components/dashboard');
 }
 
-function handleDashboardPostRequest($req, $res) {
+function handleDashboardPostRequest($req, $res)
+{
     $data = [
         'sales' => 500
     ];
@@ -24,21 +26,30 @@ function handleDashboardPostRequest($req, $res) {
     $res->redirect('/panel/dashboard');
 }
 
-function outlet($req, $res, $connection) {
+function outlet($req, $res, $connection)
+{
+    // $outlet = (new Model($connection))->query("SELECT * FROM tb_outlet");
     $outlet = new Outlet($connection);
-    $data = $outlet->query('SELECT * FROM tb_outlet');
-
+    $outletData = $outlet->get([], "");
 
     $data = [
-        'outlets' => $data->getData(),
+        'outlets' => $outletData->getData(),
     ];
 
     $res->render('/panel/components/outlet', $data);
+    // $res->render('/panel/components/outlet', $data);
 }
 
-function outletEdit($req, $res, $connection) {
-
-
+function outletEdit($req, $res, $connection)
+{
+    $outlet = new Outlet($connection);
+    // $outletData = $outlet->get([], "WHERE id = :id", ['id' => $req->getParams()['id']]);
+    // $outletData = $outlet->get([
+    //     'where' => [
+    //         'id' => $req->getParams()
+    //     ]
+    // ]);
+    print_r($req->getParams());
     $res->render('/panel/components/edit/edit_outlet');
 }
 
@@ -49,17 +60,17 @@ $panelRouter
     })
 
     // Route for the dashboard (GET request)
-    ->get('/dashboard', function($req, $res) use ($con) {
+    ->get('/dashboard', function ($req, $res) use ($con) {
         dashboard($req, $res, $con);
     })
 
     // Route for the dashboard (POST request)
-    ->post('/dashboard', function($req, $res) {
+    ->post('/dashboard', function ($req, $res) {
         handleDashboardPostRequest($req, $res);
     })
 
     // Route for the outlet
-    ->get('/outlet', function($req, $res) use ($con){
+    ->get('/outlet', function ($req, $res) use ($con) {
         fm::addMessage([
             'type' => 'warning',
             'context' => 'outlet_testing',
@@ -71,6 +82,6 @@ $panelRouter
 
     // Route for handling post outlet edit request
     ->get('/outlet/edit/{id}', function($req, $res) use ($con) {
-        print_r($req->getParams());
+        
         outletEdit($req, $res, $con);
     });

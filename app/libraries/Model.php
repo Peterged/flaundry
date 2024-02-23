@@ -9,7 +9,7 @@ use App\Interfaces\ModelInterface;
 use App\Utils\MyLodash as _;
 
 #[\Attribute]
-final class Model implements ModelInterface
+class Model implements ModelInterface
 {
     protected string $tableName;
     protected \PDO $dbConnection;
@@ -37,16 +37,13 @@ final class Model implements ModelInterface
     {
         $result = new SaveResult();
         try {
-            if(isset($this->tableName)) {
-                $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
-            }
 
-            $result = $callback() ?? $result;
             if(isset($this->tableName)){
                 $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
             }
-                
-            $result = $callback();
+            
+            $result = $callback() ?? $result;
+            
             
         } catch (\Exception $e) {
             $result->message = $e->getMessage() . " | Line: " . $e->getLine();
@@ -263,14 +260,12 @@ final class Model implements ModelInterface
     public function query(string $prepareQuery, array $params = null)
     {
         $result = new SaveResult();
-        $data = [];
-        $this->tryCatchWrapper(function () use ($prepareQuery, $params, &$result, &$data) {
+        $this->tryCatchWrapper(function () use ($prepareQuery, $params, &$result) {
             $statement = $this->dbConnection->prepare($prepareQuery);
             $statement->execute($params ?? []);
-            $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
+            $result->setData($statement->fetchAll(\PDO::FETCH_ASSOC));
         });
         return $result;
-        return $data;
     }
 
     public function updateOne(array $searchCriteria, array $newData)

@@ -545,3 +545,22 @@ Stack trace:
 [21-Feb-2024 12:19:16 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 166
 [21-Feb-2024 12:19:18 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 166
 [21-Feb-2024 12:28:19 Europe/Berlin] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 262144 bytes) in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 191
+[23-Feb-2024 08:27:26 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:27:29 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:27:34 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:27:38 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:27:58 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:27:59 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:28:43 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:28:43 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:29:12 Europe/Berlin] PHP Fatal error:  Cannot use variable $result twice in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 266
+[23-Feb-2024 08:29:14 Europe/Berlin] PHP Fatal error:  Cannot use variable $result twice in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 266
+[23-Feb-2024 08:29:22 Europe/Berlin] PHP Fatal error:  Cannot use variable $result twice in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 266
+[23-Feb-2024 08:29:22 Europe/Berlin] PHP Fatal error:  Cannot use variable $result twice in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 266
+[23-Feb-2024 08:29:25 Europe/Berlin] PHP Fatal error:  Cannot use variable $result twice in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 266
+[23-Feb-2024 08:29:57 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:29:59 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:30:17 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:30:19 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:30:32 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[23-Feb-2024 08:32:40 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9

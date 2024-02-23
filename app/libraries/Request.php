@@ -5,11 +5,11 @@ use Respect\Validation\Validator as v;
 
     final class Request {
         public $route;
-        protected $params;
+        protected object $params;
 
         public $body;
         public function __construct() {
-            $this->params = [];
+            $this->params = (object) [];
         }
 
         public function setRoute(string $route) {
@@ -69,11 +69,17 @@ use Respect\Validation\Validator as v;
         }
 
         public function getParam(string $key) {
-            return $this->params[$key] ?? null;
+            return $this->params->{$key} ?? null;
         }
 
         public function getParams() {
             return $this->params;
         }
+
+        public function setParams(object $params) {
+            $this->params = $params;
+        }
+
+        
 
     }
