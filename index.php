@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Response;
+
 include 'vendor/autoload.php';
 include 'app/libraries/autoload.php';
 // include 'app/config/database.php';

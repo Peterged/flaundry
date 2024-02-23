@@ -9,7 +9,7 @@ use App\Interfaces\ModelInterface;
 use App\Utils\MyLodash as _;
 
 #[\Attribute]
-abstract class Model implements ModelInterface
+final class Model implements ModelInterface
 {
     protected string $tableName;
     protected \PDO $dbConnection;
@@ -23,10 +23,11 @@ abstract class Model implements ModelInterface
         if ($class != null) {
             $reflector = new \ReflectionMethod($class, '__construct');
             $attributes = $reflector->getAttributes(Table::class);
-            
+
             if ($tableName = $attributes[0]->newInstance()->tableName) {
                 $this->tableName = $tableName;
             }
+            
         }
         $this->dbConnection = $PDO;
         $this->setValuesArray($valuesArray ?? []);
@@ -35,12 +36,13 @@ abstract class Model implements ModelInterface
     protected function tryCatchWrapper(\Closure $callback, SaveResult &$result = null)
     {
         try {
-            $this->dbConnection->beginTransaction();
-            $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
+            if(isset($this->tableName)){
+                $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
+            }
+                
             $result = $callback();
-            $this->dbConnection->commit();
+            
         } catch (\Exception $e) {
-            $this->dbConnection->rollBack();
             $result->message = $e->getMessage() . " | Line: " . $e->getLine();
             trigger_error($result->message);
         } finally {
@@ -63,41 +65,33 @@ abstract class Model implements ModelInterface
      * );
      * ```
      */
-    public function get(array $searchCriteria, array | null $valuesArray = null, bool $noBeginTransaction = false)
+    public function get(array $searchCriteria = [], string $additionalQuery = "", bool $noBeginTransaction = false)
     {
         if (!$this->validateGetSearchCriteriaArray($searchCriteria)) {
             throw new \App\Exceptions\ValidationException('Search criteria is not valid!');
         }
 
         $result = new SaveResult();
-
         try {
-            $this->dbConnection->setAttribute(\PDO::ATTR_AUTOCOMMIT, 1);
-            if ($this->dbConnection->inTransaction()) {
-            }
             $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
-            // $this->dbConnection->beginTransaction();
 
-            $query = $this->convertGetSearchCriteriaIntoQuery($searchCriteria);
+            $query = $this->convertGetSearchCriteriaIntoQuery($searchCriteria, $additionalQuery);
 
             $stmt = $this->dbConnection->prepare($query);
 
             $stmt->execute();
-
-            $user = $stmt->fetch(\PDO::FETCH_ASSOC);
-            print_r($user);
+            $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
             $result->setSuccess(true);
-            $result->setData($user);
+            $result->setData($data);
         } catch (\Exception $e) {
-
-            // $this->dbConnection->rollBack();
+            
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
-            trigger_error($e);
-
+            // trigger_error($e);
         } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
+            
         }
 
 
@@ -113,17 +107,20 @@ abstract class Model implements ModelInterface
         $columns = $this->getTableColumns();
 
         $columnsArray = implode("|", $columns);
+        $whereEmptyFlag = '__ALWAYS';
 
+        $whereFnFunction = fn (array $val) => v::arrayType()->notEmpty()->call(
+            'array_keys',
+            v::each(v::in([...$columns, $whereEmptyFlag]))
+        )
+            ->each(
+                v::oneOf(v::stringType(), v::number(), v::boolType())
+            )
+            ->validate($val);
 
         $validKeys = [
-            'where' => fn (array $val) => v::arrayType()->notEmpty()->call(
-                'array_keys',
-                v::each(v::in($columns))
-            )
-                ->each(
-                    v::oneOf(v::stringType(), v::number(), v::boolType())
-                )
-                ->validate($val),
+            'where?' => $whereFnFunction,
+            'whereOr?' => $whereFnFunction,
 
             'select?' => fn (array | string $val) => v::oneOf(
                 v::stringType()->notEmpty()->regex("/^(($columnsArray)+)(\s*[,|]\s*\w+)*$/"),
@@ -139,8 +136,17 @@ abstract class Model implements ModelInterface
         $searchCriteriaKeys = array_keys($searchCriteria);
         $validKeysArray = array_keys($validKeys);
 
-        $isSearchCriteriaKeysValid = _::every($validKeysArray, function ($key, $value, $index) use ($validKeys, $columnsArray, $validKeysArray, &$searchCriteria, $searchCriteriaKeys) {
+        $isSearchCriteriaKeysValid = _::every($validKeysArray, function ($key, $value, $index) use (
+            $validKeys,
+            $columnsArray,
+            $validKeysArray,
+            &$searchCriteria,
+            $searchCriteriaKeys,
+            $whereEmptyFlag
+        ) {
             $searchCriteriaKey = $searchCriteriaKeys[$index] ?? '';
+
+            // _::clog(in_array($searchCriteriaKey, $validKeysArray));
             if (preg_match("/\?$/", $key) && !in_array($searchCriteriaKey, $validKeysArray)) {
                 $isValid = false;
 
@@ -150,23 +156,26 @@ abstract class Model implements ModelInterface
                         $searchCriteria['select'] = $columnsArray;
                         break;
                     case 'where?':
-                        $isValid = $validKeys[$key](['where' => ['__ALWAYS' => 1]]);
-                        $searchCriteria['where'] = ['__ALWAYS' => 1];
+                        $searchCriteria['where'] = [$whereEmptyFlag => 1];
+                        $isValid = $validKeys[$key]($searchCriteria['where']);
                         break;
+                    case 'whereOr?':
+                        $searchCriteria['whereOr'] = [$whereEmptyFlag => 1];
+                        $isValid = $validKeys[$key]($searchCriteria['whereOr']);
                 }
 
                 return $isValid;
             }
 
-
-            // echo "Key: $key + Regex " . preg_match("/\?$/", $key) . "<br>";
-
-            // print_r($searchCriteria[$index]);
             $keyCriteria = preg_match("/\?$/", $key) ? substr($key, 0, -1) : $key;
-            // echo "Key Criteria: $keyCriteria<br>";
 
             return in_array($key, array_keys($validKeys)) && $validKeys[$key]($searchCriteria[$keyCriteria]);
         });
+
+        
+
+        // $isSearchCriteriaKeysValid = true;
+        // $isAllContentsOfSearchCriteriaArrayAreStringOrArray = true;
 
         if (
             empty($searchCriteria)
@@ -176,36 +185,66 @@ abstract class Model implements ModelInterface
 
             return false;
         }
-        // print_r(preg_split("/[|,]\s*/", $searchCriteria['select']));
-        // echo "<pre>";
-        // print_r($searchCriteria);
-        // echo "</pre>";
-        $searchCriteria['select'] = implode(', ', _::uniq(preg_split("/[|,]\s*/", $searchCriteria['select'])));
+        
+        $selectCriteria = null;
+        
+        if(is_array($searchCriteria['select'])) {
+            $selectCriteria = _::uniq($searchCriteria['select']);
+            
+        }
+        else {
+            $selectCriteria = array_unique(preg_split("/[|,]\s*/", $searchCriteria['select']));
+        }
+        $searchCriteria['select'] = implode(', ', $selectCriteria);
         return true;
     }
 
-    protected function convertGetSearchCriteriaIntoQuery(array $searchCriteria): string
+    protected function convertGetSearchCriteriaIntoQuery(array $searchCriteria, string $additionalQuery = ""): string
     {
         $searchCriteria = $this->validateGetSearchCriteriaArray($searchCriteria) ? $searchCriteria : null;
         if ($searchCriteria == null) {
             return '';
         }
-        $where = $searchCriteria['where'];
-        if(_::includes($where, '__ALWAYS')) {
-            // $whereStringQuery =
-        }
 
         $query = "SELECT ";
         $query .= $searchCriteria['select'];
-        $query .= " FROM $this->tableName WHERE ";
-        $query .= implode(' AND ', array_map(function ($value, $key) use ($searchCriteria) {
-            if (gettype($value) == 'array') {
-                return $key . " " . $value[0] . " " . $value[1];
-            }
-            return $key . " = :" . $key;
-        }, $searchCriteria['where'], array_keys($searchCriteria['where'])));
+        $query .= " FROM $this->tableName";
 
-        return $query;
+        $whereArray = _::reduce($searchCriteria, function ($result, $value, $key) use($searchCriteria) {
+            
+            if (!str_starts_with('where', $key)) return $result;
+            if (!$searchCriteria[$key] == '__ALWAYS') {
+                $result[$key] = $value;
+                
+                return $result;
+            }
+        }, []);
+
+        if (!empty($whereArray)) {
+            $whereType = '';
+
+            $query .= " WHERE ";
+
+            // print_r($whereArray);            
+            foreach ($whereArray as $key => $value) {
+                switch ($key) {
+                    case 'where':
+                        $whereType = 'AND';
+                        break;
+                    case 'whereOr':
+                        $whereType = 'OR';
+                        break;
+                    default:
+                        $whereType = '';
+                }
+                
+                $query .= implode(" $whereType ", array_map(function ($value2, $key2) use ($searchCriteria) {
+                    return $key2 . " = " . $value2;
+                }, $searchCriteria[$key], array_keys($searchCriteria[$key])));
+            }
+        }   
+
+        return $query . " $additionalQuery";
     }
 
     /**
@@ -217,11 +256,13 @@ abstract class Model implements ModelInterface
      */
     public function query(string $prepareQuery, array $params = null)
     {
-        $this->tryCatchWrapper(function () use ($prepareQuery, $params) {
+        $data = [];
+        $this->tryCatchWrapper(function () use ($prepareQuery, $params, &$data) {
             $statement = $this->dbConnection->prepare($prepareQuery);
-            $this->checkIfRequiredPropertiesExistsOnClass();
-            $statement->execute($params);
+            $statement->execute($params ?? []);
+            $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
         });
+        return $data;
     }
 
     public function updateOne(array $searchCriteria, array $newData)

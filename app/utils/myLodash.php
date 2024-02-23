@@ -1,17 +1,22 @@
 <?php
 
 namespace App\Utils;
+
 use App\Exceptions\MyLodashException;
+define('NO_DUPLICATES', 1);
+
+
 
 class MyLodash
 {
+    const NO_DUPLICATES = 1;
 
     private static function tryCatch(callable $callback)
     {
         try {
             return $callback();
         } catch (\Exception $e) {
-            throw new MyLodashException($e);
+            throw new \Exception($e);
         }
     }
     public static function map(array $array, callable $callback)
@@ -45,7 +50,8 @@ class MyLodash
         return $result;
     }
 
-    public static function uniq(array $array) {
+    public static function uniq(array $array)
+    {
         $result = static::tryCatch(function () use ($array) {
             return array_unique($array);
         });
@@ -55,11 +61,11 @@ class MyLodash
     public static function reduce(array $array, callable $callback, $initial = null)
     {
         $result = static::tryCatch(function () use ($array, $callback, $initial) {
-            $result = $initial;
+            $res = $initial;
             foreach ($array as $key => $value) {
-                $result = $callback($result, $value, $key, $array);
+                $res = $callback($res, $value, $key, $array);
             }
-            return $result;
+            return $res;
         });
         return $result;
     }
@@ -97,8 +103,10 @@ class MyLodash
     public static function every(array $array, callable $callback)
     {
         $result = static::tryCatch(function () use ($array, $callback) {
+            
             $index = 0;
-            foreach($array as $key => &$value) {
+            
+            foreach ($array as $key => &$value) {
                 if (!$callback($value, $key, $index, $array)) {
                     return false;
                 }
@@ -152,6 +160,53 @@ class MyLodash
             }
             return $result;
         });
+        return $result;
+    }
+
+    public static function concat(int | float | string | array | bool ...$items)
+    {
+        $result = static::tryCatch(function () use ($items) {
+            $res = [];
+            foreach ($items as $item) {
+                array_push($res, $item);
+            }
+            return $res;
+        });
+        return $result;
+    }
+
+    private static function removeDuplicates(array $array)
+    {
+        return array_map("unserialize", array_unique(array_map("serialize", $array)));
+    }
+
+    /**
+     * Turns a list of values into a neat array. Printed straight using echo
+     */
+    public static function clog(...$array)
+    {
+        $result = "[";
+
+        $count = count($array);
+        $i = 0;
+        foreach ($array as $array_item) {
+            if (is_array($array_item)) {
+                $result .= static::clog(...$array_item);
+            } else if (is_bool($array_item)) {
+                $result .= $array_item ? 'true' : 'false';
+            } elseif (is_object($array_item)) {
+                $result .= var_export($array_item, true);
+            } else {
+                $result .= $array_item;
+            }
+
+            if ($i < $count - 1) {
+                $result .= ", ";
+            }
+            $i++;
+        }
+
+        $result .= "]";
         return $result;
     }
 }

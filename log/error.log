@@ -506,3 +506,42 @@ Stack trace:
 #2 [internal function]: {closure}(Object(TypeError))
 #3 {main}
   thrown in C:\xampp\htdocs\flaundry\app\views\errors\errorException.php on line 209
+[21-Feb-2024 11:54:59 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:55:02 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:55:05 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:55:57 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:56:28 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:56:55 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:56:56 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:57:37 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:57:38 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:57:39 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:58:04 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:58:12 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 11:58:18 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:01:20 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:02:28 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:02:29 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:03:49 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:03:49 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:03:52 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:04:40 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:05:50 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:06:20 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:06:21 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:06:38 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:13:14 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:13:17 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:15:01 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:15:05 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:15:58 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:15:59 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:16:11 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:16:44 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:18:02 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:18:03 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 164
+[21-Feb-2024 12:18:55 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 166
+[21-Feb-2024 12:18:56 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 166
+[21-Feb-2024 12:19:16 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 166
+[21-Feb-2024 12:19:18 Europe/Berlin] PHP Fatal error:  Only the last parameter can be variadic in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 166
+[21-Feb-2024 12:28:19 Europe/Berlin] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 262144 bytes) in C:\xampp\htdocs\flaundry\app\utils\myLodash.php on line 191

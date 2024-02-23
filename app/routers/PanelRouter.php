@@ -7,12 +7,13 @@ use App\models\User;
 use App\utils\PrintArray;
 use App\Services\FlashMessage as fm;
 use App\models\Outlet;
+use App\libraries\Model;
 
 $panelRouter = new PHPExpress();
 global $con, $panelRouter;
 
 function dashboard($req, $res, $connection) {
-    $outlet = new Outlet($connection);
+    
 
     // $data = $outlet->get([
     //     'where' => ['ALWAYS' => true]
@@ -29,10 +30,10 @@ function handleDashboardPostRequest($req, $res) {
     $res->redirect('/panel/dashboard');
 }
 
-function outlet($req, $res) {
-    $data = [
-        'sales' => 500
-    ];
+function outlet($req, $res, $connection) {  
+    $data = (new Model($connection))->query("SELECT * FROM tb_outlet");
+    // $data = $outlet->query("SELECT * FROM tb_outlet");
+    echo "<pre>", print_r($data), "</pre>";
 
     $res->render('/panel/components/outlet');
 }
@@ -63,14 +64,14 @@ $panelRouter
     })
 
     // Route for the outlet
-    ->get('/outlet', function($req, $res) {
+    ->get('/outlet', function($req, $res) use ($con) {
         fm::addMessage([
             'type' => 'warning',
             'context' => 'outlet_testing',
             'title' => 'KRESHNA KRESHNA KRESHNA KRESHNA KRESHNA KRESHNA',
             'description' => 'This is a success message'
         ]);
-        outlet($req, $res);
+        outlet($req, $res, $con);
     })
 
     // Route for the settings

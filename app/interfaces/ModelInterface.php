@@ -5,7 +5,7 @@ use App\Models\SaveResult;
 
 interface ModelInterface
 {
-    public function save(): array | object;
+    // public function save(): array | object;
     public function updateOne(array $searchCriteria, array $newData);
     public function updateMany(array | bool $searchCriteria, array $newData);
 

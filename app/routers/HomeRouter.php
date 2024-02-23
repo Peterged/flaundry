@@ -17,11 +17,8 @@ $homeRouter->get('/', function ($req, $res) { // /contact
         'context' => 'flash-message-home',
         'position' => 'bottom-right'
     ]);
-
+    
     // $str = '[{"message":"Welcome to PHPExpres!","type":"success","keyIdentifier":"flash-message-home","position":"bottom-right","_id":"0612846e1a249c640b220d6c2c9ece04"}]';
-    $str = 5;
-    $str = json_decode($str, true);
-    print_r($str);
 });
 
 
