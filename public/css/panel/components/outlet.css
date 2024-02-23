@@ -32,6 +32,20 @@
     font-size: 2rem;
 }
 
+.content-box .title .title-text-box {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-start;
+    gap: 0.2rem;
+}
+
+.content-box .title .title-text-box .title-text-description {
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.65);
+}
+
 .content-box .title .title-date .title-date-text {
     font-size: 1rem;
     font-weight: 400;

@@ -35,7 +35,13 @@ final class Model implements ModelInterface
 
     protected function tryCatchWrapper(\Closure $callback, SaveResult &$result = null)
     {
+        $result = new SaveResult();
         try {
+            if(isset($this->tableName)) {
+                $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
+            }
+
+            $result = $callback() ?? $result;
             if(isset($this->tableName)){
                 $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
             }
@@ -256,12 +262,14 @@ final class Model implements ModelInterface
      */
     public function query(string $prepareQuery, array $params = null)
     {
+        $result = new SaveResult();
         $data = [];
-        $this->tryCatchWrapper(function () use ($prepareQuery, $params, &$data) {
+        $this->tryCatchWrapper(function () use ($prepareQuery, $params, &$result, &$data) {
             $statement = $this->dbConnection->prepare($prepareQuery);
             $statement->execute($params ?? []);
             $data = $statement->fetchAll(\PDO::FETCH_ASSOC);
         });
+        return $result;
         return $data;
     }
 

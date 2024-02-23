@@ -51,14 +51,14 @@
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0C1.27614 0 1.5 0.223858 1.5 0.5V41.5C1.5 41.9363 1.61249 42.5907 1.92875 43.1178C2.22933 43.6187 2.70456 44 3.5 44H14C14.2761 44 14.5 44.2239 14.5 44.5C14.5 44.7761 14.2761 45 14 45H3.5C2.29544 45 1.52067 44.3813 1.07125 43.6322C0.637507 42.9093 0.5 42.0637 0.5 41.5V0.5C0.5 0.223858 0.723858 0 1 0Z" fill="#121212" />
                         </svg>
 
-                        <a href="<?= routeTo('/users/customer') ?>">Customers</a>
+                        <a href="<?= routeTo('/panel/member') ?>">Member</a>
                     </div>
                     <div class="dropdown-item">
                         <svg width="15" height="45" viewBox="0 0 15 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0C1.27614 0 1.5 0.223858 1.5 0.5V41.5C1.5 41.9363 1.61249 42.5907 1.92875 43.1178C2.22933 43.6187 2.70456 44 3.5 44H14C14.2761 44 14.5 44.2239 14.5 44.5C14.5 44.7761 14.2761 45 14 45H3.5C2.29544 45 1.52067 44.3813 1.07125 43.6322C0.637507 42.9093 0.5 42.0637 0.5 41.5V0.5C0.5 0.223858 0.723858 0 1 0Z" fill="#121212" />
                         </svg>
 
-                        <a href="<?= routeTo('/users/worker') ?>">Employees</a>
+                        <a href="<?= routeTo('/panel/karyawan') ?>">Karyawan</a>
                     </div>
                 </div>
             </div>

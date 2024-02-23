@@ -113,7 +113,6 @@ class User extends Model
         $result = new SaveResult();
         try {
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
-            $con->beginTransaction();
 
             $stmt = $con->prepare("
             SELECT * FROM {$this->tableName} WHERE username = :username
@@ -131,7 +130,7 @@ class User extends Model
                     'type' => 'error',
                     'context' => 'login',
                     'title' => 'Validation Error!',
-                    'description' => 'User tidak ditemukan!'
+                    'description' => "User {$this->username} tidak ditemukan!"
                 ]);
 
                 throw new AuthException('User not found!');
@@ -163,7 +162,6 @@ class User extends Model
             $_SESSION['username'] = $result->getData()['username'];
             $_SESSION['role'] = $result->getData()['role'];
         } catch (\Exception $e) {
-            $con->rollBack();
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
         } finally {

@@ -11,8 +11,11 @@ table.data-table {
 
 table.data-table tr {
     border: 1px solid rgba(0, 0, 0, 0.1);
-    /* background-color: var(--blue--chefchaouen-9); */
-    /* background-color: rgba(0, 0, 0, 0.001); */
+    transition: 100ms;
+}
+
+table.data-table tr:not(:first-child):hover {
+    background-color: rgba(0, 0, 0, 0.03);
 }
 
 table.data-table th,
