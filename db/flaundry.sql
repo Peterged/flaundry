@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Feb 2024 pada 16.59
+-- Waktu pembuatan: 24 Feb 2024 pada 17.17
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -61,8 +61,8 @@ CREATE TABLE `tb_member` (
 --
 
 INSERT INTO `tb_member` (`id`, `nama`, `alamat`, `jenis_kelamin`, `tlp`) VALUES
-(1, 'Aldovanios', 'Jln. Aldovanio', 'P', '238908321'),
-(2, 'wow', 'wow', 'L', '1232132213');
+(1, 'Robertos', 'Jln. Robertos', 'P', '65345327'),
+(2, 'wow', 'wow', 'L', '987647345');
 
 -- --------------------------------------------------------
 
@@ -82,8 +82,8 @@ CREATE TABLE `tb_outlet` (
 --
 
 INSERT INTO `tb_outlet` (`id`, `nama`, `alamat`, `tlp`) VALUES
-(1, 'PT. Jayasvara', 'Jl. Raya Sesetan, Gg. Batu Emas', '08132144321'),
-(2, 'PT. Rayu Man', 'Jl. Moai', '043215652');
+(1, 'PT. Robert', 'Jl. Raya Sesetan, Gg. Batu Emas', '08132144321'),
+(2, 'Batang Hari', 'Jl. MOOO', '043215652');
 
 -- --------------------------------------------------------
 
@@ -104,8 +104,8 @@ CREATE TABLE `tb_paket` (
 --
 
 INSERT INTO `tb_paket` (`id`, `id_outlet`, `jenis`, `nama_paket`, `harga`) VALUES
-(2, 1, 'kiloan', 'blub', 15000),
-(3, 2, 'bed_cover', 'Selimut Mahal', 10000),
+(2, 1, 'kiloan', 'TEST', 15000),
+(3, 2, 'bed_cover', 'Bantal', 10000),
 (5, 1, 'kaos', 'nama', 15000);
 
 -- --------------------------------------------------------
@@ -135,7 +135,6 @@ CREATE TABLE `tb_transaksi` (
 --
 
 INSERT INTO `tb_transaksi` (`id`, `id_outlet`, `kode_invoice`, `id_member`, `tgl`, `batas_waktu`, `tgl_bayar`, `biaya_tambahan`, `diskon`, `pajak`, `status`, `dibayar`, `id_user`) VALUES
-(27, 1, 'INV/2024/02/24/1', 1, '2024-02-24 16:04:16', '2024-02-24 16:04:16', '2024-02-22 23:04:16', 0, 0, 0.0075, 'baru', 'belum_dibayar', 167),
 (28, 1, 'INV22045', 1, '2024-02-24 16:27:51', '2024-02-24 23:27:00', '2024-02-21 23:27:00', 0, 0, 1000, 'baru', 'belum_dibayar', 167),
 (36, 1, 'INV18094', 1, '2024-02-24 16:45:52', '2024-02-24 23:45:00', '2024-02-24 23:45:00', 0, 0, 0.075, 'baru', 'belum_dibayar', 171);
 
@@ -159,9 +158,10 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `id_outlet`, `nama`, `username`, `password`, `role`) VALUES
-(167, 1, 'aaa', 'damn', '$2y$10$KLFgmEEg9yjmID372AVz5ONgsYhkI8dIgr9PDWDVJPplfr9wszUsm', 'admin'),
-(168, 2, 'Kres', 'kreshna', '$2y$10$dIuxcW5uj3aTHXgvRFgIPOrhUN93wDWYSduANiIbPzhD6938gDPYe', 'admin'),
-(171, 1, 'admin', 'admin', '$2y$10$0LYmdQOLty9yKrlgDXxBG.V3HlhIHEfGDTedgEhPbdlQI/7xKUA9m', 'admin');
+(167, 1, 'Edson', 'edson', '$2y$10$KLFgmEEg9yjmID372AVz5ONgsYhkI8dIgr9PDWDVJPplfr9wszUsm', 'kasir'),
+(171, 1, 'admin', 'admin', '$2y$10$0LYmdQOLty9yKrlgDXxBG.V3HlhIHEfGDTedgEhPbdlQI/7xKUA9m', 'admin'),
+(172, 1, 'owner', 'owner', '$2y$10$Nj06y9ZJYlOvJam4ZnvyK.YyJaUS8bn5u9j/mnbB9l2AWE0yPFGEW', 'owner'),
+(173, 1, 'kasir', 'kasir', '$2y$10$dSfhy/wyfINz11Qg5lwbb.wbeQ3TEyfjQIEd0wQbun36vqSMLB.qC', 'kasir');
 
 --
 -- Indexes for dumped tables
@@ -249,7 +249,7 @@ ALTER TABLE `tb_transaksi`
 -- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
