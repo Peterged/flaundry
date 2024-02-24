@@ -11,11 +11,11 @@ use App\Services\FlashMessage as fm;
 
 class Paket extends Model
 {
-    private string $id;
-    private int $id_outlet;
-    private string $jenis;
-    private string $nama_paket;
-    private float $harga;
+    public string $id;
+    public int $id_outlet;
+    public string $jenis;
+    public string $nama_paket;
+    public float $harga;
 
     #[Table('tb_paket')]
     public function __construct(\PDO $PDO, array | null $valuesArray = null)
@@ -32,32 +32,33 @@ class Paket extends Model
         $result = new SaveResult();
         $this->validateSave();
 
-        $this->tryCatchWrapper(function () use ($result) {
+        $this->tryCatchWrapper(function () use (&$result) {
             $con = $this->dbConnection;
             $sql = "INSERT INTO {$this->tableName} (id_outlet, nama_paket, jenis, harga) VALUES (:id_outlet, :nama_paket, :jenis, :harga)";
             $stmt = $con->prepare($sql);
-            $data = $stmt->execute([
+            $stmt->execute([
                 'id_outlet' => $this->id_outlet,
                 'nama_paket' => $this->nama_paket,
                 'jenis' => $this->jenis,
                 'harga' => $this->harga
             ]);
 
-            $result->data = $data;
-            return $result;
-        }, $result);
+            $data = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? [[]];
 
-        $result->success = true;
+            $result->setData($data);
+            return $result;
+        });
+
+        $result->setSuccess(true);
         return $result;
     }
 
-    private function validateEmpty(): bool
-    {
+    private function validateEmpty(): bool {
         $requiredProperties = $this->getRequiredProperties();
-
-        if (count($requiredProperties) > 0) {
-            foreach ($requiredProperties as $property) {
-                if (empty($this->$property)) {
+        
+        if(count($requiredProperties) > 0) {
+            foreach($requiredProperties as $property) {
+                if(empty($this->{$property})) {
                     return false;
                 }
             }
@@ -73,22 +74,18 @@ class Paket extends Model
                 throw new ValidationException('All properties are required');
             }
 
-            if (!v::intType()->validate($this->id_outlet)) {
-                throw new ValidationException('nama_paket must be an integer');
-            }
-
-            if (!v::stringType()->min(1)->validate($this->nama_paket)) {
+            if (!v::stringType()->min(2)->validate($this->nama_paket)) {
                 throw new ValidationException('Alamat must contain atleast 1 character');
             }
 
             if (!v::number()->validate($this->harga)) {
-                throw new ValidationException('Harga must be a number');
+                throw new ValidationException('Harga must be a number!');
             }
         } catch (\Exception $e) {
             fm::addMessage([
                 'type' => 'error',
                 'title' => 'Validation Failed',
-                'message' => $e->getMessage(),
+                'description' => $e->getMessage(),
                 'context' => 'tambah_paket_validation_error'
             ]);
             return false;

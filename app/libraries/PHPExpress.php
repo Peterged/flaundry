@@ -185,11 +185,18 @@ class PHPExpress
                 try {
                     $currentRoute = "/" . $_GET['route'];
                 }
-                catch(\Exception $e) {
+                catch(\Exception $e) { }
 
-                }
                 $routeArray = explode('/', $currentRoute);
                 $itemArray = explode('/', $routeItem['route']);
+
+                $itemArray = _::filter($itemArray, function ($value) {
+                    return $value !== '';
+                });
+
+                $routeArray = _::filter($routeArray, function ($value) {
+                    return $value !== '';
+                });
 
                 if ($routeItem['route'] === '*') {
                     continue;
@@ -202,12 +209,6 @@ class PHPExpress
                             return 0;
                         }
                         if ($routeArray[$key] != $value && !preg_match("/\{(.*)\}/", $value)) {
-                            // echo "<pre>";
-                            // // print_r(explode('/', $route));
-                            // echo $currentRoute . "<br>";
-                            // print_r($itemArray);
-                            // echo "_______________";
-                            // echo "</pre>";
                             return "INVALID";
                         }
                         return $value;
@@ -216,8 +217,8 @@ class PHPExpress
                     if (_::includes($resMap, "INVALID")) {
                         $isHandled = false;
                     } elseif($headerType == $_SERVER['REQUEST_METHOD']) {
-                        // echo $routeItem['route'] . "<br>";
                         $isHandled = true;
+                        return $isHandled;
                     }
                 }
             } else if ($routeItem['route'] == $currentRoute && $routeItem['method'] == $headerType) {
@@ -434,7 +435,7 @@ class PHPExpress
 
 
         $isHandled = $this->isRouteHandled($_SERVER['REQUEST_METHOD'], $route);
-
+        
         // If the request_uri is not handled, return an error
         if (http_response_code() == 403) {
             $this->setStdClassError($error, 403, "Forbidden");
@@ -450,6 +451,7 @@ class PHPExpress
             } else {
                 $callback($req, $this->response, $error);
             }
+            exit;
         }
     }
 }

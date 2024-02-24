@@ -83,8 +83,10 @@ class RouterHelper
 
 
         foreach ($filteredRoute as $key => $value) {
+            
             $keyName = preg_replace('/\{(.*)\}/', '$1', $value);
-
+            
+            
             if (preg_match('/\{(.*)\}/', $value)) {
                 if (isset($requestUri[$key])) {
                     $params->$keyName = $requestUri[$key];

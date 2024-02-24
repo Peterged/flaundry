@@ -33,22 +33,23 @@ class Model implements ModelInterface
         $this->setValuesArray($valuesArray ?? []);
     }
 
-    protected function tryCatchWrapper(\Closure $callback, SaveResult &$result = null)
+    protected function tryCatchWrapper(\Closure $callback, bool $lockTables = true)
     {
         $result = new SaveResult();
         try {
-
-            if(isset($this->tableName)){
+            if(isset($this->tableName) && $lockTables){
                 $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
             }
 
             $result = $callback() ?? $result;
-
         } catch (\Exception $e) {
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             trigger_error($result->getMessage());
         } finally {
-            $this->dbConnection->exec("UNLOCK TABLES");
+            if($lockTables) {
+                $this->dbConnection->exec("UNLOCK TABLES");
+            }
+            
         }
     }
 
@@ -235,7 +236,7 @@ class Model implements ModelInterface
 
             $query .= " WHERE ";
 
-            print_r($whereArray);
+            // print_r($whereArray);
             foreach ($whereArray as $key => $value) {
                 switch ($key) {
                     case 'where':
@@ -272,7 +273,7 @@ class Model implements ModelInterface
             $statement = $this->dbConnection->prepare($prepareQuery);
             $statement->execute($params ?? []);
             $result->setData($statement->fetchAll(\PDO::FETCH_ASSOC));
-        });
+        }, false);
         return $result;
     }
 
@@ -285,7 +286,7 @@ class Model implements ModelInterface
         $this->tryCatchWrapper(function () use ($searchCriteria, $newData) {
             $query = $this->handleUpdateQuery($searchCriteria, $newData);
             $statement = $this->dbConnection->prepare($query);
-            echo $query;
+            
             $statement->execute(array_merge($searchCriteria, $newData));
         });
     }
@@ -460,7 +461,7 @@ class Model implements ModelInterface
     protected function setValuesArray(array | null $valuesArray)
     {
         try {
-            print_r($valuesArray);
+            // print_r($valuesArray);
             // if (array_is_list($valuesArray)) {
                 $this->valuesArray = $valuesArray;
                 foreach ($valuesArray as $key => $value) {

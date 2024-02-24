@@ -564,3 +564,50 @@ Stack trace:
 [23-Feb-2024 08:30:19 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
 [23-Feb-2024 08:30:32 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
 [23-Feb-2024 08:32:40 Europe/Berlin] PHP Fatal error:  Class App\models\Outlet cannot extend final class App\Libraries\Model in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 9
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Warning:  Uncaught PDOException: SQLSTATE[08S01]: Communication link failure: 1053 Server shutdown in progress in C:\xampp\htdocs\flaundry\app\libraries\Model.php:41
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\libraries\Model.php(41): PDO->exec('LOCK TABLES tb_...')
+#1 C:\xampp\htdocs\flaundry\app\libraries\Model.php(289): App\Libraries\Model->tryCatchWrapper(Object(Closure))
+#2 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(196): App\Libraries\Model->updateOne(Array, Array)
+#3 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(222): App\routers\editPaketPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/paket/ed...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('POST', '/panel/paket/ed...', Array)
+#7 C:\xampp\htdocs\flaundry\index.php(40): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 41
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 46
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[24-Feb-2024 10:09:12 Europe/Berlin] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[24-Feb-2024 10:37:07 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:37:08 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:37:13 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:37:15 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:37:16 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:37:42 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:37:43 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:37:44 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:37:44 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:37:47 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:38:15 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:38:29 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it in C:\xampp\htdocs\flaundry\app\libraries\Database.php:17
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\config\database.php(4): App\Libraries\Database->__construct('root', '')
+#1 C:\xampp\htdocs\flaundry\app\libraries\autoload.php(10): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\flaundry\index.php(6): include('C:\\xampp\\htdocs...')
+#3 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\Database.php on line 17
+[24-Feb-2024 10:38:34 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:38:52 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:38:54 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:39:17 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:39:36 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:40:23 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22
+[24-Feb-2024 10:40:25 Europe/Berlin] PHP Fatal error:  Cannot redeclare App\routers\authenticateUser() (previously declared in C:\xampp\htdocs\flaundry\app\routers\AuthRouter.php:12) in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 22

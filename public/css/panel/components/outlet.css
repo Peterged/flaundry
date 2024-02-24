@@ -99,12 +99,22 @@
 
 .content-box .divider {
     width: 100%;
-    height: 1.5px;
+    height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
 }
 
+.content-box .divider-light {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.01);
+    margin-bottom: 1rem;
+}
 
+.custom-title {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
 
 /* * BUTTONS */
 
@@ -121,3 +131,4 @@
 .add-btn:hover {
     background-color: #4361ee;
 }
+

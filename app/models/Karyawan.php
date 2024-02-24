@@ -12,16 +12,17 @@ use App\Services\FlashMessage as fm;
 class Member extends Model
 {
     public string $id;
+    public string $id_outlet;
     public string $nama;
-    public string $alamat;
-    public string $jenis_kelamin;
-    public string $tlp;
+    public string $username;
+    public string $password;
+    public string $role;
 
     #[Table('tb_member')]
     public function __construct(\PDO $PDO, array | null $valuesArray = null)
     {
         parent::__construct($PDO, $valuesArray, __CLASS__);
-        $this->setRequiredProperties(['nama', 'alamat', 'jenis_kelamin', 'tlp']);
+        $this->setRequiredProperties(['id_outlet', 'nama', 'username', 'password', 'role']);
         $this->checkIfRequiredPropertiesExistsOnClass();
     }
 
@@ -32,13 +33,14 @@ class Member extends Model
 
         $this->tryCatchWrapper(function () use (&$result) {
             $con = $this->dbConnection;
-            $sql = "INSERT INTO tb_member (nama, alamat, jenis_kelamin, tlp) VALUES (:nama, :alamat, :jenis_kelamin, :tlp)";
+            $sql = "INSERT INTO tb_user (id_outlet, nama, username, password, role) VALUES (:id_outlet, :nama, :username, :password, :role)";
             $stmt = $con->prepare($sql);
             $stmt->execute([
+                'id_outlet' => $this->id_outlet,
                 'nama' => $this->nama,
-                'alamat' => $this->alamat,
-                'jenis_kelamin' => $this->jenis_kelamin,
-                'tlp' => $this->tlp
+                'username' => $this->username,
+                'password' => $this->password,
+                'role' => $this->role
             ]);
 
             $data = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? [[]];
@@ -69,30 +71,30 @@ class Member extends Model
     {
         try {
             if (!$this->validateEmpty()) {
-                throw new ValidationException('All properties are required');
+                throw new ValidationException('All fields are required');
             }
 
             if (!v::stringType()->min(3)->validate($this->nama)) {
-                throw new ValidationException('Nama must contain atleast 3 characters');
+                throw new ValidationException('Name must be a string and at least 3 characters long');
             }
 
-            if (!v::stringType()->min(5)->validate($this->alamat)) {
-                throw new ValidationException('Alamat must contain atleast 5 characters');
+            if (!v::stringType()->min(3)->validate($this->username)) {
+                throw new ValidationException('Username must be a string and at least 3 characters long');
             }
 
-            if (!v::stringType()->in(["L", "P"])->validate($this->jenis_kelamin)) {
-                throw new ValidationException('Jenis Kelamin must be a string and either "L" or "P"');
+            if (!v::stringType()->min(3)->validate($this->password)) {
+                throw new ValidationException('Password must be a string and at least 3 characters long');
             }
 
-            if (!v::stringType()->min(10)->validate($this->tlp)) {
-                throw new ValidationException('Telepon must contain atleast 10 characters');
+            if (!v::stringType()->in(['admin', 'kasir', 'owner'])->validate($this->role)) {
+                throw new ValidationException('Role must be a string and either "admin", "kasir", or "owner"');
             }
         } catch (\Exception $e) {
             fm::addMessage([
                 'type' => 'error',
                 'title' => 'Validation Failed',
                 'description' => $e->getMessage(),
-                'context' => 'tambah_paket_validation_error'
+                'context' => 'karywan_message'
             ]);
             return false;
         }

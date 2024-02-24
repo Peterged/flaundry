@@ -13,12 +13,12 @@ use App\Utils\MyLodash as _;
 
 class User extends Model
 {
-    private string $id;
-    private int $id_outlet;
-    private string $nama;
-    private string $username;
-    private string $password;
-    private string $role;
+    public string $id;
+    public int $id_outlet;
+    public string $nama;
+    public string $username;
+    public string $password;
+    public string $role;
 
 
     #[Table('tb_user')]
@@ -77,28 +77,18 @@ class User extends Model
                 'password' => $this->password,
                 'role' => $this->role
             ]);
-            echo $con->inTransaction() ? 'true' : 'false';
-
-
-            if ($this->username == 'kreshna') {
-                throw new \Exception('Nama tidak boleh kreshna');
-            }
-
-            if ($this->username == 'kreshna') {
-                throw new \Exception('Nama tidak boleh kreshna');
-            }
+            // echo $con->inTransaction() ? 'true' : 'false';
 
             $con->commit();
 
-            $result->success = true;
+            $result->setSuccess(true);
         } catch (ModelException $e) {
             // Rollback the transaction jika terjadi error
             echo $e->getMessage();
             $con->rollBack();
 
-            $result->message = $e->getMessage();
-            $result->errorMessage = $e->getMessage();
-            $result->status = $e->getStatus();
+            $result->setMessage($e->getMessage());
+            $result->setStatus($e->getStatus());
         } finally {
             // Unlock tabelnya supaya dapat diakses kembali seperti biasa
             $con->exec('UNLOCK TABLES');
@@ -161,14 +151,14 @@ class User extends Model
 
             $_SESSION['username'] = $result->getData()['username'];
             $_SESSION['role'] = $result->getData()['role'];
+            $_SESSION['id_outlet'] = $result->getData()['id_outlet'];
+            $_SESSION['id_user'] = $result->getData()['id'];
         } catch (\Exception $e) {
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
         } finally {
             $con->exec('UNLOCK TABLES');
         }
-
-
 
         return $result;
     }

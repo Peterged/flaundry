@@ -10,6 +10,16 @@
   --blue--chefchaouen-9: #4895ef;
   --blue-vivid-sky-10: #4cc9f0;
 
+  --pink-1-rgb: 247, 37, 133;
+  --purple-fandango-2-rgb: 181, 23, 158;
+  --purple-grape-3-rgb: 114, 9, 183;
+  --blue-chrysler-4-rgb: 86, 11, 173;
+  --blue-dark-5-rgb: 72, 12, 168;
+  --blue-palatinate-7-rgb: 63, 55, 201;
+  --blue-neon-8-rgb: 67, 97, 238;
+  --blue-chefchaouen-9-rgb: 72, 149, 239;
+  --blue-vivid-sky-10-rgb: 76, 201, 240;
+
   /* Dark mode colors */
   --dark-background: #1e1e1e;
   --dark-foreground: #fff;
@@ -52,7 +62,7 @@ body {
 
 .container form.wrapper {
   width: 100%;
-  max-width: 370px;
+  max-width: 350px;
   height: auto;
   margin: 0 auto;
   padding: 35px;
@@ -74,13 +84,13 @@ body {
   top: -95px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2.25rem;
+  font-size: 2.2rem;
   font-weight: 600;
   text-align: center;
 }
 
 .container .wrapper img.form-image {
-  width: 80px;
+  width: 75px;
   margin-block: 0.5rem 2.5rem;
 }
 
@@ -114,21 +124,25 @@ body {
   fill: rgba(0, 0, 0, 0.65) !important;
   position: absolute;
   top: 48%;
-  left: 0.85rem;
+  left: 0.7rem;
   transform: translateY(-50%);
 }
 
 .container .wrapper .input-group svg {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
+}
+
+.container .wrapper .input-group svg path {
+    fill: rgba(0, 0, 0, 0.35);
 }
 
 .container .wrapper input,
 .container .wrapper .submit-btn {
   width: 100%;
-  padding: 0.8rem 3rem;
-  font-size: 1rem;
-  background-color: transparent;
+  padding: 0.65rem 2.55rem;
+  font-size: 0.95rem;
+  
   border: 1px solid rgba(0, 0, 0, 0.15);
   outline: none;
   border-radius: 0.25rem;
@@ -148,21 +162,22 @@ body {
   width: var(--input-width);
   color: rgba(0, 0, 0, 0.45);
   border: 1px solid rgba(0, 0, 0, 0.15);
-  background-color: rgba(var(--blue-vivid-sky-10-rgb), 0.5);
-
   outline: none;
   margin-bottom: 0.25rem;
   margin-top: 1rem;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: 350ms ease-in-out all;
+  background-color: rgba(var(--blue--chefchaouen-9-rgb), 0.5) !important;
   /* transition: background-image 0.35s linear; */
 }
 
 .container .wrapper .submit-btn:hover,
 .container .wrapper .submit-btn:focus {
-  border: 1px solid var(--);
+  border: 1px solid var(--blue--chefchaouen-9);
+  color: var(--blue--chefchaouen-9);
+  background-color: rgba(var(--blue-chefchaouen-9-rgb), 0.5);
 }
 
 /* <============= .goback-btn =============> */
