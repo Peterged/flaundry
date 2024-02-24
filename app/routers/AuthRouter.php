@@ -75,7 +75,7 @@ $authRouter->post('/login', function ($req, $res) use ($con) {
 });
 
 $authRouter->get('/register', function ($req, $res) use ($con) {
-    validateUserSession($req, $res);
+    // validateUserSession($req, $res);
 
     $res->render('/auth/register');
 });

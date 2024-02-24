@@ -31,15 +31,7 @@ use App\Services\FlashMessage as fm;
             <h1 class="title">Edit Karyawan</h1>
             <div class="input-group">
                 <label for="id_outlet">Pilih Outlet</label>
-                <?php 
-                    $karyawan = $data['model'];
-                    $dataOutlet = $karyawan->query("SELECT id, nama FROM tb_outlet");
-                    $dataOutlet = $dataOutlet->getData();
-
-                    
-                ?>
-                <input type="text" name="id_outlet" id="id_outlet" list="id_outlet_list" value="">
-                <datalist id="id_outlet_list">
+                <select name="id_outlet" id="id_outlet" name="id_outlet">
                     <?php
                     $karyawan = $data['model'];
                     $dataOutlet = $karyawan->query("SELECT id, nama FROM tb_outlet");
@@ -47,10 +39,10 @@ use App\Services\FlashMessage as fm;
 
                     foreach ($dataOutlet as $outlet) {
                         $selected = $currentKaryawan['id_outlet'] == $outlet['id'] ? 'selected' : '';
-                        echo "<option value=\"{$outlet['id']} | {$outlet['nama']}\" $selected>{$outlet['nama']}</option>";
+                        echo "<option value=\"{$outlet['id']}\" $selected>{$outlet['nama']}</option>";
                     }
                     ?>
-                </datalist>
+                </select>
 
 
 
@@ -61,6 +53,10 @@ use App\Services\FlashMessage as fm;
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" required value="<?= $currentKaryawan['username'] ?>">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password" placeholder="New password" autocomplete="off" value="">
             </div>
 
             <div class="input-group">

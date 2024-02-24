@@ -53,12 +53,12 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
                 <?php
                     foreach($data['karyawans'] as $karyawan) {
                         $currentRoute = routeTo("/panel");
-                        
+                            
                         echo "
                         <tr>
                             <td>{$karyawan['id']}</td>
                             <td>{$karyawan['nama_outlet']}</td>
-                            <td>{$karyawan['username']}</td>
+                            <td>{$karyawan['nama']}</td>
                             <td>{$karyawan['username']}</td>
                             <td>{$karyawan['role']}</td>
                             <td>

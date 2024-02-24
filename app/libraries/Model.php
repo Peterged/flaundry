@@ -271,7 +271,14 @@ class Model implements ModelInterface
         $result = new SaveResult();
         $this->tryCatchWrapper(function () use ($prepareQuery, $params, &$result) {
             $statement = $this->dbConnection->prepare($prepareQuery);
-            $statement->execute($params ?? []);
+            $suc = $statement->execute($params ?? []);
+            if($suc) {
+                $result->setSuccess(true);
+            }
+            else {
+                $result->setMessage("Query failed to execute");
+                $result->setSuccess(false);
+            }
             $result->setData($statement->fetchAll(\PDO::FETCH_ASSOC));
         }, false);
         return $result;

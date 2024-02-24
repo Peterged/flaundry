@@ -48,7 +48,7 @@ body:has(.sidebar.collapsed) {
 }
 
 body {
-  padding-left: 300px;
+  padding-left: 300px !important;
 }
 
 .sidebar {

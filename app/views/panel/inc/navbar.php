@@ -1,14 +1,21 @@
-
-
 <div class="panel-navbar">
     <div class="header">
         <div class="title">
             <p>Configuration</p>
         </div>
         <div class="breadcrumb">
-            <a href="<?= $_SERVER['REQUEST_URI'] ?>">Panel</a>
+            <a href="<?= routeTo("/panel/dashboard") ?>">Panel</a>
             <span class="separator">&gt;</span>
-            <a href="<?= routeTo('/panel/dashboard') ?>">Dashboard</a>
+            <?php
+                    $myRoute = explode('/', $_GET['route']);
+                    $myRoute = end($myRoute);
+                    
+                ?>
+            <a href="<?= routeTo("/panel/$myRoute") ?>">
+            <?php 
+                echo ucfirst($myRoute);
+            ?>
+                </a>
         </div>
     </div>
     <div class="search-box">

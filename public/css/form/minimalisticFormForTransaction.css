@@ -16,7 +16,6 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   width: 100%;
-  display: block;
 }
 
 .title {
@@ -31,7 +30,7 @@ body {
 }
 
 .margin-bottom-lg {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .input-group {
@@ -61,10 +60,10 @@ body {
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .submit-btn {
@@ -120,12 +119,12 @@ input[type=number]::-webkit-outer-spin-button {
 .goback-btn button {
   background-color: transparent;
   border: none;
-  text-decoration: none; 
+  text-decoration: none;
   color: #3498db;
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: 0.3s; 
+  transition: 0.3s;
   border-radius: 4px;
   margin-top: 1rem;
 }
@@ -135,17 +134,17 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .goback-btn svg {
-    transition: 0.3s;
+  transition: 0.3s;
   margin-right: 5px;
 }
 
 .goback-btn svg path {
-    fill: #3498db;
+  fill: #3498db;
 }
 
 .small-description {
-    color: rgba(0, 0, 0, 0.5);
-    font-size: .8rem;
-    font-weight: 300;
-    margin-top: -0.5rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+  font-weight: 300;
+  margin-top: -0.5rem;
 }

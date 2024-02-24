@@ -12,6 +12,7 @@ use App\models\Member;
 use App\models\Karyawan;
 use App\libraries\Model;
 use App\Libraries\Essentials\Session;
+use PDO;
 
 $panelRouter = new PHPExpress();
 global $con, $panelRouter;
@@ -86,7 +87,7 @@ function outletEdit($req, $res, $connection)
     $outlet = new Outlet($connection);
 
     $currentOutlet = $outlet->query("SELECT * FROM tb_outlet WHERE id = {$req->getParams()->id_outlet} LIMIT 1");
-    
+
     $data = [
         'currentOutlet' => $currentOutlet->getData(),
     ];
@@ -164,7 +165,6 @@ $panelRouter
     ->get('/outlet/delete/{id_outlet}', function ($req, $res) use ($con) {
         outletDelete($req, $res, $con);
     })
-    
     ->post('/outlet/edit/{id_outlet}', function ($req, $res) use ($con) {
         outletEditPost($req, $res, $con);
     })
@@ -268,7 +268,8 @@ function addPaket($req, $res, $connection)
     ]);
 }
 
-function addPaketPost($req, $res, $connection) {
+function addPaketPost($req, $res, $connection)
+{
     validateUserSession($req, $res);
     $paket = new Paket($connection, [
         'id_outlet' => $req->getParams()->id_outlet,
@@ -286,7 +287,6 @@ function addPaketPost($req, $res, $connection) {
     ]);
 
     $res->redirect('/panel/paket');
-
 }
 
 $panelRouter->get('/paket', function ($req, $res) use ($con) {
@@ -412,24 +412,25 @@ function addMemberPost($req, $res, $connection)
 $panelRouter->get('/member', function ($req, $res) use ($con) {
     member($req, $res, $con);
 })
-->get('/member/edit/{id_member}', function ($req, $res) use ($con) {
-    editMember($req, $res, $con);
-})
+    ->get('/member/edit/{id_member}', function ($req, $res) use ($con) {
+        editMember($req, $res, $con);
+    })
 
-->get('/member/delete/{id_member}', function ($req, $res) use ($con) {
-    deleteMember($req, $res, $con);
-})
-->post('/member/edit/{id_member}', function ($req, $res) use ($con) {
-    editMemberPost($req, $res, $con);
-})
-->get('/member/add', function ($req, $res) use ($con) {
-    addMember($req, $res, $con);
-})
-->post('/member/add', function ($req, $res) use ($con) {
-    addMemberPost($req, $res, $con);
-});
+    ->get('/member/delete/{id_member}', function ($req, $res) use ($con) {
+        deleteMember($req, $res, $con);
+    })
+    ->post('/member/edit/{id_member}', function ($req, $res) use ($con) {
+        editMemberPost($req, $res, $con);
+    })
+    ->get('/member/add', function ($req, $res) use ($con) {
+        addMember($req, $res, $con);
+    })
+    ->post('/member/add', function ($req, $res) use ($con) {
+        addMemberPost($req, $res, $con);
+    });
 
-function karyawan($req, $res, $connection) {
+function karyawan($req, $res, $connection)
+{
     validateUserSession($req, $res);
     $user = new User($connection);
     $userData = $user->query("SELECT tb_user.*, tb_outlet.nama as nama_outlet FROM tb_user JOIN tb_outlet ON tb_user.id_outlet = tb_outlet.id ORDER BY tb_outlet.nama ASC");
@@ -440,7 +441,8 @@ function karyawan($req, $res, $connection) {
     $res->render('/panel/components/karyawan', $data);
 }
 
-function editKaryawan($req, $res, $connection) {
+function editKaryawan($req, $res, $connection)
+{
     validateUserSession($req, $res);
     $user = new User($connection);
     $idKaryawan = $req->getParams()->id_karyawan;
@@ -454,15 +456,19 @@ function editKaryawan($req, $res, $connection) {
     $res->render('/panel/components/edit/edit_karyawan', $data);
 }
 
-function editKaryawanPost($req, $res, $connection) {
+function editKaryawanPost($req, $res, $connection)
+{
     validateUserSession($req, $res);
     $user = new User($connection);
     $body = $req->getBody();
+    echo $body['id_outlet'];
     $user->updateOne([
         'id' => $req->getParams()->id_karyawan,
     ], [
+        'id_outlet' => $body['id_outlet'],
         'nama' => $body['nama'],
         'username' => $body['username'],
+        'password' => $body['password'],
         'role' => $body['role']
     ]);
 
@@ -476,7 +482,8 @@ function editKaryawanPost($req, $res, $connection) {
     $res->redirect("/panel/karyawan");
 }
 
-function deleteKaryawan($req, $res, $connection) {
+function deleteKaryawan($req, $res, $connection)
+{
     validateUserSession($req, $res);
     $user = new User($connection);
     try {
@@ -496,7 +503,8 @@ function deleteKaryawan($req, $res, $connection) {
     $res->redirect("/panel/karyawan");
 }
 
-function addKaryawan($req, $res, $connection) {
+function addKaryawan($req, $res, $connection)
+{
     $karyawan = new User($connection);
     validateUserSession($req, $res);
     $data = [
@@ -505,10 +513,11 @@ function addKaryawan($req, $res, $connection) {
     $res->render('/panel/components/add/add_karyawan', $data);
 }
 
-function addKaryawanPost($req, $res, $connection) {
+function addKaryawanPost($req, $res, $connection)
+{
     validateUserSession($req, $res);
-    $idOutlet = $req->getBody()['id_outlet'];
-    $idOutlet = (int) str_replace(' | ', '', $idOutlet)[0];
+    $idOutlet = (int) $req->getBody()['id_outlet'];
+
     $user = new User($connection, [
         'id_outlet' => $idOutlet,
         'nama' => $req->getBody()['nama'],
@@ -531,18 +540,153 @@ function addKaryawanPost($req, $res, $connection) {
 $panelRouter->get('/karyawan', function ($req, $res) use ($con) {
     karyawan($req, $res, $con);
 })
-->get('/karyawan/edit/{id_karyawan}', function ($req, $res) use ($con) {
-    editKaryawan($req, $res, $con);
+    ->get('/karyawan/edit/{id_karyawan}', function ($req, $res) use ($con) {
+        editKaryawan($req, $res, $con);
+    })
+    ->post('/karyawan/edit/{id_karyawan}', function ($req, $res) use ($con) {
+        editKaryawanPost($req, $res, $con);
+    })
+    ->get('/karyawan/delete/{id_karyawan}', function ($req, $res) use ($con) {
+        deleteKaryawan($req, $res, $con);
+    })
+    ->get('/karyawan/add', function ($req, $res) use ($con) {
+        addKaryawan($req, $res, $con);
+    })
+    ->post('/karyawan/add', function ($req, $res) use ($con) {
+        addKaryawanPost($req, $res, $con);
+    });
+
+function transaksi($req, $res, $connection)
+{
+    validateUserSession($req, $res);
+    $karyawan = new User($connection);
+    $data = [
+        'model' => $karyawan
+    ];
+
+    $res->render('/panel/components/transaksi', $data);
+}
+
+function transaksiPost($req, $res, $connection)
+{
+    validateUserSession($req, $res);
+    try {
+        $model = new User($connection);
+        $body = $req->getBody();
+        if (isset($body['selanjutnya'])) {
+            $id_outlet = $_SESSION['id_outlet'];
+
+            @$lsdata = $model->query("SELECT kode_invoice FROM tb_transaksi ORDER BY id DESC LIMIT 1");
+
+            @$last_kode_invoice = $lsdata->getData() ? $lsdata->getData()[0] : null;
+            
+
+            if (!$last_kode_invoice) {
+                $kode_invoice = "INV/" . date("Y/m/d") . "/1";
+            } else {
+                $pecah_string = explode("/", $last_kode_invoice['kode_invoice']);
+                $bulan_sebelum = $pecah_string[2];
+                $bulan_sekarang = date('m');
+                if ($bulan_sekarang != $bulan_sebelum) {
+                    $number_urut = 1;
+                } else {
+                    $number_urut = $pecah_string[4];
+                    $number_urut++;
+                }
+                $kode_invoice = "INV/" . date("Y/m/d") . "/" . $number_urut;
+            }
+
+            $nama_member = $_POST['id_member'];
+            $ls1data = $model->query("SELECT id FROM tb_member WHERE nama = '$nama_member'");
+            $cari_id_member = $ls1data->getData()[0];
+            $id_member = $cari_id_member['id'];
+
+            date_default_timezone_set('Asia/Makassar');
+            $tanggal = date('Y-m-d H:i:s');
+            $batas_waktu = date('Y-m-d H:i:s', strtotime($tanggal . ' +3 days'));
+            $dibayar = "belum_dibayar";
+            $biaya_tambahan = 0;
+
+            $ls2data = $model->query("SELECT id_member FROM tb_transaksi WHERE id_member = '$id_member'");
+            $cari_transaksi = count($ls2data->getData());
+            if ($cari_transaksi % 3 == 0 && $cari_transaksi != 0) {
+                $diskon = 0.1;
+            } else {
+                $diskon = 0;
+            }
+
+            $pajak = 0.0075;
+            $status = "baru";
+            $id_user = $_SESSION['id_user'];
+            $querry = "INSERT INTO tb_transaksi (id_outlet, kode_invoice, id_member, tgl, batas_waktu, biaya_tambahan, diskon, pajak, status, dibayar, id_user) VALUES('$id_outlet', '$kode_invoice', '$id_member', '$tanggal', '$batas_waktu', '$biaya_tambahan', '$diskon', '$pajak', '$status', '$dibayar', '$id_user')";
+            echo $querry;
+            $ls3data = $model->query("INSERT INTO tb_transaksi (id_outlet, kode_invoice, id_member, tgl, batas_waktu, biaya_tambahan, diskon, pajak, status, dibayar, id_user) VALUES('$id_outlet', '$kode_invoice', '$id_member', '$tanggal', '$batas_waktu', '$biaya_tambahan', '$diskon', '$pajak', '$status', '$dibayar', '$id_user')");
+            echo $ls3data->getMessage() ?? 'fa';
+            $id_transaksi = $model->query("SELECT LAST_INSERT_ID()");
+            $_SESSION['idtransaksi'] = $id_transaksi->getData()[0]['LAST_INSERT_ID()'];
+            print_r($id_transaksi);
+
+            // $hasil = mysqli_query($connect, "INSERT INTO tb_transaksi VALUES(NULL, '$id_outlet', '$kode_invoice', '$id_member', '$tanggal', '$batas_waktu', NULL, '$biaya_tambahan', '$diskon', '$pajak', '$status', '$dibayar', '$id_user')");
+            // $id_transaksi = mysqli_fetch_row(mysqli_query($connect, "SELECT LAST_INSERT_ID()"));
+            $id_transaksi = $_SESSION['idtransaksi'];
+            if (!$ls3data->getSuccess()) {
+                echo "Failed Add Transaction : " . $ls3data->getMessage();
+            } else {
+                $nextLocation = routeTo("/panel/detail-transaksi/$id_transaksi");
+                header("Location: $nextLocation");
+                exit;
+            }
+        }
+    } catch (\Exception $e) {
+        echo $e->getMessage() . "<br>" . $e->getLine() . "<br>" . $e->getFile() . "<br>";
+        tryCatchDisplayWarning($e);
+    }
+}
+
+function detailTransaksi($req, $res, $connection)
+{
+    validateUserSession($req, $res);
+    $karyawan = new User($connection);
+    $data = [
+        'model' => $karyawan,
+        'id_transaksi' => $_SESSION['idtransaksi'],
+        'param_id_transaksi' => $req->getParams()->id_transaksi
+    ];
+
+    $res->render('/panel/components/detail_transaksi', $data);
+}
+
+function transaksiStatusHandler($req, $res, $con) {
+    validateUserSession($req, $res);
+    $model = new User($con);
+    $id_transaksi = $req->getParams()->id;
+    $status = $req->getParams()->status;
+
+    $model->query("UPDATE tb_transaksi SET status = '$status' WHERE id = '$id_transaksi'");
+
+    $res->redirect("/panel/detail-transaksi/$id_transaksi");
+
+}
+
+$panelRouter->get('/transaksi', function ($req, $res) use ($con) {
+    transaksi($req, $res, $con);
 })
-->post('/karyawan/edit/{id_karyawan}', function ($req, $res) use ($con) {
-    editKaryawanPost($req, $res, $con);
+->post('/transaksi_status_handler/{status}/{id}', function ($req, $res) use ($con) {
+    transaksiStatusHandler($req, $res, $con);
 })
-->get('/karyawan/delete/{id_karyawan}', function ($req, $res) use ($con) {
-    deleteKaryawan($req, $res, $con);
-})
-->get('/karyawan/add', function ($req, $res) use ($con) {
-    addKaryawan($req, $res, $con);
-})
-->post('/karyawan/add', function ($req, $res) use ($con) {
-    addKaryawanPost($req, $res, $con);
-});
+    ->post('/transaksi', function ($req, $res) use ($con) {
+        transaksiPost($req, $res, $con);
+    })
+    ->get('/detail-transaksi/{id_transaksi}', function ($req, $res) use ($con) {
+        detailTransaksi($req, $res, $con);
+    })
+    ->post('/detail-transaksi/{id_transaksi}', function ($req, $res) use ($con) {
+        detailTransaksi($req, $res, $con);
+    })
+
+    ->post('/transaksi/delete_package', function($req, $res) use ($con) {
+        $model = new User($con);
+        $id = $_GET['id'];
+        $model->query("DELETE FROM tb_detail_transaksi WHERE id = '$id'");
+        $res->redirect("/panel/detail-transaksi/" . $_SESSION['idtransaksi']);
+    });

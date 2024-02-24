@@ -19,8 +19,6 @@ include_once 'app/services/ErrorHandlerService.php';
 
 $app = new App\Libraries\PHPExpress();
 
-
-
 $app->set('view engine', 'php');
 $app->set('views', 'app/views');
 

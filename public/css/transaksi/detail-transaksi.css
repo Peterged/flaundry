@@ -1,0 +1,251 @@
+.box-detail-container {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.box-detail-transaction {
+  display: flex;
+  width: 100%;
+}
+
+.box-detail-transaction .box-detail {
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.box-detail-transaction .box-detail .box-form {
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  /* background-color: #f5f5f5; */
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.box-detail-transaction .box-detail .box-form .box-detail-form-title span {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.box-detail-transaction .box-detail .box-form table {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.box-detail-transaction .box-detail .box-form table tr td {
+  padding: 10px 0;
+}
+
+.box-detail-transaction .box-detail .box-form table tr td:first-child {
+  width: 170px;
+  padding: 10px;
+}
+
+.box-detail-transaction .box-detail .box-form table tr td:last-child {
+  text-align: right;
+  padding: 10px;
+}
+
+
+
+.box-status {
+  width: 100%;
+}
+
+.box-status table {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  overflow: auto !important;
+  max-width: 1366px;
+}
+
+.box-status table tr {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: 100ms;
+}
+
+.box-status table tr:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.box-status table th,
+.box-status table td {
+  text-align: left;
+  width: 100px;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.box-status table td.width-small,
+.box-status table td.width-small {
+  width: 100px;
+}
+
+.box-status table td.width-medium,
+.box-status table th.width-medium {
+  width: 150px;
+}
+
+.box-status table th.width-large,
+.box-status table td.width-large {
+  width: 200px;
+}
+
+.box-status table th {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.box-status table td {
+  font-weight: 400;
+}
+
+.box-status table th[data-center],
+.box-status table td[data-center] {
+  text-align: center;
+}
+
+.box-status table tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+
+/* BOX FORM */
+
+.box-form table {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  overflow: auto !important;
+  max-width: 400px;
+}
+
+.box-form table tr {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: 100ms;
+}
+
+.box-form table tr:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.box-form table th,
+.box-form table td {
+  text-align: left;
+  width: 100px;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.box-form table td.width-small,
+.box-form table td.width-small {
+  width: 100px;
+}
+
+.box-form table td.width-medium,
+.box-form table th.width-medium {
+  width: 150px;
+}
+
+.box-form table th.width-large,
+.box-form table td.width-large {
+  width: 200px;
+}
+
+.box-form table th {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.box-form table tr td {
+  font-weight: 400;
+  padding: 15px;
+}
+
+.box-form table th[data-center],
+.box-form table td[data-center] {
+  text-align: center;
+}
+
+.box-form table tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+/* BIAYA TAMBAHAN CONTAINER */
+.box-biaya-tambahan-container {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.box-biaya-tambahan-container .box-biaya-tambahan {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.box-biaya-tambahan-container .box-biaya-tambahan form {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.box-biaya-tambahan-container .box-biaya-tambahan form .box-submit-biaya-tambahan {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+}
+
+.box-biaya-tambahan-container .box-button-pay {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.box-biaya-tambahan-container .box-button-pay form {
+    display: flex;
+    gap: 1rem;
+    height: 40px;
+}
+
+.box-biaya-tambahan-container .box-button-pay form button,
+.box-biaya-tambahan-container .box-button-pay form input {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #3498DB;
+    border-radius: 0.25rem;
+    outline: none;
+    color: white;
+    font-weight: 600;
+}
+
+.box-biaya-tambahan-container .box-biaya-tambahan form .box-biaya-tambahan-title span {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.box-add-form {
+    margin-top: 1.5rem;
+    border: 1px solid rgba(0,0 , 0, 0.15);
+    padding: 1rem;
+}
+
+.box-input-biaya-tambahan {
+    display: flex;
+    max-height: 40px;
+}

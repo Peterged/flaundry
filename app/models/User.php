@@ -64,21 +64,21 @@ class User extends Model
         try {
             // Lock the user table
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
-
-            $stmt = $this->dbConnection->prepare("
+            $query = "
             INSERT INTO {$this->tableName} (id_outlet, nama, username, password, role)
             VALUES (:id_outlet, :nama, :username, :password, :role)
-            ");
-
-            $stmt->execute([
+            ";
+            $stmt = $this->dbConnection->prepare($query);
+            $dataToExecute = [
                 'id_outlet' => $this->id_outlet,
                 'nama' => $this->nama,
                 'username' => $this->username,
                 'password' => $this->password,
                 'role' => $this->role
-            ]);
-            // echo $con->inTransaction() ? 'true' : 'false';
+            ];
 
+            
+            $stmt->execute($dataToExecute);
             $con->commit();
 
             $result->setSuccess(true);
@@ -170,7 +170,7 @@ class User extends Model
         try {
             // This will create a whole new process of getting the user
 
-            if (empty($existingUser) && $existingUser != null) {
+            if (empty($existingUser)) {
                 FlashMessage::addMessage([
                     'type' => 'warning',
                     'context' => 'register',
@@ -184,18 +184,18 @@ class User extends Model
 
             $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
 
-            $this->dbConnection->beginTransaction();
+            // $this->dbConnection->beginTransaction();
 
             $columnsToBeInsertedTo = implode(", ", $this->getRequiredProperties());
             $columnsPrepareValues = implode(", ", array_map(function ($prop) {
                 return ":$prop";
             }, $this->getRequiredProperties()));
+            $query = "INSERT INTO {$this->tableName} ($columnsToBeInsertedTo) VALUES ($columnsPrepareValues)";
+            echo $query;
+            $stmt = $this->dbConnection->prepare($query);
 
-            $stmt = $this->dbConnection->prepare("INSERT INTO {$this->tableName} ($columnsToBeInsertedTo) VALUES ($columnsPrepareValues)");
-
-            $stmt->execute($this->valuesArray);
-
-            //
+            $user = $stmt->execute($this->valuesArray);
+            
 
             if (!$user) {
                 FlashMessage::addMessage([
@@ -208,10 +208,10 @@ class User extends Model
                 throw new AuthException('User not found!');
             }
 
-            $this->dbConnection->commit();
+            // $this->dbConnection->commit();
             $result->setSuccess(true);
         } catch (\Exception $e) {
-            $this->dbConnection->rollBack();
+            // $this->dbConnection->rollBack();
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
         } finally {
