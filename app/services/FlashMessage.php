@@ -43,10 +43,16 @@ final class FlashMessage implements FlashMessageInterface
      *
      * ```php
      * // Example usage:
-     * App\Services\FlashMessage::addMessage([]);
+     * App\Services\FlashMessage:addMessage([
+     *  'type' => 'success',
+     *  'context' => 'outlet_message',
+     *  'title' => 'UPDATE',
+     *  'description' => 'Berhasil meng-update outlet!'
+     * ]);
      * // Adds a message to the session with the type 'info' and the key identifier 'user'
      * ```
      */
+    
     public static function addMessage(array $options): array | null
     {
         if (!self::validateOptions($options)) {
@@ -386,7 +392,7 @@ final class FlashMessage implements FlashMessageInterface
         if (array_diff_key($options, array_flip($allowedKeys))) {
             throw new \InvalidArgumentException('Invalid key in options!');
         }
-        
+
         return v::key('title', v::stringType()->length(0, self::$maxMessagelength), false)
             ->key('description', v::stringType()->length(0, self::$maxMessagelength))
             ->key('type', v::in(self::$flashMessageTypes), false)

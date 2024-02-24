@@ -38,6 +38,7 @@ use Respect\Validation\Validator as v;
 
         public function getBody(bool $filter = true) {
             // filtering enabled as default
+            
             if($filter) {
                 $this->filterBody();
             }
@@ -80,6 +81,6 @@ use Respect\Validation\Validator as v;
             $this->params = $params;
         }
 
-        
+
 
     }

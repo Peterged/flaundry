@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Libraries;
 
+use App\Utils\MyLodash as _;
+
 class PHPExpress
 {
     private Request $request;
@@ -171,45 +173,58 @@ class PHPExpress
         }
     }
 
-    private function isRouteHandled(string $headerType, string $route)
+    private function isRouteHandled(string $headerType, string $currentRoute)
     {
         $isHandled = false;
         foreach ($this->routeQueue as &$routeItem) {
-            // echo $routeItem['route'] . " | " . $route, "<br>";
-            // echo $routeItem['route'] . " | " . $route, "<br>";
-
             if ($routeItem['route'] === '*') {
                 continue;
             }
 
             if (preg_match("/\{(.*)\}/", $routeItem['route'])) {
-                $routeArray = explode('/', $route);
+                try {
+                    $currentRoute = "/" . $_GET['route'];
+                }
+                catch(\Exception $e) {
+
+                }
+                $routeArray = explode('/', $currentRoute);
                 $itemArray = explode('/', $routeItem['route']);
+
                 if ($routeItem['route'] === '*') {
                     continue;
                 }
                 if (count($itemArray) !== count($routeArray)) {
                     continue;
                 } else {
-                    foreach ($itemArray as $index => $item) {
-                        if ($routeArray[$index] !== $item && !preg_match("/\{(.*)\}/", $item)) {
-                            continue;
-                        } elseif(preg_match("/\{(.*)\}/", $item)) {
-                        // echo $routeArray[$index] . " | " . $item, "<br>";
-                            if ($routeItem['method'] == $headerType) {
-                                $isHandled = true;
-                            }
+                    $resMap = _::map($itemArray, function ($value, $key, $index, $itemArray) use ($routeArray, $currentRoute) {
+                        if ($routeArray[$key] == $value) {
+                            return 0;
                         }
+                        if ($routeArray[$key] != $value && !preg_match("/\{(.*)\}/", $value)) {
+                            // echo "<pre>";
+                            // // print_r(explode('/', $route));
+                            // echo $currentRoute . "<br>";
+                            // print_r($itemArray);
+                            // echo "_______________";
+                            // echo "</pre>";
+                            return "INVALID";
+                        }
+                        return $value;
+                    });
+
+                    if (_::includes($resMap, "INVALID")) {
+                        $isHandled = false;
+                    } elseif($headerType == $_SERVER['REQUEST_METHOD']) {
+                        // echo $routeItem['route'] . "<br>";
+                        $isHandled = true;
                     }
                 }
-            } else if ($routeItem['route'] == $route && $routeItem['method'] == $headerType) {
+            } else if ($routeItem['route'] == $currentRoute && $routeItem['method'] == $headerType) {
                 $isHandled = true;
             }
-
-            
-            
         }
-        
+
         return $isHandled;
     }
 
@@ -260,6 +275,7 @@ class PHPExpress
 
     private function processFunction(string $requestMethod, bool $isMatch, string $filteredRoute, Request $request, Response $response, callable | string | array ...$callback)
     {
+
         $currentRequestMethod = $request->getMethod();
 
         if ($currentRequestMethod == $requestMethod && $isMatch) {
@@ -270,7 +286,8 @@ class PHPExpress
                 $request->setBody($_POST);
             }
 
-            if(preg_match("/\{(.*)\}/", $filteredRoute)) {
+
+            if (preg_match("/\{(.*)\}/", $filteredRoute)) {
                 $request->setParams(RouterHelper::getRouteParams($filteredRoute));
             }
 
@@ -279,6 +296,7 @@ class PHPExpress
             try {
                 if (is_array($callback)) {
                     foreach ($callback as $call) {
+
                         $call($request, $response);
                     }
                 } else {
@@ -290,10 +308,7 @@ class PHPExpress
                 include_once "app/views/errors/errorException.php";
             }
         }
-        // elseif (!$this->isRouteHandled($requestMethod, $filteredRoute) && $currentRequestM     ethod !== $requestMethod && $isMatch && !$this->headerData['isSent']) {
-        //     echo $this->isRouteHandled($requestMethod, $filteredRoute) ? 'true' : 'false' . "<br>";
-        //     echo "<code>Cannot handle $currentRequestMethod $filteredRoute</code>";
-        // }
+
 
         $this->resetHeader();
         // if ($filteredRoute == '/damn') {
@@ -329,23 +344,42 @@ class PHPExpress
         $filteredRoute = $this->filterRoute($route, $request);
         $isMatch = $this->isRouteMatch($filteredRoute);
 
+        $request->setRoute($filteredRoute);
+
         if (preg_match("/\{(.*)\}/", $filteredRoute)) {
             $routeArray = explode('/', $routeParam);
             $itemArray = explode('/', $filteredRoute);
             if (count($itemArray) !== count($routeArray)) {
                 $isMatch = false;
             } else {
-                foreach ($itemArray as $index => $item) {
-                    if ($routeArray[$index] !== $item && !preg_match("/\{(.*)\}/", $item)) {
-                        continue;
-                    } elseif(preg_match("/\{(.*)\}/", $item)) {
-                        $isMatch = true;
+                $resMap = _::map($itemArray, function ($value, $key, $index, $itemArray) use ($routeArray) {
+                    if ($routeArray[$key] == $value) {
+                        return 0;
                     }
+                    if ($routeArray[$key] != $value && !preg_match("/\{(.*)\}/", $value)) {
+                        // echo "<pre>";
+                        // // print_r(explode('/', $route));
+                        // echo $currentRoute . "<br>";
+                        // print_r($itemArray);
+                        // echo "_______________";
+                        // echo "</pre>";
+                        return "INVALID";
+                    }
+                    return $value;
+                });
+
+                if (_::includes($resMap, "INVALID")) {
+                    // $isMatch = false;
+                } elseif($requestMethod == $_SERVER['REQUEST_METHOD']) {
+                    // echo $route . "<br>";
+                    $isMatch = true;
                 }
+
             }
         }
 
-        $request->setRoute($filteredRoute);
+
+        // echo $filteredRoute;
 
         if (!$isMatch) {
             return;
@@ -353,7 +387,7 @@ class PHPExpress
 
         $log = [
             "path" => $route,
-            "requestPassed" => $requestMethod,  
+            "requestPassed" => $requestMethod,
             "Header" => $currentRequestMethod,
             "isMatch" => $isMatch ? 'match' : 'not match',
             "POST" => empty($_POST) ? 'undefined' : 'defined',
@@ -400,8 +434,6 @@ class PHPExpress
 
 
         $isHandled = $this->isRouteHandled($_SERVER['REQUEST_METHOD'], $route);
-
-        
 
         // If the request_uri is not handled, return an error
         if (http_response_code() == 403) {

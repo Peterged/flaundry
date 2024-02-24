@@ -27,7 +27,7 @@ class Model implements ModelInterface
             if ($tableName = $attributes[0]->newInstance()->tableName) {
                 $this->tableName = $tableName;
             }
-            
+
         }
         $this->dbConnection = $PDO;
         $this->setValuesArray($valuesArray ?? []);
@@ -41,13 +41,12 @@ class Model implements ModelInterface
             if(isset($this->tableName)){
                 $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
             }
-            
+
             $result = $callback() ?? $result;
-            
-            
+
         } catch (\Exception $e) {
-            $result->message = $e->getMessage() . " | Line: " . $e->getLine();
-            trigger_error($result->message);
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            trigger_error($result->getMessage());
         } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
         }
@@ -81,6 +80,7 @@ class Model implements ModelInterface
             $query = $this->convertGetSearchCriteriaIntoQuery($searchCriteria, $additionalQuery);
 
             $stmt = $this->dbConnection->prepare($query);
+            // echo $query . "<br>";
 
             $stmt->execute();
             $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -88,13 +88,13 @@ class Model implements ModelInterface
             $result->setSuccess(true);
             $result->setData($data);
         } catch (\Exception $e) {
-            
+
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
             // trigger_error($e);
         } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
-            
+
         }
 
 
@@ -148,17 +148,19 @@ class Model implements ModelInterface
             $whereEmptyFlag
         ) {
             $searchCriteriaKey = $searchCriteriaKeys[$index] ?? '';
+            // echo "<pre>", print_r($validKeysArray), "</pre>";
 
             // _::clog(in_array($searchCriteriaKey, $validKeysArray));
             if (preg_match("/\?$/", $key) && !in_array($searchCriteriaKey, $validKeysArray)) {
                 $isValid = false;
-
+                // echo $key;
                 switch ($key) {
                     case 'select?':
                         $isValid = $validKeys[$key]($columnsArray);
                         $searchCriteria['select'] = $columnsArray;
                         break;
                     case 'where?':
+                        // if(in_array($key, ));
                         $searchCriteria['where'] = [$whereEmptyFlag => 1];
                         $isValid = $validKeys[$key]($searchCriteria['where']);
                         break;
@@ -175,7 +177,7 @@ class Model implements ModelInterface
             return in_array($key, array_keys($validKeys)) && $validKeys[$key]($searchCriteria[$keyCriteria]);
         });
 
-        
+
 
         // $isSearchCriteriaKeysValid = true;
         // $isAllContentsOfSearchCriteriaArrayAreStringOrArray = true;
@@ -188,12 +190,12 @@ class Model implements ModelInterface
 
             return false;
         }
-        
+
         $selectCriteria = null;
-        
+
         if(is_array($searchCriteria['select'])) {
             $selectCriteria = _::uniq($searchCriteria['select']);
-            
+
         }
         else {
             $selectCriteria = array_unique(preg_split("/[|,]\s*/", $searchCriteria['select']));
@@ -214,11 +216,16 @@ class Model implements ModelInterface
         $query .= " FROM $this->tableName";
 
         $whereArray = _::reduce($searchCriteria, function ($result, $value, $key) use($searchCriteria) {
-            
+
             if (!str_starts_with('where', $key)) return $result;
-            if (!$searchCriteria[$key] == '__ALWAYS') {
+            // print_r($searchCriteria[$key]['__ALWAYS']);
+            // echo($searchCriteria[$key]['__ALWAYS'] == 1 ? 'true' : 'false');
+
+            if ($searchCriteria[$key]['__ALWAYS'] != 1) {
                 $result[$key] = $value;
-                
+
+                // print_r($result);
+                // echo $result[$key];
                 return $result;
             }
         }, []);
@@ -228,7 +235,7 @@ class Model implements ModelInterface
 
             $query .= " WHERE ";
 
-            // print_r($whereArray);            
+            print_r($whereArray);
             foreach ($whereArray as $key => $value) {
                 switch ($key) {
                     case 'where':
@@ -240,12 +247,13 @@ class Model implements ModelInterface
                     default:
                         $whereType = '';
                 }
-                
+
                 $query .= implode(" $whereType ", array_map(function ($value2, $key2) use ($searchCriteria) {
                     return $key2 . " = " . $value2;
                 }, $searchCriteria[$key], array_keys($searchCriteria[$key])));
             }
-        }   
+        }
+
 
         return $query . " $additionalQuery";
     }
@@ -277,7 +285,7 @@ class Model implements ModelInterface
         $this->tryCatchWrapper(function () use ($searchCriteria, $newData) {
             $query = $this->handleUpdateQuery($searchCriteria, $newData);
             $statement = $this->dbConnection->prepare($query);
-
+            echo $query;
             $statement->execute(array_merge($searchCriteria, $newData));
         });
     }
@@ -426,7 +434,6 @@ class Model implements ModelInterface
     protected function setRequiredProperties(array $requiredProperties)
     {
         $this->currentRequiredProperties = $requiredProperties;
-        // $this->checkIfRequiredPropertyValuesAreDefined();
     }
 
     protected function getRequiredProperties()
@@ -453,14 +460,16 @@ class Model implements ModelInterface
     protected function setValuesArray(array | null $valuesArray)
     {
         try {
-            if (array_is_list($valuesArray)) {
+            print_r($valuesArray);
+            // if (array_is_list($valuesArray)) {
                 $this->valuesArray = $valuesArray;
                 foreach ($valuesArray as $key => $value) {
-                    if (isset($this->{$key})) {
+                    if (!isset($this->{$key})) {
                         $this->{$key} = $value;
+
                     }
                 }
-            }
+            // }
         } catch (\Exception $e) {
         }
     }

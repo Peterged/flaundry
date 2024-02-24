@@ -7,10 +7,10 @@ use Respect\Validation\Validator as v;
 use App\Exceptions\ValidationException;
 
 class Outlet extends Model {
-    private string $id;
-    private string $alamat;
-    private string $nama;
-    private string $tlp;
+    public string $id;
+    public string $alamat;
+    public string $nama;
+    public string $tlp;
 
     #[Table('tb_outlet')]
     public function __construct(\PDO $PDO, array | null $valuesArray = null)
@@ -34,20 +34,21 @@ class Outlet extends Model {
                 'tlp' => $this->tlp
             ]);
 
-            $result->data = $data;
+            $result->setData($data);
             return $result;
         }, $result);
 
-        $result->success = true;
+        $result->setSuccess(true);
         return $result;
     }
 
     private function validateEmpty(): bool {
         $requiredProperties = $this->getRequiredProperties();
-
+        print_r($requiredProperties);
         if(count($requiredProperties) > 0) {
             foreach($requiredProperties as $property) {
-                if(empty($this->$property)) {
+
+                if(empty($this->{$property})) {
                     return false;
                 }
             }
@@ -69,8 +70,8 @@ class Outlet extends Model {
             throw new ValidationException('Alamat must contain atleast 5 characters');
         }
 
-        if(!v::stringType()->min(10)->regex("/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/")->validate($this->tlp)) {
-            throw new ValidationException('Telepon must contain atleast 10 characters');
+        if(!v::stringType()->min(8)->validate($this->tlp)) {
+            throw new ValidationException('Telepon must contain atleast 8 characters');
         }
 
         return true;

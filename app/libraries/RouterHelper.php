@@ -30,7 +30,7 @@ class RouterHelper
 
         if($filteredRoute != '/')
             $filteredRoute = preg_replace($secondRegex, '', $filteredRoute);
-
+        
         return $filteredRoute;
     }
 
@@ -63,7 +63,7 @@ class RouterHelper
 
 
 
-        
+
         $isMatch = $requestUri === $filteredRoute;
 
         return $isMatch == $filteredRoute;

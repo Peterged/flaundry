@@ -34,9 +34,10 @@ use App\Services\FlashMessage as fm;
             </div>
         </div>
         <span class="divider"></span>
-
+        <div class="add-btn-wrapper">
+            <a href="<?= routeTo("/panel/outlet/add") ?>" class="add-btn add-outlet-btn">Tambah Outlet</a>
+        </div>
         <table class="data-table">
-
                 <tr>
                     <th>ID</th>
                     <th class="width-large">NAMA OUTLET</th>
@@ -47,6 +48,7 @@ use App\Services\FlashMessage as fm;
 
                 <?php
                     foreach($data['outlets'] as $outlet) {
+                        $currentRoute = routeTo("/panel");
                         echo "
                         <tr>
                             <td>{$outlet['id']}</td>
@@ -54,8 +56,8 @@ use App\Services\FlashMessage as fm;
                             <td>{$outlet['alamat']}</td>
                             <td>{$outlet['tlp']}</td>
                             <td>
-                                <a href=''>EDIT</a>
-                                <a href=''>DELETE</a>
+                                <a href='$currentRoute/outlet/edit/{$outlet["id"]}'>EDIT</a>
+                                <a href='$currentRoute/outlet/delete/{$outlet["id"]}'>DELETE</a>
                             </td>
                         </tr>
                         ";
@@ -77,6 +79,6 @@ use App\Services\FlashMessage as fm;
     </div>
 </div>
 <?php
-fm::displayPopMessagesByContext('outlet_testing', 'bottom-right');
+fm::displayPopMessagesByContext('outlet_message', 'bottom-right');
 ?>
 <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageClose.js"></script>

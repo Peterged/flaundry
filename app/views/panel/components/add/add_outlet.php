@@ -14,45 +14,35 @@ use App\Services\FlashMessage as fm;
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/global.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/formAuth.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
-    <title>Edit Outlet</title>
+    <title>Tambah Outlet</title>
 </head>
 
 <body>
-    <?php
-        if(@!isset($data['currentOutlet'][0])) {
-            $now = date('Y-m-d H:i:s');
-
-            $homeRoute = routeTo("/panel/outlet");
-            header("Location: $homeRoute");
-            exit;
-        }
-        $currentOutlet = $data['currentOutlet'][0];
-    ?>
     <div class="container">
         <form method="post" class="wrapper" id="form-login">
-            <h1 class="title">Edit Outlet</h1>
-            <!-- <img class="form-image" src="<?= PROJECT_ROOT ?>/public/images/flaundry-logo-icon.png" alt=""> -->
+            <h1 class="title">Tambah Outlet</h1>
+            <img class="form-image" src="<?= PROJECT_ROOT ?>/public/images/flaundry-logo-icon.png" alt="">
             <div class="input-group">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
                     <path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
                 </svg>
-                <input autofocus type="text" name="nama" id="nama" placeholder="Nama Outlet" autocomplete="off" required value="<?= $currentOutlet['nama'] ?>">
+                <input autofocus type="text" name="nama" id="nama" placeholder="Nama Outlet" autocomplete="off" required>
             </div>
             <div class="input-group">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
                     <path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
                 </svg>
-                <input type="text" name="alamat" id="alamat" placeholder="Alamat" autocomplete="off" required value="<?= $currentOutlet['alamat'] ?>">
+                <input type="text" name="alamat" id="alamat" placeholder="Alamat" autocomplete="off" required>
             </div>
 
             <div class="input-group">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
                     <path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
                 </svg>
-                <input type="text" name="telpon" id="telpon" pattern="^\d{8,12}$" autocomplete="off" placeholder="Nomor Telpon" required value="<?= $currentOutlet['tlp'] ?>">
+                <input type="text" name="telpon" id="telpon" pattern="^\d{8,12}$" autocomplete="off" placeholder="Nomor Telpon" required>
             </div>
 
-            <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">EDIT OUTLET</button>
+            <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">TAMBAH OUTLET</button>
 
         </form>
         <div class="goback-btn">
