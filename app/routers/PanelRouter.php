@@ -462,7 +462,9 @@ function editKaryawanPost($req, $res, $connection)
     $user = new User($connection);
     $body = $req->getBody();
     echo $body['id_outlet'];
-    $user->updateOne([
+    $user
+    ->validateSave($body)
+    ->updateOne([
         'id' => $req->getParams()->id_karyawan,
     ], [
         'id_outlet' => $body['id_outlet'],
@@ -479,7 +481,7 @@ function editKaryawanPost($req, $res, $connection)
         'description' => 'Berhasil mengupdate karyawan!'
     ]);
 
-    $res->redirect("/panel/karyawan");
+    // $res->redirect("/panel/karyawan");
 }
 
 function deleteKaryawan($req, $res, $connection)
@@ -526,7 +528,7 @@ function addKaryawanPost($req, $res, $connection)
         'role' => $req->getBody()['role']
     ]);
     $user->save();
-
+    
     fm::addMessage([
         'type' => 'success',
         'context' => 'karyawan_message',

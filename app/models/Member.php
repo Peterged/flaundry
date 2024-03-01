@@ -50,21 +50,6 @@ class Member extends Model
         return $result;
     }
 
-    private function validateEmpty(): bool
-    {
-        $requiredProperties = $this->getRequiredProperties();
-
-        if (count($requiredProperties) > 0) {
-            foreach ($requiredProperties as $property) {
-                if (empty($this->$property)) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
     private function validateSave()
     {
         try {

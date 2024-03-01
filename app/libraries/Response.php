@@ -51,10 +51,10 @@ final class Response
                     'fetch' => 'fetch',
                     'header' => $headerContent
                 ]);
-
+                
                 include_once $path;
             } else {
-                // throw new \Exception("Sorry, the file does not exist");
+                throw new \Exception("Sorry, the file does not exist");
             }
         } else {
             throw new \Exception("Sorry, the directory is not set");

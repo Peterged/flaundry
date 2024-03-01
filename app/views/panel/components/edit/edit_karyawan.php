@@ -48,7 +48,7 @@ use App\Services\FlashMessage as fm;
 
             </div>
             <div class="input-group">
-                <label for="nama">Nama Karyawan</label> <input autofocus type="text" name="nama" id="nama" placeholder="Nama Karyawan" autocomplete="off" required value="<?= $currentKaryawan['nama'] ?>">
+                <label for="nama">Nama Karyawan</label> <input autofocus type="text" name="nama" id="nama" placeholder="Nama Karyawan" autocomplete="off" value="<?= $currentKaryawan['nama'] ?>">
             </div>
             <div class="input-group">
                 <label for="username">Username</label>
@@ -90,7 +90,7 @@ use App\Services\FlashMessage as fm;
     </div>
 
     <?php
-    fm::displayPopMessagesByContext('login', 'bottom-right', 3000);
+    fm::displayPopMessagesByContext('karyawan_message', 'bottom-right', 3000);
     ?>
     <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageCloseDelay.js"></script>
 </body>

@@ -7,9 +7,9 @@ use Respect\Validation\Validator as v;
 use App\Attributes\Table;
 use App\Exceptions\AuthException;
 use App\Exceptions\ModelException;
-use App\libaries\Essentials\Session;
 use App\Services\FlashMessage;
 use App\Utils\MyLodash as _;
+use App\Exceptions\ValidationException;
 
 class User extends Model
 {
@@ -27,7 +27,7 @@ class User extends Model
         parent::__construct($PDO, $valuesArray, __CLASS__);
 
         // Set the required properties
-        $this->setRequiredProperties(['username', 'password']);
+        $this->setRequiredProperties(['id_outlet', 'nama', 'username', 'password', 'role']);
 
         // Compare 2 arrays, if empty, the properties are set, if not empty
         // then throw an exception
@@ -54,7 +54,7 @@ class User extends Model
     public function save(): object
     {
         $this->setRequiredProperties(['id_outlet', 'nama', 'username', 'password', 'role']);
-
+        $this->validateSave();
         $this->role = v::in(['admin', 'kasir', 'owner'])->validate($this->role) ? $this->role : null;
 
         $result = new SaveResult();
@@ -77,7 +77,7 @@ class User extends Model
                 'role' => $this->role
             ];
 
-            
+
             $stmt->execute($dataToExecute);
             $con->commit();
 
@@ -195,7 +195,7 @@ class User extends Model
             $stmt = $this->dbConnection->prepare($query);
 
             $user = $stmt->execute($this->valuesArray);
-            
+
 
             if (!$user) {
                 FlashMessage::addMessage([
@@ -286,7 +286,54 @@ class User extends Model
         return $result;
     }
 
+    public function validateSave(array | null $body = null)
+    {
+        try {
+           
+            if (!$this->validateEmpty($body)) {
+                throw new ValidationException('All fields are required');
+            }
 
+            if($body) {
+                $this->id_outlet = $body['id_outlet'];
+                $this->nama = $body['nama'];
+                $this->username = $body['username'];
+                $this->password = $body['password'];
+                $this->role = $body['role'];
+            }
+
+            if(!v::intVal()->validate($this->id_outlet)) {
+                throw new \Exception('Outlet ID must be an integer');
+            }
+
+            if (!v::stringType()->min(3)->validate($this->nama)) {
+                throw new \Exception('Name must be a string and at least 3 characters long');
+            }
+
+            if (!v::stringType()->min(3)->validate($this->username)) {
+                throw new ValidationException('Username must be a string and at least 3 characters long');
+            }
+
+            if (!v::stringType()->min(3)->validate($this->password)) {
+                throw new ValidationException('Password must be a string and at least 3 characters long');
+            }
+
+            if (!v::stringType()->in(['admin', 'kasir', 'owner'])->validate($this->role)) {
+                throw new ValidationException('Role must be a string and either "admin", "kasir", or "owner"');
+            }
+        } catch (\Exception $e) {
+            
+            FlashMessage::addMessage([
+                'type' => 'error',
+                'title' => 'Validation Failed',
+                'description' => $e->getMessage(),
+                'context' => 'karyawan_message'
+            ]);
+            
+        }
+        
+        return $this;
+    }
 
     // Other methods and properties specific to the User model
     public function getIdOutlet()

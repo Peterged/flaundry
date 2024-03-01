@@ -182,8 +182,10 @@ class PHPExpress
             }
 
             if (preg_match("/\{(.*)\}/", $routeItem['route'])) {
+                
                 try {
-                    $currentRoute = "/" . $_GET['route'];
+                    $currentRoute = "/" . @$_GET['route'];
+                    
                 }
                 catch(\Exception $e) { }
 
@@ -201,6 +203,7 @@ class PHPExpress
                 if ($routeItem['route'] === '*') {
                     continue;
                 }
+
                 if (count($itemArray) !== count($routeArray)) {
                     continue;
                 } else {
@@ -217,14 +220,15 @@ class PHPExpress
                     if (_::includes($resMap, "INVALID")) {
                         $isHandled = false;
                     } elseif($headerType == $_SERVER['REQUEST_METHOD']) {
-                        $isHandled = true;
-                        return $isHandled;
+                        return true;
                     }
                 }
             } else if ($routeItem['route'] == $currentRoute && $routeItem['method'] == $headerType) {
-                $isHandled = true;
+                return true;
             }
         }
+
+        
 
         return $isHandled;
     }

@@ -7,6 +7,7 @@ use App\Attributes\Table;
 
 use Respect\Validation\Validator as v;
 use App\Exceptions\ValidationException;
+use App\Libraries\Request;
 use App\Services\FlashMessage as fm;
 
 class Paket extends Model
@@ -30,7 +31,10 @@ class Paket extends Model
         $this->setRequiredProperties(['id_outlet', 'nama_paket', 'jenis', 'harga']);
 
         $result = new SaveResult();
-        $this->validateSave();
+        
+        if($this->validateSave()) {
+            (new \Response)->redirect($_SERVER['REQUEST_URI']);
+        }
 
         $this->tryCatchWrapper(function () use (&$result) {
             $con = $this->dbConnection;
@@ -51,20 +55,6 @@ class Paket extends Model
 
         $result->setSuccess(true);
         return $result;
-    }
-
-    private function validateEmpty(): bool {
-        $requiredProperties = $this->getRequiredProperties();
-        
-        if(count($requiredProperties) > 0) {
-            foreach($requiredProperties as $property) {
-                if(empty($this->{$property})) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
     }
 
     private function validateSave()

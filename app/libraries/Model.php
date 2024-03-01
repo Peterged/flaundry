@@ -286,7 +286,6 @@ class Model implements ModelInterface
 
     public function updateOne(array $searchCriteria, array $newData)
     {
-        $tableName = $this->tableName;
         if (isset($newData['password'])) {
             $newData['password'] = password_hash($newData['password'], PASSWORD_DEFAULT);
         }
@@ -675,5 +674,32 @@ class Model implements ModelInterface
             $this->dbConnection->exec("UNLOCK TABLES");
         }
         return $data;
+    }
+
+    protected function validateEmpty(array | null $body = null): bool
+    {
+        $requiredProperties = $this->getRequiredProperties();
+        
+        if (count($requiredProperties) > 0) {
+            foreach ($requiredProperties as $property) {
+                if($body) {
+                    
+                    if (empty($body[$property])) {
+                        echo "Property $property is empty!";
+                        return false;
+                    }
+                }
+                else {
+                    if (empty($this->$property)) {
+                        return false;
+                    }
+                
+                }
+                
+            }
+            
+            return true;
+        }
+        return false;
     }
 }
