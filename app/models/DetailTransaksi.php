@@ -6,7 +6,7 @@ use App\Attributes\Table;
 use Respect\Validation\Validator as v;
 use App\Exceptions\ValidationException;
     
-class Member extends Model {
+class DetailTransaksi extends Model {
     private string $id;
     private int $nama;
     private string $alamat;

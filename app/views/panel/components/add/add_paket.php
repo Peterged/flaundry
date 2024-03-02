@@ -59,7 +59,7 @@ use App\Services\FlashMessage as fm;
     </div>
 
     <?php
-    fm::displayPopMessagesByContext('login', 'bottom-right', 3000);
+    fm::displayPopMessagesByContext('paket_message', 'bottom-right', 10000);
     ?>
     <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageCloseDelay.js"></script>
 </body>

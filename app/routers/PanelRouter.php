@@ -100,42 +100,59 @@ function outletEditPost($req, $res, $connection)
 {
     validateUserSession($req, $res);
     $outlet = new Outlet($connection);
-    $outlet->updateOne([
-        'id' => $req->getParams()->id_outlet,
-    ], [
-        'nama' => $req->getBody()['nama'],
-        'alamat' => $req->getBody()['alamat'],
-        'tlp' => $req->getBody()['telpon']
-    ]);
+    $body = $req->getBody();
 
-    fm::addMessage([
-        'type' => 'success',
-        'context' => 'outlet_message',
-        'title' => 'UPDATE',
-        'description' => 'Berhasil mengupdate outlet!'
-    ]);
+    if (!$outlet->validateSave($body)) {
+        $res->redirect('/' . $_GET['route']);
+    } else {
+        $outlet->updateOne([
+            'id' => $req->getParams()->id_outlet,
+        ], [
+            'nama' => $body['nama'],
+            'alamat' => $body['alamat'],
+            'tlp' => $body['tlp']
+        ]);
 
-    $res->redirect('/panel/outlet');
+        fm::addMessage([
+            'type' => 'success',
+            'context' => 'outlet_message',
+            'title' => 'UPDATE',
+            'description' => 'Berhasil mengupdate outlet!'
+        ]);
+
+        $res->redirect('/panel/outlet');
+    }
+}
+
+function outletAdd($req, $res, $connection)
+{
+    validateUserSession($req, $res);
+    $res->render('/panel/components/add/add_outlet');
 }
 
 function outletAddPost($req, $res, $connection)
 {
     validateUserSession($req, $res);
+    $body = $req->getBody();
     $outlet = new Outlet($connection, [
-        'nama' => $req->getBody()['nama'],
-        'alamat' => $req->getBody()['alamat'],
-        'tlp' => $req->getBody()['telpon']
+        'nama' => $body['nama'],
+        'alamat' => $body['alamat'],
+        'tlp' => $body['tlp']
     ]);
-    $outlet->save();
+    if (!$outlet->validateSave($body)) {
+        $res->redirect('/' . $_GET['route']);
+    } else {
+        $outlet->save();
 
-    fm::addMessage([
-        'type' => 'success',
-        'context' => 'outlet_message',
-        'title' => 'TAMBAH OUTLET',
-        'description' => 'Berhasil menambahkan outlet!'
-    ]);
+        fm::addMessage([
+            'type' => 'success',
+            'context' => 'outlet_message',
+            'title' => 'TAMBAH OUTLET',
+            'description' => 'Berhasil menambahkan outlet!'
+        ]);
 
-    $res->redirect('/panel/outlet');
+        $res->redirect('/panel/outlet');
+    }
 }
 
 $panelRouter
@@ -169,7 +186,7 @@ $panelRouter
         outletEditPost($req, $res, $con);
     })
     ->get('/outlet/add', function ($req, $res) use ($con) {
-        $res->render('/panel/components/add/add_outlet');
+        outletAdd($req, $res, $con);
     })
     ->post('/outlet/add', function ($req, $res) use ($con) {
         outletAddPost($req, $res, $con);
@@ -208,25 +225,29 @@ function editPaket($req, $res, $connection)
 function editPaketPost($req, $res, $connection)
 {
     validateUserSession($req, $res);
-    $outlet = new Paket($connection);
+    $paket = new Paket($connection);
     $body = $req->getBody();
-    $outlet->updateOne([
-        'id' => $req->getParams()->id_paket,
-        'id_outlet' => $req->getParams()->id_outlet
-    ], [
-        'nama_paket' => $body['nama'],
-        'jenis' => $body['jenis_paket'],
-        'harga' => $body['harga']
-    ]);
+    if (!$paket->validateSave($body)) {
+        $res->redirect('/' . $_GET['route']);
+    } else {
+        $paket->updateOne([
+            'id' => $req->getParams()->id_paket,
+            'id_outlet' => $req->getParams()->id_outlet
+        ], [
+            'nama_paket' => $body['nama'],
+            'jenis' => $body['jenis_paket'],
+            'harga' => $body['harga']
+        ]);
 
-    fm::addMessage([
-        'type' => 'success',
-        'context' => 'paket_message',
-        'title' => 'UPDATE',
-        'description' => 'Berhasil mengupdate paket!'
-    ]);
+        fm::addMessage([
+            'type' => 'success',
+            'context' => 'paket_message',
+            'title' => 'UPDATE',
+            'description' => 'Berhasil mengupdate paket!'
+        ]);
 
-    $res->redirect("/panel/paket");
+        $res->redirect("/panel/paket");
+    }
 }
 
 function deletePaketPost($req, $res, $connection)
@@ -271,22 +292,27 @@ function addPaket($req, $res, $connection)
 function addPaketPost($req, $res, $connection)
 {
     validateUserSession($req, $res);
+    $body = $req->getBody();
+    $body['harga'] = (int) $body['harga'];
     $paket = new Paket($connection, [
         'id_outlet' => $req->getParams()->id_outlet,
         'nama_paket' => $req->getBody()['nama'],
         'jenis' => $req->getBody()['jenis_paket'],
         'harga' => $req->getBody()['harga']
     ]);
-    $paket->save();
 
-    fm::addMessage([
-        'type' => 'success',
-        'context' => 'paket_message',
-        'title' => 'TAMBAH PAKET',
-        'description' => 'Berhasil menambahkan paket!'
-    ]);
-
-    $res->redirect('/panel/paket');
+    if (!$paket->validateSave($body)) {
+        $res->redirect('/' . $_GET['route']);
+    } else {
+        $paket->save();
+        fm::addMessage([
+            'type' => 'success',
+            'context' => 'paket_message',
+            'title' => 'TAMBAH PAKET',
+            'description' => 'Berhasil menambahkan paket!'
+        ]);
+        $res->redirect('/panel/paket');
+    }
 }
 
 $panelRouter->get('/paket', function ($req, $res) use ($con) {
@@ -340,23 +366,27 @@ function editMemberPost($req, $res, $connection)
     validateUserSession($req, $res);
     $member = new Member($connection);
     $body = $req->getBody();
-    $member->updateOne([
-        'id' => $req->getParams()->id_member,
-    ], [
-        'nama' => $body['nama'],
-        'alamat' => $body['alamat'],
-        'jenis_kelamin' => $body['jenis_kelamin'],
-        'tlp' => $body['tlp']
-    ]);
+    if (!$member->validateSave($body)) {
+        $res->redirect('/' . $_GET['route']);
+    } else {
+        $member->updateOne([
+            'id' => $req->getParams()->id_member,
+        ], [
+            'nama' => $body['nama'],
+            'alamat' => $body['alamat'],
+            'jenis_kelamin' => $body['jenis_kelamin'],
+            'tlp' => $body['tlp']
+        ]);
 
-    fm::addMessage([
-        'type' => 'success',
-        'context' => 'member_message',
-        'title' => 'UPDATE',
-        'description' => 'Berhasil mengupdate member!'
-    ]);
+        fm::addMessage([
+            'type' => 'success',
+            'context' => 'member_message',
+            'title' => 'UPDATE',
+            'description' => 'Berhasil mengupdate member!'
+        ]);
 
-    $res->redirect("/panel/member");
+        $res->redirect("/panel/member");
+    }
 }
 
 function deleteMember($req, $res, $connection)
@@ -385,28 +415,32 @@ function deleteMember($req, $res, $connection)
 function addMember($req, $res, $connection)
 {
     validateUserSession($req, $res);
+
     $res->render('/panel/components/add/add_member');
 }
 
 function addMemberPost($req, $res, $connection)
 {
     validateUserSession($req, $res);
+    $body = $req->getBody();
     $member = new Member($connection, [
         'nama' => $req->getBody()['nama'],
         'alamat' => $req->getBody()['alamat'],
         'jenis_kelamin' => $req->getBody()['jenis_kelamin'],
         'tlp' => $req->getBody()['tlp']
     ]);
-    $member->save();
-
-    fm::addMessage([
-        'type' => 'success',
-        'context' => 'member_message',
-        'title' => 'TAMBAH MEMBER',
-        'description' => 'Berhasil menambahkan member!'
-    ]);
-
-    $res->redirect('/panel/member');
+    if (!$member->validateSave($body)) {
+        $res->redirect('/' . $_GET['route']);
+    } else {
+        $member->save();
+        fm::addMessage([
+            'type' => 'success',
+            'context' => 'member_message',
+            'title' => 'TAMBAH MEMBER',
+            'description' => 'Berhasil menambahkan member!'
+        ]);
+        $res->redirect('/panel/member');
+    }
 }
 
 $panelRouter->get('/member', function ($req, $res) use ($con) {
@@ -461,27 +495,28 @@ function editKaryawanPost($req, $res, $connection)
     validateUserSession($req, $res);
     $user = new User($connection);
     $body = $req->getBody();
-    echo $body['id_outlet'];
-    $user
-    ->validateSave($body)
-    ->updateOne([
-        'id' => $req->getParams()->id_karyawan,
-    ], [
-        'id_outlet' => $body['id_outlet'],
-        'nama' => $body['nama'],
-        'username' => $body['username'],
-        'password' => $body['password'],
-        'role' => $body['role']
-    ]);
 
-    fm::addMessage([
-        'type' => 'success',
-        'context' => 'karyawan_message',
-        'title' => 'UPDATE',
-        'description' => 'Berhasil mengupdate karyawan!'
-    ]);
+    if (!$user->validateUpdate($body)) {
+        $res->redirect('/' . $_GET['route']);
+    } else {
+        $user->updateOne([
+            'id' => $req->getParams()->id_karyawan,
+        ], [
+            'id_outlet' => $body['id_outlet'],
+            'nama' => $body['nama'],
+            'username' => $body['username'],
+            'password' => $body['password'],
+            'role' => $body['role']
+        ]);
 
-    // $res->redirect("/panel/karyawan");
+        fm::addMessage([
+            'type' => 'success',
+            'context' => 'karyawan_message',
+            'title' => 'UPDATE',
+            'description' => 'Berhasil mengupdate karyawan!'
+        ]);
+        $res->redirect("/panel/karyawan");
+    }
 }
 
 function deleteKaryawan($req, $res, $connection)
@@ -489,9 +524,12 @@ function deleteKaryawan($req, $res, $connection)
     validateUserSession($req, $res);
     $user = new User($connection);
     try {
-        $user->deleteOne([
+        $result = $user->deleteOne([
             'id' => $req->getParams()->id_karyawan
         ]);
+        if (!$result->getSuccess()) {
+            throw new \Exception('Gagal menghapus karyawan!');
+        }
         fm::addMessage([
             'type' => 'success',
             'context' => 'karyawan_message',
@@ -518,25 +556,37 @@ function addKaryawan($req, $res, $connection)
 function addKaryawanPost($req, $res, $connection)
 {
     validateUserSession($req, $res);
-    $idOutlet = (int) $req->getBody()['id_outlet'];
+    $body = $req->getBody();
+    $body['id_outlet'] = (int) preg_replace('/\D+/', '', $body['id_outlet']);
+    $idOutlet = $body['id_outlet'];
 
     $user = new User($connection, [
         'id_outlet' => $idOutlet,
-        'nama' => $req->getBody()['nama'],
-        'username' => $req->getBody()['username'],
-        'password' => $req->getBody()['password'],
-        'role' => $req->getBody()['role']
+        'nama' => $body['nama'],
+        'username' => $body['username'],
+        'password' => $body['password'],
+        'role' => $body['role']
     ]);
-    $user->save();
-    
-    fm::addMessage([
-        'type' => 'success',
-        'context' => 'karyawan_message',
-        'title' => 'TAMBAH KARYAWAN',
-        'description' => 'Berhasil menambahkan karyawan!'
-    ]);
+    if (!$user->validateSave($body)) {
+        $res->redirect('/' . $_GET['route']);
+    } else {
+        $result = $user->save();
+        $message = 'Berhasil menambahkan karyawan!';
+        $flashType = 'success';
+        if (!$result->getSuccess()) {
+            $flashType = 'error';
+            $message = 'Gagal menambahkan karyawan!';
+        }
 
-    $res->redirect('/panel/karyawan');
+        fm::addMessage([
+            'type' => $flashType,
+            'context' => 'karyawan_message',
+            'title' => 'TAMBAH KARYAWAN',
+            'description' => $message
+        ]);
+
+        $res->redirect('/panel/karyawan');
+    }
 }
 
 $panelRouter->get('/karyawan', function ($req, $res) use ($con) {
@@ -581,7 +631,7 @@ function transaksiPost($req, $res, $connection)
             @$lsdata = $model->query("SELECT kode_invoice FROM tb_transaksi ORDER BY id DESC LIMIT 1");
 
             @$last_kode_invoice = $lsdata->getData() ? $lsdata->getData()[0] : null;
-            
+
 
             if (!$last_kode_invoice) {
                 $kode_invoice = "INV/" . date("Y/m/d") . "/1";
@@ -626,7 +676,6 @@ function transaksiPost($req, $res, $connection)
             echo $ls3data->getMessage() ?? 'fa';
             $id_transaksi = $model->query("SELECT LAST_INSERT_ID()");
             $_SESSION['idtransaksi'] = $id_transaksi->getData()[0]['LAST_INSERT_ID()'];
-            print_r($id_transaksi);
 
             // $hasil = mysqli_query($connect, "INSERT INTO tb_transaksi VALUES(NULL, '$id_outlet', '$kode_invoice', '$id_member', '$tanggal', '$batas_waktu', NULL, '$biaya_tambahan', '$diskon', '$pajak', '$status', '$dibayar', '$id_user')");
             // $id_transaksi = mysqli_fetch_row(mysqli_query($connect, "SELECT LAST_INSERT_ID()"));
@@ -658,7 +707,8 @@ function detailTransaksi($req, $res, $connection)
     $res->render('/panel/components/detail_transaksi', $data);
 }
 
-function transaksiStatusHandler($req, $res, $con) {
+function transaksiStatusHandler($req, $res, $con)
+{
     validateUserSession($req, $res);
     $model = new User($con);
     $id_transaksi = $req->getParams()->id;
@@ -667,15 +717,14 @@ function transaksiStatusHandler($req, $res, $con) {
     $model->query("UPDATE tb_transaksi SET status = '$status' WHERE id = '$id_transaksi'");
 
     $res->redirect("/panel/detail-transaksi/$id_transaksi");
-
 }
 
 $panelRouter->get('/transaksi', function ($req, $res) use ($con) {
     transaksi($req, $res, $con);
 })
-->post('/transaksi_status_handler/{status}/{id}', function ($req, $res) use ($con) {
-    transaksiStatusHandler($req, $res, $con);
-})
+    ->post('/transaksi_status_handler/{status}/{id}', function ($req, $res) use ($con) {
+        transaksiStatusHandler($req, $res, $con);
+    })
     ->post('/transaksi', function ($req, $res) use ($con) {
         transaksiPost($req, $res, $con);
     })
@@ -686,7 +735,7 @@ $panelRouter->get('/transaksi', function ($req, $res) use ($con) {
         detailTransaksi($req, $res, $con);
     })
 
-    ->post('/transaksi/delete_package', function($req, $res) use ($con) {
+    ->post('/transaksi/delete_package', function ($req, $res) use ($con) {
         $model = new User($con);
         $id = $_GET['id'];
         $model->query("DELETE FROM tb_detail_transaksi WHERE id = '$id'");

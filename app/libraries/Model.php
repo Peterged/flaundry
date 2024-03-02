@@ -33,7 +33,7 @@ class Model implements ModelInterface
         $this->setValuesArray($valuesArray ?? []);
     }
 
-    protected function tryCatchWrapper(\Closure $callback, bool $lockTables = true)
+    protected function tryCatchWrapper(\Closure $callback, bool $lockTables = true, bool $enableErrorReporting = true)
     {
         $result = new SaveResult();
         try {
@@ -44,7 +44,9 @@ class Model implements ModelInterface
             $result = $callback() ?? $result;
         } catch (\Exception $e) {
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
-            trigger_error($result->getMessage());
+            if($enableErrorReporting) {
+                trigger_error($e->getMessage());
+            }
         } finally {
             if($lockTables) {
                 $this->dbConnection->exec("UNLOCK TABLES");
@@ -343,6 +345,7 @@ class Model implements ModelInterface
     public function deleteOne(array $searchCriteria)
     {
         $tableName = $this->tableName;
+        $result = new SaveResult();
 
         try {
             $this->dbConnection->beginTransaction();
@@ -354,14 +357,16 @@ class Model implements ModelInterface
             // $query = 'DELETE FROM tb_user WHERE condition = :condition LIMIT 1'
             $statement = $this->dbConnection->prepare($query);
             $statement->execute($searchCriteria);
-
+            $result->setSuccess(true);
             $this->dbConnection->commit();
         } catch (\Exception $e) {
             $this->dbConnection->rollBack();
             trigger_error($e->getMessage());
+            
         } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
         }
+        return $result;
     }
 
     public function deleteMany(array $searchCriteria, array $options = null)

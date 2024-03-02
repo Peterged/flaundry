@@ -9,6 +9,9 @@ use Respect\Validation\Validator as v;
 use App\Exceptions\ValidationException;
 use App\Libraries\Request;
 use App\Services\FlashMessage as fm;
+use App\Utils\MyLodash as _;
+
+
 
 class Paket extends Model
 {
@@ -32,9 +35,7 @@ class Paket extends Model
 
         $result = new SaveResult();
         
-        if($this->validateSave()) {
-            (new \Response)->redirect($_SERVER['REQUEST_URI']);
-        }
+        $this->validateSave();
 
         $this->tryCatchWrapper(function () use (&$result) {
             $con = $this->dbConnection;
@@ -50,34 +51,55 @@ class Paket extends Model
             $data = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? [[]];
 
             $result->setData($data);
-            return $result;
-        });
+        }, true, false);
 
         $result->setSuccess(true);
         return $result;
     }
 
-    private function validateSave()
+    public function validateSave(array | null $body = null)
     {
+        $namaPaketMinLength = 3;
+        $namaPaketMaxLength = 36;
+        $daftarJenisPaket = ['kiloan', 'selimut', 'bed_cover', 'kaos', 'lain'];
+
         try {
-            if (!$this->validateEmpty()) {
-                throw new ValidationException('All properties are required');
+            if(!is_null($body)) {
+                $this->nama_paket = $body['nama'];
+                $this->jenis = $body['jenis_paket'];
+                $this->harga = $body['harga'];
+            }
+            if (!v::stringType()->length($namaPaketMinLength, $namaPaketMaxLength)->validate($this->nama_paket)) {
+                throw new ValidationException("Nama paket harus diantara $namaPaketMinLength dan $namaPaketMaxLength karakter", FLASH_ERROR);
+            }
+            
+            if(!v::in($daftarJenisPaket)->validate($this->jenis)) {
+                throw new ValidationException('Jenis paket harus diantara' . implode(', ', $daftarJenisPaket) . '!', FLASH_ERROR);
             }
 
-            if (!v::stringType()->min(2)->validate($this->nama_paket)) {
-                throw new ValidationException('Alamat must contain atleast 1 character');
-            }
-
-            if (!v::number()->validate($this->harga)) {
-                throw new ValidationException('Harga must be a number!');
+            if (!v::number()->min(0)->validate($this->harga)) {
+                throw new ValidationException('Harga harus berupa angka dan lebih dari 0!', FLASH_ERROR);
             }
         } catch (\Exception $e) {
-            fm::addMessage([
-                'type' => 'error',
-                'title' => 'Validation Failed',
-                'description' => $e->getMessage(),
-                'context' => 'tambah_paket_validation_error'
-            ]);
+            if ($e instanceof ValidationException) {
+                if ($e->getErrorDisplayType() === FLASH_ERROR) {
+                    fm::addMessage([
+                        'type' => 'error',
+                        'title' => 'Validation Failed',
+                        'description' => $e->getMessage(),
+                        'context' => 'paket_message'
+                    ]);
+                }
+            }
+            else {
+                fm::addMessage([
+                    'type' => 'error',
+                    'title' => 'Something went wrong',
+                    'description' => "Something went wrong, please try again later",
+                    'context' => 'paket_message'
+                ]);
+            }
+            
             return false;
         }
 

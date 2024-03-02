@@ -42,38 +42,57 @@ class Outlet extends Model
             $data = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? [[]];
 
             $result->setData($data);
-            return $result;
         });
 
         $result->setSuccess(true);
         return $result;
     }
 
-    private function validateSave()
+    public function validateSave(array | null $body = null)
     {
+        $namaMinLength = 3;
+        $namaMaxLength = 36;
+        $alamatMinLength = 5;
+        $alamatMaxLength = 100;
+        $tlpMinLength = 10;
+        $tlpMaxLength = 15;
+
         try {
-            if (!$this->validateEmpty()) {
-                throw new ValidationException('All properties are required');
+            if(!is_null($body)) {
+                $this->nama = $body['nama'];
+                $this->alamat = $body['alamat'];
+                $this->tlp = $body['tlp'];
+            }
+            if (!v::stringType()->length($namaMinLength, $namaMaxLength)->validate($this->nama)) {
+                throw new ValidationException("Nama Outlet harus diantara $namaMinLength dan $namaMaxLength karakter", FLASH_ERROR);
             }
 
-            if (!v::stringType()->min(3)->validate($this->nama)) {
-                throw new ValidationException('Nama must contain atleast 3 characters');
+            if (!v::stringType()->length($alamatMinLength, $alamatMaxLength)->validate($this->alamat)) {
+                throw new ValidationException("Alamat harus diantara $alamatMinLength dan $alamatMaxLength karakter", FLASH_ERROR);
             }
 
-            if (!v::stringType()->min(5)->validate($this->alamat)) {
-                throw new ValidationException('Alamat must contain atleast 5 characters');
-            }
-
-            if (!v::stringType()->min(8)->validate($this->tlp)) {
-                throw new ValidationException('Telepon must contain atleast 8 characters');
+            if (!v::stringType()->length($tlpMinLength, $tlpMaxLength)->validate($this->tlp)) {
+                throw new ValidationException("Telepon harus diantara $tlpMinLength dan $tlpMaxLength karakter", FLASH_ERROR);
             }
         } catch (\Exception $e) {
-            fm::addMessage([
-                'type' => 'error',
-                'title' => 'Validation Failed',
-                'description' => $e->getMessage(),
-                'context' => 'tambah_paket_validation_error'
-            ]);
+            if ($e instanceof ValidationException) {
+                if ($e->getErrorDisplayType() === FLASH_ERROR) {
+                    fm::addMessage([
+                        'type' => 'error',
+                        'title' => 'Validation Failed',
+                        'description' => $e->getMessage(),
+                        'context' => 'outlet_message'
+                    ]);
+                }
+            } else {
+                fm::addMessage([
+                    'type' => 'error',
+                    'title' => 'Something went wrong',
+                    'description' => "Something went wrong, please try again later",
+                    'context' => 'outlet_message'
+                ]);
+            }
+
             return false;
         }
 

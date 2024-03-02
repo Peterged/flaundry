@@ -978,3 +978,78 @@ Stack trace:
 [01-Mar-2024 10:06:09 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
 [01-Mar-2024 10:06:11 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
 [01-Mar-2024 10:06:12 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:09:56 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:01 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:07 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:44 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:50 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:50 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:51 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:11:05 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 06:06:20 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:02:45 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:02:50 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:03:10 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:03:13 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:03:54 Europe/Berlin] PHP Warning:  Undefined array key "name" in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 464
+[02-Mar-2024 07:09:48 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:09:55 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:16:07 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:19:55 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:20:13 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:21:24 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:21:25 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:21:29 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:34:02 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:07 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:16 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:18 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:30 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 361
+[02-Mar-2024 07:35:30 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:33 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:34 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 361
+[02-Mar-2024 07:35:35 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:36 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 361
+[02-Mar-2024 07:35:36 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:39:29 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:39:30 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 362
+[02-Mar-2024 07:39:30 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:01:36 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:07:24 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:07:26 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:07:39 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:07:46 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:09:53 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: Cannot assign string to property App\models\User::$id_outlet of type int in C:\xampp\htdocs\flaundry\app\models\User.php:304
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(536): App\models\User->validateSave(Array)
+#1 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(572): App\routers\addKaryawanPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#2 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#3 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/karyawan...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('POST', '/panel/karyawan...', Array)
+#5 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#6 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\models\User.php on line 304
+[02-Mar-2024 14:11:56 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: Cannot assign string to property App\models\User::$id_outlet of type int in C:\xampp\htdocs\flaundry\app\libraries\Model.php:478
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\libraries\Model.php(33): App\Libraries\Model->setValuesArray(Array)
+#1 C:\xampp\htdocs\flaundry\app\models\User.php(27): App\Libraries\Model->__construct(Object(App\Libraries\Database), Array, 'App\\models\\User')
+#2 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(530): App\models\User->__construct(Object(App\Libraries\Database), Array)
+#3 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(570): App\routers\addKaryawanPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/karyawan...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('POST', '/panel/karyawan...', Array)
+#7 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 478
+[02-Mar-2024 14:14:42 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: Cannot assign string to property App\models\User::$id_outlet of type int in C:\xampp\htdocs\flaundry\app\libraries\Model.php:478
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\libraries\Model.php(33): App\Libraries\Model->setValuesArray(Array)
+#1 C:\xampp\htdocs\flaundry\app\models\User.php(27): App\Libraries\Model->__construct(Object(App\Libraries\Database), Array, 'App\\models\\User')
+#2 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(530): App\models\User->__construct(Object(App\Libraries\Database), Array)
+#3 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(570): App\routers\addKaryawanPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/karyawan...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('POST', '/panel/karyawan...', Array)
+#7 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 478

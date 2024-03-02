@@ -30,32 +30,24 @@ use App\Services\FlashMessage as fm;
                 <input type="text" name="alamat" id="alamat" placeholder="Alamat" autocomplete="off" required>
             </div>
             <div class="input-group">
-                <label for="telpon">Nomor Telpon</label>
-                <input type="text" name="telpon" id="telpon" pattern="^\d{8,12}$" autocomplete="off" placeholder="Nomor Telpon" required>
-            </div>
-            <div class="input-group">
-                <label for="jenis_kelamin">Jenis Kelamin</label>
-                <select name="jenis_kelamin" id="jenis_kelamin">
-                    <option value="L">Laki-laki</option>
-                    <option value="P">Perempuan</option>
-                </select>
+                <label for="tlp">Nomor Telpon</label>
+                <input type="text" name="tlp" id="tlp" pattern="^\d{8,12}$" autocomplete="off" placeholder="Nomor Telpon" required>
             </div>
 
-            <div class="input-group">
-                <label for="">Jenis Kelamin</label>
-                <div class="radio-group">
-                    <input type="radio" name="status" id="status-active" value="active">
-                    <label for="status-active">Laki - Laki</label>
-                    <input type="radio" name="status" id="status-inactive" value="inactive">
-                    <label for="status-inactive">Perempuan</label>
-                </div>
-            </div>
             <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">TAMBAH OUTLET</button>
+            <div class="goback-btn">
+                <button onclick="window.location.href='<?= routeTo("/panel/outlet") ?>'" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
+                        <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
+                    </svg>
+                    Back
+                </button>
+            </div>
         </form>
     </div>
 
     <?php
-    fm::displayPopMessagesByContext('login', 'bottom-right', 3000);
+    fm::displayPopMessagesByContext('outlet_message', 'bottom-right', 3000);
     ?>
     <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageCloseDelay.js"></script>
 </body>

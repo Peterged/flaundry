@@ -1,21 +1,22 @@
+<?php
+$myRoute = explode('/', $_GET['route']);
+$myRoute = end($myRoute);
+
+?>
+
 <div class="panel-navbar">
     <div class="header">
         <div class="title">
-            <p>Configuration</p>
+            <p><?= ucfirst($myRoute) ?></p>
         </div>
         <div class="breadcrumb">
             <a href="<?= routeTo("/panel/dashboard") ?>">Panel</a>
             <span class="separator">&gt;</span>
-            <?php
-                    $myRoute = explode('/', $_GET['route']);
-                    $myRoute = end($myRoute);
-                    
-                ?>
             <a href="<?= routeTo("/panel/$myRoute") ?>">
-            <?php 
+                <?php
                 echo ucfirst($myRoute);
-            ?>
-                </a>
+                ?>
+            </a>
         </div>
     </div>
     <div class="search-box">
@@ -46,7 +47,7 @@
         </div>
         <div class="identity">
             <div class="profile-name">
-                <p><?= $data['username'] ?? 'undefined' ?></p>
+                <p><?= $_SESSION['username'] ?? 'undefined' ?></p>
             </div>
             <div class="avatar">
                 <img src="" alt="">

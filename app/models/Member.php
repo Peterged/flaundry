@@ -1,6 +1,7 @@
 <?php
 
 namespace App\models;
+
 use App\Libraries\Model;
 use App\Attributes\Table;
 use Respect\Validation\Validator as v;
@@ -28,7 +29,9 @@ class Member extends Model
     public function save(): array | object
     {
         $result = new SaveResult();
-        $this->validateSave();
+        if (!$this->validateSave()) {
+            (new \App\Libraries\Response)->redirect($_SERVER['REQUEST_URI']);
+        }
 
         $this->tryCatchWrapper(function () use (&$result) {
             $con = $this->dbConnection;
@@ -50,35 +53,57 @@ class Member extends Model
         return $result;
     }
 
-    private function validateSave()
+    public function validateSave(array | null $body = null)
     {
+        $namaMinLength = 3;
+        $namaMaxLength = 36;
+        $alamatMinLength = 5;
+        $alamatMaxLength = 100;
+        $jenisKelaminOptions = ["L", "P"];
+        $tlpMinLength = 10;
+        $tlpMaxLength = 15;
         try {
-            if (!$this->validateEmpty()) {
-                throw new ValidationException('All properties are required');
+            if ($body) {
+                $this->nama = $body['nama'];
+                $this->alamat = $body['alamat'];
+                $this->jenis_kelamin = $body['jenis_kelamin'];
+                $this->tlp = $body['tlp'];
             }
 
-            if (!v::stringType()->min(3)->validate($this->nama)) {
-                throw new ValidationException('Nama must contain atleast 3 characters');
+            if (!v::stringType()->length($namaMinLength, $namaMaxLength)->validate($this->nama)) {
+                throw new ValidationException("Nama harus diantara $namaMinLength dan $namaMaxLength karakter", FLASH_ERROR);
             }
 
-            if (!v::stringType()->min(5)->validate($this->alamat)) {
-                throw new ValidationException('Alamat must contain atleast 5 characters');
+            if (!v::stringType()->length($alamatMinLength, $alamatMaxLength)->validate($this->alamat)) {
+                throw new ValidationException("Alamat harus diantara $alamatMinLength dan $alamatMaxLength karakter", FLASH_ERROR);
             }
 
-            if (!v::stringType()->in(["L", "P"])->validate($this->jenis_kelamin)) {
-                throw new ValidationException('Jenis Kelamin must be a string and either "L" or "P"');
+            if (!v::stringType()->in($jenisKelaminOptions)->validate($this->jenis_kelamin)) {
+                throw new ValidationException("Jenis Kelamin harus bernilai 'L' or 'P'", FLASH_ERROR);
             }
 
-            if (!v::stringType()->min(10)->validate($this->tlp)) {
-                throw new ValidationException('Telepon must contain atleast 10 characters');
+            if (!v::stringType()->length(10)->validate($this->tlp)) {
+                throw new ValidationException("Telepon harus diantara $tlpMinLength dan $tlpMaxLength karakter", FLASH_ERROR);
             }
         } catch (\Exception $e) {
-            fm::addMessage([
-                'type' => 'error',
-                'title' => 'Validation Failed',
-                'description' => $e->getMessage(),
-                'context' => 'tambah_paket_validation_error'
-            ]);
+            if ($e instanceof ValidationException) {
+                if ($e->getErrorDisplayType() === FLASH_ERROR) {
+                    fm::addMessage([
+                        'type' => 'error',
+                        'title' => 'Validation Failed',
+                        'description' => $e->getMessage(),
+                        'context' => 'member_message'
+                    ]);
+                }
+            } else {
+                fm::addMessage([
+                    'type' => 'error',
+                    'title' => 'Something went wrong',
+                    'description' => "Something went wrong, please try again later",
+                    'context' => 'member_message'
+                ]);
+            }
+
             return false;
         }
 

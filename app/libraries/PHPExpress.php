@@ -17,9 +17,6 @@ class PHPExpress
     private Database $con;
     private $routeQueue;
 
-    // For Middleware
-    private $routePrefix;
-
     public function __construct()
     {
         $request = new Request();
@@ -37,12 +34,10 @@ class PHPExpress
         $this->routeQueue = [];
     }
 
-
     public function setDatabaseObject(\App\Libraries\Database $con)
     {
         $this->con = $con;
     }
-
 
     public function listen()
     {

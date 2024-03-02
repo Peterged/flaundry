@@ -37,8 +37,8 @@ use App\Services\FlashMessage as fm;
                 <input type="text" name="alamat" id="alamat" placeholder="Alamat" autocomplete="off" required value="<?= $currentOutlet['alamat'] ?>">
             </div>
             <div class="input-group">
-                <label for="telpon">Nomor Telpon</label>
-                <input type="text" name="telpon" id="tlp" pattern="^\d{8,12}$" autocomplete="off" placeholder="Nomor Telpon" required value="<?= $currentOutlet['tlp'] ?>">
+                <label for="tlp">Nomor Telpon</label>
+                <input type="text" name="tlp" id="tlp" pattern="^\d{8,12}$" autocomplete="off" placeholder="Nomor Telpon" required value="<?= $currentOutlet['tlp'] ?>">
             </div>
 
             <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">EDIT OUTLET</button>
@@ -55,7 +55,7 @@ use App\Services\FlashMessage as fm;
     </div>
 
     <?php
-    fm::displayPopMessagesByContext('login', 'bottom-right', 3000);
+    fm::displayPopMessagesByContext('outlet_message', 'bottom-right', 3000);
     ?>
     <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageCloseDelay.js"></script>
 </body>

@@ -50,6 +50,7 @@ table.data-table th {
 
 table.data-table td {
     font-weight: 400;
+    word-break: break-all;;
 }
 
 table.data-table th[data-center],

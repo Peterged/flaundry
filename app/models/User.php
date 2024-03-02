@@ -82,13 +82,11 @@ class User extends Model
             $con->commit();
 
             $result->setSuccess(true);
-        } catch (ModelException $e) {
+        } catch (\Exception $e) {
             // Rollback the transaction jika terjadi error
-            echo $e->getMessage();
             $con->rollBack();
 
             $result->setMessage($e->getMessage());
-            $result->setStatus($e->getStatus());
         } finally {
             // Unlock tabelnya supaya dapat diakses kembali seperti biasa
             $con->exec('UNLOCK TABLES');
@@ -127,7 +125,6 @@ class User extends Model
             }
 
             if (!password_verify($this->password, $user['password'])) {
-
                 FlashMessage::addMessage([
                     'type' => 'error',
                     'context' => 'login',
@@ -288,13 +285,16 @@ class User extends Model
 
     public function validateSave(array | null $body = null)
     {
-        try {
-           
-            if (!$this->validateEmpty($body)) {
-                throw new ValidationException('All fields are required');
-            }
+        $namaMinLength = 3;
+        $namaMaxLength = 36;
+        $usernameMinLength = 3;
+        $usernameMaxLength = 24;
+        $passwordMinLength = 8;
+        $passwordMaxLength = 36;
 
-            if($body) {
+        try {
+
+            if ($body) {
                 $this->id_outlet = $body['id_outlet'];
                 $this->nama = $body['nama'];
                 $this->username = $body['username'];
@@ -302,37 +302,114 @@ class User extends Model
                 $this->role = $body['role'];
             }
 
-            if(!v::intVal()->validate($this->id_outlet)) {
-                throw new \Exception('Outlet ID must be an integer');
+            if (!v::intVal()->validate($this->id_outlet)) {
+                throw new ValidationException('ID Outlet harus dalam bentuk angka!', FLASH_ERROR);
             }
 
-            if (!v::stringType()->min(3)->validate($this->nama)) {
-                throw new \Exception('Name must be a string and at least 3 characters long');
+            if (!v::intVal()->min(0)->validate($this->id_outlet)) {
+                throw new ValidationException('ID Outlet memiliki nilai tidak valid!', FLASH_ERROR);
             }
 
-            if (!v::stringType()->min(3)->validate($this->username)) {
-                throw new ValidationException('Username must be a string and at least 3 characters long');
+            if (!v::stringType()->length($passwordMinLength, $passwordMaxLength)->validate($this->password)) {
+                throw new \Exception("Password harus minimal <b>$passwordMinLength</b> dan maksimal $passwordMaxLength karakter", FLASH_ERROR);
             }
 
-            if (!v::stringType()->min(3)->validate($this->password)) {
-                throw new ValidationException('Password must be a string and at least 3 characters long');
+            if (!v::stringType()->length($namaMinLength, $namaMaxLength)->validate($this->nama)) {
+                throw new \Exception("Nama harus minimal <b>$namaMinLength</b> dan maksimal $namaMaxLength karakter", FLASH_ERROR);
+            }
+
+            if (!v::stringType()->length($usernameMinLength, $usernameMaxLength)->validate($this->username)) {
+                throw new ValidationException("Username harus minimal <b>$usernameMinLength</b> dan maksimal <b>$usernameMaxLength</b> karakter", FLASH_ERROR);
             }
 
             if (!v::stringType()->in(['admin', 'kasir', 'owner'])->validate($this->role)) {
-                throw new ValidationException('Role must be a string and either "admin", "kasir", or "owner"');
+                throw new ValidationException('Role harus diantara "admin", "kasir", atau "owner"', FLASH_ERROR);
             }
         } catch (\Exception $e) {
+            if ($e instanceof ValidationException) {
+                if ($e->getErrorDisplayType() === FLASH_ERROR) {
+                    FlashMessage::addMessage([
+                        'type' => 'error',
+                        'title' => 'Validation Failed',
+                        'description' => $e->getMessage(),
+                        'context' => 'karyawan_message'
+                    ]);
+                }
+            }
+            else {
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'title' => 'Something went wrong',
+                    'description' => "Something went wrong, please try again later",
+                    'context' => 'karyawan_message'
+                ]);
+            }
             
-            FlashMessage::addMessage([
-                'type' => 'error',
-                'title' => 'Validation Failed',
-                'description' => $e->getMessage(),
-                'context' => 'karyawan_message'
-            ]);
-            
+            return false;
         }
-        
-        return $this;
+
+        return true;
+    }
+
+    public function validateUpdate(array | null $body = null)
+    {
+        $namaMinLength = 3;
+        $namaMaxLength = 36;
+        $usernameMinLength = 3;
+        $usernameMaxLength = 24;
+
+        try {
+            if ($body) {
+                $this->id_outlet = $body['id_outlet'];
+                $this->nama = $body['nama'];
+                $this->username = $body['username'];
+                $this->password = $body['password'];
+                $this->role = $body['role'];
+            }
+
+            if (!v::intVal()->validate($this->id_outlet)) {
+                throw new ValidationException('ID Outlet harus dalam bentuk angka!', FLASH_ERROR);
+            }
+
+            if (!v::intVal()->min(0)->validate($this->id_outlet)) {
+                throw new ValidationException('ID Outlet memiliki nilai tidak valid!', FLASH_ERROR);
+            }
+
+            if (!v::stringType()->length($namaMinLength, $namaMaxLength)->validate($this->nama)) {
+                throw new \Exception("Nama harus minimal <b>$namaMinLength</b> dan maksimal $namaMaxLength karakter", FLASH_ERROR);
+            }
+
+            if (!v::stringType()->length($usernameMinLength, $usernameMaxLength)->validate($this->username)) {
+                throw new ValidationException("Username harus minimal $usernameMinLength dan maksimal $usernameMaxLength karakter", FLASH_ERROR);
+            }
+
+            if (!v::stringType()->in(['admin', 'kasir', 'owner'])->validate($this->role)) {
+                throw new ValidationException('Role harus diantara "admin", "kasir", atau "owner"', FLASH_ERROR);
+            }
+        } catch (\Exception $e) {
+            if ($e instanceof ValidationException) {
+                if ($e->getErrorDisplayType() === FLASH_ERROR) {
+                    FlashMessage::addMessage([
+                        'type' => 'error',
+                        'title' => 'Validation Failed',
+                        'description' => $e->getMessage(),
+                        'context' => 'karyawan_message'
+                    ]);
+                }
+            }
+            else {
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'title' => 'Something went wrong',
+                    'description' => "Something went wrong, please try again later",
+                    'context' => 'karyawan_message'
+                ]);
+            }
+            
+            return false;
+        }
+
+        return true;
     }
 
     // Other methods and properties specific to the User model
@@ -356,7 +433,6 @@ class User extends Model
     {
         return $this->role;
     }
-
     public function setIdOutlet($id_outlet)
     {
         $this->id_outlet = $id_outlet;
