@@ -4,60 +4,361 @@ namespace App\Libraries;
 
 use App\models\SaveResult;
 use App\Attributes\Table;
-use Respect\Validation\Rules\Callback;
 use Respect\Validation\Validator as v;
 use App\Interfaces\ModelInterface;
+use App\Utils\MyLodash as _;
 
 #[\Attribute]
-abstract class Model implements ModelInterface
+class Model implements ModelInterface
 {
     protected string $tableName;
     protected \PDO $dbConnection;
 
     protected array $currentRequiredProperties;
     protected array $valuesArray = [];
+    protected array $tempValueArray = [];
 
-    public function __construct(\PDO $PDO, array | null $valuesArray = null, $class = null) {
+    public function __construct(\PDO $PDO, array | null $valuesArray = null, $class = null)
+    {
         if ($class != null) {
             $reflector = new \ReflectionMethod($class, '__construct');
             $attributes = $reflector->getAttributes(Table::class);
 
-            if($tableName = $attributes[0]->newInstance()->tableName) {
+            if ($tableName = $attributes[0]->newInstance()->tableName) {
                 $this->tableName = $tableName;
             }
         }
         $this->dbConnection = $PDO;
-        $this->setValuesArray($valuesArray);
+        $this->setValuesArray($valuesArray ?? []);
     }
 
-    protected function tryCatchWrapper(\Closure $callback, SaveResult &$result = null)
+    protected function tryCatchWrapper(callable $callback, bool $lockTables = true, bool $enableErrorReporting = true)
     {
+        $result = new SaveResult();
         try {
-            $this->dbConnection->beginTransaction();
-            $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
-            $result = $callback();
-            $this->dbConnection->commit();
+            if (isset($this->tableName) && $lockTables) {
+                $this->dbConnection->exec("LOCK TABLES $this->tableName WRITE");
+            }
+
+            $result = $callback() ?? $result;
         } catch (\Exception $e) {
-            $this->dbConnection->rollBack();
-            $result->message = $e->getMessage() . " | Line: " . $e->getLine();
-            trigger_error($result->message);
+            $result->setSuccess(false);
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            if ($enableErrorReporting) {
+                trigger_error($e->getMessage());
+            }
+        } finally {
+            if ($lockTables) {
+                $this->dbConnection->exec("UNLOCK TABLES");
+            }
+        }
+    }
+
+    /**
+     * Get a user from the database
+     * @param array $searchCriteria search criteria to be used in the query
+     * @param array | null $valueArray
+     * @param bool $noBeginTransaction
+     *
+     *
+     * ```php
+     * // Example usage
+     * ->get([
+     *      'where' => ['nama' => 'kreshna'],
+     *      'columns' => 'nama,username'
+     * );
+     * ```
+     */
+    public function get(array $searchCriteria = [], string $additionalQuery = "", bool $noBeginTransaction = false)
+    {
+        if (!$this->validateGetSearchCriteriaArray($searchCriteria)) {
+            throw new \App\Exceptions\ValidationException('Search criteria is not valid!');
+        }
+
+        $result = new SaveResult();
+        try {
+            $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
+
+            $query = $this->convertGetSearchCriteriaIntoQuery($searchCriteria, $additionalQuery);
+
+            $stmt = $this->dbConnection->prepare($query);
+            // echo $query . "<br>";
+
+            $stmt->execute();
+            $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            $result->setSuccess(true);
+            $result->setData($data);
+        } catch (\Exception $e) {
+
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            $result->setStatus('rollbacked');
+            // trigger_error($e);
         } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
         }
+
+
+        return $result;
+    }
+
+    protected function validateGetSearchCriteriaArray(array &$searchCriteria): bool
+    {
+        $isAllContentsOfSearchCriteriaArrayAreStringOrArray = _::every($searchCriteria, function ($value) {
+            return gettype($value) == 'string' or gettype($value) == 'array';
+        });
+
+        $columns = $this->getTableColumns();
+
+        $columnsArray = implode("|", $columns);
+        $whereEmptyFlag = '__ALWAYS';
+
+        $whereFnFunction = fn (array $val) => v::arrayType()->notEmpty()->call(
+            'array_keys',
+            v::each(v::in([...$columns, $whereEmptyFlag]))
+        )
+            ->each(
+                v::oneOf(v::stringType(), v::number(), v::boolType())
+            )
+            ->validate($val);
+
+        $validKeys = [
+            'where?' => $whereFnFunction,
+            'whereOr?' => $whereFnFunction,
+
+            'select?' => fn (array | string $val) => v::oneOf(
+                v::stringType()->notEmpty()->regex("/^(($columnsArray)+)(\s*[,|]\s*\w+)*$/"),
+                v::arrayType()->notEmpty()->call(
+                    'array_keys',
+                    v::each(v::in($columns))
+                )
+                    ->each(
+                        v::oneOf(v::stringType(), v::number(), v::boolType())
+                    )
+            )->validate($val)
+        ];
+        $searchCriteriaKeys = array_keys($searchCriteria);
+        $validKeysArray = array_keys($validKeys);
+
+        $isSearchCriteriaKeysValid = _::every($validKeysArray, function ($key, $value, $index) use (
+            $validKeys,
+            $columnsArray,
+            $validKeysArray,
+            &$searchCriteria,
+            $searchCriteriaKeys,
+            $whereEmptyFlag
+        ) {
+            $searchCriteriaKey = $searchCriteriaKeys[$index] ?? '';
+            // echo "<pre>", print_r($validKeysArray), "</pre>";
+
+            // _::clog(in_array($searchCriteriaKey, $validKeysArray));
+            if (preg_match("/\?$/", $key) && !in_array($searchCriteriaKey, $validKeysArray)) {
+                $isValid = false;
+                // echo $key;
+                switch ($key) {
+                    case 'select?':
+                        $isValid = $validKeys[$key]($columnsArray);
+                        $searchCriteria['select'] = $columnsArray;
+                        break;
+                    case 'where?':
+                        // if(in_array($key, ));
+                        $searchCriteria['where'] = [$whereEmptyFlag => 1];
+                        $isValid = $validKeys[$key]($searchCriteria['where']);
+                        break;
+                    case 'whereOr?':
+                        $searchCriteria['whereOr'] = [$whereEmptyFlag => 1];
+                        $isValid = $validKeys[$key]($searchCriteria['whereOr']);
+                }
+
+                return $isValid;
+            }
+
+            $keyCriteria = preg_match("/\?$/", $key) ? substr($key, 0, -1) : $key;
+
+            return in_array($key, array_keys($validKeys)) && $validKeys[$key]($searchCriteria[$keyCriteria]);
+        });
+
+
+
+        // $isSearchCriteriaKeysValid = true;
+        // $isAllContentsOfSearchCriteriaArrayAreStringOrArray = true;
+
+        if (
+            empty($searchCriteria)
+            || !$isAllContentsOfSearchCriteriaArrayAreStringOrArray
+            || !$isSearchCriteriaKeysValid
+        ) {
+
+            return false;
+        }
+
+        $selectCriteria = null;
+
+        if (is_array($searchCriteria['select'])) {
+            $selectCriteria = _::uniq($searchCriteria['select']);
+        } else {
+            $selectCriteria = array_unique(preg_split("/[|,]\s*/", $searchCriteria['select']));
+        }
+        $searchCriteria['select'] = implode(', ', $selectCriteria);
+        return true;
+    }
+
+    protected function convertGetSearchCriteriaIntoQuery(array $searchCriteria, string $additionalQuery = ""): string
+    {
+        $searchCriteria = $this->validateGetSearchCriteriaArray($searchCriteria) ? $searchCriteria : null;
+        if ($searchCriteria == null) {
+            return '';
+        }
+
+        $query = "SELECT ";
+        $query .= $searchCriteria['select'];
+        $query .= " FROM $this->tableName";
+
+        $whereArray = _::reduce($searchCriteria, function ($result, $value, $key) use ($searchCriteria) {
+
+            if (!str_starts_with('where', $key)) return $result;
+            // print_r($searchCriteria[$key]['__ALWAYS']);
+            // echo($searchCriteria[$key]['__ALWAYS'] == 1 ? 'true' : 'false');
+
+            if ($searchCriteria[$key]['__ALWAYS'] != 1) {
+                $result[$key] = $value;
+
+                // print_r($result);
+                // echo $result[$key];
+                return $result;
+            }
+        }, []);
+
+        if (!empty($whereArray)) {
+            $whereType = '';
+
+            $query .= " WHERE ";
+
+            // print_r($whereArray);
+            foreach ($whereArray as $key => $value) {
+                switch ($key) {
+                    case 'where':
+                        $whereType = 'AND';
+                        break;
+                    case 'whereOr':
+                        $whereType = 'OR';
+                        break;
+                    default:
+                        $whereType = '';
+                }
+
+                $query .= implode(" $whereType ", array_map(function ($value2, $key2) use ($searchCriteria) {
+                    return $key2 . " = " . $value2;
+                }, $searchCriteria[$key], array_keys($searchCriteria[$key])));
+            }
+        }
+
+
+        return $query . " $additionalQuery";
+    }
+
+    /**
+     * @param string $query
+     * @param array $params
+     * @throws \Exception
+     *
+     * @description query() is a method to execute a query
+     */
+    public function query(string $prepareQuery, array $params = null, bool $enableErrorReporting = true, int $mode = \PDO::FETCH_ASSOC)
+    {
+        $result = new SaveResult();
+        $this->tryCatchWrapper(function () use ($prepareQuery, $params, &$result) {
+            $statement = $this->dbConnection->prepare($prepareQuery);
+            print_r($params);
+            $statement->execute($params);
+            
+
+            if ($statement->errorCode()) {
+                $result->setSuccess(true);
+            } else {
+                // $errorInfo = $statement->errorInfo();
+                // echo "SQLSTATE error code: " . $errorInfo[0] . "\n";
+                // echo "Driver-specific error code: " . $errorInfo[1] . "\n";
+                // echo "Driver-specific error message: " . $errorInfo[2] . "\n";
+                $result->setMessage("Query failed to execute");
+                $result->setSuccess(false);
+            }
+            $result->setData($statement->fetchAll(\PDO::FETCH_ASSOC));
+        }, false, $enableErrorReporting);
+        return $result;
+    }
+
+    public function queryReturnStatement(string $prepareQuery, array $params = null, bool $enableErrorReporting = true, int $mode = \PDO::FETCH_ASSOC)
+    {
+        $result = new SaveResult();
+        $this->tryCatchWrapper(function () use ($prepareQuery, $params, &$result) {
+            $statement = $this->dbConnection->prepare($prepareQuery);
+            $statement->execute($params);
+
+            if ($statement->errorCode()) {
+                $result->setSuccess(true);
+            } else {
+                $result->setMessage("Query failed to execute");
+                $result->setSuccess(false);
+            }
+            
+            $result->setData($statement);
+        }, false, $enableErrorReporting);
+        return $result;
+    }
+
+
+
+    public function queryWithTransaction(string $prepareQuery, array $params = null, bool $enableErrorReporting = true)
+    {
+        $result = new SaveResult();
+        try {
+            $newCon = $this->dbConnection;
+
+            // Check if a transaction is already in progress
+            if (!$newCon->inTransaction()) {
+                $newCon->beginTransaction();
+            }
+
+            $statement = $newCon->prepare($prepareQuery);
+            $statement->execute($params);
+
+            if ($statement->errorCode()) {
+                $result->setSuccess(true);
+            } else {
+                $result->setMessage("Query failed to execute");
+                $result->setSuccess(false);
+            }
+            // Only commit if a transaction is in progress
+            if ($newCon->inTransaction()) {
+                $newCon->commit();
+            }
+            $result->setData($statement->fetchAll(\PDO::FETCH_ASSOC));
+        } catch (\Exception $e) {
+            // Only roll back if a transaction is in progress
+            if ($newCon->inTransaction()) {
+                $newCon->rollBack();
+            }
+            trigger_error($e->getMessage());
+        }
+
+        return $result;
     }
 
     public function updateOne(array $searchCriteria, array $newData)
     {
-        $tableName = $this->tableName;
+        $result = new SaveResult();
         if (isset($newData['password'])) {
             $newData['password'] = password_hash($newData['password'], PASSWORD_DEFAULT);
         }
-        $this->tryCatchWrapper(function () use ($searchCriteria, $newData) {
+        $this->tryCatchWrapper(function () use ($searchCriteria, $newData, &$result) {
             $query = $this->handleUpdateQuery($searchCriteria, $newData);
             $statement = $this->dbConnection->prepare($query);
 
-            $statement->execute(array_merge($searchCriteria, $newData));
+            $success = $statement->execute(array_merge($searchCriteria, $newData));
+            $result->setSuccess($success);
         });
+        return $result;
     }
 
     public function updateMany(array | bool $searchCriteria, array $newData)
@@ -106,7 +407,8 @@ abstract class Model implements ModelInterface
     public function deleteOne(array $searchCriteria)
     {
         $tableName = $this->tableName;
-        
+        $result = new SaveResult();
+
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName WRITE");
@@ -117,7 +419,7 @@ abstract class Model implements ModelInterface
             // $query = 'DELETE FROM tb_user WHERE condition = :condition LIMIT 1'
             $statement = $this->dbConnection->prepare($query);
             $statement->execute($searchCriteria);
-
+            $result->setSuccess(true);
             $this->dbConnection->commit();
         } catch (\Exception $e) {
             $this->dbConnection->rollBack();
@@ -125,12 +427,13 @@ abstract class Model implements ModelInterface
         } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
         }
+        return $result;
     }
 
     public function deleteMany(array $searchCriteria, array $options = null)
     {
         $tableName = $this->tableName;
-        
+
         try {
             $this->dbConnection->exec("LOCK TABLES $tableName DELETE");
             $this->dbConnection->beginTransaction();
@@ -150,9 +453,10 @@ abstract class Model implements ModelInterface
             $this->dbConnection->exec("UNLOCK TABLES");
         }
     }
-    public function selectOne(array $searchCriteria, array $includedProperties = null) {
+    public function selectOne(array $searchCriteria, array $includedProperties = null)
+    {
         $tableName = $this->tableName;
-        
+
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName READ");
@@ -177,7 +481,7 @@ abstract class Model implements ModelInterface
     public function selectMany(array | bool $searchCriteria, array $includedProperties = null)
     {
         $tableName = $this->tableName;
-        
+
         try {
             $this->dbConnection->beginTransaction();
             $this->dbConnection->exec("LOCK TABLES $tableName READ");
@@ -203,14 +507,15 @@ abstract class Model implements ModelInterface
     protected function setRequiredProperties(array $requiredProperties)
     {
         $this->currentRequiredProperties = $requiredProperties;
-        // $this->checkIfRequiredPropertyValuesAreDefined();
     }
 
-    protected function getRequiredProperties() {
+    protected function getRequiredProperties()
+    {
         return $this->currentRequiredProperties ?? null;
     }
 
-    protected function checkIfRequiredPropertiesExistsOnClass() { 
+    protected function checkIfRequiredPropertiesExistsOnClass()
+    {
         $requiredProperties = $this->currentRequiredProperties;
 
         $requiredProperties = array_diff($requiredProperties, $this->valuesArray);
@@ -225,21 +530,41 @@ abstract class Model implements ModelInterface
         return compact('error');
     }
 
-    protected function setValuesArray(array | null $valuesArray) {
+    protected function setValuesArray(array | null $valuesArray)
+    {
         try {
-            if(array_is_list($valuesArray)) {
-                $this->valuesArray = $valuesArray;
-                foreach($valuesArray as $key => $value) {
-                    if(isset($this->{$key})) {
+            // print_r($valuesArray);
+            // if (array_is_list($valuesArray)) {
+            $this->valuesArray = $valuesArray;
+            foreach ($valuesArray as $key => $value) {
+                if (!isset($this->{$key})) {
+                    $this->{$key} = $value;
+                }
+            }
+            // }
+        } catch (\Exception $e) {
+        }
+    }
+
+    protected function setTemporaryValuesArray(array | null $valuesArray)
+    {
+        try {
+            if (array_is_list($valuesArray)) {
+                $this->tempValueArray = $valuesArray;
+                foreach ($valuesArray as $key => $value) {
+                    if (isset($this->{$key})) {
                         $this->{$key} = $value;
                     }
                 }
             }
+        } catch (\Exception $e) {
         }
-        catch(\Exception $e) { }
     }
 
-    protected function checkIfRequiredPropertyValuesAreDefined() {
+
+
+    protected function checkIfRequiredPropertyValuesAreDefined()
+    {
         $requiredProperties = $this->currentRequiredProperties;
         foreach ($requiredProperties as $requiredProperty) {
             if (!isset($this->$requiredProperty)) {
@@ -256,8 +581,9 @@ abstract class Model implements ModelInterface
      * @throws \Exception
      * @description handleRequiredColumns() is a method to handle forbidden columns
      */
-    protected function handleForbiddenColumns(array $data, array $requiredProperties) {
-        if(!empty($requiredProperties['exclude'])) {
+    protected function handleForbiddenColumns(array $data, array $requiredProperties)
+    {
+        if (!empty($requiredProperties['exclude'])) {
             $requiredProperties = array_diff($requiredProperties, $requiredProperties['exclude']);
         } elseif (!empty($requiredProperties['include'])) {
             $requiredProperties = array_intersect($requiredProperties, $requiredProperties['include']);
@@ -308,7 +634,6 @@ abstract class Model implements ModelInterface
             $query .= implode(' AND ', array_map(function ($value) {
                 return "{$value} = :{$value}";
             }, array_keys($searchCriteria)));
-
         } catch (\Exception $e) {
             trigger_error($e->getMessage());
         }
@@ -392,30 +717,54 @@ abstract class Model implements ModelInterface
 
         return $options;
     }
-    public function getTableColumns($inTransaction = false)
+    public function getTableColumns(bool $returnDataType = false)
     {
-        if ($inTransaction) {
-            $this->dbConnection->beginTransaction();
-        }
+
         $tableName = $this->tableName;
 
         try {
-            $this->dbConnection->exec("LOCK TABLES $tableName READ");
             $query = "SHOW COLUMNS FROM $tableName";
+            $fetchMethod = \PDO::FETCH_COLUMN;
+            if ($returnDataType) {
+                $databaseName = $_ENV['DB_NAME'];
+                $query = "SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '$tableName' AND TABLE_SCHEMA = '$databaseName'";
+                $fetchMethod = \PDO::FETCH_ASSOC;
+            }
 
             $statement = $this->dbConnection->prepare($query);
 
             $statement->execute();
 
-            $data = $statement->fetchAll(\PDO::FETCH_COLUMN);
-            // echo "<pre>";
-            // print_r($data);
-            // echo "</pre>";
-            return $data;
+            $data = $statement->fetchAll($fetchMethod);
         } catch (\Exception $e) {
             trigger_error($e->getMessage());
         } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
         }
+        return $data;
+    }
+
+    protected function validateEmpty(array | null $body = null): bool
+    {
+        $requiredProperties = $this->getRequiredProperties();
+
+        if (count($requiredProperties) > 0) {
+            foreach ($requiredProperties as $property) {
+                if ($body) {
+
+                    if (empty($body[$property])) {
+                        echo "Property $property is empty!";
+                        return false;
+                    }
+                } else {
+                    if (empty($this->$property)) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        return false;
     }
 }

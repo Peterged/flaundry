@@ -32,3 +32,8 @@ define('SITENAME', 'FLaundry');
 // SITE CONFIGS
 // For future use, does not work now
 define('SHOW_WARNINGS_ON_UNKNOWN_URLS', false);
+
+
+// OTHERS
+define('FLASH_ERROR', 'error');
+define('ACCOUNT_ROLES', ['admin', 'kasir', 'owner']);

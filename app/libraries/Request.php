@@ -5,13 +5,12 @@ use Respect\Validation\Validator as v;
 
     final class Request {
         public $route;
-        public $params;
+        protected object $params;
 
         public $body;
         public function __construct() {
-            $this->params = [];
+            $this->params = (object) [];
         }
-
 
         public function setRoute(string $route) {
             $this->route = $route;
@@ -39,6 +38,7 @@ use Respect\Validation\Validator as v;
 
         public function getBody(bool $filter = true) {
             // filtering enabled as default
+            
             if($filter) {
                 $this->filterBody();
             }
@@ -68,5 +68,19 @@ use Respect\Validation\Validator as v;
         public function getMethod() {
             return $_SERVER['REQUEST_METHOD'];
         }
+
+        public function getParam(string $key) {
+            return $this->params->{$key} ?? null;
+        }
+
+        public function getParams() {
+            return $this->params;
+        }
+
+        public function setParams(object $params) {
+            $this->params = $params;
+        }
+
+
 
     }

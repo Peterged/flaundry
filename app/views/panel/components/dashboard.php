@@ -1,9 +1,29 @@
 <?php
 
 use App\Services\FlashMessage as fm;
+use App\Libraries\Essentials\Session;
 
+Session::startToken();
 
 ?>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="<?= PROJECT_ROOT ?>/public/images/flaundry-logo-icon.png" type="image/png" />
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/global.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/sidebar.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/sidebar.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/navbar.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/card.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard | FLaundry</title>
+</head>
+<?php includeFile("$base/panel/inc/sidebar.php") ?>
+<?php includeFile("$base/panel/inc/navbar.php") ?>
+
 <div class="container">
     <div class="content-box">
         <div class="title">
@@ -90,158 +110,158 @@ use App\Services\FlashMessage as fm;
         </div>
     </div>
 </div>
-<?php 
-fm::displayPopMessagesByContext('welcome-message', 'bottom-right');
+<?php
+fm::displayPopMessagesByContext('welcome-message', 'bottom-right', 5000);
 ?>
-
-    <!-- Random Shit -->
-    <script>
-        var ctx = document.querySelector('canvas.income').getContext('2d');
-        let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, "rgba(72, 149, 239, 0.22)");
-        gradient.addColorStop(1, "transparent");
-        var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['J', 'Feb', 'Mar', 'Apr', 'Mei'],
-                datasets: [{
-                    label: 'Income',
-                    data: [100, 200, 150, 300, 250, 400, 350],
-                    fill: true,
-                    backgroundColor: gradient,
-                    borderColor: '#4895ef',
-                    pointBackgroundColor: "#fff",
-                    pointBorderColor: "#4C8EF0",
-                    pointBorderWidth: 2,
-                    borderWidth: 2,
-                    tension: 0.5
-                }]
+<script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageCloseDelay.js"></script>
+<!-- Random Shit -->
+<script>
+    var ctx = document.querySelector('canvas.income').getContext('2d');
+    let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, "rgba(72, 149, 239, 0.22)");
+    gradient.addColorStop(1, "transparent");
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['J', 'Feb', 'Mar', 'Apr', 'Mei'],
+            datasets: [{
+                label: 'Income',
+                data: [100, 200, 150, 300, 250, 400, 350],
+                fill: true,
+                backgroundColor: gradient,
+                borderColor: '#4895ef',
+                pointBackgroundColor: "#fff",
+                pointBorderColor: "#4C8EF0",
+                pointBorderWidth: 2,
+                borderWidth: 2,
+                tension: 0.5
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false,
+                },
             },
-            options: {
-                plugins: {
-                    legend: {
+            radius: 5,
+            hitRadius: 30,
+            hoverRadius: 12,
+            scales: {
+                y: {
+                    ticks: {
                         display: false,
+                        beginAtZero: false,
+                        fontColor: '#fff',
+                        fontSize: 10,
+                        padding: 10,
+                        fontFamily: 'Poppins'
+                    },
+
+                    border: {
+                        display: false
                     },
                 },
-                radius: 5,
-                hitRadius: 30,
-                hoverRadius: 12,
-                scales: {
-                    y: {
-                        ticks: {
-                            display: false,
-                            beginAtZero: false,
-                            fontColor: '#fff',
-                            fontSize: 10,
-                            padding: 10,
-                            fontFamily: 'Poppins'
-                        },
+                x: {
+                    ticks: {
 
-                        border: {
-                            display: false
-                        },
+                        beginAtZero: false,
+                        color: 'rgba(0, 0, 0, 0.45)',
+                        fontSize: 10,
+                        padding: 10,
+                        fontFamily: 'Poppins'
                     },
-                    x: {
-                        ticks: {
-
-                            beginAtZero: false,
-                            color: 'rgba(0, 0, 0, 0.45)',
-                            fontSize: 10,
-                            padding: 10,
-                            fontFamily: 'Poppins'
-                        },
-                        grid: {
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        border: {
-                            display: false
-                        }
+                    grid: {
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                    },
+                    border: {
+                        display: false
                     }
-                },
-
-            }
-        });
-    </script>
-
-    <!-- Welcome column chart -->
-    <script>
-        var ctx = document.querySelector('canvas.report-income-statistics');
-        let delayed;
-        var chart = new Chart(ctx, {
-            type: 'bar', // Change the type to 'bar'
-            data: {
-                labels: ['S', 'S', 'R', 'K', 'J', 'S', 'M'],
-                datasets: [{
-                    label: 'Income',
-                    data: [100, 200, 150, 300, 250, 400, 350],
-                    backgroundColor: '#4895ef', // Set the background color for the bars
-                    borderWidth: 0, // Remove the border width,
-                    barThickness: 30,
-                    barPercentage: 1,
-                    borderSkipped: false,
-                    barBorderRadius: 7,
-                }]
+                }
             },
-            options: {
-                responsive: true,
-                responsiveAnimationDuration: 5000,
-                animation: {
-                    onComplete: () => {
-                        delayed = true;
-                    },
-                    delay: (context) => {
-                        let delay = 0;
-                        if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                            delay = context.dataIndex * 500 + context.datasetIndex * 350;
-                        }
-                        return delay;
-                    },
+
+        }
+    });
+</script>
+
+<!-- Welcome column chart -->
+<script>
+    var ctx = document.querySelector('canvas.report-income-statistics');
+    let delayed;
+    var chart = new Chart(ctx, {
+        type: 'bar', // Change the type to 'bar'
+        data: {
+            labels: ['S', 'S', 'R', 'K', 'J', 'S', 'M'],
+            datasets: [{
+                label: 'Income',
+                data: [100, 200, 150, 300, 250, 400, 350],
+                backgroundColor: '#4895ef', // Set the background color for the bars
+                borderWidth: 0, // Remove the border width,
+                barThickness: 30,
+                barPercentage: 1,
+                borderSkipped: false,
+                barBorderRadius: 7,
+            }]
+        },
+        options: {
+            responsive: true,
+            responsiveAnimationDuration: 5000,
+            animation: {
+                onComplete: () => {
+                    delayed = true;
                 },
-                plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: ((tooltipItem, data) => {
-                                return tooltipItem.formattedValue
-                            })
-                        }
+                delay: (context) => {
+                    let delay = 0;
+                    if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                        delay = context.dataIndex * 500 + context.datasetIndex * 350;
                     }
+                    return delay;
                 },
-                scales: {
-                    x: {
-                        border: {
-                            display: false
-                        },
-                        grid: {
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            padding: 10
-                        }
-                        // ticks: {
-                        //     display: false
-                        // }
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                tooltip: {
+                    callbacks: {
+                        label: ((tooltipItem, data) => {
+                            return tooltipItem.formattedValue
+                        })
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    border: {
+                        display: false
                     },
-                    y: {
-                        border: {
-                            display: false
-                        },
-                        grid: {
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                        },
-                        ticks: {
-                            display: false
-                        }
+                    grid: {
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                    },
+                    ticks: {
+                        padding: 10
+                    }
+                    // ticks: {
+                    //     display: false
+                    // }
+                },
+                y: {
+                    border: {
+                        display: false
+                    },
+                    grid: {
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                    },
+                    ticks: {
+                        display: false
                     }
                 }
             }
-        });
-    </script>
+        }
+    });
+</script>

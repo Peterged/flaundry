@@ -17,10 +17,10 @@ $apiRouter->get('/about', function ($req, $res) { // /about
 
 
 $apiRouter->get('/users/robots', function ($req, $res) use ($con) {
-    $query = "SELECT * FROM tb_user";
-    $stmt = $con->prepare($query);
-    $stmt->execute();
-    $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    // $query = "SELECT * FROM tb_user";
+    // $stmt = $con->prepare($query);
+    // $stmt->execute();
+    // $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
     // $data = [
     //     ['id' => 1, 'name' => 'John Doe', 'email' => 'john@example.com', 'age' => 28],
     //     ['id' => 2, 'name' => 'Lane Doe', 'email' => 'jane@example.com', 'age' => 25],

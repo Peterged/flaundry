@@ -197,15 +197,23 @@
                 <ol class="error-text">
                 <?php
                     // echo "<pre>";
-                    $trace = $error->getTrace();
-                    for($i = 0; $i < count($trace); $i++) {
-                        echo "<li>";
-                        echo $trace[$i]['file'] ?? $trace[$i]['line'], "<br>";
-                        echo "<span> at line ";
-                        echo $trace[$i]['line'];
-                        echo "</span>";
-                        echo "</li>";
+                    try {
+                        $trace = $error->getTrace();
+                    if(!empty($trace)) {
+                        for($i = 0; $i < count($trace); $i++) {
+                            echo "<li>";
+                            echo $trace[$i]['file'] ?? $trace[$i]['line'], "<br>";
+                            echo "<span> at line ";
+                            echo $trace[$i]['line'];
+                            echo "</span>";
+                            echo "</li>";
+                        }
                     }
+                    }
+                    catch(\Exception $e) {
+
+                    }
+                    
 
                     // echo "</pre>";
                 ?>

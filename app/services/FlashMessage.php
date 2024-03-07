@@ -7,14 +7,15 @@ use App\Interfaces\FlashMessageInterface;
 
 include_once __DIR__ . '/../config/config.php';
 /**
- * @class FlashMessage 
+ * @class FlashMessage
  * @summary This class is used to add flash messages to the session
  */
-class FlashMessage implements FlashMessageInterface
+
+final class FlashMessage implements FlashMessageInterface
 {
-    private static string $sessionName = 'flash-messages';
-    private static array $flashMessageTypes = ['info', 'success', 'warning', 'error'];
+    private static string $sessionName = 'flash-message';
     private static string $defaultMessageType = 'info';
+    private static array $flashMessageTypes = ['info', 'success', 'warning', 'error'];
     private static array $flashMessagePositions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
     private static array $defaultMessageTemplate = [
         'title' => '',
@@ -24,12 +25,62 @@ class FlashMessage implements FlashMessageInterface
         'position' => ''
     ];
     private static int $maxMessagelength = 255;
+    private static int $minDelayBeforeClose = 1000;
 
     public static function initiate(): void
     {
         if (!isset($_SESSION[self::$sessionName])) {
             $_SESSION[self::$sessionName] = [];
         }
+    }
+
+    /**
+     * @param string $message
+     * @param string $type
+     * @param string $context
+     * @summary Add a message to the session
+     * Add a message to the session
+     *
+     * ```php
+     * // Example usage:
+     * App\Services\FlashMessage:addMessage([
+     *  'type' => 'success',
+     *  'context' => 'outlet_message',
+     *  'title' => 'UPDATE',
+     *  'description' => 'Berhasil meng-update outlet!'
+     * ]);
+     * // Adds a message to the session with the type 'info' and the key identifier 'user'
+     * ```
+     */
+    
+    public static function addMessage(array $options): array | null
+    {
+        if (!self::validateOptions($options)) {
+            throw new \InvalidArgumentException('Invalid options!');
+        }
+
+        $title = $options['title'] ?? '';
+        $description = $options['description'];
+        $type = $options['type'] ?? self::$defaultMessageType;
+        $context = $options['context'] ?? '';
+        $position = $options['position'] ?? '';
+        $id = self::generateUniqueId();
+
+        if (self::checkIfIdMatchesWithExistingMessage($id)) {
+            return null;
+        }
+
+        $newFlashMessage = [
+            'title' => $title,
+            'description' => $description,
+            'type' => $type,
+            'context' => $context,
+            'position' => $position,
+            '_id' => $id
+        ];
+
+        $_SESSION[self::$sessionName][] = $newFlashMessage;
+        return $newFlashMessage;
     }
 
     public static function displayCustomPopMessage(string $message, string $type, string $position = 'top-right'): void
@@ -70,17 +121,17 @@ class FlashMessage implements FlashMessageInterface
         }
     }
 
-    public static function displayPopMessagesByContext(string $context, string $position = 'top-right'): void
+    public static function displayPopMessagesByContext(string $context, string $position = 'top-right', int $delay = 3000): void
     {
         $messages = self::getMessagesByContext($context);
-
+        $delay = max($delay, self::$minDelayBeforeClose);
         foreach ($messages as $message) {
             $projectRoot = PROJECT_ROOT;
             $title = $message['title'] ?? 'Validation Error!';
             $description = $message['description'] ?? 'Please check your input and try again.';
 
             echo <<<HTML
-                <div class='flash-message-alert alert-{$message['type']} flash-position-{$position}'>
+                <div class='flash-message-alert alert-{$message['type']} flash-position-{$position}' data-delay='$delay'>
                     <div class='flash-message-content'>
                         <div class='flash-message-icon'>
                             <img src='$projectRoot/public/images/flashMessage/{$message['type']}-icon.png' alt='icon'>
@@ -166,48 +217,7 @@ class FlashMessage implements FlashMessageInterface
         echo "<div class='flash-message-alert alert-{$message['type']}'>{$message['message']}</div>";
     }
 
-    /**
-     * @param string $message
-     * @param string $type
-     * @param string $context
-     * @summary Add a message to the session
-     * Add a message to the session
-     * 
-     * ```php
-     * // Example usage:
-     * App\Services\FlashMessage::addMessage([]);
-     * // Adds a message to the session with the type 'info' and the key identifier 'user'
-     * ```
-     */
-    public static function addMessage(array $options): array | null
-    {
-        if (!self::validateOptions($options)) {
-            throw new \InvalidArgumentException('Invalid options!');
-        }
 
-        $title = $options['title'] ?? '';
-        $description = $options['description'];
-        $type = $options['type'] ?? self::$defaultMessageType;
-        $context = $options['context'] ?? '';
-        $position = $options['position'] ?? '';
-        $id = self::generateUniqueIdByString($title . $description . $type . $context . $position);
-
-        if (self::checkIfIdMatchesWithExistingMessage($id)) {
-            return null;
-        }
-
-        $newFlashMessage = [
-            'title' => $title,
-            'description' => $description,
-            'type' => $type,
-            'context' => $context,
-            'position' => $position,
-            '_id' => $id
-        ];
-
-        $_SESSION[self::$sessionName][] = $newFlashMessage;
-        return $newFlashMessage;
-    }
 
 
     /**
@@ -225,7 +235,7 @@ class FlashMessage implements FlashMessageInterface
      * @param string $type The type of messages to retrieve. Possible values are 'info', 'warning', 'error', and 'danger'.
      * @summary Get all messages from the session by type
      * @return array array of messages
-     * 
+     *
      * ```php
      * // Example usage:
      * $messages = App\Services\FlashMessage::getMessagesByType('info');
@@ -265,7 +275,7 @@ class FlashMessage implements FlashMessageInterface
      * @param string $context
      * @summary Get All messages from the session by type and key identifier
      * @return array array of messages
-     * 
+     *
      * ```php
      * // Example usage:
      * $messages = App\Services\FlashMessage::getMessagesByTypeAndcontext('info', 'user');
@@ -290,12 +300,12 @@ class FlashMessage implements FlashMessageInterface
      *
      * @param callable $callback The possible properties you can access from the array are 'type', 'message', and 'context'.
      * @return array An array of messages that match the callback filter.
-     * 
+     *
      * ```php
      * // Example usage:
      * $messages = App\Services\FlashMessage::getMessagesByCallback(function($message) {
      *    return $message['type'] === 'info';
-     * }); 
+     * });
      * // Returns all messages with the type 'info'
      * ```
      */
@@ -385,7 +395,7 @@ class FlashMessage implements FlashMessageInterface
 
         return v::key('title', v::stringType()->length(0, self::$maxMessagelength), false)
             ->key('description', v::stringType()->length(0, self::$maxMessagelength))
-            ->key('type', v::in(self::$flashMessageTypes))
+            ->key('type', v::in(self::$flashMessageTypes), false)
             ->key('context', v::stringType()->length(0, self::$maxMessagelength), false)
             ->key('position', v::in(self::$flashMessagePositions), false)
             ->validate($options);
@@ -430,11 +440,10 @@ class FlashMessage implements FlashMessageInterface
         return $message['_id'] === $id;
     }
 
-    private static function generateUniqueIdByString(string $string): string
+    private static function generateUniqueId(): string
     {
-        $hashObject = hash('sha256', $string);
-        $generatedId = substr($hashObject, 0, 32);
-        return $generatedId;
+        $randomBytes = openssl_random_pseudo_bytes(32);
+        return bin2hex($randomBytes);
     }
 
     private static function handleFlashMessageIcon(string $type)

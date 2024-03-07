@@ -8,6 +8,7 @@ class RouterHelper
     public static function filterRoute(string $route, Request $request = null)
     {
         $regex = "#(\\{1,}|\/{2,})+#";
+        $secondRegex = "#(\/)+$#";
         if (is_null($request)) {
             $request = new Request();
         }
@@ -27,6 +28,9 @@ class RouterHelper
             $filteredRoute = preg_replace($regex, '/', ('/' . $route));
         }
 
+        if($filteredRoute != '/')
+            $filteredRoute = preg_replace($secondRegex, '', $filteredRoute);
+        
         return $filteredRoute;
     }
 
@@ -48,9 +52,18 @@ class RouterHelper
         $request = new Request();
         $isMatch = false;
         $requestUri = $request->getRequestUri();
+        $secondRegex = "#(\/)+$#";
 
         $requestUri = '/' . ltrim($requestUri, '/'); // /auth/login
         $filteredRoute = '/' . ltrim($filteredRoute, '/'); // /login
+        // echo "Request URI: $requestUri <br>";
+        if($requestUri != '/') {
+            $requestUri = preg_replace($secondRegex, '', $requestUri);
+        }
+
+
+
+
         $isMatch = $requestUri === $filteredRoute;
 
         return $isMatch == $filteredRoute;
@@ -70,8 +83,10 @@ class RouterHelper
 
 
         foreach ($filteredRoute as $key => $value) {
+            
             $keyName = preg_replace('/\{(.*)\}/', '$1', $value);
-
+            
+            
             if (preg_match('/\{(.*)\}/', $value)) {
                 if (isset($requestUri[$key])) {
                     $params->$keyName = $requestUri[$key];
@@ -94,13 +109,22 @@ class RouterHelper
         return [new $class, $method];
     }
 
-    public static function getStringToCallable($callback)
+    public static function getClassStringToCallable(string $callback)
     {
-        if (is_string($callback) && strpos($callback, '@') !== false) {
+        if (strpos($callback, '@') !== false) {
             $callback = self::convertToCallable($callback);
         }
         // var_dump($callback);
         $callableClass = new $callback[0]();
         return [$callableClass, $callback[1]];
+    }
+
+    public static function getStringToCallable(string $stringCallable)
+    {
+        if (!function_exists($stringCallable)) {
+            throw new \Exception("Function $stringCallable does not exist");
+        }
+        $callable = $stringCallable;
+        return $callable;
     }
 }

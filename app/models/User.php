@@ -7,17 +7,18 @@ use Respect\Validation\Validator as v;
 use App\Attributes\Table;
 use App\Exceptions\AuthException;
 use App\Exceptions\ModelException;
-use App\libaries\Essentials\Session;
 use App\Services\FlashMessage;
+use App\Utils\MyLodash as _;
+use App\Exceptions\ValidationException;
 
 class User extends Model
 {
-    private string $id;
-    private int $id_outlet;
-    private string $nama;
-    private string $username;
-    private string $password;
-    private string $role;
+    public string $id;
+    public int $id_outlet;
+    public string $nama;
+    public string $username;
+    public string $password;
+    public string $role;
 
 
     #[Table('tb_user')]
@@ -26,18 +27,22 @@ class User extends Model
         parent::__construct($PDO, $valuesArray, __CLASS__);
 
         // Set the required properties
-        $this->setRequiredProperties(['username', 'password']);
+        $this->setRequiredProperties(['id_outlet', 'nama', 'username', 'password', 'role']);
 
         // Compare 2 arrays, if empty, the properties are set, if not empty
         // then throw an exception
         $this->checkIfRequiredPropertiesExistsOnClass();
 
-        foreach($valuesArray as $key => $value) {
-            $this->{$key} = $value;
-        }
-
+        if ($valuesArray != null)
+            foreach ($valuesArray as $key => $value) {
+                $this->{$key} = $value;
+            }
     }
 
+    public static function isLoggedIn(): bool
+    {
+        return isset($_SESSION['username']);
+    }
 
     public static function logout()
     {
@@ -49,52 +54,39 @@ class User extends Model
     public function save(): object
     {
         $this->setRequiredProperties(['id_outlet', 'nama', 'username', 'password', 'role']);
-
+        $this->validateSave();
         $this->role = v::in(['admin', 'kasir', 'owner'])->validate($this->role) ? $this->role : null;
 
         $result = new SaveResult();
-
 
         $con = $this->dbConnection;
 
         try {
             // Lock the user table
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
-
-            $stmt = $this->dbConnection->prepare("
+            $query = "
             INSERT INTO {$this->tableName} (id_outlet, nama, username, password, role)
             VALUES (:id_outlet, :nama, :username, :password, :role)
-            ");
-
-            $stmt->execute([
+            ";
+            $stmt = $this->dbConnection->prepare($query);
+            $dataToExecute = [
                 'id_outlet' => $this->id_outlet,
                 'nama' => $this->nama,
                 'username' => $this->username,
                 'password' => $this->password,
                 'role' => $this->role
-            ]);
-            echo $con->inTransaction() ? 'true' : 'false';
+            ];
 
 
-            if($this->username == 'kreshna') {
-                throw new \Exception('Nama tidak boleh kreshna');
-            }
-
-            if ($this->username == 'kreshna') {
-                throw new \Exception('Nama tidak boleh kreshna');
-            }
-
+            $stmt->execute($dataToExecute);
             $con->commit();
 
-            $result->success = true;
-        } catch (ModelException $e) {
+            $result->setSuccess(true);
+        } catch (\Exception $e) {
             // Rollback the transaction jika terjadi error
-            echo $e->getMessage();
             $con->rollBack();
 
-            $result->message = $e->getMessage();
-            $result->errorMessage = $e->getMessage();
-            $result->status = $e->getStatus();
+            $result->setMessage($e->getMessage());
         } finally {
             // Unlock tabelnya supaya dapat diakses kembali seperti biasa
             $con->exec('UNLOCK TABLES');
@@ -102,11 +94,11 @@ class User extends Model
 
         return $result;
     }
-    public function login(): object {
+    public function login(): object
+    {
 
         $con = $this->dbConnection;
         $result = new SaveResult();
-        $con->beginTransaction();
         try {
             $con->exec("LOCK TABLES {$this->tableName} WRITE");
 
@@ -119,28 +111,27 @@ class User extends Model
             ]);
 
             $user = $stmt->fetch(\PDO::FETCH_ASSOC);
-            
+
 
             if (!$user) {
                 FlashMessage::addMessage([
                     'type' => 'error',
                     'context' => 'login',
                     'title' => 'Validation Error!',
-                    'description' => 'User tidak ditemukan!'
+                    'description' => "User {$this->username} tidak ditemukan!"
                 ]);
 
                 throw new AuthException('User not found!');
             }
 
             if (!password_verify($this->password, $user['password'])) {
-
                 FlashMessage::addMessage([
                     'type' => 'error',
                     'context' => 'login',
                     'title' => 'Validation Error!',
                     'description' => 'Username / Password salah!'
                 ]);
-                
+
                 throw new AuthException('Username / Password salah!');
             }
 
@@ -154,32 +145,113 @@ class User extends Model
                 'title' => 'Congratulations!',
                 'description' => 'Login berhasil!'
             ]);
-          
+
             $_SESSION['username'] = $result->getData()['username'];
             $_SESSION['role'] = $result->getData()['role'];
+            $_SESSION['id_outlet'] = $result->getData()['id_outlet'];
+            $_SESSION['id_user'] = $result->getData()['id'];
         } catch (\Exception $e) {
-            $con->rollBack();
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
         } finally {
             $con->exec('UNLOCK TABLES');
         }
 
+        return $result;
+    }
 
+    public function register(): object
+    {
+        $result = new SaveResult();
+
+        try {
+            // This will create a whole new process of getting the user
+
+            if (empty($existingUser)) {
+                FlashMessage::addMessage([
+                    'type' => 'warning',
+                    'context' => 'register',
+                    'title' => 'Validation Error!',
+                    'description' => 'Username sudah ada!'
+                ]);
+
+                throw new AuthException('User sudah ada!');
+            }
+
+
+            $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
+
+            // $this->dbConnection->beginTransaction();
+
+            $columnsToBeInsertedTo = implode(", ", $this->getRequiredProperties());
+            $columnsPrepareValues = implode(", ", array_map(function ($prop) {
+                return ":$prop";
+            }, $this->getRequiredProperties()));
+            $query = "INSERT INTO {$this->tableName} ($columnsToBeInsertedTo) VALUES ($columnsPrepareValues)";
+            echo $query;
+            $stmt = $this->dbConnection->prepare($query);
+
+            $user = $stmt->execute($this->valuesArray);
+
+
+            if (!$user) {
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'context' => 'login',
+                    'title' => 'Validation Error!',
+                    'description' => 'User tidak ditemukan!'
+                ]);
+
+                throw new AuthException('User not found!');
+            }
+
+            // $this->dbConnection->commit();
+            $result->setSuccess(true);
+        } catch (\Exception $e) {
+            // $this->dbConnection->rollBack();
+            $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
+            $result->setStatus('rollbacked');
+        } finally {
+            $this->dbConnection->exec("UNLOCK TABLES");
+        }
 
         return $result;
     }
 
-    public function register(): object {
+    private function checkIfTableIsLocked(): bool
+    {
+        if ($this->dbConnection->inTransaction()) {
+            return true;
+        }
+        $stmt = $this->dbConnection->prepare("SHOW OPEN TABLES WHERE In_use > 0");
+        $stmt->execute();
+
+        $tables = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        foreach ($tables as $table) {
+            if ($table['Table'] == $this->tableName) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+    public function update(): object
+    {
         $result = new SaveResult();
 
         try {
+
+
             $this->dbConnection->exec("LOCK TABLES {$this->tableName} WRITE");
 
             $this->dbConnection->beginTransaction();
 
             $columnsToBeInsertedTo = implode(", ", $this->getRequiredProperties());
-            $columnsPrepareValues = implode(", ", array_map(function($prop) {
+            $columnsPrepareValues = implode(", ", array_map(function ($prop) {
                 return ":$prop";
             }, $this->getRequiredProperties()));
 
@@ -187,22 +259,156 @@ class User extends Model
 
             $stmt->execute($this->valuesArray);
 
+            if (!$user) {
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'context' => 'login',
+                    'title' => 'Validation Error!',
+                    'description' => 'User tidak ditemukan!'
+                ]);
+
+                throw new AuthException('User not found!');
+            }
+
             $this->dbConnection->commit();
             $result->setSuccess(true);
-        }
-        catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->dbConnection->rollBack();
             $result->setMessage($e->getMessage() . " | Line: " . $e->getLine());
             $result->setStatus('rollbacked');
-        }
-        finally {
+        } finally {
             $this->dbConnection->exec("UNLOCK TABLES");
         }
 
         return $result;
     }
 
+    public function validateSave(array | null $body = null)
+    {
+        $namaMinLength = 3;
+        $namaMaxLength = 36;
+        $usernameMinLength = 3;
+        $usernameMaxLength = 24;
+        $passwordMinLength = 8;
+        $passwordMaxLength = 36;
 
+        try {
+
+            if ($body) {
+                $this->id_outlet = $body['id_outlet'];
+                $this->nama = $body['nama'];
+                $this->username = $body['username'];
+                $this->password = $body['password'];
+                $this->role = $body['role'];
+            }
+
+            if (!v::intVal()->validate($this->id_outlet)) {
+                throw new ValidationException('ID Outlet harus dalam bentuk angka!', FLASH_ERROR);
+            }
+
+            if (!v::intVal()->min(0)->validate($this->id_outlet)) {
+                throw new ValidationException('ID Outlet memiliki nilai tidak valid!', FLASH_ERROR);
+            }
+
+            if (!v::stringType()->length($passwordMinLength, $passwordMaxLength)->validate($this->password)) {
+                throw new \Exception("Password harus minimal <b>$passwordMinLength</b> dan maksimal $passwordMaxLength karakter", FLASH_ERROR);
+            }
+
+            if (!v::stringType()->length($namaMinLength, $namaMaxLength)->validate($this->nama)) {
+                throw new \Exception("Nama harus minimal <b>$namaMinLength</b> dan maksimal $namaMaxLength karakter", FLASH_ERROR);
+            }
+
+            if (!v::stringType()->length($usernameMinLength, $usernameMaxLength)->validate($this->username)) {
+                throw new ValidationException("Username harus minimal <b>$usernameMinLength</b> dan maksimal <b>$usernameMaxLength</b> karakter", FLASH_ERROR);
+            }
+
+            if (!v::stringType()->in(['admin', 'kasir', 'owner'])->validate($this->role)) {
+                throw new ValidationException('Role harus diantara "admin", "kasir", atau "owner"', FLASH_ERROR);
+            }
+        } catch (\Exception $e) {
+            if ($e instanceof ValidationException) {
+                if ($e->getErrorDisplayType() === FLASH_ERROR) {
+                    FlashMessage::addMessage([
+                        'type' => 'error',
+                        'title' => 'Validation Failed',
+                        'description' => $e->getMessage(),
+                        'context' => 'karyawan_message'
+                    ]);
+                }
+            } else {
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'title' => 'Something went wrong',
+                    'description' => "Something went wrong, please try again later",
+                    'context' => 'karyawan_message'
+                ]);
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    public function validateUpdate(array | null $body = null)
+    {
+        $namaMinLength = 3;
+        $namaMaxLength = 36;
+        $usernameMinLength = 3;
+        $usernameMaxLength = 24;
+
+        try {
+            if ($body) {
+                $this->id_outlet = $body['id_outlet'];
+                $this->nama = $body['nama'];
+                $this->username = $body['username'];
+                $this->password = $body['password'];
+                $this->role = $body['role'];
+            }
+
+            if (!v::intVal()->validate($this->id_outlet)) {
+                throw new ValidationException('ID Outlet harus dalam bentuk angka!', FLASH_ERROR);
+            }
+
+            if (!v::intVal()->min(0)->validate($this->id_outlet)) {
+                throw new ValidationException('ID Outlet memiliki nilai tidak valid!', FLASH_ERROR);
+            }
+
+            if (!v::stringType()->length($namaMinLength, $namaMaxLength)->validate($this->nama)) {
+                throw new \Exception("Nama harus minimal <b>$namaMinLength</b> dan maksimal $namaMaxLength karakter", FLASH_ERROR);
+            }
+
+            if (!v::stringType()->length($usernameMinLength, $usernameMaxLength)->validate($this->username)) {
+                throw new ValidationException("Username harus minimal $usernameMinLength dan maksimal $usernameMaxLength karakter", FLASH_ERROR);
+            }
+
+            if (!v::stringType()->in(['admin', 'kasir', 'owner'])->validate($this->role)) {
+                throw new ValidationException('Role harus diantara "admin", "kasir", atau "owner"', FLASH_ERROR);
+            }
+        } catch (\Exception $e) {
+            if ($e instanceof ValidationException) {
+                if ($e->getErrorDisplayType() === FLASH_ERROR) {
+                    FlashMessage::addMessage([
+                        'type' => 'error',
+                        'title' => 'Validation Failed',
+                        'description' => $e->getMessage(),
+                        'context' => 'karyawan_message'
+                    ]);
+                }
+            } else {
+                FlashMessage::addMessage([
+                    'type' => 'error',
+                    'title' => 'Something went wrong',
+                    'description' => "Something went wrong, please try again later",
+                    'context' => 'karyawan_message'
+                ]);
+            }
+
+            return false;
+        }
+
+        return true;
+    }
 
     // Other methods and properties specific to the User model
     public function getIdOutlet()
@@ -225,7 +431,6 @@ class User extends Model
     {
         return $this->role;
     }
-
     public function setIdOutlet($id_outlet)
     {
         $this->id_outlet = $id_outlet;

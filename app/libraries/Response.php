@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Libraries;
+use App\Libraries\RouterHelper;
 
 include_once __DIR__ . "/../config/config.php";
 include_once __DIR__ . "/../utils/routeTo.php";
@@ -39,6 +40,7 @@ final class Response
 
             if (file_exists($path)) {
                 $this->extractData($data);
+                $headerContent = file_get_contents(__DIR__ . "/../views/layouts/header.php");
 
                 extract([
                     'PROJECT_ROOT' => PROJECT_ROOT,
@@ -46,10 +48,10 @@ final class Response
                     'base' => $this->views['directory'],
                     'routeTo' => 'routeTo',
                     'includeFile' => 'includeFile',
-                    'fetch' => 'fetch'
+                    'fetch' => 'fetch',
+                    'header' => $headerContent
                 ]);
-
-                include_once __DIR__ . "/../views/layouts/header.php";
+                
                 include_once $path;
             } else {
                 throw new \Exception("Sorry, the file does not exist");

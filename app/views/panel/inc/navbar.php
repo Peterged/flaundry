@@ -1,21 +1,27 @@
+<?php
+$myRoute = explode('/', $_GET['route']);
+$myRoute = end($myRoute);
 
+?>
 
 <div class="panel-navbar">
     <div class="header">
         <div class="title">
-            <p>Configuration</p>
+            <p><?= ucfirst($myRoute) ?></p>
         </div>
         <div class="breadcrumb">
-            <a href="<?= $_SERVER['REQUEST_URI'] ?>">Panel</a>
+            <a href="<?= routeTo("/panel/dashboard") ?>">Panel</a>
             <span class="separator">&gt;</span>
-            <a href="<?= routeTo('/panel/dashboard') ?>">Dashboard</a>
+            <a href="<?= routeTo("/panel/$myRoute") ?>">
+                <?php
+                echo ucfirst($myRoute);
+                ?>
+            </a>
         </div>
     </div>
-    <div class="search-box">
+    <form class="search-box" method="get">
         <div class="search-content">
-            <form method="get">
-                <input type="text" class="search" name="search" placeholder="Search" autocomplete="off">
-            </form>
+            <input type="text" class="search" name="search" placeholder="Search" autocomplete="off">
             <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.7422 10.3439C12.5329 9.2673 13 7.9382 13 6.5C13 2.91015 10.0899 0 6.5 0C2.91015 0 0 2.91015 0 6.5C0 10.0899 2.91015 13 6.5 13C7.93858 13 9.26801 12.5327 10.3448 11.7415L10.3439 11.7422C10.3734 11.7822 10.4062 11.8204 10.4424 11.8566L14.2929 15.7071C14.6834 16.0976 15.3166 16.0976 15.7071 15.7071C16.0976 15.3166 16.0976 14.6834 15.7071 14.2929L11.8566 10.4424C11.8204 10.4062 11.7822 10.3734 11.7422 10.3439ZM12 6.5C12 9.53757 9.53757 12 6.5 12C3.46243 12 1 9.53757 1 6.5C1 3.46243 3.46243 1 6.5 1C9.53757 1 12 3.46243 12 6.5Z" fill="black" />
             </svg>
@@ -30,7 +36,94 @@
                 <p>Ctrl&nbsp;+&nbsp;M</p>
             </div>
         </div>
-    </div>
+        <div class="filter-popup">
+            <div class="filter-popup-title">
+                <p>SEARCH OPTIONS</p>
+            </div>
+
+            <div class="filter-options">
+                <?php
+                $columns = $data['tableColumns'] ?? ['id', 'nama', 'alamat'];
+                if (empty($columns)) {
+                    echo "
+                            <div type='button' class='filter-item'>
+                                <p class='filter-text'>Please refresh the page.</p>
+                            </div>
+                        ";
+                } else {
+                    foreach ($columns as $column) {
+                        $column = preg_replace("/[_-]/", ' ', $column);
+                ?>
+                        <div class="filter-item">
+                            <div class="filter-item-title">
+                                
+                                <label for="<?= "search-$column" ?>"><?= strlen($column) <= 2 ? strtoupper($column) : ucwords($column) ?></label>
+                            </div>
+                            <div class="filter-item-input">
+                                <input type="text" placeholder="<?= "Ketik $column" ?>" name="<?= "search-$column" ?>" id="<?= "search-$column" ?>" data-input-filter-type="text" data-input-filter-type-calculation="text-contains">
+                            </div>
+                            <button class="filter-item-button-settings-toggler" type="button">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 4.125C2.75 3.76033 2.89487 3.41059 3.15273 3.15273C3.41059 2.89487 3.76033 2.75 4.125 2.75H17.875C18.2397 2.75 18.5894 2.89487 18.8473 3.15273C19.1051 3.41059 19.25 3.76033 19.25 4.125V6.03717C19.2499 6.52336 19.0567 6.9896 18.7128 7.33333L13.75 12.2962V19.1015C13.75 19.2734 13.7061 19.4424 13.6224 19.5926C13.5387 19.7427 13.418 19.869 13.2718 19.9594C13.1256 20.0497 12.9587 20.1012 12.787 20.109C12.6153 20.1167 12.4444 20.0804 12.2907 20.0035L8.88342 18.3003C8.69309 18.2052 8.53302 18.0589 8.42114 17.8779C8.30927 17.6969 8.25001 17.4883 8.25 17.2755V12.2962L3.28717 7.33333C2.94333 6.9896 2.7501 6.52336 2.75 6.03717V4.125ZM4.58333 4.58333V6.03717L9.68 11.1338C9.80783 11.2615 9.90924 11.4131 9.97845 11.58C10.0477 11.7469 10.0833 11.9258 10.0833 12.1064V16.8502L11.9167 17.7668V12.1064C11.9167 11.7416 12.0615 11.3914 12.32 11.1348L17.4167 6.03625V4.58333H4.58333Z" fill="#6C6C6C" />
+                                </svg>
+                            </button>
+                            <?php 
+                                $filterItemSettingsList = [
+                                    "text" => [
+                                        "contains",
+                                        "dcontains"
+                                    ],
+                                    "number" => [
+                                        "greater_than",
+                                        "greater_than_or_equal_to",
+                                        "less_than",
+                                        "less_than_or_equal_to",
+                                        "is_number",
+                                        "whole_number"
+                                    ],
+                                    "length" => [
+                                        "maximum_character_count",
+                                        "minimum_character_count"
+                                    ],
+                                    "regex" => [
+                                        "contains",
+                                        "dcontains",
+                                        "matches",
+                                        "dmatches"
+                                    ]
+                                ];
+
+                                foreach($filterItemSettingsList as $filterKey => $filterValue) {
+                                    echo "<div class=''>";
+                                    foreach($filterValue as $filterValueKey) {
+                                        echo "";
+                                    }
+
+                                    echo "</div>";
+                                }
+                            ?>
+                            <div class="filter-item-settings">
+                                <div class="filter-item-settings__item" aria-selected="false">
+                                    
+                                    <button class="filter-item-settings__item-calculation-toggler" type="button">
+                                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 4.125C2.75 3.76033 2.89487 3.41059 3.15273 3.15273C3.41059 2.89487 3.76033 2.75 4.125 2.75H17.875C18.2397 2.75 18.5894 2.89487 18.8473 3.15273C19.1051 3.41059 19.25 3.76033 19.25 4.125V6.03717C19.2499 6.52336 19.0567 6.9896 18.7128 7.33333L13.75 12.2962V19.1015C13.75 19.2734 13.7061 19.4424 13.6224 19.5926C13.5387 19.7427 13.418 19.869 13.2718 19.9594C13.1256 20.0497 12.9587 20.1012 12.787 20.109C12.6153 20.1167 12.4444 20.0804 12.2907 20.0035L8.88342 18.3003C8.69309 18.2052 8.53302 18.0589 8.42114 17.8779C8.30927 17.6969 8.25001 17.4883 8.25 17.2755V12.2962L3.28717 7.33333C2.94333 6.9896 2.7501 6.52336 2.75 6.03717V4.125ZM4.58333 4.58333V6.03717L9.68 11.1338C9.80783 11.2615 9.90924 11.4131 9.97845 11.58C10.0477 11.7469 10.0833 11.9258 10.0833 12.1064V16.8502L11.9167 17.7668V12.1064C11.9167 11.7416 12.0615 11.3914 12.32 11.1348L17.4167 6.03625V4.58333H4.58333Z" fill="#6C6C6C" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="filter-item-settings-calculation">
+
+                                </div>
+                            </div>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
+
+            </div>
+        </div>
+    </form>
     <div class="profile-box">
         <div class="notifications">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +132,7 @@
         </div>
         <div class="identity">
             <div class="profile-name">
-                <p><?= $data['username'] ?? 'undefined' ?></p>
+                <p><?= $_SESSION['username'] ?? 'undefined' ?></p>
             </div>
             <div class="avatar">
                 <img src="" alt="">

@@ -1,0 +1,1055 @@
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 80
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 80
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 86
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 86
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 92
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 92
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 98
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 98
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $warna in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 116
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $pembayaran in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 118
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 130
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 130
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 135
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 135
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 145
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 145
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 145
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 152
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 152
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 153
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 153
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 153
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 155
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 155
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 157
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 157
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 159
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 169
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 169
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 170
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 170
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 175
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 175
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 180
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 180
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 185
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 185
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 202
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 202
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $connect in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 253
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Warning:  Undefined variable $idtransaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 253
+[24-Feb-2024 14:06:03 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php:253
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php(253): mysqli_query(NULL, 'SELECT * FROM t...')
+#1 C:\xampp\htdocs\flaundry\app\libraries\Response.php(55): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(661): App\Libraries\Response->render('app/views/panel...', Array)
+#3 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(671): App\routers\detailTransaksi(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(301): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(399): App\Libraries\PHPExpress->processFunction('GET', true, '/panel/detail-t...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('GET', '/panel/detail-t...', Array)
+#7 C:\xampp\htdocs\flaundry\index.php(40): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 253
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $warna in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 82
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $pembayaran in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 84
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 91
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 91
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 96
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 96
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 101
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 101
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 106
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 106
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 118
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 118
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 135
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 135
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 136
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 136
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 141
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 141
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 146
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 146
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 151
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 151
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $data_transaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 168
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 168
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $connect in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 219
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Warning:  Undefined variable $idtransaksi in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 219
+[24-Feb-2024 14:06:31 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php:219
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php(219): mysqli_query(NULL, 'SELECT * FROM t...')
+#1 C:\xampp\htdocs\flaundry\app\libraries\Response.php(55): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(661): App\Libraries\Response->render('app/views/panel...', Array)
+#3 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(671): App\routers\detailTransaksi(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(301): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(399): App\Libraries\PHPExpress->processFunction('GET', true, '/panel/detail-t...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('GET', '/panel/detail-t...', Array)
+#7 C:\xampp\htdocs\flaundry\index.php(40): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 219
+[24-Feb-2024 15:14:01 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 15:14:02 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 15:14:03 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 15:14:04 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 15:14:04 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 15:14:04 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 15:14:05 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 15:14:05 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 15:14:05 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 15:14:06 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 15:14:06 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_paket`, CONSTRAINT `FK_Paket_IdOutlet_Outlet_Id` FOREIGN KEY (`id_outlet`) REFERENCES `tb_outlet` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 355
+[24-Feb-2024 22:17:43 Asia/Makassar] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:30:44 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "catch" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 389
+[24-Feb-2024 15:30:47 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "catch" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 389
+[24-Feb-2024 15:30:50 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "catch" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 389
+[24-Feb-2024 15:30:52 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "catch" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 389
+[24-Feb-2024 15:31:02 Europe/Berlin] PHP Parse error:  Unclosed '{' on line 288 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 393
+[24-Feb-2024 15:32:00 Europe/Berlin] PHP Parse error:  Unclosed '{' on line 287 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 392
+[24-Feb-2024 15:32:16 Europe/Berlin] PHP Parse error:  Unclosed '{' on line 283 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 388
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key 11 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 33
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 91
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 96
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 101
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 106
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 118
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 137
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 143
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 148
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 153
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Warning:  Undefined variable $connect in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 282
+[24-Feb-2024 15:32:28 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php:282
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php(282): mysqli_query(NULL, 'SELECT SUM(tota...')
+#1 C:\xampp\htdocs\flaundry\app\libraries\Response.php(55): include_once('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(660): App\Libraries\Response->render('app/views/panel...', Array)
+#3 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(685): App\routers\detailTransaksi(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(301): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(399): App\Libraries\PHPExpress->processFunction('GET', true, '/panel/detail-t...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('GET', '/panel/detail-t...', Array)
+#7 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 282
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key 11 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 33
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 91
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 96
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 101
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 106
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 118
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 137
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 143
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 148
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 153
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 285
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 345
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 350
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 360
+[24-Feb-2024 15:33:54 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 373
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key 11 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 33
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 91
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 96
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 101
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 106
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 118
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 137
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 143
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 148
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 153
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 285
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 345
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 350
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 360
+[24-Feb-2024 15:36:08 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 373
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key 11 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 33
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 91
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 96
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 101
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 106
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 118
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 137
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 143
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 148
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 153
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 285
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 345
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 350
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 360
+[24-Feb-2024 15:37:47 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 373
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key 11 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 33
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 91
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 96
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 101
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 106
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 118
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 137
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 143
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 148
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 153
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 285
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 345
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 350
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 360
+[24-Feb-2024 15:37:50 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 373
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key 11 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 33
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 91
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 96
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 101
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 106
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 118
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 137
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 143
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 148
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 153
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 285
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 345
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 350
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 360
+[24-Feb-2024 15:39:34 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 373
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 33
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 91
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 96
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 101
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 106
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 111
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 118
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 137
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 143
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 148
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 153
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 190
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 285
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 345
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 350
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 360
+[24-Feb-2024 15:39:48 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 373
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 35
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 93
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 98
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 103
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 108
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 113
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 113
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 127
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 139
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 145
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 150
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 155
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 192
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 192
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 287
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 347
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 352
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 362
+[24-Feb-2024 15:40:21 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 375
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 35
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 93
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 98
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 103
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 108
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 113
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 113
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 127
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 139
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 145
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 150
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 155
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 192
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 192
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 287
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 347
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 352
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 362
+[24-Feb-2024 15:40:29 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 375
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 35
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 93
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 98
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 103
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 108
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 113
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 113
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 127
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 139
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 145
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 150
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 155
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 192
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 192
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 287
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 347
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 352
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 362
+[24-Feb-2024 15:40:30 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 375
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 35
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 93
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 98
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 103
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 108
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 113
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 113
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 127
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 139
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 145
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 150
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 155
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 192
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 192
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 287
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 347
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 352
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 362
+[24-Feb-2024 15:40:31 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 375
+[24-Feb-2024 22:40:51 Asia/Makassar] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 35
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 93
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 98
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 103
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 108
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 113
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 113
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 123
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 125
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 127
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 139
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 145
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 150
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 155
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 192
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 192
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 287
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 347
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 352
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 362
+[24-Feb-2024 15:40:51 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 375
+[24-Feb-2024 22:51:08 Asia/Makassar] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 36
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 94
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 99
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 104
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 109
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 128
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 141
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 146
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 151
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 156
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 288
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 348
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 353
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 363
+[24-Feb-2024 15:51:08 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 376
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 36
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 94
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 99
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 104
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 109
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 128
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 141
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 146
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 151
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 156
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 288
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 348
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 353
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 363
+[24-Feb-2024 15:54:10 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 376
+[24-Feb-2024 22:54:13 Asia/Makassar] PHP Notice:  SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 36
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 94
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 99
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 104
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 109
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 128
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 141
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 146
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 151
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 156
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 288
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 348
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 353
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 363
+[24-Feb-2024 15:54:13 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 376
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 36
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 94
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 99
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 104
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 109
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 128
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 141
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 146
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 151
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 156
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 288
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 348
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 353
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 363
+[24-Feb-2024 15:55:40 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 376
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 36
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 94
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 99
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 104
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 109
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 128
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 141
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 146
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 151
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 156
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 288
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 348
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 353
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 363
+[24-Feb-2024 15:55:50 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 376
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 15:55:59 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[24-Feb-2024 22:56:10 Asia/Makassar] PHP Notice:  SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 36
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 94
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 99
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 104
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 109
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 114
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 121
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 128
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 140
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 141
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 146
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 151
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 156
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 193
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 288
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 348
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 353
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 363
+[24-Feb-2024 15:56:10 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 376
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 36
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 92
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 97
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 102
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 107
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 112
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 112
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 139
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 144
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 149
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 154
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 191
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 191
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 286
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 346
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 351
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 361
+[24-Feb-2024 15:58:26 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 373
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 36
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 92
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 97
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 102
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 107
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 112
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 112
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 139
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 144
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 149
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 154
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 191
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 191
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 286
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 346
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 351
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 361
+[24-Feb-2024 15:58:28 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 373
+[24-Feb-2024 22:58:55 Asia/Makassar] PHP Notice:  SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1 | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 22:59:30 Asia/Makassar] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 22:59:49 Asia/Makassar] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 23:01:09 Asia/Makassar] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 23:01:12 Asia/Makassar] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 23:02:33 Asia/Makassar] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[24-Feb-2024 16:07:03 Europe/Berlin] PHP Warning:  Undefined variable $existingUser in C:\xampp\htdocs\flaundry\app\models\User.php on line 173
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[24-Feb-2024 16:17:38 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  Undefined array key "route" in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 186
+[25-Feb-2024 09:09:41 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 283
+[25-Feb-2024 13:41:59 Europe/Berlin] PHP Warning:  Undefined variable $stmt in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 175
+[25-Feb-2024 13:41:59 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_stmt_bind_param(): Argument #1 ($statement) must be of type mysqli_stmt, null given in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php:175
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(175): mysqli_stmt_bind_param(NULL, 'sssssi', NULL, NULL, NULL, NULL, NULL, NULL)
+#1 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(316): App\Libraries\PHPExpress->resetHeader()
+#2 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(401): App\Libraries\PHPExpress->processFunction('GET', true, '/', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#3 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('GET', '/', Array)
+#4 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#5 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 175
+[25-Feb-2024 13:42:00 Europe/Berlin] PHP Warning:  Undefined variable $stmt in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 175
+[25-Feb-2024 13:42:00 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_stmt_bind_param(): Argument #1 ($statement) must be of type mysqli_stmt, null given in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php:175
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(175): mysqli_stmt_bind_param(NULL, 'sssssi', NULL, NULL, NULL, NULL, NULL, NULL)
+#1 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(316): App\Libraries\PHPExpress->resetHeader()
+#2 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(401): App\Libraries\PHPExpress->processFunction('GET', true, '/panel', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#3 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('GET', '/panel', Array)
+#4 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#5 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 175
+[25-Feb-2024 13:42:00 Europe/Berlin] PHP Warning:  Undefined variable $stmt in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 175
+[25-Feb-2024 13:42:00 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_stmt_bind_param(): Argument #1 ($statement) must be of type mysqli_stmt, null given in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php:175
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(175): mysqli_stmt_bind_param(NULL, 'sssssi', NULL, NULL, NULL, NULL, NULL, NULL)
+#1 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(316): App\Libraries\PHPExpress->resetHeader()
+#2 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(401): App\Libraries\PHPExpress->processFunction('GET', true, '/auth/login', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#3 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('GET', '/auth/login', Array)
+#4 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#5 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 175
+[25-Feb-2024 13:42:02 Europe/Berlin] PHP Warning:  Undefined variable $stmt in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 175
+[25-Feb-2024 13:42:02 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_stmt_bind_param(): Argument #1 ($statement) must be of type mysqli_stmt, null given in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php:175
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(175): mysqli_stmt_bind_param(NULL, 'sssssi', NULL, NULL, NULL, NULL, NULL, NULL)
+#1 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(316): App\Libraries\PHPExpress->resetHeader()
+#2 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(401): App\Libraries\PHPExpress->processFunction('GET', true, '/auth/login', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#3 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('GET', '/auth/login', Array)
+#4 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#5 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 175
+[25-Feb-2024 13:42:46 Europe/Berlin] PHP Warning:  Undefined variable $stmt in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 175
+[25-Feb-2024 13:42:46 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: mysqli_stmt_bind_param(): Argument #1 ($statement) must be of type mysqli_stmt, null given in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php:175
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(175): mysqli_stmt_bind_param(NULL, 'sssssi', NULL, NULL, NULL, NULL, NULL, NULL)
+#1 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(316): App\Libraries\PHPExpress->resetHeader()
+#2 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(401): App\Libraries\PHPExpress->processFunction('GET', true, '/auth/login', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#3 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('GET', '/auth/login', Array)
+#4 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#5 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php on line 175
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 588
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 36
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 92
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 97
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 102
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 107
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 112
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 112
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 139
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 144
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 149
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 154
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 191
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 191
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 286
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 346
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 351
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 361
+[01-Mar-2024 04:48:18 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 373
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 36
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "kode_invoice" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 92
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "nama_pelangan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 97
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "tlp_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 102
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "alamat_pelanggan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 107
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "nama_karyawan" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 112
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 112
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "batas_waktu" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 119
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key 5 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 120
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Deprecated:  explode(): Passing null to parameter #2 ($string) of type string is deprecated in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 122
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key 2 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 124
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key 1 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 126
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 138
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 139
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 144
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 149
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 154
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined variable $paket in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 191
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 191
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Notice:  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total_harga' in 'field list' | Line: 274 in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 47
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key 0 in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 286
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 346
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 351
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "dibayar" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 361
+[01-Mar-2024 04:49:06 Europe/Berlin] PHP Warning:  Undefined array key "dibayara" in C:\xampp\htdocs\flaundry\app\views\panel\components\detail_transaksi.php on line 373
+[01-Mar-2024 05:05:05 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:05:07 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:05:43 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:08:45 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:09:03 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:09:26 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:09:28 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:12:14 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:12:33 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:15:36 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:15:38 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:16:04 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:16:06 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:16:28 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:16:49 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:17:16 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:17:32 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:17:55 Europe/Berlin] PHP Fatal error:  Uncaught Error: Typed property App\models\User::$nama must not be accessed before initialization in C:\xampp\htdocs\flaundry\app\models\User.php:291
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(466): App\models\User->validateSave()
+#1 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(549): App\routers\editKaryawanPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#2 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(305): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#3 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(403): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/karyawan...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('POST', '/panel/karyawan...', Array)
+#5 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#6 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\models\User.php on line 291
+[01-Mar-2024 05:20:43 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function App\models\User::validateSave(), 0 passed in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 466 and exactly 1 expected in C:\xampp\htdocs\flaundry\app\models\User.php:289
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(466): App\models\User->validateSave()
+#1 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(549): App\routers\editKaryawanPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#2 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(305): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#3 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(403): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/karyawan...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('POST', '/panel/karyawan...', Array)
+#5 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#6 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\models\User.php on line 289
+[01-Mar-2024 05:21:22 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 05:22:48 Europe/Berlin] PHP Fatal error:  Uncaught Error: Typed property App\models\User::$nama must not be accessed before initialization in C:\xampp\htdocs\flaundry\app\models\User.php:294
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(466): App\models\User->validateSave(Array)
+#1 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(549): App\routers\editKaryawanPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#2 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(305): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#3 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(403): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/karyawan...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(61): App\Libraries\PHPExpress->handleResponse('POST', '/panel/karyawan...', Array)
+#5 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#6 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\models\User.php on line 294
+[01-Mar-2024 05:30:06 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "if", expecting "," or ";" in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 689
+[01-Mar-2024 06:28:50 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:04:56 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:05:00 Europe/Berlin] PHP Fatal error:  Access level to App\models\Member::validateEmpty() must be protected (as in class App\Libraries\Model) or weaker in C:\xampp\htdocs\flaundry\app\models\Member.php on line 53
+[01-Mar-2024 10:05:36 Europe/Berlin] PHP Fatal error:  Access level to App\models\Member::validateEmpty() must be protected (as in class App\Libraries\Model) or weaker in C:\xampp\htdocs\flaundry\app\models\Member.php on line 53
+[01-Mar-2024 10:05:38 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:05:39 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:05:40 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:05:41 Europe/Berlin] PHP Fatal error:  Access level to App\models\Paket::validateEmpty() must be protected (as in class App\Libraries\Model) or weaker in C:\xampp\htdocs\flaundry\app\models\Paket.php on line 56
+[01-Mar-2024 10:05:57 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:05:58 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:05:58 Europe/Berlin] PHP Fatal error:  Access level to App\models\Outlet::validateEmpty() must be protected (as in class App\Libraries\Model) or weaker in C:\xampp\htdocs\flaundry\app\models\Outlet.php on line 52
+[01-Mar-2024 10:06:05 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:06:08 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:06:09 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:06:11 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[01-Mar-2024 10:06:12 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:09:56 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:01 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:07 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:44 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:50 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:50 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:10:51 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 05:11:05 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 06:06:20 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:02:45 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:02:50 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:03:10 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:03:13 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:03:54 Europe/Berlin] PHP Warning:  Undefined array key "name" in C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php on line 464
+[02-Mar-2024 07:09:48 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:09:55 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:16:07 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:19:55 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:20:13 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:21:24 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:21:25 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:21:29 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:34:02 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:07 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:16 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:18 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:30 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 361
+[02-Mar-2024 07:35:30 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:33 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:34 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 361
+[02-Mar-2024 07:35:35 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:35:36 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 361
+[02-Mar-2024 07:35:36 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:39:29 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 07:39:30 Europe/Berlin] PHP Notice:  SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`laundry`.`tb_transaksi`, CONSTRAINT `FK_Transaksi_IdUser_User_Id` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id`)) in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 362
+[02-Mar-2024 07:39:30 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:01:36 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:07:24 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:07:26 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:07:39 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:07:46 Europe/Berlin] PHP Warning:  Undefined variable $data in C:\xampp\htdocs\flaundry\app\routers\ApiRouter.php on line 32
+[02-Mar-2024 14:09:53 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: Cannot assign string to property App\models\User::$id_outlet of type int in C:\xampp\htdocs\flaundry\app\models\User.php:304
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(536): App\models\User->validateSave(Array)
+#1 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(572): App\routers\addKaryawanPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#2 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#3 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/karyawan...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('POST', '/panel/karyawan...', Array)
+#5 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#6 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\models\User.php on line 304
+[02-Mar-2024 14:11:56 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: Cannot assign string to property App\models\User::$id_outlet of type int in C:\xampp\htdocs\flaundry\app\libraries\Model.php:478
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\libraries\Model.php(33): App\Libraries\Model->setValuesArray(Array)
+#1 C:\xampp\htdocs\flaundry\app\models\User.php(27): App\Libraries\Model->__construct(Object(App\Libraries\Database), Array, 'App\\models\\User')
+#2 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(530): App\models\User->__construct(Object(App\Libraries\Database), Array)
+#3 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(570): App\routers\addKaryawanPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/karyawan...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('POST', '/panel/karyawan...', Array)
+#7 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 478
+[02-Mar-2024 14:14:42 Europe/Berlin] PHP Fatal error:  Uncaught TypeError: Cannot assign string to property App\models\User::$id_outlet of type int in C:\xampp\htdocs\flaundry\app\libraries\Model.php:478
+Stack trace:
+#0 C:\xampp\htdocs\flaundry\app\libraries\Model.php(33): App\Libraries\Model->setValuesArray(Array)
+#1 C:\xampp\htdocs\flaundry\app\models\User.php(27): App\Libraries\Model->__construct(Object(App\Libraries\Database), Array, 'App\\models\\User')
+#2 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(530): App\models\User->__construct(Object(App\Libraries\Database), Array)
+#3 C:\xampp\htdocs\flaundry\app\routers\PanelRouter.php(570): App\routers\addKaryawanPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/karyawan...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\xampp\htdocs\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('POST', '/panel/karyawan...', Array)
+#7 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 478

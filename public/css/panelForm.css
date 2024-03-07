@@ -1,0 +1,33 @@
+:root {
+    --pink-1: #f72585;
+    --purple-fandango-2: #b5179e;
+    --purple-grape-3: #7209b7;
+    --blue-chrysler-4: #560bad;
+    --blue-dark-5: #480ca8;
+    --blue-zaffre-6: #3a0ca3;
+    --blue-palatinate-7: #3f37c9;
+    --blue-neon-8: #4361ee;
+    --blue--chefchaouen-9: #4895ef;
+    --blue-vivid-sky-10: #4cc9f0;
+
+    /* Dark mode colors */
+    --dark-background: #1e1e1e;
+    --dark-foreground: #fff;
+    --dark-box-background: #232323; /* with a semi-transparent overlay */
+    --dark-box-content: #34495e;
+    --dark-box-close-button: #fff; /* With some glow */
+    --dark-secondary-accent: #e74c3c;
+
+    --input-width: 100%;
+
+    /* Flash Messages */
+    --flash-success-background: #28a745;
+    --flash-error-background: #dc3545;
+    --flash-info-background: #17a2b8;
+    --flash-warning-background: #ffc107;
+
+    --flash-success-border: #218838;
+    --flash-error-border: #c82333;
+    --flash-info-border: #138496;
+    --flash-warning-border: #b69500;
+}

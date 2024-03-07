@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Interfaces;
 interface FlashMessageInterface {
     public static function addMessage(array $options): array | null;
@@ -12,5 +12,5 @@ interface FlashMessageInterface {
     public static function displayCustomPopMessage(string $message, string $type, string $position = 'top-right'): void;
     public static function displayPopMessages(string $position = 'top-right'): void;
     public static function displayPopMessagesByType(string $type, string $position = 'top-right'): void;
-    public static function displayPopMessagesByContext(string $context, string $position = 'top-right'): void;
+    public static function displayPopMessagesByContext(string $context, string $position = 'top-right', int $delay = 3000): void;
 }
