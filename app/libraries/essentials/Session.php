@@ -22,6 +22,8 @@ namespace App\Libraries\Essentials;
             return $isValid;
         }
 
+        
+
         public static function startToken() {
             $token = EncryptedCookie::get(self::$tokenName) ?? self::generateToken();
             // $hash = password_hash($salt, PASSWORD_BCRYPT, ['cost' => 12, 'salt' => $salt]);

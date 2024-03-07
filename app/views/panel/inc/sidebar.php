@@ -1,4 +1,8 @@
-<div class="sidebar">
+<?php 
+    $role = $_SESSION['role'];
+?>
+
+<div class="sidebar noprint">
     <div class="header">
         <div class="logo">
             <a href="<?= routeTo('/panel') ?>">

@@ -41,10 +41,17 @@ class MyLodash
             $index = 0;
             foreach ($array as $key => &$value) {
                 if ($callback($value, $key, $index, $array)) {
-                    $result[] = $value;
+                    if($key) {
+                        $result[$key] = $value;
+                    }
+                    else {
+                        $result[] = $value;
+                    }
+                        
                 }
                 $index++;
             }
+            
             return $result;
         });
         return $result;

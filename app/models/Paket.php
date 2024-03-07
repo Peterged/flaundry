@@ -47,7 +47,7 @@ class Paket extends Model
                 'jenis' => $this->jenis,
                 'harga' => $this->harga
             ]);
-
+            
             $data = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? [[]];
 
             $result->setData($data);

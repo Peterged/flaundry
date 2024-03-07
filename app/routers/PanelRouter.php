@@ -4,15 +4,11 @@ namespace App\routers;
 
 use App\Libraries\PHPExpress;
 use App\models\User;
-use App\utils\PrintArray;
 use App\Services\FlashMessage as fm;
-use App\models\Outlet;
-use App\models\Paket;
-use App\models\Member;
-use App\models\Karyawan;
-use App\libraries\Model;
+use App\models\Outlet, App\models\Paket, App\models\Member, App\models\DetailTransaksi;
+use App\Utils\MyLodash as _;
+use App\Services\SearchEngineService as SES;
 use App\Libraries\Essentials\Session;
-use PDO;
 
 $panelRouter = new PHPExpress();
 global $con, $panelRouter;
@@ -47,15 +43,44 @@ function outlet($req, $res, $connection)
     validateUserSession($req, $res);
     // $outlet = (new Model($connection))->query("SELECT * FROM tb_outlet");
     $outlet = new Outlet($connection);
-    $outletData = $outlet->get([], "");
+
+
+    $params = _::filter($_GET, function ($value, $key) {
+        return $key !== 'route';
+    });
+
+    if (!empty($params)) {
+        // print_r($params);
+        $params = SES::filterSearch($params);
+        $outletData = $outlet->get($params, "");
+    } else {
+        $outletData = $outlet->get([], "");
+    }
+
 
     $data = [
         'outlets' => $outletData->getData(),
+        'tableColumns' => $outlet->getTableColumns()
     ];
 
     $res->render('/panel/components/outlet', $data);
     // $res->render('/panel/components/outlet', $data);
 }
+
+// function outletSearchPost($req, $res, $connection) 
+// {
+//     validateUserSession($req, $res);
+
+//     $outlet = new Outlet($connection);
+//     $body = $req->getBody();
+//     $params = _::filter($_GET, function($key) {
+//         return in_array($key, ['nama', 'alamat', 'tlp']);
+//     });
+
+//     $res->render('/panel/components/outlet', [
+//         'outlets' => $outlet->get($params, $body['search'])->getData()
+//     ]);
+// }
 
 function outletDelete($req, $res, $connection)
 {
@@ -76,8 +101,6 @@ function outletDelete($req, $res, $connection)
         ]);
     }
 
-    // $res->render('/panel/components/edit/edit_outlet', $data);
-    // $res->render('/panel/components/edit/edit_outlet', $data);
     $res->redirect("/panel/outlet");
 }
 
@@ -202,7 +225,9 @@ function paket($req, $res, $connection)
 
     $data = [
         'pakets' => $paketData->getData(),
+        'tableColumns' => $paket->getTableColumns()
     ];
+    print_r($paket->getTableColumns(true));
 
     $res->render('/panel/components/paket', $data);
 }
@@ -615,6 +640,11 @@ function transaksi($req, $res, $connection)
     $data = [
         'model' => $karyawan
     ];
+    // $connection->exec("LOCK TABLES tb_outlet WRITE");
+
+
+    // $connection->exec("UNLOCK TABLES");
+
 
     $res->render('/panel/components/transaksi', $data);
 }
@@ -624,6 +654,7 @@ function transaksiPost($req, $res, $connection)
     validateUserSession($req, $res);
     try {
         $model = new User($connection);
+
         $body = $req->getBody();
         if (isset($body['selanjutnya'])) {
             $id_outlet = $_SESSION['id_outlet'];
@@ -670,10 +701,22 @@ function transaksiPost($req, $res, $connection)
             $pajak = 0.0075;
             $status = "baru";
             $id_user = $_SESSION['id_user'];
-            $querry = "INSERT INTO tb_transaksi (id_outlet, kode_invoice, id_member, tgl, batas_waktu, biaya_tambahan, diskon, pajak, status, dibayar, id_user) VALUES('$id_outlet', '$kode_invoice', '$id_member', '$tanggal', '$batas_waktu', '$biaya_tambahan', '$diskon', '$pajak', '$status', '$dibayar', '$id_user')";
-            echo $querry;
-            $ls3data = $model->query("INSERT INTO tb_transaksi (id_outlet, kode_invoice, id_member, tgl, batas_waktu, biaya_tambahan, diskon, pajak, status, dibayar, id_user) VALUES('$id_outlet', '$kode_invoice', '$id_member', '$tanggal', '$batas_waktu', '$biaya_tambahan', '$diskon', '$pajak', '$status', '$dibayar', '$id_user')");
-            echo $ls3data->getMessage() ?? 'fa';
+            $querry = "INSERT INTO tb_transaksi (id_outlet, kode_invoice, id_member, tgl, batas_waktu, biaya_tambahan, diskon, pajak, status, dibayar, id_user) VALUES(:id_outlet, :kode_invoice, :id_member, :tanggal, :batas_waktu, :biaya_tambahan, :diskon, :pajak, :status, :dibayar, :id_user)";
+
+            $ls3data = $model->queryWithTransaction($querry, [
+                'id_outlet' => $id_outlet,
+                'kode_invoice' => $kode_invoice,
+                'id_member' => $id_member,
+                'tanggal' => $tanggal,
+                'batas_waktu' => $batas_waktu,
+                'biaya_tambahan' => $biaya_tambahan,
+                'diskon' => $diskon,
+                'pajak' => $pajak,
+                'status' => $status,
+                'dibayar' => $dibayar,
+                'id_user' => $id_user
+            ]);
+
             $id_transaksi = $model->query("SELECT LAST_INSERT_ID()");
             $_SESSION['idtransaksi'] = $id_transaksi->getData()[0]['LAST_INSERT_ID()'];
 
@@ -697,6 +740,11 @@ function transaksiPost($req, $res, $connection)
 function detailTransaksi($req, $res, $connection)
 {
     validateUserSession($req, $res);
+    $id_transaksi = $req->getParams()->id_transaksi;
+
+    if (!isset($_SESSION['idtransaksi']) || $_SESSION['idtransaksi'] != $id_transaksi) {
+        $_SESSION['idtransaksi'] = $id_transaksi;
+    }
     $karyawan = new User($connection);
     $data = [
         'model' => $karyawan,
@@ -714,19 +762,117 @@ function transaksiStatusHandler($req, $res, $con)
     $id_transaksi = $req->getParams()->id;
     $status = $req->getParams()->status;
 
-    $model->query("UPDATE tb_transaksi SET status = '$status' WHERE id = '$id_transaksi'");
+    $model->queryWithTransaction("UPDATE tb_transaksi SET status = '$status' WHERE id = '$id_transaksi'");
 
+    $res->redirect("/panel/detail-transaksi/$id_transaksi");
+}
+
+function detailTransaksiTambahPaketPost($req, $res, $con)
+{
+    validateUserSession($req, $res);
+    $body = $req->getBody();
+    $paket = new Paket($con);
+    $id_transaksi = $req->getParams()->id_transaksi;
+    $paketResult = $paket->query("SELECT id, harga FROM tb_paket WHERE nama_paket = '{$body['nama_paket']}'");
+    $paketResult = $paketResult->getData() ? $paketResult->getData()[0] : null;
+
+    $dataBody = [
+        'id_transaksi' => $id_transaksi,
+        'id_paket' => (int) $paketResult['id'],
+        'qty' => (int) $body['qty'],
+        'keterangan' => $body['keterangan'],
+        'total_harga' => (float) ($paketResult['harga'] * $body['qty'])
+    ];
+
+    $detailTransaksi = new DetailTransaksi($con, $dataBody);
+
+    if ($detailTransaksi->validateSave($dataBody)) {
+        $detailTransaksi->save();
+    }
+    $nextLocation = "/panel/detail-transaksi/$id_transaksi";
+    $res->redirect($nextLocation);
+}
+
+function detailTransaksiDeletePaket($req, $res, $con)
+{
+    validateUserSession($req, $res);
+    $detailTransaksi = new DetailTransaksi($con);
+    $id_detail_transaksi = $_GET['id'];
+    $result = $detailTransaksi->deleteOne([
+        'id' => $id_detail_transaksi
+    ]);
+
+    if ($result->getSuccess()) {
+        fm::addMessage([
+            'type' => 'success',
+            'context' => 'detail_transaksi_message',
+            'title' => 'DELETE',
+            'description' => 'Berhasil menghapus paket!'
+        ]);
+    }
+
+    $id_transaksi = $_SESSION['idtransaksi'];
+    $res->redirect("/panel/detail-transaksi/$id_transaksi");
+}
+
+function detailTransaksiBayarHandler($req, $res, $con)
+{
+    validateUserSession($req, $res);
+    $detailTransaksi = new DetailTransaksi($con);
+    $id_transaksi = $req->getParams()->id_transaksi;
+    $result = $detailTransaksi->get([
+        'where' => [
+            'id_transaksi' => $id_transaksi
+        ]
+    ]);
+
+    $result = $result->getData() ? $result->getData()[0] : null;
+    if (!$result) {
+        fm::addMessage([
+            'type' => 'warning',
+            'context' => 'detail_transaksi_message',
+            'title' => 'EITS!',
+            'description' => 'Transaksi tidak memiliki paket!'
+        ]);
+    } else {
+        $result = $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET dibayar = 'dibayar' WHERE id = '$id_transaksi'");
+        
+        if ($result->getSuccess()) {
+            fm::addMessage([
+                'type' => 'success',
+                'context' => 'detail_transaksi_message',
+                'title' => 'BAYAR',
+                'description' => 'Berhasil membayar transaksi!'
+            ]);
+        }
+        else {
+            fm::addMessage([
+                'type' => 'error',
+                'context' => 'detail_transaksi_message',
+                'title' => 'BAYAR',
+                'description' => 'Gagal membayar transaksi!'
+            ]);
+        }
+    }
+
+    $id_transaksi = $_SESSION['idtransaksi'];
     $res->redirect("/panel/detail-transaksi/$id_transaksi");
 }
 
 $panelRouter->get('/transaksi', function ($req, $res) use ($con) {
     transaksi($req, $res, $con);
 })
-    ->post('/transaksi_status_handler/{status}/{id}', function ($req, $res) use ($con) {
+    ->get('/detail-transaksi/delete-paket', function ($req, $res) use ($con) {
+        detailTransaksiDeletePaket($req, $res, $con);
+    })
+    ->get('/transaksi_status_handler/{status}/{id}', function ($req, $res) use ($con) {
         transaksiStatusHandler($req, $res, $con);
     })
     ->post('/transaksi', function ($req, $res) use ($con) {
         transaksiPost($req, $res, $con);
+    })
+    ->post('/detail-transaksi/bayar/{id_transaksi}', function ($req, $res) use ($con) {
+        detailTransaksiBayarHandler($req, $res, $con);
     })
     ->get('/detail-transaksi/{id_transaksi}', function ($req, $res) use ($con) {
         detailTransaksi($req, $res, $con);
@@ -734,10 +880,12 @@ $panelRouter->get('/transaksi', function ($req, $res) use ($con) {
     ->post('/detail-transaksi/{id_transaksi}', function ($req, $res) use ($con) {
         detailTransaksi($req, $res, $con);
     })
-
-    ->post('/transaksi/delete_package', function ($req, $res) use ($con) {
-        $model = new User($con);
-        $id = $_GET['id'];
-        $model->query("DELETE FROM tb_detail_transaksi WHERE id = '$id'");
-        $res->redirect("/panel/detail-transaksi/" . $_SESSION['idtransaksi']);
+    ->post('/detail-transaksi/tambah_paket/{id_transaksi}', function ($req, $res) use ($con) {
+        detailTransaksiTambahPaketPost($req, $res, $con);
+    })
+    ->get('/detail-transaksi/tambah_paket/{id_transaksi}', function ($req, $res) use ($con) {
+        validateUserSession($req, $res);
+        $id_transaksi = $req->getParams()->id_transaksi;
+        $nextLocation = "/panel/detail-transaksi/$id_transaksi";
+        $res->redirect($nextLocation);
     });

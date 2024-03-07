@@ -22,8 +22,12 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Outlet | FLaundry</title>
 </head>
+<?php 
+    $tableColumns = $data['tableColumns'];
+?>
+
 <?php includeFile("$base/panel/inc/sidebar.php") ?>
-<?php includeFile("$base/panel/inc/navbar.php") ?>
+<?php includeFile("$base/panel/inc/navbar.php", compact('tableColumns')) ?>
 
 <div class="container">
     <div class="content-box">

@@ -335,8 +335,7 @@ class User extends Model
                         'context' => 'karyawan_message'
                     ]);
                 }
-            }
-            else {
+            } else {
                 FlashMessage::addMessage([
                     'type' => 'error',
                     'title' => 'Something went wrong',
@@ -344,7 +343,7 @@ class User extends Model
                     'context' => 'karyawan_message'
                 ]);
             }
-            
+
             return false;
         }
 
@@ -396,8 +395,7 @@ class User extends Model
                         'context' => 'karyawan_message'
                     ]);
                 }
-            }
-            else {
+            } else {
                 FlashMessage::addMessage([
                     'type' => 'error',
                     'title' => 'Something went wrong',
@@ -405,7 +403,7 @@ class User extends Model
                     'context' => 'karyawan_message'
                 ]);
             }
-            
+
             return false;
         }
 

@@ -6,6 +6,8 @@ use App\Libraries\PHPExpress;
 use App\models\User;
 use App\Libraries\Essentials\Session;
 use App\Services\FlashMessage as fm;
+use Respect\Validation\Validator as v;
+use App\Utils\MyLodash as _;
 
 global $con;
 $authRouter = new PHPExpress();
@@ -14,8 +16,18 @@ $authRouter = new PHPExpress();
 function authenticateUser($req, $res)
 {
     $sesh = $_SESSION;
+    $isSessionValid = false;
     $requiredSessions = ['username', 'role', 'id_user', 'id_outlet'];
+    $doesOneOfTheSessionExists = false;
+    if(count(array_diff($requiredSessions, array_keys($_SESSION))) < count($requiredSessions)) {
+        $doesOneOfTheSessionExists = true;
+    }
+
     $isSessionValid = Session::validateSession($sesh, $requiredSessions);
+
+    if(isset($_SESSION['role']) && !$doesOneOfTheSessionExists) {
+        $isSessionValid = v::in(ACCOUNT_ROLES)->validate($_SESSION['role']);
+    }
     if ($isSessionValid) {
         $res->redirect('/panel');
     }
@@ -26,14 +38,25 @@ function validateUserSession($req, $res)
     $sesh = $_SESSION;
     $requiredSessions = ['username', 'role', 'id_user', 'id_outlet'];
     $isSessionValid = Session::validateSession($sesh, $requiredSessions);
-    if (!$isSessionValid) {
 
-        fm::addMessage([
-            'type' => 'warning',
-            'context' => 'login',
-            'title' => 'Invalid Session',
-            'description' => 'Maaf, session Anda tidak valid. Silahkan login kembali.'
-        ]);
+    $doesOneOfTheSessionExists = false;
+    
+    if(count(array_diff($requiredSessions, array_keys($_SESSION))) < count($requiredSessions)) {
+        $doesOneOfTheSessionExists = true;
+    }
+
+    if(isset($_SESSION['role'])) {
+        $isSessionValid = v::in(ACCOUNT_ROLES)->validate($_SESSION['role']);
+    }
+    if(!$isSessionValid) {
+        if($doesOneOfTheSessionExists) {
+            fm::addMessage([
+                'type' => 'warning',
+                'context' => 'login',
+                'title' => 'Invalid Session',
+                'description' => 'Maaf, session Anda tidak valid. Silahkan login kembali.'
+            ]);
+        }
         $loginRoute = routeTo("/auth/login");
         header("Location: $loginRoute");
     }
@@ -41,15 +64,9 @@ function validateUserSession($req, $res)
 
 $authRouter->get('/login', function ($req, $res) use ($con) {
     authenticateUser($req, $res);
+    User::logout();
     $user = new User($con);
-
-    // $result = $user->get([
-    //     'where' => [
-    //         'nama' => 'admin'
-    //     ],
-    // ], ['nama' => 'admin']);
-
-    // $isSuccess = $result->getSuccess();
+    
     $res->render('/auth/login');
 });
 

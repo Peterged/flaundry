@@ -1,3 +1,8 @@
+<?php
+
+use App\Services\FlashMessage as fm;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,11 +38,11 @@
                 <?php
                 try {
                     if (isset($_SESSION['idtransaksi'])) {
-                        if(is_array($_SESSION['idtransaksi'])) {
+                        if (is_array($_SESSION['idtransaksi'])) {
                             $_SESSION['idtransaksi'] = "";
                         }
                         $id_transaksi = "/" . $_SESSION['idtransaksi'];
-                        
+
                         $nextPage = routeTo("/panel/detail-transaksi$id_transaksi");
                         echo '
                             <div class="submit-box">
@@ -76,8 +81,13 @@
 
         </form>
 
-        
+
     </div>
+    <?php
+    
+    fm::displayPopMessagesByContext('transaksi_message', 'bottom-right', 6000);
+    ?>
+    <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageClose.js"></script>
 </body>
 
 </html>
