@@ -65,6 +65,14 @@ use Respect\Validation\Validator as v;
             return $_GET;
         }
 
+        public function getQuery(string $key, $default = null) {
+            if(isset($_GET[$key])) {
+                return $_GET[$key];
+            } else {
+                return null;
+            }
+        }
+
         public function getMethod() {
             return $_SERVER['REQUEST_METHOD'];
         }

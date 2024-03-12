@@ -46,15 +46,15 @@ $transaksiPakets = $data['pakets'] ?? [];
                 <h1 class="title-text-description">Total <?= count($data['transaksis']) ?> Transaksi</h1>
             </div>
             <div class="title-date">
-                <p class="title-date-text">Selasa, 30 Januari 2024 · 11:12 PM</p>
+                <p class="title-date-text"></p>
             </div>
         </div>
         <span class='divider'></span>
         <div class="add-btn-wrapper">
             <a href="<?= routeTo("/panel/transaksi") ?>" class="add-btn add-outlet-btn">Tambah Transaksi</a>
         </div>
-        <form method="post" id="filter-date-report-generation" action="<?= routeTo("/panel/report/generate") ?>" class="table-filter-box">
-            <div class="input-group">
+        <form id="filter-date-report-generation" action="<?= routeTo("/panel/report/generate") ?>" class="table-filter-box">
+            <div class="input-group-group">
                 <?php
                 try {
                     $oldestTransaction = $transaksis[count($transaksis) - 1];
@@ -65,8 +65,8 @@ $transaksiPakets = $data['pakets'] ?? [];
                 }
 
                 ?>
-                
-                <input type="text" id="filter-date" name="datetimes" class="date-range-input" required/>
+
+                <input type="text" id="filter-date" name="datetimes" class="date-range-input" required />
                 <button class="submit-btn" type="submit" form="filter-date-report-generation" name="pilih_paket" value="submit">GENERATE</button>
             </div>
         </form>
@@ -100,11 +100,13 @@ $transaksiPakets = $data['pakets'] ?? [];
 
                 $humanReadableDate2 = Carbon::parse($batas_waktu, $timezone)->locale('id')->diffForHumans(null);
 
-
                 $sudah_lewat = strtotime($batas_waktu) < strtotime($today);
-                if ($sudah_lewat) {
+                $sudah_diambil = $transaksi['status'] == 'diambil';
+                if ($sudah_diambil) {
+                    $batas_waktu_str = "<p class='data-bold'>Sudah diambil</p>";
+                } elseif ($sudah_lewat) {
                     $batas_waktu_str = "<p class='data-bold'>Batas waktu sudah lewat</p><small>$humanReadableDate2 | $batas_waktu_tanggal - $batas_waktu_jam</small>";
-                } else {
+                } elseif (!$sudah_lewat) {
                     $batas_waktu_str = "<p class='data-bold'>$batas_waktu_tanggal<span> - $batas_waktu_jam</span></p><small>$humanReadableDate</small";
                 }
                 echo "
@@ -163,10 +165,33 @@ fm::displayPopMessagesByContext('report_message', 'bottom-right');
     $(function() {
         $('input[name="datetimes"]').daterangepicker({
             timePicker: true,
-            startDate: moment().startOf('hour'),
-            endDate: moment().startOf('hour').add(32, 'hour'),
+            
+            timePicker24Hour: true, 
             locale: {
-                format: 'M/DD hh:mm A'
+                format: 'M/DD hh:mm A',
+                daysOfWeek: [
+                    "Sen",
+                    "Sel",
+                    "Rab",
+                    "Kam",
+                    "Jum",
+                    "Sab",
+                    "Min"
+                ],
+                monthNames: [
+                    "Januari",
+                    "Februari",
+                    "Maret",
+                    "April",
+                    "Mei",
+                    "Juni",
+                    "Juli",
+                    "Augustus",
+                    "September",
+                    "Oktober",
+                    "Nopember",
+                    "Desember"
+                ],
             }
         });
     });

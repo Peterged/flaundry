@@ -9,9 +9,13 @@ use App\Services\FlashMessage as fm;
 use App\models\Outlet, App\models\Paket, App\models\Member, App\models\DetailTransaksi, App\models\Transaksi;
 use App\Utils\MyLodash as _;
 use App\Services\SearchEngineService as SES;
-use App\Libraries\Essentials\Session;
+use App\Libraries\Essentials\Cookie;
+use Carbon\Carbon;
 
 $panelRouter = new PHPExpress();
+$timezone = Cookie::get('clientTimezone', 'Asia/Makassar');
+global $timezone;
+
 global $con, $panelRouter;
 
 function tryCatchDisplayWarning($e)
@@ -763,7 +767,7 @@ function transaksiStatusHandler($req, $res, $con)
     $id_transaksi = $req->getParams()->id;
     $status = $req->getParams()->status;
 
-    if(_::some(['baru', 'proses', 'selesai', 'diambil'], function($val) use ($status) {
+    if (_::some(['baru', 'proses', 'selesai', 'diambil'], function ($val) use ($status) {
         return $val === $status;
     }) === false) {
         fm::addMessage([
@@ -773,13 +777,11 @@ function transaksiStatusHandler($req, $res, $con)
             'description' => 'Status tidak valid!'
         ]);
         $res->redirect("/panel/detail-transaksi/$id_transaksi");
-    }
-    else {
+    } else {
+
         $model->queryWithTransaction("UPDATE tb_transaksi SET status = '$status' WHERE id = '$id_transaksi'");
-    
         $res->redirect("/panel/detail-transaksi/$id_transaksi");
     }
-
 }
 
 function detailTransaksiTambahPaketPost($req, $res, $con)
@@ -805,7 +807,7 @@ function detailTransaksiTambahPaketPost($req, $res, $con)
         $detailTransaksi->save();
         $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET status = 'proses' WHERE id = $id_transaksi");
     }
-    
+
     $nextLocation = "/panel/detail-transaksi/$id_transaksi";
     $res->redirect($nextLocation);
 }
@@ -852,8 +854,10 @@ function detailTransaksiBayarHandler($req, $res, $con)
             'description' => 'Transaksi tidak memiliki paket!'
         ]);
     } else {
-        $result = $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET dibayar = 'dibayar', status = 'selesai' WHERE id = '$id_transaksi'");
-        
+        $timezone = Cookie::get('clientTimezone', 'Asia/Makassar');
+        $now = Carbon::now($timezone);
+        $result = $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET dibayar = 'dibayar', status = 'selesai', tgl_bayar = '$now' WHERE id = '$id_transaksi'");
+
         if ($result->getSuccess()) {
             fm::addMessage([
                 'type' => 'success',
@@ -861,8 +865,7 @@ function detailTransaksiBayarHandler($req, $res, $con)
                 'title' => 'BAYAR',
                 'description' => 'Berhasil membayar transaksi!'
             ]);
-        }
-        else {
+        } else {
             fm::addMessage([
                 'type' => 'error',
                 'context' => 'detail_transaksi_message',
@@ -876,7 +879,8 @@ function detailTransaksiBayarHandler($req, $res, $con)
     $res->redirect("/panel/detail-transaksi/$id_transaksi");
 }
 
-function detailTransaksiBiayaTambahanHandler($req, $res, $con) {
+function detailTransaksiBiayaTambahanHandler($req, $res, $con)
+{
     validateUserSession($req, $res);
     $detailTransaksi = new DetailTransaksi($con);
     $id_transaksi = $req->getParams()->id_transaksi;
@@ -889,8 +893,7 @@ function detailTransaksiBiayaTambahanHandler($req, $res, $con) {
             'title' => 'BIAYA TAMBAHAN',
             'description' => 'Berhasil menambahkan biaya tambahan!'
         ]);
-    }
-    else {
+    } else {
         fm::addMessage([
             'type' => 'error',
             'context' => 'detail_transaksi_message',
@@ -938,35 +941,34 @@ $panelRouter->get('/transaksi', function ($req, $res) use ($con) {
 
 
 // REPORT
-function reportFilterHandler($req, $res, $con) {
+function reportFilterHandler($req, $res, $con)
+{
     validateUserSession($req, $res);
     $body = $req->getBody();
-    
-
 }
 
-function report($req, $res, $con) {
+function report($req, $res, $con)
+{
     validateUserSession($req, $res);
     $statusList = [
         'semua', 'belum_dibayar', 'dibayar'
     ];
-    if(isset($_GET['status']) && v::in($statusList)->validate($_GET['status'])) {
+    if (isset($_GET['status']) && v::in($statusList)->validate($_GET['status'])) {
         $status = $_GET['status'];
-    }
-    else {
+    } else {
         $status = 'semua';
     }
 
     $additionalQuery = "WHERE status = 'dibayar'";
-    if(_::some(['semua', 'belum_dibayar'], fn($val) => $status === $val)) {
+    if (_::some(['semua', 'belum_dibayar'], fn ($val) => $status === $val)) {
         $additionalQuery = "WHERE status = '$status'";
-        if($status === 'semua') {
+        if ($status === 'semua') {
             $additionalQuery = "";
         }
     }
 
     $transaksi = new Transaksi($con);
-    
+
     $transaksiData = $transaksi->query("SELECT tb_transaksi.*, tb_member.nama as nama_member FROM tb_transaksi JOIN tb_member ON tb_transaksi.id_member = tb_member.id $additionalQuery ORDER BY tb_transaksi.tgl DESC");
     $transaksiPaketData = $transaksi->query("SELECT tb_detail_transaksi.*, tb_paket.nama_paket FROM tb_detail_transaksi JOIN tb_paket ON tb_detail_transaksi.id_paket = tb_paket.id");
     $data = [
@@ -977,7 +979,70 @@ function report($req, $res, $con) {
     $res->render('/panel/components/report', $data);
 }
 
-function reportGenerate($req, $res, $con) {
+function reportGenerate($req, $res, $con)
+{
+    validateUserSession($req, $res);
+    $datetime = $req->getQuery('datetimes');
+
+    if ($datetime) {
+        $statusList = [
+            'semua', 'belum_dibayar', 'dibayar'
+        ];
+        if (isset($_GET['status']) && v::in($statusList)->validate($_GET['status'])) {
+            $status = $_GET['status'];
+        } else {
+            $status = 'semua';
+        }
+
+        $additionalQuery = "WHERE status = 'dibayar'";
+        if (_::some(['semua', 'belum_dibayar'], fn ($val) => $status === $val)) {
+            $additionalQuery = "WHERE status = '$status'";
+            if ($status === 'semua') {
+                $additionalQuery = "";
+            }
+        }
+
+        $dates = explode(" - ", $datetime);
+        $start = strtotime($dates[0]);
+        $end = strtotime($dates[1]);
+
+        $startFormatted = date("Y-m-d H:i:s", $start);
+        $endFormatted = date("Y-m-d H:i:s", $end);
+
+        $transaksi = new Transaksi($con);
+        $transaksiData = $transaksi->query("SELECT * FROM tb_transaksi WHERE tgl BETWEEN '$startFormatted' AND '$endFormatted'");
+
+        $transaksiData = $transaksi->query("SELECT tb_transaksi.*, tb_member.nama as nama_member FROM tb_transaksi JOIN tb_member ON tb_transaksi.id_member = tb_member.id $additionalQuery ORDER BY tb_transaksi.tgl DESC");
+        $transaksiPaketData = $transaksi->query("SELECT tb_detail_transaksi.*, tb_paket.nama_paket FROM tb_detail_transaksi JOIN tb_paket ON tb_detail_transaksi.id_paket = tb_paket.id");
+        $data = [
+            'transaksis' => $transaksiData->getData(),
+            'pakets' => $transaksiPaketData->getData(),
+            'status' => $status
+        ];
+    } else {
+        $data = [
+            'transaksis' => [],
+            'pakets' => [],
+            'status' => ''
+        ];
+
+        fm::addMessage([
+            'type' => 'warning',
+            'context' => 'report_message',
+            'title' => 'REPORT',
+            'description' => 'Tidak ada data yang ditemukan!'
+        ]);
+    }
+
+
+
+
+    $res->render('/panel/components/reportGenerate', $data);
+}
+
+
+function reportGeneratePost($req, $res, $con)
+{
     validateUserSession($req, $res);
     $body = $req->getBody();
     $date = $body['datetimes'];
@@ -997,12 +1062,19 @@ function reportGenerate($req, $res, $con) {
 
     $transaksiData = $transaksi->query("SELECT * FROM tb_transaksi WHERE tgl BETWEEN '$startFormatted' AND '$endFormatted'");
 
-    print_r($transaksiData);
+    $data = [
+        'transaksis' => $transaksiData->getData()
+    ];
+
+    $res->render('/panel/components/reportGenerate', $data);
 }
 
-$panelRouter->get("/report", function($req, $res) use ($con) {
+$panelRouter->get("/report", function ($req, $res) use ($con) {
     report($req, $res, $con);
 })
-->post('/report/generate', function($req, $res) use ($con) {
-
-});
+    ->get('/report/generate', function ($req, $res) use ($con) {
+        reportGenerate($req, $res, $con);
+    })
+    ->post('/report/generate', function ($req, $res) use ($con) {
+        reportGeneratePost($req, $res, $con);
+    });

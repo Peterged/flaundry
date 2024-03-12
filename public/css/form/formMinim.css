@@ -128,3 +128,23 @@ input[type="number"]::-webkit-outer-spin-button {
   font-weight: 300;
   margin-top: -0.5rem;
 }
+
+.input-group-group {
+  display: flex;
+}
+
+.input-group-group input[type="submit"] {
+  padding: 0;
+  padding-inline: 10px;
+  height: 100px;
+  max-height: 100%;
+}
+
+.input-group-group input[type="submit"] {
+}
+
+.input-group-group .date-range-input {
+    padding: 0.25rem 0.5rem;
+    outline: none;
+    min-width: 220px;
+}

@@ -22,14 +22,18 @@ function formatRupiah(int | float $angka)
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/navbar.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/card.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/table.css">
-    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/form/formMinim.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/outlet.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/report.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <title>Report | FLaundry</title>
+    <title>Generate Report | FLaundry</title>
 </head>
+
+<?php includeFile("$base/panel/inc/sidebar.php") ?>
+<?php includeFile("$base/panel/inc/navbar.php") ?>
+
 <?php
 $transaksis = $data['transaksis'] ?? [];
 $transaksiPakets = $data['pakets'] ?? [];
@@ -39,19 +43,16 @@ $transaksiPakets = $data['pakets'] ?? [];
     <div class="content-box">
         <div class="title">
             <div class="title-text-box">
-                <h1 class="title-text">Daftar Transaksi</h1>
+                <h1 class="title-text">Generate Transaksi</h1>
                 <h1 class="title-text-description">Total <?= count($data['transaksis']) ?> Transaksi</h1>
             </div>
             <div class="title-date">
-                <p class="title-date-text">Selasa, 30 Januari 2024 · 11:12 PM</p>
+                <p class="title-date-text" id="title-date-text"></p>
             </div>
         </div>
         <span class='divider'></span>
-        <div class="add-btn-wrapper">
-            <a href="<?= routeTo("/panel/transaksi") ?>" class="add-btn add-outlet-btn">Tambah Transaksi</a>
-        </div>
-        <form method="post" id="filter-date-report-generation" action="<?= routeTo("/panel/report/generate") ?>" class="table-filter-box">
-            <div class="input-group">
+        <form id="filter-date-report-generation" action="<?= routeTo("/panel/report/generate") ?>" class="table-filter-box">
+            <div class="input-group-group">
                 <?php
                 try {
                     $oldestTransaction = $transaksis[count($transaksis) - 1];

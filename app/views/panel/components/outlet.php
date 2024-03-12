@@ -33,7 +33,7 @@ use App\Services\FlashMessage as fm;
                 <h1 class="title-text-description">Total <?= count($data['outlets']) ?> outlet</h1>
             </div>
             <div class="title-date">
-                <p class="title-date-text">Selasa, 30 Januari 2024 · 11:12 PM</p>
+                <p class="title-date-text"></p>
             </div>
         </div>
         <span class="divider"></span>

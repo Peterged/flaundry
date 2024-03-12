@@ -360,7 +360,7 @@ try {
                             ?>
                                 <tr>
                                     <td colspan="4" style="text-align: right; border-right: 1px solid #e6e5e5; font-weight: bold;">Biaya Tambahan</td>
-                                    <td style="text-align: center; font-weight: bold;"><?= "Rp." . number_format($data_transaksi['biaya_tambahan'], 0, ',', '.') ?></td>
+                                    <td style="text-align: center; font-weight: bold;"><?= formatRupiah($data_transaksi['biaya_tambahan']) ?></td>
                                 </tr>
                             <?php
                             }
