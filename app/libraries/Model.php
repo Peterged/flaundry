@@ -8,6 +8,15 @@ use Respect\Validation\Validator as v;
 use App\Interfaces\ModelInterface;
 use App\Utils\MyLodash as _;
 
+function isKeyInArray($psearchCriteriaKey, $pvalidKeysArray)
+{
+
+    return _::find($pvalidKeysArray, function ($val, $key) use ($psearchCriteriaKey) {
+        // echo $val . " == " . $psearchCriteriaKey . " = " . (str_contains($val, $psearchCriteriaKey) ? 'true' : 'false') . "<br>";
+        return str_contains($val, $psearchCriteriaKey);
+    });
+}
+
 #[\Attribute]
 class Model implements ModelInterface
 {
@@ -69,11 +78,8 @@ class Model implements ModelInterface
      * );
      * ```
      */
-    public function get(array $searchCriteria = [], string $additionalQuery = "", bool $noBeginTransaction = false)
+    public function get(array $searchCriteria = [], string $additionalQuery = "")
     {
-        if (!$this->validateGetSearchCriteriaArray($searchCriteria)) {
-            throw new \App\Exceptions\ValidationException('Search criteria is not valid!');
-        }
 
         $result = new SaveResult();
         try {
@@ -82,8 +88,7 @@ class Model implements ModelInterface
             $query = $this->convertGetSearchCriteriaIntoQuery($searchCriteria, $additionalQuery);
 
             $stmt = $this->dbConnection->prepare($query);
-            // echo $query . "<br>";
-
+            // echo $query;
             $stmt->execute();
             $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -118,9 +123,12 @@ class Model implements ModelInterface
             v::each(v::in([...$columns, $whereEmptyFlag]))
         )
             ->each(
-                v::oneOf(v::stringType(), v::number(), v::boolType())
+                v::oneOf(v::stringType(), v::intType(), v::floatType(), v::boolType())
             )
             ->validate($val);
+
+        // print_r($searchCriteria['where'] ?? []);
+        // echo v::arrayType()->notEmpty()->call('array_keys', v::each(v::in([...$columns, $whereEmptyFlag])))->each(v::oneOf(v::stringType(), v::intType(), v::boolType()))->validate($searchCriteria['where'] ?? []) ? '\\truest\\ ' : '\\falsest\\ ';
 
         $validKeys = [
             'where?' => $whereFnFunction,
@@ -133,28 +141,38 @@ class Model implements ModelInterface
                     v::each(v::in($columns))
                 )
                     ->each(
-                        v::oneOf(v::stringType(), v::number(), v::boolType())
+                        v::oneOf(v::stringType(), v::intType(), v::floatType(), v::boolType())
                     )
             )->validate($val)
         ];
         $searchCriteriaKeys = array_keys($searchCriteria);
         $validKeysArray = array_keys($validKeys);
 
+        // $testadsd = array_diff(_::map($validKeysArray, fn ($val) => str_replace('?', '', $val)), $searchCriteriaKeys);
+
+        // $testadsd = _::map($testadsd, fn ($val) => $val . '?' );
+
         $isSearchCriteriaKeysValid = _::every($validKeysArray, function ($key, $value, $index) use (
             $validKeys,
             $columnsArray,
             $validKeysArray,
+            $whereEmptyFlag,
             &$searchCriteria,
             $searchCriteriaKeys,
-            $whereEmptyFlag
         ) {
             $searchCriteriaKey = $searchCriteriaKeys[$index] ?? '';
-            // echo "<pre>", print_r($validKeysArray), "</pre>";
+            /*
+                $searchCriteria = []
+                $valiKeys = ['where?', 'whereOr?', 'select?']
+            */
+            $modifiedSearchCriteriaKeys = _::map($searchCriteriaKeys, fn ($val) => str_replace('?', '', $val));
 
-            // _::clog(in_array($searchCriteriaKey, $validKeysArray));
-            if (preg_match("/\?$/", $key) && !in_array($searchCriteriaKey, $validKeysArray)) {
+            // echo $searchCriteriaKey . " == " . $key . " = " . (str_contains($key, $searchCriteriaKey) ? 'true' : 'false') . "<br>";
+            // echo $key;
+            // throw new \App\Exceptions\ValidationException('Search criteria is not valid!');
+            if (preg_match("/\?$/", $key)) {
                 $isValid = false;
-                // echo $key;
+                
                 switch ($key) {
                     case 'select?':
                         $isValid = $validKeys[$key]($columnsArray);
@@ -168,20 +186,23 @@ class Model implements ModelInterface
                     case 'whereOr?':
                         $searchCriteria['whereOr'] = [$whereEmptyFlag => 1];
                         $isValid = $validKeys[$key]($searchCriteria['whereOr']);
+
+                    default:
+                        if(isset($searchCriteria[$key]) && $searchCriteria[$key] == $whereEmptyFlag) {
+                            $isValid = true;
+                        }
+                        break;
                 }
+
 
                 return $isValid;
             }
 
-            $keyCriteria = preg_match("/\?$/", $key) ? substr($key, 0, -1) : $key;
+            // print_r($searchCriteria);
 
+            $keyCriteria = preg_match("/\?$/", $key) ? substr($key, 0, -1) : $key;
             return in_array($key, array_keys($validKeys)) && $validKeys[$key]($searchCriteria[$keyCriteria]);
         });
-
-
-
-        // $isSearchCriteriaKeysValid = true;
-        // $isAllContentsOfSearchCriteriaArrayAreStringOrArray = true;
 
         if (
             empty($searchCriteria)
@@ -214,19 +235,13 @@ class Model implements ModelInterface
         $query .= $searchCriteria['select'];
         $query .= " FROM $this->tableName";
 
+        // echo "<pre>", print_r($searchCriteria), "</pre>";
+
         $whereArray = _::reduce($searchCriteria, function ($result, $value, $key) use ($searchCriteria) {
-
             if (!str_starts_with('where', $key)) return $result;
-            // print_r($searchCriteria[$key]['__ALWAYS']);
-            // echo($searchCriteria[$key]['__ALWAYS'] == 1 ? 'true' : 'false');
-
-            if ($searchCriteria[$key]['__ALWAYS'] != 1) {
-                $result[$key] = $value;
-
-                // print_r($result);
-                // echo $result[$key];
-                return $result;
-            }
+            if (isset($value['__ALWAYS'])) return $result;
+            $result[$key] = $value;
+            return $result;
         }, []);
 
         if (!empty($whereArray)) {
@@ -234,7 +249,6 @@ class Model implements ModelInterface
 
             $query .= " WHERE ";
 
-            // print_r($whereArray);
             foreach ($whereArray as $key => $value) {
                 switch ($key) {
                     case 'where':
@@ -248,9 +262,14 @@ class Model implements ModelInterface
                 }
 
                 $query .= implode(" $whereType ", array_map(function ($value2, $key2) use ($searchCriteria) {
-                    return $key2 . " = " . $value2;
+                    // echo "<pre>";
+                    // print_r($searchCriteria);
+                    // echo "</pre>";
+                    return $key2 . " = '" . $value2 . "'";
                 }, $searchCriteria[$key], array_keys($searchCriteria[$key])));
             }
+        } else {
+            // echo "<br><br>where is empty<br>";
         }
 
 
@@ -271,7 +290,7 @@ class Model implements ModelInterface
             $statement = $this->dbConnection->prepare($prepareQuery);
             print_r($params);
             $statement->execute($params);
-            
+
 
             if ($statement->errorCode()) {
                 $result->setSuccess(true);
@@ -301,7 +320,7 @@ class Model implements ModelInterface
                 $result->setMessage("Query failed to execute");
                 $result->setSuccess(false);
             }
-            
+
             $result->setData($statement);
         }, false, $enableErrorReporting);
         return $result;

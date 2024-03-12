@@ -76,7 +76,6 @@ $authRouter->get('/logout', function ($req, $res) {
 });
 
 $authRouter->post('/login', function ($req, $res) use ($con) {
-
     $data = $req->getBody();
     unset($data['submit']);
 

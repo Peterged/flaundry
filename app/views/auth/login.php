@@ -53,6 +53,7 @@ use App\Services\FlashMessage as fm;
     fm::displayPopMessagesByContext('login', 'bottom-right', 3000);
     ?>
     <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageCloseDelay.js"></script>
+    <script src="<?= PROJECT_ROOT ?>/public/js/createCookie.js"></script>
 </body>
 
 </html>

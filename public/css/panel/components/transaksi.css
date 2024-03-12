@@ -1,0 +1,17 @@
+.submit-box {
+    display: flex;
+    gap: 0.35rem;
+}
+
+.submit-btn-outline-small {
+    background-color: transparent;
+    color: #3498db;
+    padding: 10px 25px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    transition: 100ms;
+}
+
+.submit-btn-outline-small:hover {
+    text-decoration: underline;
+}

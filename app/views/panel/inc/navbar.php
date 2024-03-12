@@ -19,55 +19,54 @@ $myRoute = end($myRoute);
             </a>
         </div>
     </div>
-    <form class="search-box" method="get">
-        <div class="search-content">
-            <input type="text" class="search" name="search" placeholder="Search" autocomplete="off">
-            <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.7422 10.3439C12.5329 9.2673 13 7.9382 13 6.5C13 2.91015 10.0899 0 6.5 0C2.91015 0 0 2.91015 0 6.5C0 10.0899 2.91015 13 6.5 13C7.93858 13 9.26801 12.5327 10.3448 11.7415L10.3439 11.7422C10.3734 11.7822 10.4062 11.8204 10.4424 11.8566L14.2929 15.7071C14.6834 16.0976 15.3166 16.0976 15.7071 15.7071C16.0976 15.3166 16.0976 14.6834 15.7071 14.2929L11.8566 10.4424C11.8204 10.4062 11.7822 10.3734 11.7422 10.3439ZM12 6.5C12 9.53757 9.53757 12 6.5 12C3.46243 12 1 9.53757 1 6.5C1 3.46243 3.46243 1 6.5 1C9.53757 1 12 3.46243 12 6.5Z" fill="black" />
-            </svg>
-        </div>
-
-        <div class="shortcut-icon-box">
-            <svg class="shortcut-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 14C3.794 14 2 15.794 2 18C2 20.206 3.794 22 6 22C7.05682 21.9987 8.07025 21.5795 8.81922 20.8339C9.56819 20.0883 9.99193 19.0768 9.998 18.02H10V16H14V18.039H14.004C14.0148 19.0922 14.4404 20.0988 15.1884 20.8403C15.9365 21.5818 16.9467 21.9985 18 22C20.206 22 22 20.206 22 18C22 15.794 20.206 14 18 14H16V10H18C20.206 10 22 8.206 22 6C22 3.794 20.206 2 18 2C15.794 2 14 3.794 14 6V8H10V5.98H9.998C9.99193 4.92319 9.56819 3.91167 8.81922 3.16607C8.07025 2.42047 7.05682 2.0013 6 2C3.794 2 2 3.794 2 6C2 8.206 3.794 10 6 10H8V14H6ZM8 18C8 19.122 7.121 20 6 20C4.879 20 4 19.122 4 18C4 16.878 4.879 16 6 16H8V18ZM18 16C19.121 16 20 16.878 20 18C20 19.122 19.121 20 18 20C16.879 20 16 19.122 16 18V16H18ZM16 6C16 4.878 16.879 4 18 4C19.121 4 20 4.878 20 6C20 7.122 19.121 8 18 8H16V6ZM6 8C4.879 8 4 7.122 4 6C4 4.878 4.879 4 6 4C7.121 4 8 4.878 8 6V8H6ZM10 10H14V14H10V10Z" fill="black" />
-            </svg>
-            <p class="shortcut-key">M</p>
-            <div class="icon-tooltip">
-                <p>Ctrl&nbsp;+&nbsp;M</p>
-            </div>
-        </div>
-        <div class="filter-popup">
-            <div class="filter-popup-title">
-                <p>SEARCH OPTIONS</p>
+    <?php
+    $showSearch = $data['showSearch'] ?? false;
+    if ($showSearch) {
+    ?>
+        <form class="search-box" method="get">
+            <div class="search-content">
+                <input type="text" class="search" name="search" placeholder="Search" autocomplete="off">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.7422 10.3439C12.5329 9.2673 13 7.9382 13 6.5C13 2.91015 10.0899 0 6.5 0C2.91015 0 0 2.91015 0 6.5C0 10.0899 2.91015 13 6.5 13C7.93858 13 9.26801 12.5327 10.3448 11.7415L10.3439 11.7422C10.3734 11.7822 10.4062 11.8204 10.4424 11.8566L14.2929 15.7071C14.6834 16.0976 15.3166 16.0976 15.7071 15.7071C16.0976 15.3166 16.0976 14.6834 15.7071 14.2929L11.8566 10.4424C11.8204 10.4062 11.7822 10.3734 11.7422 10.3439ZM12 6.5C12 9.53757 9.53757 12 6.5 12C3.46243 12 1 9.53757 1 6.5C1 3.46243 3.46243 1 6.5 1C9.53757 1 12 3.46243 12 6.5Z" fill="black" />
+                </svg>
             </div>
 
-            <div class="filter-options">
-                <?php
-                $columns = $data['tableColumns'] ?? ['id', 'nama', 'alamat'];
-                if (empty($columns)) {
-                    echo "
-                            <div type='button' class='filter-item'>
-                                <p class='filter-text'>Please refresh the page.</p>
-                            </div>
-                        ";
-                } else {
-                    foreach ($columns as $column) {
-                        $column = preg_replace("/[_-]/", ' ', $column);
-                ?>
-                        <div class="filter-item">
-                            <div class="filter-item-title">
-                                
-                                <label for="<?= "search-$column" ?>"><?= strlen($column) <= 2 ? strtoupper($column) : ucwords($column) ?></label>
-                            </div>
-                            <div class="filter-item-input">
-                                <input type="text" placeholder="<?= "Ketik $column" ?>" name="<?= "search-$column" ?>" id="<?= "search-$column" ?>" data-input-filter-type="text" data-input-filter-type-calculation="text-contains">
-                            </div>
-                            <button class="filter-item-button-settings-toggler" type="button">
-                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 4.125C2.75 3.76033 2.89487 3.41059 3.15273 3.15273C3.41059 2.89487 3.76033 2.75 4.125 2.75H17.875C18.2397 2.75 18.5894 2.89487 18.8473 3.15273C19.1051 3.41059 19.25 3.76033 19.25 4.125V6.03717C19.2499 6.52336 19.0567 6.9896 18.7128 7.33333L13.75 12.2962V19.1015C13.75 19.2734 13.7061 19.4424 13.6224 19.5926C13.5387 19.7427 13.418 19.869 13.2718 19.9594C13.1256 20.0497 12.9587 20.1012 12.787 20.109C12.6153 20.1167 12.4444 20.0804 12.2907 20.0035L8.88342 18.3003C8.69309 18.2052 8.53302 18.0589 8.42114 17.8779C8.30927 17.6969 8.25001 17.4883 8.25 17.2755V12.2962L3.28717 7.33333C2.94333 6.9896 2.7501 6.52336 2.75 6.03717V4.125ZM4.58333 4.58333V6.03717L9.68 11.1338C9.80783 11.2615 9.90924 11.4131 9.97845 11.58C10.0477 11.7469 10.0833 11.9258 10.0833 12.1064V16.8502L11.9167 17.7668V12.1064C11.9167 11.7416 12.0615 11.3914 12.32 11.1348L17.4167 6.03625V4.58333H4.58333Z" fill="#6C6C6C" />
-                                </svg>
-                            </button>
-                            <?php 
+            <div class="shortcut-icon-box">
+                <svg class="shortcut-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 14C3.794 14 2 15.794 2 18C2 20.206 3.794 22 6 22C7.05682 21.9987 8.07025 21.5795 8.81922 20.8339C9.56819 20.0883 9.99193 19.0768 9.998 18.02H10V16H14V18.039H14.004C14.0148 19.0922 14.4404 20.0988 15.1884 20.8403C15.9365 21.5818 16.9467 21.9985 18 22C20.206 22 22 20.206 22 18C22 15.794 20.206 14 18 14H16V10H18C20.206 10 22 8.206 22 6C22 3.794 20.206 2 18 2C15.794 2 14 3.794 14 6V8H10V5.98H9.998C9.99193 4.92319 9.56819 3.91167 8.81922 3.16607C8.07025 2.42047 7.05682 2.0013 6 2C3.794 2 2 3.794 2 6C2 8.206 3.794 10 6 10H8V14H6ZM8 18C8 19.122 7.121 20 6 20C4.879 20 4 19.122 4 18C4 16.878 4.879 16 6 16H8V18ZM18 16C19.121 16 20 16.878 20 18C20 19.122 19.121 20 18 20C16.879 20 16 19.122 16 18V16H18ZM16 6C16 4.878 16.879 4 18 4C19.121 4 20 4.878 20 6C20 7.122 19.121 8 18 8H16V6ZM6 8C4.879 8 4 7.122 4 6C4 4.878 4.879 4 6 4C7.121 4 8 4.878 8 6V8H6ZM10 10H14V14H10V10Z" fill="black" />
+                </svg>
+                <p class="shortcut-key">M</p>
+                <div class="icon-tooltip">
+                    <p>Ctrl&nbsp;+&nbsp;M</p>
+                </div>
+            </div>
+            <div class="filter-popup">
+                <div class="filter-popup-title">
+                    <p>SEARCH OPTIONS</p>
+                </div>
+
+                <div class="filter-options">
+                    <?php
+                    $columns = $data['tableColumns'] ?? [];
+                    if (empty($columns)) {
+                    } else {
+                        foreach ($columns as $column) {
+                            $column = preg_replace("/[_-]/", ' ', $column);
+                    ?>
+                            <div class="filter-item">
+                                <div class="filter-item-title">
+
+                                    <label for="<?= "search-$column" ?>"><?= strlen($column) <= 2 ? strtoupper($column) : ucwords($column) ?></label>
+                                </div>
+                                <div class="filter-item-input">
+                                    <input type="text" placeholder="<?= "Ketik $column" ?>" name="<?= "search-$column" ?>" id="<?= "search-$column" ?>" data-input-filter-type="text" data-input-filter-type-calculation="text-contains">
+                                </div>
+                                <button class="filter-item-button-settings-toggler" type="button">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 4.125C2.75 3.76033 2.89487 3.41059 3.15273 3.15273C3.41059 2.89487 3.76033 2.75 4.125 2.75H17.875C18.2397 2.75 18.5894 2.89487 18.8473 3.15273C19.1051 3.41059 19.25 3.76033 19.25 4.125V6.03717C19.2499 6.52336 19.0567 6.9896 18.7128 7.33333L13.75 12.2962V19.1015C13.75 19.2734 13.7061 19.4424 13.6224 19.5926C13.5387 19.7427 13.418 19.869 13.2718 19.9594C13.1256 20.0497 12.9587 20.1012 12.787 20.109C12.6153 20.1167 12.4444 20.0804 12.2907 20.0035L8.88342 18.3003C8.69309 18.2052 8.53302 18.0589 8.42114 17.8779C8.30927 17.6969 8.25001 17.4883 8.25 17.2755V12.2962L3.28717 7.33333C2.94333 6.9896 2.7501 6.52336 2.75 6.03717V4.125ZM4.58333 4.58333V6.03717L9.68 11.1338C9.80783 11.2615 9.90924 11.4131 9.97845 11.58C10.0477 11.7469 10.0833 11.9258 10.0833 12.1064V16.8502L11.9167 17.7668V12.1064C11.9167 11.7416 12.0615 11.3914 12.32 11.1348L17.4167 6.03625V4.58333H4.58333Z" fill="#6C6C6C" />
+                                    </svg>
+                                </button>
+                                <?php
                                 $filterItemSettingsList = [
                                     "text" => [
                                         "contains",
@@ -93,37 +92,40 @@ $myRoute = end($myRoute);
                                     ]
                                 ];
 
-                                foreach($filterItemSettingsList as $filterKey => $filterValue) {
+                                foreach ($filterItemSettingsList as $filterKey => $filterValue) {
                                     echo "<div class=''>";
-                                    foreach($filterValue as $filterValueKey) {
+                                    foreach ($filterValue as $filterValueKey) {
                                         echo "";
                                     }
 
                                     echo "</div>";
                                 }
-                            ?>
-                            <div class="filter-item-settings">
-                                <div class="filter-item-settings__item" aria-selected="false">
-                                    
-                                    <button class="filter-item-settings__item-calculation-toggler" type="button">
-                                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 4.125C2.75 3.76033 2.89487 3.41059 3.15273 3.15273C3.41059 2.89487 3.76033 2.75 4.125 2.75H17.875C18.2397 2.75 18.5894 2.89487 18.8473 3.15273C19.1051 3.41059 19.25 3.76033 19.25 4.125V6.03717C19.2499 6.52336 19.0567 6.9896 18.7128 7.33333L13.75 12.2962V19.1015C13.75 19.2734 13.7061 19.4424 13.6224 19.5926C13.5387 19.7427 13.418 19.869 13.2718 19.9594C13.1256 20.0497 12.9587 20.1012 12.787 20.109C12.6153 20.1167 12.4444 20.0804 12.2907 20.0035L8.88342 18.3003C8.69309 18.2052 8.53302 18.0589 8.42114 17.8779C8.30927 17.6969 8.25001 17.4883 8.25 17.2755V12.2962L3.28717 7.33333C2.94333 6.9896 2.7501 6.52336 2.75 6.03717V4.125ZM4.58333 4.58333V6.03717L9.68 11.1338C9.80783 11.2615 9.90924 11.4131 9.97845 11.58C10.0477 11.7469 10.0833 11.9258 10.0833 12.1064V16.8502L11.9167 17.7668V12.1064C11.9167 11.7416 12.0615 11.3914 12.32 11.1348L17.4167 6.03625V4.58333H4.58333Z" fill="#6C6C6C" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="filter-item-settings-calculation">
+                                ?>
+                                <div class="filter-item-settings">
+                                    <div class="filter-item-settings__item" aria-selected="false">
 
+                                        <button class="filter-item-settings__item-calculation-toggler" type="button">
+                                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.75 4.125C2.75 3.76033 2.89487 3.41059 3.15273 3.15273C3.41059 2.89487 3.76033 2.75 4.125 2.75H17.875C18.2397 2.75 18.5894 2.89487 18.8473 3.15273C19.1051 3.41059 19.25 3.76033 19.25 4.125V6.03717C19.2499 6.52336 19.0567 6.9896 18.7128 7.33333L13.75 12.2962V19.1015C13.75 19.2734 13.7061 19.4424 13.6224 19.5926C13.5387 19.7427 13.418 19.869 13.2718 19.9594C13.1256 20.0497 12.9587 20.1012 12.787 20.109C12.6153 20.1167 12.4444 20.0804 12.2907 20.0035L8.88342 18.3003C8.69309 18.2052 8.53302 18.0589 8.42114 17.8779C8.30927 17.6969 8.25001 17.4883 8.25 17.2755V12.2962L3.28717 7.33333C2.94333 6.9896 2.7501 6.52336 2.75 6.03717V4.125ZM4.58333 4.58333V6.03717L9.68 11.1338C9.80783 11.2615 9.90924 11.4131 9.97845 11.58C10.0477 11.7469 10.0833 11.9258 10.0833 12.1064V16.8502L11.9167 17.7668V12.1064C11.9167 11.7416 12.0615 11.3914 12.32 11.1348L17.4167 6.03625V4.58333H4.58333Z" fill="#6C6C6C" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="filter-item-settings-calculation">
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                <?php
+                    <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
 
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    <?php
+    }
+    ?>
     <div class="profile-box">
         <div class="notifications">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,33 +144,26 @@ $myRoute = end($myRoute);
 </div>
 
 <script>
-    const searchBox = document.querySelector('.search-box');
-    const searchContent = searchBox.querySelector('.search-content');
-    const searchInput = document.querySelector('.search');
+    try {
+        const searchBox = document.querySelector('.search-box');
+        const searchContent = searchBox.querySelector('.search-content');
+        const searchInput = document.querySelector('.search');
 
-    searchInput.addEventListener('submit', () => {
-        searchInput.submit();
-    });
+        searchInput.addEventListener('submit', () => {
+            searchInput.submit();
+        });
 
-    window.addEventListener('keydown', (e) => {
-        e = e || window.event;
+        window.addEventListener('keydown', (e) => {
+            e = e || window.event;
 
-        if (e.ctrlKey && e.key === 'm') {
-            searchInput.focus();
-            e.preventDefault();
-        }
-    });
+            if (e.ctrlKey && e.key === 'm') {
+                searchInput.focus();
+                e.preventDefault();
+            }
+        });
 
-    fetch('<?= routeTo('/api/users/robots') ?>', {
-            method: 'GET',
-        })
-        .then(response => response.json())
-        .then(data => {
-            // const profileName = document.querySelector('.profile-name p');
-            // const avatar = document.querySelector('.avatar img');
-
-            // profileName.innerHTML = data.name;
-            // avatar.src = data.avatar;
-            console.log(data);
-        })
+        
+    } catch (e) {
+        // console.log(e);
+    }
 </script>

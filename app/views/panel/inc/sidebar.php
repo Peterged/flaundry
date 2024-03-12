@@ -1,5 +1,5 @@
-<?php 
-    $role = $_SESSION['role'];
+<?php
+$role = $_SESSION['role'];
 ?>
 
 <div class="sidebar noprint">
@@ -23,7 +23,7 @@
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.9167 8.25V2.75H19.25V8.25H11.9167ZM2.75 11.9167V2.75H10.0833V11.9167H2.75ZM11.9167 19.25V10.0833H19.25V19.25H11.9167ZM2.75 19.25V13.75H10.0833V19.25H2.75ZM4.58333 10.0833H8.25V4.58333H4.58333V10.0833ZM13.75 17.4167H17.4167V11.9167H13.75V17.4167ZM13.75 6.41667H17.4167V4.58333H13.75V6.41667ZM4.58333 17.4167H8.25V15.5833H4.58333V17.4167Z" fill="black" />
             </svg>
-            
+
             Dashboard
         </a>
         <a class="btn" href="<?= routeTo('/panel/outlet') ?>">
@@ -166,4 +166,25 @@
             item.parentElement.classList.toggle('expanded');
         })
     })
+</script>
+
+<script>
+    function createCookie(name, value, days) {
+        let expires;
+
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+            expires = "; expires=" + date.toGMTString();
+        } else {
+            expires = "";
+        }
+
+        document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+    }
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        createCookie("clientTimezone", Intl.DateTimeFormat().resolvedOptions().timeZone, 30);
+    });
 </script>

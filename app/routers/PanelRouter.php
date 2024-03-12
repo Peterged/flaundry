@@ -4,8 +4,9 @@ namespace App\routers;
 
 use App\Libraries\PHPExpress;
 use App\models\User;
+use Respect\Validation\Validator as v;
 use App\Services\FlashMessage as fm;
-use App\models\Outlet, App\models\Paket, App\models\Member, App\models\DetailTransaksi;
+use App\models\Outlet, App\models\Paket, App\models\Member, App\models\DetailTransaksi, App\models\Transaksi;
 use App\Utils\MyLodash as _;
 use App\Services\SearchEngineService as SES;
 use App\Libraries\Essentials\Session;
@@ -41,7 +42,6 @@ function handleDashboardPostRequest($req, $res)
 function outlet($req, $res, $connection)
 {
     validateUserSession($req, $res);
-    // $outlet = (new Model($connection))->query("SELECT * FROM tb_outlet");
     $outlet = new Outlet($connection);
 
 
@@ -64,7 +64,6 @@ function outlet($req, $res, $connection)
     ];
 
     $res->render('/panel/components/outlet', $data);
-    // $res->render('/panel/components/outlet', $data);
 }
 
 // function outletSearchPost($req, $res, $connection) 
@@ -115,7 +114,6 @@ function outletEdit($req, $res, $connection)
         'currentOutlet' => $currentOutlet->getData(),
     ];
 
-    // $res->render('/panel/components/edit/edit_outlet', $data);
     $res->render('/panel/components/edit/edit_outlet', $data);
 }
 
@@ -227,7 +225,7 @@ function paket($req, $res, $connection)
         'pakets' => $paketData->getData(),
         'tableColumns' => $paket->getTableColumns()
     ];
-    print_r($paket->getTableColumns(true));
+    // print_r($paket->getTableColumns(true));
 
     $res->render('/panel/components/paket', $data);
 }
@@ -301,16 +299,17 @@ function addPaket($req, $res, $connection)
 {
     validateUserSession($req, $res);
     $outlet = new Outlet($connection);
+    $id_outlet = $req->getParams()->id_outlet;
     $namaOutlet = $outlet->get([
         'where' => [
-            'id' => $req->getParams()->id_outlet
+            'id' => $id_outlet,
         ],
         'select' => 'nama'
     ]);
 
     $res->render('/panel/components/add/add_paket', [
         'sessionIdOutlet' => $req->getParams()->id_outlet,
-        'nama_outlet' => $namaOutlet->getData()[0]['nama']
+        'nama_outlet' => $namaOutlet->getData() ? $namaOutlet->getData()[0]['nama'] : ''
     ]);
 }
 
@@ -368,6 +367,7 @@ function member($req, $res, $connection)
     $data = [
         'members' => $memberData->getData(),
     ];
+
 
     $res->render('/panel/components/member', $data);
 }
@@ -582,11 +582,12 @@ function addKaryawanPost($req, $res, $connection)
 {
     validateUserSession($req, $res);
     $body = $req->getBody();
-    $body['id_outlet'] = (int) preg_replace('/\D+/', '', $body['id_outlet']);
+    $body['id_outlet'] = preg_replace('/\D+/', '', $body['id_outlet']);
+    $body['id_outlet'] = (int) $body['id_outlet'];
     $idOutlet = $body['id_outlet'];
 
     $user = new User($connection, [
-        'id_outlet' => $idOutlet,
+        'id_outlet' => (int) $idOutlet,
         'nama' => $body['nama'],
         'username' => $body['username'],
         'password' => $body['password'],
@@ -762,9 +763,23 @@ function transaksiStatusHandler($req, $res, $con)
     $id_transaksi = $req->getParams()->id;
     $status = $req->getParams()->status;
 
-    $model->queryWithTransaction("UPDATE tb_transaksi SET status = '$status' WHERE id = '$id_transaksi'");
+    if(_::some(['baru', 'proses', 'selesai', 'diambil'], function($val) use ($status) {
+        return $val === $status;
+    }) === false) {
+        fm::addMessage([
+            'type' => 'error',
+            'context' => 'detail_transaksi_message',
+            'title' => 'UPDATE',
+            'description' => 'Status tidak valid!'
+        ]);
+        $res->redirect("/panel/detail-transaksi/$id_transaksi");
+    }
+    else {
+        $model->queryWithTransaction("UPDATE tb_transaksi SET status = '$status' WHERE id = '$id_transaksi'");
+    
+        $res->redirect("/panel/detail-transaksi/$id_transaksi");
+    }
 
-    $res->redirect("/panel/detail-transaksi/$id_transaksi");
 }
 
 function detailTransaksiTambahPaketPost($req, $res, $con)
@@ -788,7 +803,9 @@ function detailTransaksiTambahPaketPost($req, $res, $con)
 
     if ($detailTransaksi->validateSave($dataBody)) {
         $detailTransaksi->save();
+        $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET status = 'proses' WHERE id = $id_transaksi");
     }
+    
     $nextLocation = "/panel/detail-transaksi/$id_transaksi";
     $res->redirect($nextLocation);
 }
@@ -835,7 +852,7 @@ function detailTransaksiBayarHandler($req, $res, $con)
             'description' => 'Transaksi tidak memiliki paket!'
         ]);
     } else {
-        $result = $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET dibayar = 'dibayar' WHERE id = '$id_transaksi'");
+        $result = $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET dibayar = 'dibayar', status = 'selesai' WHERE id = '$id_transaksi'");
         
         if ($result->getSuccess()) {
             fm::addMessage([
@@ -856,6 +873,32 @@ function detailTransaksiBayarHandler($req, $res, $con)
     }
 
     $id_transaksi = $_SESSION['idtransaksi'];
+    $res->redirect("/panel/detail-transaksi/$id_transaksi");
+}
+
+function detailTransaksiBiayaTambahanHandler($req, $res, $con) {
+    validateUserSession($req, $res);
+    $detailTransaksi = new DetailTransaksi($con);
+    $id_transaksi = $req->getParams()->id_transaksi;
+    $biaya_tambahan = $req->getBody()['biaya_tambahan'];
+    $result = $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET biaya_tambahan = '$biaya_tambahan' WHERE id = '$id_transaksi'");
+    if ($result->getSuccess()) {
+        fm::addMessage([
+            'type' => 'success',
+            'context' => 'detail_transaksi_message',
+            'title' => 'BIAYA TAMBAHAN',
+            'description' => 'Berhasil menambahkan biaya tambahan!'
+        ]);
+    }
+    else {
+        fm::addMessage([
+            'type' => 'error',
+            'context' => 'detail_transaksi_message',
+            'title' => 'BIAYA TAMBAHAN',
+            'description' => 'Gagal menambahkan biaya tambahan!'
+        ]);
+    }
+
     $res->redirect("/panel/detail-transaksi/$id_transaksi");
 }
 
@@ -888,4 +931,78 @@ $panelRouter->get('/transaksi', function ($req, $res) use ($con) {
         $id_transaksi = $req->getParams()->id_transaksi;
         $nextLocation = "/panel/detail-transaksi/$id_transaksi";
         $res->redirect($nextLocation);
+    })
+    ->post('/detail-transaksi/biaya_tambahan/{id_transaksi}', function ($req, $res) use ($con) {
+        detailTransaksiBiayaTambahanHandler($req, $res, $con);
     });
+
+
+// REPORT
+function reportFilterHandler($req, $res, $con) {
+    validateUserSession($req, $res);
+    $body = $req->getBody();
+    
+
+}
+
+function report($req, $res, $con) {
+    validateUserSession($req, $res);
+    $statusList = [
+        'semua', 'belum_dibayar', 'dibayar'
+    ];
+    if(isset($_GET['status']) && v::in($statusList)->validate($_GET['status'])) {
+        $status = $_GET['status'];
+    }
+    else {
+        $status = 'semua';
+    }
+
+    $additionalQuery = "WHERE status = 'dibayar'";
+    if(_::some(['semua', 'belum_dibayar'], fn($val) => $status === $val)) {
+        $additionalQuery = "WHERE status = '$status'";
+        if($status === 'semua') {
+            $additionalQuery = "";
+        }
+    }
+
+    $transaksi = new Transaksi($con);
+    
+    $transaksiData = $transaksi->query("SELECT tb_transaksi.*, tb_member.nama as nama_member FROM tb_transaksi JOIN tb_member ON tb_transaksi.id_member = tb_member.id $additionalQuery ORDER BY tb_transaksi.tgl DESC");
+    $transaksiPaketData = $transaksi->query("SELECT tb_detail_transaksi.*, tb_paket.nama_paket FROM tb_detail_transaksi JOIN tb_paket ON tb_detail_transaksi.id_paket = tb_paket.id");
+    $data = [
+        'transaksis' => $transaksiData->getData(),
+        'pakets' => $transaksiPaketData->getData(),
+        'status' => $status
+    ];
+    $res->render('/panel/components/report', $data);
+}
+
+function reportGenerate($req, $res, $con) {
+    validateUserSession($req, $res);
+    $body = $req->getBody();
+    $date = $body['datetimes'];
+
+    $date = "3/12 03:00 PM - 3/12 09:00 PM";
+
+    // Extract the start and end dates from the string
+    $dates = explode(" - ", $date);
+    $start = strtotime($dates[0]);
+    $end = strtotime($dates[1]);
+
+    // Format the dates in the desired format for the query
+    $startFormatted = date("Y-m-d H:i:s", $start);
+    $endFormatted = date("Y-m-d H:i:s", $end);
+
+    $transaksi = new Transaksi($con);
+
+    $transaksiData = $transaksi->query("SELECT * FROM tb_transaksi WHERE tgl BETWEEN '$startFormatted' AND '$endFormatted'");
+
+    print_r($transaksiData);
+}
+
+$panelRouter->get("/report", function($req, $res) use ($con) {
+    report($req, $res, $con);
+})
+->post('/report/generate', function($req, $res) use ($con) {
+
+});

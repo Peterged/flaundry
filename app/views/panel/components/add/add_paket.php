@@ -17,12 +17,15 @@ use App\Services\FlashMessage as fm;
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
     <title>Tambah Paket</title>
 </head>
+<?php 
 
+    $nama_outlet = empty($data['nama_outlet']) ? '' : $data['nama_outlet'];
+?>
 <body>
     <div class="container">
         <form method="post" class="wrapper" id="form-login">
             <h1 class="title small-margin">Tambah Paket</h1>
-            <p class="small-description margin-bottom-lg"><?= $data['nama_outlet'] ?></p>
+            <p class="small-description margin-bottom-lg"><?= $nama_outlet ?></p>
             <div class="input-group">
                 <label for="nama">Nama Paket</label> <input autofocus type="text" name="nama" id="nama" placeholder="Nama Paket" autocomplete="off" required>
             </div>

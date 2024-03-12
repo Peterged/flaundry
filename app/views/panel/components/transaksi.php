@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\FlashMessage as fm;
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,9 @@ use App\Services\FlashMessage as fm;
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/table.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/outlet.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/transaksi.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/form/minimalisticForm.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/import/choices.min.css">
     <title>Tambah Transaksi | FLaundry</title>
 </head>
 
@@ -34,23 +37,33 @@ use App\Services\FlashMessage as fm;
             </div>
             <div class="input-group">
                 <label for="id_outlet">Pilih Member</label>
-                <input type="text" name="id_member" id="id_member" list="id_member_list" required>
+                <select name="id_member" id="choices-select">
+                    <?php
+                    $karyawan = $data['model'];
+                    $dataMember = $karyawan->query("SELECT id, nama FROM tb_member");
+                    $dataMember = $dataMember->getData();
+
+                    foreach ($dataMember as $member) {
+                        echo "<option value=\"{$member['nama']}\">{$member['nama']}</option>";
+                    }
+                    ?>
+                </select>
                 <?php
                 try {
                     if (isset($_SESSION['idtransaksi'])) {
                         if (is_array($_SESSION['idtransaksi'])) {
                             $_SESSION['idtransaksi'] = "";
                         }
-                        $id_transaksi = "/" . $_SESSION['idtransaksi'];
-
-                        $nextPage = routeTo("/panel/detail-transaksi$id_transaksi");
+                        $id_transaksi = $_SESSION['idtransaksi'];
+                        $nextPage = routeTo("/panel/detail-transaksi/$id_transaksi");
                         echo '
                             <div class="submit-box">
                                 <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">CONTINUE</button>
+                                <a class="submit-btn-outline-small" href="' . $nextPage . '">Back To Last Transaction</a>
                             </div>
-                            <div class="submit-box">
+                            <div class="submit-box btn-on-hover">
     
-                                <a href="' . $nextPage . '">Back To Last Transaction</a>
+                                
                             </div>
                             ';
                     } else {
@@ -61,33 +74,15 @@ use App\Services\FlashMessage as fm;
                 }
 
                 ?>
-
-                <datalist id="id_member_list">
-                    <?php
-                    $karyawan = $data['model'];
-                    $dataOutlet = $karyawan->query("SELECT id, nama FROM tb_member");
-                    $dataOutlet = $dataOutlet->getData();
-
-                    foreach ($dataOutlet as $outlet) {
-                        echo "<option value=\"{$outlet['nama']}\">{$outlet['nama']}</option>";
-                    }
-                    ?>
-                </datalist>
-
-
             </div>
-
-
-
         </form>
-
-
     </div>
     <?php
-    
+
     fm::displayPopMessagesByContext('transaksi_message', 'bottom-right', 6000);
     ?>
     <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageClose.js"></script>
+    <script type="module" defer src="<?= PROJECT_ROOT ?>/public/js/choicesInit.js"></script>
 </body>
 
 </html>

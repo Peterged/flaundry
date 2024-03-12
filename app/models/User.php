@@ -73,7 +73,7 @@ class User extends Model
                 'id_outlet' => $this->id_outlet,
                 'nama' => $this->nama,
                 'username' => $this->username,
-                'password' => $this->password,
+                'password' => password_hash($this->password, PASSWORD_DEFAULT),
                 'role' => $this->role
             ];
 
@@ -289,7 +289,7 @@ class User extends Model
         $namaMaxLength = 36;
         $usernameMinLength = 3;
         $usernameMaxLength = 24;
-        $passwordMinLength = 8;
+        $passwordMinLength = 6;
         $passwordMaxLength = 36;
 
         try {
@@ -311,11 +311,11 @@ class User extends Model
             }
 
             if (!v::stringType()->length($passwordMinLength, $passwordMaxLength)->validate($this->password)) {
-                throw new \Exception("Password harus minimal <b>$passwordMinLength</b> dan maksimal $passwordMaxLength karakter", FLASH_ERROR);
+                throw new ValidationException("Password harus minimal <b>$passwordMinLength</b> dan maksimal $passwordMaxLength karakter", FLASH_ERROR);
             }
 
             if (!v::stringType()->length($namaMinLength, $namaMaxLength)->validate($this->nama)) {
-                throw new \Exception("Nama harus minimal <b>$namaMinLength</b> dan maksimal $namaMaxLength karakter", FLASH_ERROR);
+                throw new ValidationException("Nama harus minimal <b>$namaMinLength</b> dan maksimal $namaMaxLength karakter", FLASH_ERROR);
             }
 
             if (!v::stringType()->length($usernameMinLength, $usernameMaxLength)->validate($this->username)) {

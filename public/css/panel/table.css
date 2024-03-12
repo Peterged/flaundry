@@ -41,7 +41,10 @@ table.data-table td.width-large {
     width: 200px;
 }
 
-
+table.data-table td .data-bold,
+table.data-table th .data-bold  {
+    font-weight: 600 !important;
+}
 
 table.data-table th {
     font-size: 1rem;

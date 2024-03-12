@@ -2,10 +2,33 @@
 
 use App\Services\FlashMessage as fm;
 
-function formatRupiah($angka)
+function formatRupiah(int | float $angka)
 {
     $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
     return $hasil_rupiah;
+}
+
+function handleStatusProgressValue(string $value)
+{
+    $progress = 0;
+    switch ($value) {
+        case 'baru':
+            $progress = 0;
+            break;
+        case 'proses':
+            $progress = 50;
+            break;
+        case 'selesai':
+            $progress = 100;
+            break;
+        case 'diambil':
+            $progress = 101;
+            break;
+        default:
+            $progress = 0;
+            break;
+    }
+    return $progress;
 }
 
 $idtransaksi = $data['param_id_transaksi'];
@@ -80,7 +103,6 @@ try {
     trigger_error($e->getMessage() . " at " . $e->getFile() . " on line " . $e->getLine(), E_USER_ERROR);
     exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,23 +120,30 @@ try {
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/outlet.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/transaksi/detail-transaksi.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/form/formMinim.css">
+    <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/import/choices.min.css">
     <title>Detail Transaksi | FLaundry</title>
 </head>
 
 <body>
     <?php includeFile("$base/panel/inc/sidebar.php");
-
+    $progress = handleStatusProgressValue($data_transaksi['status']);
+    $previousProgressValue = isset($_SESSION['previousProgressValue']) ? $_SESSION['previousProgressValue'] : 0;
     $query = "
-        SELECT tb_transaksi.*, tb_member.nama AS nama_pelanggan, tb_member.tlp AS tlp_pelanggan, tb_member.alamat AS alamat_pelanggan, tb_outlet.nama AS nama_outlet, tb_user.nama AS nama_karyawan,
-
-        FROM tb_transaksi 
-        INNER JOIN tb_member ON tb_transaksi.id_member = tb_member.id 
-        INNER JOIN tb_outlet ON tb_transaksi.id_outlet = tb_outlet.id 
-        INNER JOIN tb_user ON tb_transaksi.id_user = tb_user.id WHERE tb_transaksi.id = '$idtransaksi'";
-
-
+    SELECT tb_transaksi.*, tb_member.nama AS nama_pelanggan, tb_member.tlp AS tlp_pelanggan, tb_member.alamat AS alamat_pelanggan, tb_outlet.nama AS nama_outlet, tb_user.nama AS nama_karyawan,    
+    FROM tb_transaksi 
+    INNER JOIN tb_member ON tb_transaksi.id_member = tb_member.id 
+    INNER JOIN tb_outlet ON tb_transaksi.id_outlet = tb_outlet.id 
+    INNER JOIN tb_user ON tb_transaksi.id_user = tb_user.id WHERE tb_transaksi.id = '$idtransaksi'";
     ?>
-    <div class="container">
+    <div class="container" style="flex-direction: column;">
+        <div class="progress-container noprint">
+            <div class="progress-bar" id="myProgressBar" aria-valueafter="<?= $progress ?>" style="width: <?= $previousProgressValue ?>%"></div>
+        </div>
+
+        <?php
+        $_SESSION['previousProgressValue'] = $progress;
+        ?>
+
         <div class="box-detail-transaction print-container">
             <div class="box-detail-container print-container">
                 <div class="box-detail">
@@ -154,14 +183,13 @@ try {
                                     <!-- <td>:</td> -->
                                     <td>
                                         <?php
+                                        $date = new DateTime($data_transaksi['batas_waktu']);
+                                        $dateFormat = $date->format("d-m-Y");
+                                        $hourAndMinute = $date->format('H:i');
 
-                                        $pecah_string_tanggal = explode(" ", $data_transaksi['batas_waktu']);
-                                        $pecah_string_hari = explode("-", $pecah_string_tanggal[0]);
-                                        $pecah_string_jam = explode(":", $pecah_string_tanggal[1]);
-
-                                        echo "Date : " . $pecah_string_hari[2] . "-" . $pecah_string_hari[1] . "-" . $pecah_string_hari[0];
+                                        echo "Date : " . $dateFormat;
                                         echo "<br>";
-                                        echo "Time : " . $pecah_string_jam[0] . ":" . $pecah_string_jam[1];
+                                        echo "Time : " . $hourAndMinute;
                                         ?>
                                     </td>
                                 </tr>
@@ -169,34 +197,30 @@ try {
                                     <td>Status</td>
                                     <!-- <td>:</td> -->
                                     <td>
-                                        <select <?php
-                                                $statusChangeRoute = routeTo("/panel/transaksi_status_handler");
-                                                if ($_SESSION['role'] == 'owner') {
-                                                    echo "disabled";
-                                                } ?> onchange="pilihStatus(this.options[this.selectedIndex].value, '<?= $idtransaksi ?>')">
-                                            <option value="baru" <?php if ($data_transaksi['status'] == 'baru') {
-                                                                        echo "selected";
-                                                                    } ?>>
-                                                New
-                                            </option>
-                                            <option value="proses" <?php if ($data_transaksi['status'] == 'proses') {
-                                                                        echo "selected";
-                                                                    } ?>>
-                                                Process
-                                            </option>
-                                            <option value="selesai" <?php if ($data_transaksi['status'] == 'selesai') {
-                                                                        echo "selected";
-                                                                    } ?>>
-                                                Done
-                                            </option>
-                                            <option value="diambil" <?php if ($data_transaksi['status'] == 'diambil') {
-                                                                        echo "selected";
-                                                                    } ?>>
-                                                Taked
-                                            </option>
-                                        </select>
                                         <?php
+                                        $statusChangeRoute = routeTo("/panel/transaksi_status_handler");
+                                        if (in_array($data_transaksi['status'], ['selesai', 'diambil']) || $data_transaksi['dibayar'] == 'dibayar') {
+                                        ?>
+                                            <select <?php
+                                                    if ($_SESSION['role'] == 'owner') {
+                                                        echo "disabled";
+                                                    } ?> onchange="pilihStatus(this.options[this.selectedIndex].value, '<?= $idtransaksi ?>')">
+                                                <option value="selesai" <?php if ($data_transaksi['status'] == 'selesai') {
+                                                                            echo "selected";
+                                                                        } ?>>
+                                                    Selesai
+                                                </option>
 
+                                                <option value="diambil" <?php if ($data_transaksi['status'] == 'diambil') {
+                                                                            echo "selected";
+                                                                        } ?>>
+                                                    Diambil
+                                                </option>
+                                            </select>
+                                        <?php
+                                        } else {
+                                            echo ucfirst($data_transaksi['status']);
+                                        }
                                         ?>
                                         <script>
                                             function pilihStatus(value, id) {
@@ -206,7 +230,6 @@ try {
                                         </script>
                                     </td>
                                 </tr>
-
                             </table>
                         </div>
                     </div>
@@ -219,9 +242,8 @@ try {
                             <form action="<?= routeTo("/panel/detail-transaksi/tambah_paket/$idtransaksi") ?>" method="post" id="form_tambah_paket">
                                 <div class="box-add-form">
                                     <div class="input-group">
-
-                                        <input type="text" name="nama_paket" list="nama_paket" id="" placeholder="Package" autocomplete="off" required>
-                                        <datalist id="nama_paket">
+                                        <label for="choices-select">Nama Paket</label>
+                                        <select name="nama_paket" id="choices-select">
                                             <?php
                                             $id_outlet = $data_transaksi['id_outlet'];
                                             $query_paket = $model->query("SELECT nama_paket FROM tb_paket WHERE id_outlet = '$id_outlet'");
@@ -232,20 +254,15 @@ try {
                                             <?php
                                             }
                                             ?>
-                                        </datalist>
+                                        </select>
                                     </div>
-
                                     <div class="input-group">
                                         <input type="number" name="qty" id="qty" placeholder="Jumlah" autocomplete="off">
                                     </div>
                                     <div class="input-group">
                                         <input type="text" name="keterangan" id="keterangan" placeholder="Keterangan" autocomplete="off">
                                     </div>
-
-
                                     <button class="submit-btn" type="submit" form="form_tambah_paket" name="pilih_paket" value="submit">TAMBAH PAKET</button>
-                                    <!-- <input type="submit" name="pilih_paket" value="Insert Package"> -->
-
                                 </div>
                             </form>
                         </div>
@@ -262,13 +279,11 @@ try {
                             <th>Harga</th>
                             <th class="width-medium">Total</th>
                         </tr>
-
-
                         <?php
 
                         $result_detail = $model->query("SELECT * FROM tb_detail_transaksi WHERE id_transaksi = '$idtransaksi'");
-                        // $result_detail = mysqli_query($connect, "SELECT * FROM tb_detail_transaksi WHERE id_transaksi = '$idtransaksi'");
                         $result_detail = $result_detail->getData() ? $result_detail->getData() : [];
+
                         foreach ($result_detail as $detail) {
                         ?>
                             <tr style="text-align: center;">
@@ -278,17 +293,12 @@ try {
                                     $paket = $model->query("SELECT nama_paket, jenis, harga FROM tb_paket WHERE id = '$idpaket'");
                                     $paket = $paket->getData() ? $paket->getData()[0] : [];
                                     $detail['harga_paket'] = $detail['total_harga'] / $detail['qty'];
-
-
-                                    // $numf = new NumberFormatter("en", NumberFormatter::CURRENCY);
-                                    // $numf->setAttribute(NumberFormatter::FRACTION_DIGITS, 0);
-                                    // $hargaPaket = $numf->formatCurrency($detail['harga_paket'], 'IDR');
-
-                                    // $paket = mysqli_fetch_assoc(mysqli_query($connect, "SELECT nama_paket, jenis, harga FROM tb_paket WHERE id = '$idpaket'"));
                                     $keterangan = $detail['keterangan'] ? $detail['keterangan'] : "-";
+                                    $jenis = str_replace("_", " ", $paket['jenis']);
+                                    $jenis = ucwords($jenis);
                                     ?>
                                     <p class="paket-title"><?= $paket['nama_paket'] ?></p>
-                                    <p class="paket-type"><?= $paket['jenis'] ?></p>
+                                    <p class="paket-type"><?= $jenis ?></p>
                                 </td>
                                 <td>
                                     <p class="paket-keterangan"><?= $keterangan ?></p>
@@ -331,10 +341,6 @@ try {
                         } else {
                             $grand_total = $grand_total->getData()->fetch(\PDO::FETCH_ASSOC);
                         }
-
-                        // $grand_total = $grand_total->getData()->rowCount() ? $grand_total->getData()->fetchColumn() : 0;
-                        // $grand_total = $grand_total->getData() ? $grand_total->getData() : [];
-                        // $grand_total = mysqli_fetch_row(mysqli_query($connect, "SELECT SUM(total_harga) FROM tb_detail_transaksi INNER JOIN tb_paket ON tb_detail_transaksi.id_paket = tb_paket.id WHERE id_transaksi = '$idtransaksi'"));
 
                         if (!$grand_total['total_harga'] == '0') {
                         ?>
@@ -392,7 +398,7 @@ try {
 
                     <div class="box-biaya-tambahan-container noprint">
                         <div class="box-biaya-tambahan">
-                            <form action="" method="post">
+                            <form action="<?= routeTo("/panel/detail-transaksi/biaya_tambahan/$idtransaksi") ?>" method="post">
                                 <div class="box-input-biaya-tambahan" style="display: 
                                 <?php if ($data_transaksi['dibayar'] == 'dibayar') {
                                     echo "none";
@@ -405,7 +411,7 @@ try {
 
                                     <button class="submit-btn" type="submit" value="Add" name="tombol_biaya_tambahan" <?php if ($data_transaksi['dibayar'] == 'dibayar') {
                                                                                                                             echo "hidden";
-                                                                                                                        } ?>>Add</button>
+                                                                                                                        } ?>>Set</button>
                                 </div>
 
                             </form>
@@ -415,9 +421,15 @@ try {
                             $detailTransaksiBayarRoute = routeTo("/panel/detail-transaksi/bayar/$idtransaksi");
                             ?>
                             <form action="<?= $detailTransaksiBayarRoute ?>" method="post">
-                                <button type="button" name="bayar_sekarang" onclick="window.print()">
-                                    Print
-                                </button>
+                                <?php
+                                if ($data_transaksi['dibayar'] == 'dibayar') {
+                                ?>
+                                    <button type="button" name="bayar_sekarang" onclick="window.print()">
+                                        Print
+                                    </button>
+                                <?php
+                                }
+                                ?>
                                 <input type="submit" value="Bayar" name="bayar_sekarang" onclick="return confirm('Really want to pay?')" <?php if ($data_transaksi['dibayar'] == 'dibayar' || $_SESSION['role'] == 'owner') {
                                                                                                                                                 echo "hidden";
                                                                                                                                             } ?>>
@@ -434,6 +446,8 @@ try {
         fm::displayPopMessagesByContext('detail_transaksi_message', 'bottom-right', 6000);
         ?>
         <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageCloseDelay.js"></script>
+        <script src="<?= PROJECT_ROOT ?>/public/js/progressbarAnimation.js"></script>
+        <script type="module" defer src="<?= PROJECT_ROOT ?>/public/js/choicesInit.js"></script>
     </div>
 </body>
 

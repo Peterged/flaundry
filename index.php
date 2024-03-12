@@ -4,8 +4,6 @@ use App\Libraries\Response;
 
 include 'vendor/autoload.php';
 include 'app/libraries/autoload.php';
-// include 'app/config/database.php';
-
 
 foreach (glob("app/routers/*.php") as $filename) {
     include $filename;
@@ -31,10 +29,5 @@ $app->use('/error', $errorRouter);
 $app->use('/panel', $panelRouter);
 $app->use('/debug', $debugRouter);
 
-
-$app->get('/eka', function($req, $res) {
-    $res->render('/ekas');
-});
 $app->listen();
-
 

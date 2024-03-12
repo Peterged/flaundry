@@ -25,12 +25,19 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
 <?php includeFile("$base/panel/inc/sidebar.php") ?>
 <?php includeFile("$base/panel/inc/navbar.php") ?>
 
+<?php
+    $length = 0;
+    if(is_array($data['members'])) {
+        $length = count($data['members']);
+    }
+?>
+
 <div class="container">
     <div class="content-box">
         <div class="title">
             <div class="title-text-box">
                 <h1 class="title-text">Daftar Member</h1>
-                <h1 class="title-text-description">Total <?= count($data['members']) ?> Member</h1>
+                <h1 class="title-text-description">Total <?= $length ?> Member</h1>
             </div>
             <div class="title-date">
                 <p class="title-date-text">Selasa, 30 Januari 2024 · 11:12 PM</p>
