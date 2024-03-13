@@ -1053,3 +1053,209 @@ Stack trace:
 #7 C:\xampp\htdocs\flaundry\index.php(38): App\Libraries\PHPExpress->listen()
 #8 {main}
   thrown in C:\xampp\htdocs\flaundry\app\libraries\Model.php on line 478
+[12-Mar-2024 23:14:33 UTC] PHP Warning:  Undefined variable $data in C:\laragon\www\flaundry\app\routers\ApiRouter.php on line 32
+[12-Mar-2024 23:14:34 UTC] PHP Warning:  Undefined array key "role" in C:\laragon\www\flaundry\app\views\panel\inc\sidebar.php on line 2
+[12-Mar-2024 23:14:42 UTC] PHP Warning:  Undefined array key -1 in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 60
+[12-Mar-2024 23:14:42 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:14:42 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:14:42 UTC] PHP Warning:  Undefined array key 0 in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 62
+[12-Mar-2024 23:14:42 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 63
+[12-Mar-2024 23:14:42 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 63
+[12-Mar-2024 23:15:33 UTC] PHP Warning:  Undefined array key -1 in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 60
+[12-Mar-2024 23:15:33 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:15:33 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:15:33 UTC] PHP Warning:  Undefined array key 0 in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 62
+[12-Mar-2024 23:15:33 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 63
+[12-Mar-2024 23:15:33 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 63
+[12-Mar-2024 23:15:36 UTC] PHP Warning:  Undefined array key -1 in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 60
+[12-Mar-2024 23:15:36 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:15:36 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:15:36 UTC] PHP Warning:  Undefined array key 0 in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 62
+[12-Mar-2024 23:15:36 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 63
+[12-Mar-2024 23:15:36 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 63
+[12-Mar-2024 23:16:07 UTC] PHP Warning:  Undefined array key -1 in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 60
+[12-Mar-2024 23:16:07 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:16:07 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:16:07 UTC] PHP Warning:  Undefined array key 0 in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 62
+[12-Mar-2024 23:16:07 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 63
+[12-Mar-2024 23:16:07 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 63
+[12-Mar-2024 23:17:13 UTC] PHP Warning:  Undefined array key -1 in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 60
+[12-Mar-2024 23:17:13 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:17:13 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:17:13 UTC] PHP Warning:  Undefined array key 0 in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 62
+[12-Mar-2024 23:17:13 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 63
+[12-Mar-2024 23:17:13 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 63
+[12-Mar-2024 23:17:50 UTC] PHP Parse error:  syntax error, unexpected single-quoted string ";" in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:17:51 UTC] PHP Parse error:  syntax error, unexpected single-quoted string ";" in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[12-Mar-2024 23:18:06 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\flaundry\app\views\panel\components\report.php:61
+Stack trace:
+#0 C:\laragon\www\flaundry\app\libraries\Response.php(55): include_once()
+#1 C:\laragon\www\flaundry\app\routers\PanelRouter.php(979): App\Libraries\Response->render('app/views/panel...', Array)
+#2 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1073): App\routers\report(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#3 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('GET', true, '/panel/report', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#5 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('GET', '/panel/report', Array)
+#6 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#7 {main}
+  thrown in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 61
+[13-Mar-2024 07:18:46 Asia/Makassar] PHP Notice:  SQLSTATE[HY000]: General error: 1364 Field 'tgl_bayar' doesn't have a default value in C:\laragon\www\flaundry\app\libraries\Model.php on line 361
+[12-Mar-2024 23:55:35 UTC] PHP Warning:  Undefined variable $data in C:\laragon\www\flaundry\app\routers\ApiRouter.php on line 32
+[13-Mar-2024 00:30:44 UTC] PHP Warning:  Undefined array key "role" in C:\laragon\www\flaundry\app\views\panel\inc\sidebar.php on line 2
+[13-Mar-2024 00:30:44 UTC] PHP Warning:  Undefined array key "username" in C:\laragon\www\flaundry\app\views\panel\components\dashboard.php on line 41
+[13-Mar-2024 00:30:44 UTC] PHP Deprecated:  ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\dashboard.php on line 41
+[13-Mar-2024 00:47:44 UTC] PHP Warning:  Undefined variable $jenis in C:\laragon\www\flaundry\app\views\panel\components\paket.php on line 85
+[13-Mar-2024 00:47:44 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\paket.php on line 85
+[13-Mar-2024 01:06:17 UTC] PHP Fatal error:  Uncaught TypeError: Cannot assign string to property App\models\Paket::$harga of type float in C:\laragon\www\flaundry\app\models\Paket.php:70
+Stack trace:
+#0 C:\laragon\www\flaundry\app\routers\PanelRouter.php(257): App\models\Paket->validateSave(Array)
+#1 C:\laragon\www\flaundry\app\routers\PanelRouter.php(353): App\routers\editPaketPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#2 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#3 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/paket/ed...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('POST', '/panel/paket/ed...', Array)
+#5 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#6 {main}
+  thrown in C:\laragon\www\flaundry\app\models\Paket.php on line 70
+[13-Mar-2024 02:21:27 UTC] PHP Parse error:  Unclosed '{' on line 202 in C:\laragon\www\flaundry\app\views\panel\components\detail_transaksi.php on line 447
+[13-Mar-2024 02:24:13 UTC] PHP Warning:  Undefined array key -1 in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 58
+[13-Mar-2024 02:24:13 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 59
+[13-Mar-2024 02:24:13 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 59
+[13-Mar-2024 02:24:13 UTC] PHP Warning:  Undefined array key 0 in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 60
+[13-Mar-2024 02:24:13 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 61
+[13-Mar-2024 02:24:13 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 61
+[13-Mar-2024 02:24:39 UTC] PHP Warning:  Undefined array key -1 in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 58
+[13-Mar-2024 02:24:39 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 59
+[13-Mar-2024 02:24:39 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 59
+[13-Mar-2024 02:24:39 UTC] PHP Warning:  Undefined array key 0 in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 60
+[13-Mar-2024 02:24:39 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 61
+[13-Mar-2024 02:24:39 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 61
+[13-Mar-2024 02:24:53 UTC] PHP Warning:  Undefined array key 0 in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 58
+[13-Mar-2024 02:24:53 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 59
+[13-Mar-2024 02:24:53 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 59
+[13-Mar-2024 02:24:53 UTC] PHP Warning:  Undefined array key 0 in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 60
+[13-Mar-2024 02:24:53 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 61
+[13-Mar-2024 02:24:53 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 61
+[13-Mar-2024 02:25:44 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php:60
+Stack trace:
+#0 C:\laragon\www\flaundry\app\libraries\Response.php(55): include_once()
+#1 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1041): App\Libraries\Response->render('app/views/panel...', Array)
+#2 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1077): App\routers\reportGenerate(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#3 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('GET', true, '/panel/report/g...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#5 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('GET', '/panel/report/g...', Array)
+#6 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#7 {main}
+  thrown in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 60
+[13-Mar-2024 02:26:38 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 60
+[13-Mar-2024 02:35:06 UTC] PHP Warning:  Undefined array key "startDate" in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 40
+[13-Mar-2024 02:35:06 UTC] PHP Warning:  Undefined array key "endDate" in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 41
+[13-Mar-2024 02:37:47 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php:61
+Stack trace:
+#0 C:\laragon\www\flaundry\app\libraries\Response.php(55): include_once()
+#1 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1044): App\Libraries\Response->render('app/views/panel...', Array)
+#2 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1080): App\routers\reportGenerate(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#3 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('GET', true, '/panel/report/g...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#5 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('GET', '/panel/report/g...', Array)
+#6 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#7 {main}
+  thrown in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 61
+[13-Mar-2024 02:43:22 UTC] PHP Parse error:  syntax error, unexpected token ";" in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 54
+[13-Mar-2024 02:44:30 UTC] PHP Warning:  Undefined variable $latestTransactionDate in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 80
+[13-Mar-2024 02:44:30 UTC] PHP Warning:  Undefined variable $oldestTransactionDate in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 81
+[13-Mar-2024 02:46:08 UTC] PHP Parse error:  syntax error, unexpected token "if" in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 80
+[13-Mar-2024 02:46:15 UTC] PHP Parse error:  syntax error, unexpected token "if" in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 80
+[13-Mar-2024 02:46:16 UTC] PHP Parse error:  syntax error, unexpected token "if" in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 80
+[13-Mar-2024 03:02:02 UTC] PHP Warning:  Undefined variable $humanReadableLatestTransaction in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 89
+[13-Mar-2024 03:02:02 UTC] PHP Warning:  Undefined variable $humanReadableOldestTransaction in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 97
+[13-Mar-2024 03:02:59 UTC] PHP Fatal error:  Uncaught TypeError: Carbon\Carbon::parse(): Argument #1 ($time) must be of type DateTimeInterface|Carbon\WeekDay|Carbon\Month|string|int|float|null, array given, called in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 72 and defined in C:\laragon\www\flaundry\vendor\nesbot\carbon\src\Carbon\Traits\Creator.php:206
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php(72): Carbon\Carbon::parse(Array)
+#1 C:\laragon\www\flaundry\app\libraries\Response.php(55): include_once('C:\\laragon\\www\\...')
+#2 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1044): App\Libraries\Response->render('app/views/panel...', Array)
+#3 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1080): App\routers\reportGenerate(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('GET', true, '/panel/report/g...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('GET', '/panel/report/g...', Array)
+#7 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\laragon\www\flaundry\vendor\nesbot\carbon\src\Carbon\Traits\Creator.php on line 206
+[13-Mar-2024 03:03:27 UTC] PHP Parse error:  syntax error, unexpected variable "$humanReadableLatestTransaction" in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 68
+[13-Mar-2024 03:03:33 UTC] PHP Fatal error:  Uncaught TypeError: Carbon\Carbon::parse(): Argument #1 ($time) must be of type DateTimeInterface|Carbon\WeekDay|Carbon\Month|string|int|float|null, array given, called in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 72 and defined in C:\laragon\www\flaundry\vendor\nesbot\carbon\src\Carbon\Traits\Creator.php:206
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php(72): Carbon\Carbon::parse(Array)
+#1 C:\laragon\www\flaundry\app\libraries\Response.php(55): include_once('C:\\laragon\\www\\...')
+#2 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1044): App\Libraries\Response->render('app/views/panel...', Array)
+#3 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1080): App\routers\reportGenerate(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('GET', true, '/panel/report/g...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('GET', '/panel/report/g...', Array)
+#7 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\laragon\www\flaundry\vendor\nesbot\carbon\src\Carbon\Traits\Creator.php on line 206
+[13-Mar-2024 03:04:10 UTC] PHP Fatal error:  Uncaught TypeError: Carbon\Carbon::parse(): Argument #1 ($time) must be of type DateTimeInterface|Carbon\WeekDay|Carbon\Month|string|int|float|null, array given, called in C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php on line 73 and defined in C:\laragon\www\flaundry\vendor\nesbot\carbon\src\Carbon\Traits\Creator.php:206
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\panel\components\reportGenerate.php(73): Carbon\Carbon::parse(Array, 'Asia/Makassar')
+#1 C:\laragon\www\flaundry\app\libraries\Response.php(55): include_once('C:\\laragon\\www\\...')
+#2 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1044): App\Libraries\Response->render('app/views/panel...', Array)
+#3 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1080): App\routers\reportGenerate(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('GET', true, '/panel/report/g...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('GET', '/panel/report/g...', Array)
+#7 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\laragon\www\flaundry\vendor\nesbot\carbon\src\Carbon\Traits\Creator.php on line 206
+[13-Mar-2024 03:15:40 UTC] PHP Warning:  Undefined array key "harga" in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 126
+[13-Mar-2024 03:15:40 UTC] PHP Fatal error:  Uncaught TypeError: formatRupiah(): Argument #1 ($angka) must be of type int|float, null given, called in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 126 and defined in C:\laragon\www\flaundry\app\views\panel\components\report.php:8
+Stack trace:
+#0 C:\laragon\www\flaundry\app\views\panel\components\report.php(126): formatRupiah(NULL)
+#1 C:\laragon\www\flaundry\app\libraries\Response.php(55): include_once('C:\\laragon\\www\\...')
+#2 C:\laragon\www\flaundry\app\routers\PanelRouter.php(978): App\Libraries\Response->render('app/views/panel...', Array)
+#3 C:\laragon\www\flaundry\app\routers\PanelRouter.php(1077): App\routers\report(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#5 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('GET', true, '/panel/report', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#6 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('GET', '/panel/report', Array)
+#7 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#8 {main}
+  thrown in C:\laragon\www\flaundry\app\views\panel\components\report.php on line 8
+[13-Mar-2024 03:27:02 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\laragon\www\flaundry\app\models\Paket.php:73
+Stack trace:
+#0 C:\laragon\www\flaundry\app\routers\PanelRouter.php(257): App\models\Paket->validateSave(Array)
+#1 C:\laragon\www\flaundry\app\routers\PanelRouter.php(353): App\routers\editPaketPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#2 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#3 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/paket/ed...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('POST', '/panel/paket/ed...', Array)
+#5 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#6 {main}
+  thrown in C:\laragon\www\flaundry\app\models\Paket.php on line 73
+[13-Mar-2024 03:27:38 UTC] PHP Warning:  Trying to access array offset on int in C:\laragon\www\flaundry\app\models\Paket.php on line 73
+[13-Mar-2024 03:27:38 UTC] PHP Warning:  Trying to access array offset on int in C:\laragon\www\flaundry\app\models\Paket.php on line 74
+[13-Mar-2024 03:28:15 UTC] PHP Warning:  Undefined array key "jenis" in C:\laragon\www\flaundry\app\models\Paket.php on line 73
+[13-Mar-2024 03:28:15 UTC] PHP Warning:  Undefined array key "nama_paket" in C:\laragon\www\flaundry\app\models\Paket.php on line 74
+[13-Mar-2024 03:29:39 UTC] PHP Warning:  Undefined array key "jenis" in C:\laragon\www\flaundry\app\models\Paket.php on line 73
+[13-Mar-2024 03:29:39 UTC] PHP Warning:  Undefined array key "nama_paket" in C:\laragon\www\flaundry\app\models\Paket.php on line 74
+[13-Mar-2024 03:30:31 UTC] PHP Warning:  Undefined array key "jenis" in C:\laragon\www\flaundry\app\models\Paket.php on line 73
+[13-Mar-2024 03:31:05 UTC] PHP Warning:  Trying to access array offset on null in C:\laragon\www\flaundry\app\models\Paket.php on line 87
+[13-Mar-2024 03:31:05 UTC] PHP Fatal error:  Uncaught TypeError: Cannot assign null to property App\models\Paket::$nama_paket of type string in C:\laragon\www\flaundry\app\models\Paket.php:87
+Stack trace:
+#0 C:\laragon\www\flaundry\app\models\Paket.php(38): App\models\Paket->validateSave()
+#1 C:\laragon\www\flaundry\app\routers\PanelRouter.php(335): App\models\Paket->save()
+#2 C:\laragon\www\flaundry\app\routers\PanelRouter.php(362): App\routers\addPaketPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#3 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/paket/ad...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#5 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('POST', '/panel/paket/ad...', Array)
+#6 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#7 {main}
+  thrown in C:\laragon\www\flaundry\app\models\Paket.php on line 87
+[13-Mar-2024 03:32:25 UTC] PHP Fatal error:  Uncaught Error: Typed property App\models\Paket::$harga must not be accessed before initialization in C:\laragon\www\flaundry\app\models\Paket.php:67
+Stack trace:
+#0 C:\laragon\www\flaundry\app\routers\PanelRouter.php(257): App\models\Paket->validateSave(Array)
+#1 C:\laragon\www\flaundry\app\routers\PanelRouter.php(353): App\routers\editPaketPost(Object(App\Libraries\Request), Object(App\Libraries\Response), Object(App\Libraries\Database))
+#2 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(300): App\routers\{closure}(Object(App\Libraries\Request), Object(App\Libraries\Response))
+#3 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(398): App\Libraries\PHPExpress->processFunction('POST', true, '/panel/paket/ed...', Object(App\Libraries\Request), Object(App\Libraries\Response), Object(Closure))
+#4 C:\laragon\www\flaundry\app\libraries\PHPExpress.php(56): App\Libraries\PHPExpress->handleResponse('POST', '/panel/paket/ed...', Array)
+#5 C:\laragon\www\flaundry\index.php(32): App\Libraries\PHPExpress->listen()
+#6 {main}
+  thrown in C:\laragon\www\flaundry\app\models\Paket.php on line 67
+[13-Mar-2024 03:40:41 UTC] PHP Notice:  SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'biaya_tambahan' at row 1 in C:\laragon\www\flaundry\app\libraries\Model.php on line 361
+[13-Mar-2024 03:45:20 UTC] PHP Parse error:  syntax error, unexpected token "}", expecting "," or ";" in C:\laragon\www\flaundry\app\views\panel\components\detail_transaksi.php on line 425
+[13-Mar-2024 03:45:21 UTC] PHP Parse error:  syntax error, unexpected token "}", expecting "," or ";" in C:\laragon\www\flaundry\app\views\panel\components\detail_transaksi.php on line 425

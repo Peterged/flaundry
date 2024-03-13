@@ -85,6 +85,8 @@
     gap: 0.2rem;
 }
 
+
+
 .content-box .title .title-text-box .title-text-description {
     font-weight: 300;
     font-size: 1rem;
@@ -96,6 +98,74 @@
     font-weight: 400;
     color: rgba(0, 0, 0, 0.65);
 }
+
+.content-box .title-text-box-info {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-start;
+    gap: 0.2rem;
+    background-color: rgb(226, 238, 255);
+    padding: 0.5rem;
+    border: 2px solid rgb(208, 228, 255);
+}
+
+.content-box .title-text-box-info .title-text-wrapper-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.content-box .title-text-box-info .title-text-description {
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.content-box .font-xs {
+    font-size: 0.65rem;
+}
+
+.content-box .font-small {
+    font-size: 0.8rem;
+}
+
+.content-box .font-medium {
+    font-size: 0.9rem;
+}
+
+.content-box .font-large {
+    font-size: 1.1rem;
+}
+
+.content-box .font-extra-large {
+    font-size: 1.45rem;
+}
+
+.content-box .font-massive {
+    font-size: 1.75rem;
+}
+
+.content-box .text-light {
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.content-box .text-regular {
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.content-box .text-medium {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.content-box .text-bold {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.9);
+}
+
 
 .content-box .divider {
     width: 100%;

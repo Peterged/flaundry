@@ -37,37 +37,81 @@ function formatRupiah(int | float $angka)
 <?php
 $transaksis = $data['transaksis'] ?? [];
 $transaksiPakets = $data['pakets'] ?? [];
+$startDate = $data['startDate'];
+$endDate = $data['endDate'];
+$startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" : '';
+
 ?>
 
 <div class="container">
     <div class="content-box">
         <div class="title">
             <div class="title-text-box">
-                <h1 class="title-text">Generate Transaksi</h1>
-                <h1 class="title-text-description">Total <?= count($data['transaksis']) ?> Transaksi</h1>
+                <h1 class="title-text">Generate Report</h1>
+                <h1 class="title-text-description">Total <?= count($data['transaksis']) ?> transaksi ditemukan</h1>
             </div>
             <div class="title-date">
                 <p class="title-date-text" id="title-date-text"></p>
             </div>
+
+            <form id="filter-date-report-generation" action="<?= routeTo("/panel/report/generate") ?>" class="table-filter-box">
+                <div class="input-group-group">
+
+                    <?php
+                    if (count($transaksis)) {
+                        try {
+                            $timezone = Cookie::get('clientTimezone', 'Asia/Makassar');
+                            $oldestTransaction = count($transaksis) ? $transaksis[count($transaksis) - 1] : '';
+                            $oldestTransactionDate = date('Y-m-d H:i', strtotime($oldestTransaction['tgl'])) ?? '';
+                            $latestTransaction = $transaksis[0];
+                            $latestTransactionDate = date('Y-m-d H:i', strtotime($latestTransaction['tgl'])) ?? '';
+
+                            $humanReadableLatestTransaction = Carbon::parse($latestTransactionDate, $timezone)->locale('id')->diffForHumans([
+                                'parts' => 2,
+                                'join' => ', '
+                            ]);
+                        $humanReadableOldestTransaction = Carbon::parse($oldestTransactionDate, $timezone)->locale('id')->diffForHumans([
+                                'parts' => 2,
+                                'join' => ', '
+                            ]);
+                        } catch (Exception $e) {
+                        }
+                    }
+                    ?>
+                    <input type="text" id="filter-date" name="datetimes" class="date-range-input" required />
+                    <button class="submit-btn" type="submit" form="filter-date-report-generation" value="submit">FILTER</button>
+                </div>
+            </form>
+
+            <!-- <h1 class="title-text-description"></h1> -->
         </div>
         <span class='divider'></span>
-        <form id="filter-date-report-generation" action="<?= routeTo("/panel/report/generate") ?>" class="table-filter-box">
-            <div class="input-group-group">
-                <?php
-                try {
-                    $oldestTransaction = $transaksis[count($transaksis) - 1];
-                    $oldestTransactionDate = date('d/m/Y', strtotime($oldestTransaction['tgl'])) ?? Carbon::now()->format('d/m/Y');
-                    $latestTransaction = $transaksis[0];
-                    $latestTransactionDate = date('d/m/Y', strtotime($latestTransaction['tgl'])) ?? Carbon::now()->format('d/m/Y');
-                } catch (Exception $e) {
-                }
 
-                ?>
-
-                <input type="text" id="filter-date" name="datetimes" class="date-range-input" required />
-                <button class="submit-btn" type="submit" form="filter-date-report-generation" name="pilih_paket" value="submit">GENERATE</button>
+        <?php
+            if(isset($latestTransactionDate) && isset($oldestTransactionDate) && ($latestTransactionDate !== $oldestTransactionDate)) {
+        ?>
+        <div class="title-text-box-info info-blue" style="gap: 0.5rem">
+            <div class="title-text-wrapper-column">
+                <div class="title-text-description">
+                    <p class="text-medium font-large">Transaksi Terkini</p>
+                </div>
+                <div class="title-text-description">
+                    <p class="text-light font-small"><span class="text-regular"><?= $latestTransaction['kode_invoice'] ?></span> - <?= "$latestTransactionDate" ?></p>
+                </div>
             </div>
-        </form>
+            <div class="title-text-wrapper-column">
+                <div class="title-text-description">
+                    <p class="text-medium font-large">Transaksi Terlama</p>
+                </div>
+                <div class="title-text-description">
+                    <p class="text-light font-small"><span class="text-regular"><?= $oldestTransaction['kode_invoice'] ?></span> - <?= "$oldestTransactionDate" ?></p>
+                </div>
+            </div>
+        </div>
+        <?php
+            }
+        ?>
+
         <table class="data-table">
             <tr>
                 <th class="width-small">Kode Invoice</th>
@@ -112,7 +156,7 @@ $transaksiPakets = $data['pakets'] ?? [];
                             </td>
                             <td>{$transaksi['nama_member']}</td>
                             <td>
-                    
+
                     ";
 
                 foreach ($transaksiPakets as $transaksiPaket) {
@@ -161,10 +205,33 @@ fm::displayPopMessagesByContext('report_message', 'bottom-right');
     $(function() {
         $('input[name="datetimes"]').daterangepicker({
             timePicker: true,
-            startDate: moment().startOf('hour'),
-            endDate: moment().startOf('hour').add(32, 'hour'),
+
+            timePicker24Hour: true,
             locale: {
-                format: 'M/DD hh:mm A'
+                format: 'M/DD hh:mm A',
+                daysOfWeek: [
+                    "Sen",
+                    "Sel",
+                    "Rab",
+                    "Kam",
+                    "Jum",
+                    "Sab",
+                    "Min"
+                ],
+                monthNames: [
+                    "Januari",
+                    "Februari",
+                    "Maret",
+                    "April",
+                    "Mei",
+                    "Juni",
+                    "Juli",
+                    "Augustus",
+                    "September",
+                    "Oktober",
+                    "Nopember",
+                    "Desember"
+                ],
             }
         });
     });

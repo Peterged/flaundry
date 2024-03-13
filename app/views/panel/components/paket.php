@@ -22,8 +22,8 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Outlet | FLaundry</title>
 </head>
-<?php 
-    $tableColumns = $data['tableColumns'];
+<?php
+$tableColumns = $data['tableColumns'];
 ?>
 
 <?php includeFile("$base/panel/inc/sidebar.php") ?>
@@ -45,7 +45,10 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
             <a href="<?= routeTo("/panel/paket/add/$sessionIdOutlet") ?>" class="add-btn add-outlet-btn">Tambah Paket</a>
         </div>
         <?php
-        $grouped_array = array();
+        // echo "<pre>";
+        // print_r($data['pakets']);
+        // echo "</pre>";
+        $grouped_array = [];
 
         foreach ($data['pakets'] as $item) {
             $grouped_array[$item['nama']][] = $item;
@@ -63,16 +66,17 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
             echo "<th class='width-medium'>Actions</th>";
             echo "</tr>";
             foreach ($value as $paket) {
+
                 $currentRoute = routeTo("/panel");
                 $harga = $paket['harga'];
                 $numf = new NumberFormatter("en", NumberFormatter::CURRENCY);
                 $numf->setAttribute(NumberFormatter::FRACTION_DIGITS, 0);
                 $formattedNumber = $numf->formatCurrency($harga, 'IDR');
                 $harga = preg_replace('/IDR/', 'Rp', $formattedNumber);
-                $jenis = _::map(explode('_', $paket['jenis'] . "_"), function ($item) {
-                    return ucfirst($item);
-                });
-                $jenis = implode(' ', $jenis);
+
+                $jenis = str_replace('_', ' ', $paket['jenis']);
+                $jenis = ucwords($jenis);
+
                 echo "
                         <tr>
                             <td>{$paket['id']}</td>
@@ -91,7 +95,6 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
             echo "</table>";
             echo "
                 <span class='spacer'></span>
-                <span class='divider-light'></span>
             ";
         }
         ?>

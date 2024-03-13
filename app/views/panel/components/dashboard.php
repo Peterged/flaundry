@@ -18,7 +18,7 @@ Session::startToken();
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/card.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/dashboard.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="<?= PROJECT_ROOT ?>/public/js/chart.js"></script>
     <title>Dashboard | FLaundry</title>
 </head>
 <?php includeFile("$base/panel/inc/sidebar.php") ?>
@@ -38,13 +38,13 @@ Session::startToken();
                 <div class="card-content">
                     <div class="card-body">
                         <div class="card-title">
-                            <p>Welcome back, Kreshna</p>
+                            <p>Welcome back, <?= ucfirst($_SESSION['username']) ?></p>
                         </div>
                         <div class="card-chart">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis totam autem amet necessitatibus assumenda voluptatum omnis nostrum qui</p>
+                            <p>Selamat datang di FLaundry!</p>
                         </div>
                         <div class="card-button">
-                            <a href="#" class="card-button-link">View Report</a>
+                            <a href="<?= routeTo("/panel/report") ?>" class="card-button-link">View Report</a>
                         </div>
                     </div>
                     <div class="card-chart">
@@ -123,7 +123,7 @@ fm::displayPopMessagesByContext('welcome-message', 'bottom-right', 5000);
     var chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['J', 'Feb', 'Mar', 'Apr', 'Mei'],
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei'],
             datasets: [{
                 label: 'Income',
                 data: [100, 200, 150, 300, 250, 400, 350],
@@ -189,13 +189,18 @@ fm::displayPopMessagesByContext('welcome-message', 'bottom-right', 5000);
 <script>
     var ctx = document.querySelector('canvas.report-income-statistics');
     let delayed;
+    let curr = new Date();
+    let first = curr.getDate() - curr.getDay();
+    let last = first + 6;
+    var firstDay = new Date(curr.setDate(first)).toLocaleDateString();
+    let lastDay = new Date(curr.setDate(last)).toLocaleDateString();
     var chart = new Chart(ctx, {
-        type: 'bar', // Change the type to 'bar'
+        type: 'bar',
         data: {
-            labels: ['S', 'S', 'R', 'K', 'J', 'S', 'M'],
+            labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
             datasets: [{
-                label: 'Income',
-                data: [100, 200, 150, 300, 250, 400, 350],
+                label: `Penghasilan dari ${firstDay} - ${lastDay}`,
+                data: ["Rp. 100.000", 200, 150, 300, 250, 400, 350],
                 backgroundColor: '#4895ef', // Set the background color for the bars
                 borderWidth: 0, // Remove the border width,
                 barThickness: 30,
@@ -221,11 +226,16 @@ fm::displayPopMessagesByContext('welcome-message', 'bottom-right', 5000);
             },
             plugins: {
                 legend: {
-                    display: false,
+                    // display: false,
                 },
                 tooltip: {
                     callbacks: {
                         label: ((tooltipItem, data) => {
+                            let match = tooltipItem.formattedValue.match(/\d+/);
+                            console.log(match);
+                            if(match && match.length) {
+                                return match[0];
+                            }
                             return tooltipItem.formattedValue
                         })
                     }
@@ -244,9 +254,6 @@ fm::displayPopMessagesByContext('welcome-message', 'bottom-right', 5000);
                     ticks: {
                         padding: 10
                     }
-                    // ticks: {
-                    //     display: false
-                    // }
                 },
                 y: {
                     border: {

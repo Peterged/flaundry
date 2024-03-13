@@ -36,9 +36,9 @@ $model = $data['model'];
 
 $query = "
 SELECT tb_transaksi.*, tb_member.nama AS nama_pelanggan, tb_member.tlp AS tlp_pelanggan, tb_member.alamat AS alamat_pelanggan, tb_outlet.nama AS nama_outlet, tb_user.nama AS nama_karyawan
-FROM tb_transaksi 
-INNER JOIN tb_member ON tb_transaksi.id_member = tb_member.id 
-INNER JOIN tb_outlet ON tb_transaksi.id_outlet = tb_outlet.id 
+FROM tb_transaksi
+INNER JOIN tb_member ON tb_transaksi.id_member = tb_member.id
+INNER JOIN tb_outlet ON tb_transaksi.id_outlet = tb_outlet.id
 INNER JOIN tb_user ON tb_transaksi.id_user = tb_user.id WHERE tb_transaksi.id = '$idtransaksi'";
 
 $data_transaksi = $model->query($query);
@@ -129,10 +129,10 @@ try {
     $progress = handleStatusProgressValue($data_transaksi['status']);
     $previousProgressValue = isset($_SESSION['previousProgressValue']) ? $_SESSION['previousProgressValue'] : 0;
     $query = "
-    SELECT tb_transaksi.*, tb_member.nama AS nama_pelanggan, tb_member.tlp AS tlp_pelanggan, tb_member.alamat AS alamat_pelanggan, tb_outlet.nama AS nama_outlet, tb_user.nama AS nama_karyawan,    
-    FROM tb_transaksi 
-    INNER JOIN tb_member ON tb_transaksi.id_member = tb_member.id 
-    INNER JOIN tb_outlet ON tb_transaksi.id_outlet = tb_outlet.id 
+    SELECT tb_transaksi.*, tb_member.nama AS nama_pelanggan, tb_member.tlp AS tlp_pelanggan, tb_member.alamat AS alamat_pelanggan, tb_outlet.nama AS nama_outlet, tb_user.nama AS nama_karyawan,
+    FROM tb_transaksi
+    INNER JOIN tb_member ON tb_transaksi.id_member = tb_member.id
+    INNER JOIN tb_outlet ON tb_transaksi.id_outlet = tb_outlet.id
     INNER JOIN tb_user ON tb_transaksi.id_user = tb_user.id WHERE tb_transaksi.id = '$idtransaksi'";
     ?>
     <div class="container" style="flex-direction: column;">
@@ -199,29 +199,21 @@ try {
                                     <td>
                                         <?php
                                         $statusChangeRoute = routeTo("/panel/transaksi_status_handler");
-                                        if (in_array($data_transaksi['status'], ['selesai', 'diambil']) || $data_transaksi['dibayar'] == 'dibayar') {
+
                                         ?>
                                             <select <?php
                                                     if ($_SESSION['role'] == 'owner') {
                                                         echo "disabled";
                                                     } ?> onchange="pilihStatus(this.options[this.selectedIndex].value, '<?= $idtransaksi ?>')">
-                                                <option value="selesai" <?php if ($data_transaksi['status'] == 'selesai') {
-                                                                            echo "selected";
-                                                                        } ?>>
-                                                    Selesai
-                                                </option>
-
-                                                <option value="diambil" <?php if ($data_transaksi['status'] == 'diambil') {
-                                                                            echo "selected";
-                                                                        } ?>>
-                                                    Diambil
-                                                </option>
+                                                    <?php
+                                                        $statusArray = ['baru', 'proses', 'selesai', 'diambil'];
+                                                        foreach($statusArray as $statusItem) {
+                                                            $selected = $statusItem == $data_transaksi['status'] ? "selected" : "";
+                                                            echo "<option value='$statusItem' $selected>$statusItem</option>";
+                                                        }
+                                                    ?>
                                             </select>
-                                        <?php
-                                        } else {
-                                            echo ucfirst($data_transaksi['status']);
-                                        }
-                                        ?>
+
                                         <script>
                                             function pilihStatus(value, id) {
                                                 const url = "<?= $statusChangeRoute ?>";
@@ -386,6 +378,7 @@ try {
                                 <td colspan="4" style="text-align: right; border-right: 1px solid #e6e5e5; font-weight: bold;">Total Keseluruhan</td>
                                 <td style="text-align: center; font-weight: bold; color: <?= $warna_total ?>;">
                                     <?php
+                                    ini_set('display_errors', 0);
                                     $total_keseluruhan = ($grand_total['total_harga'] + $data_transaksi['biaya_tambahan'] + $pajak) - $diskon;
                                     echo formatRupiah($total_keseluruhan);
                                     ?>
@@ -399,7 +392,7 @@ try {
                     <div class="box-biaya-tambahan-container noprint">
                         <div class="box-biaya-tambahan">
                             <form action="<?= routeTo("/panel/detail-transaksi/biaya_tambahan/$idtransaksi") ?>" method="post">
-                                <div class="box-input-biaya-tambahan" style="display: 
+                                <div class="box-input-biaya-tambahan" style="display:
                                 <?php if ($data_transaksi['dibayar'] == 'dibayar') {
                                     echo "none";
                                 } ?>;">
@@ -429,10 +422,12 @@ try {
                                     </button>
                                 <?php
                                 }
+                                if ($data_transaksi['dibayar'] !== 'dibayar' || $_SESSION['role'] == 'owner') {
                                 ?>
-                                <input type="submit" value="Bayar" name="bayar_sekarang" onclick="return confirm('Really want to pay?')" <?php if ($data_transaksi['dibayar'] == 'dibayar' || $_SESSION['role'] == 'owner') {
-                                                                                                                                                echo "hidden";
-                                                                                                                                            } ?>>
+                                <input type="submit" value="Bayar" name="bayar_sekarang" onclick="return confirm('Really want to pay?')" >
+                                <?php
+                                }
+                                ?>
                             </form>
                         </div>
                     </div>

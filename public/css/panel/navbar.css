@@ -57,11 +57,11 @@
   flex-direction: column;
 }
 
-.panel-navbar .header .title {
+.panel-navbar .header .header-title {
   font-size: 1.25rem;
 }
 
-.panel-navbar .header .title p {
+.panel-navbar .header .header-title p {
   font-weight: 500;
 }
 
@@ -228,7 +228,7 @@
     display: flex;
     width: 100%;
     height: 100%;
-    
+
 }
 
 .search-box .filter-popup .filter-item .filter-item-input input {

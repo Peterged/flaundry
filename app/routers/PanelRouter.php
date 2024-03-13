@@ -70,7 +70,7 @@ function outlet($req, $res, $connection)
     $res->render('/panel/components/outlet', $data);
 }
 
-// function outletSearchPost($req, $res, $connection) 
+// function outletSearchPost($req, $res, $connection)
 // {
 //     validateUserSession($req, $res);
 
@@ -496,7 +496,7 @@ function karyawan($req, $res, $connection)
 {
     validateUserSession($req, $res);
     $user = new User($connection);
-    $userData = $user->query("SELECT tb_user.*, tb_outlet.nama as nama_outlet FROM tb_user JOIN tb_outlet ON tb_user.id_outlet = tb_outlet.id ORDER BY tb_outlet.nama ASC");
+    $userData = $user->query("SELECT tb_user.*, tb_outlet.nama as nama_outlet FROM tb_user JOIN tb_outlet ON tb_user.id_outlet = tb_outlet.id ORDER BY tb_outlet.nama DESC");
     $data = [
         'karyawans' => $userData->getData(),
     ];
@@ -805,7 +805,6 @@ function detailTransaksiTambahPaketPost($req, $res, $con)
 
     if ($detailTransaksi->validateSave($dataBody)) {
         $detailTransaksi->save();
-        $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET status = 'proses' WHERE id = $id_transaksi");
     }
 
     $nextLocation = "/panel/detail-transaksi/$id_transaksi";
@@ -856,7 +855,7 @@ function detailTransaksiBayarHandler($req, $res, $con)
     } else {
         $timezone = Cookie::get('clientTimezone', 'Asia/Makassar');
         $now = Carbon::now($timezone);
-        $result = $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET dibayar = 'dibayar', status = 'selesai', tgl_bayar = '$now' WHERE id = '$id_transaksi'");
+        $result = $detailTransaksi->queryWithTransaction("UPDATE tb_transaksi SET dibayar = 'dibayar', tgl_bayar = '$now' WHERE id = '$id_transaksi'");
 
         if ($result->getSuccess()) {
             fm::addMessage([
@@ -984,6 +983,7 @@ function reportGenerate($req, $res, $con)
     validateUserSession($req, $res);
     $datetime = $req->getQuery('datetimes');
 
+
     if ($datetime) {
         $statusList = [
             'semua', 'belum_dibayar', 'dibayar'
@@ -1006,23 +1006,27 @@ function reportGenerate($req, $res, $con)
         $start = strtotime($dates[0]);
         $end = strtotime($dates[1]);
 
-        $startFormatted = date("Y-m-d H:i:s", $start);
-        $endFormatted = date("Y-m-d H:i:s", $end);
+        $startFormatted = date("Y-m-d H:i", $start);
+        $endFormatted = date("Y-m-d H:i", $end);
 
         $transaksi = new Transaksi($con);
-        $transaksiData = $transaksi->query("SELECT * FROM tb_transaksi WHERE tgl BETWEEN '$startFormatted' AND '$endFormatted'");
+        $transaksiData = $transaksi->query("SELECT * FROM tb_transaksi ");
 
-        $transaksiData = $transaksi->query("SELECT tb_transaksi.*, tb_member.nama as nama_member FROM tb_transaksi JOIN tb_member ON tb_transaksi.id_member = tb_member.id $additionalQuery ORDER BY tb_transaksi.tgl DESC");
+        $transaksiData = $transaksi->query("SELECT tb_transaksi.*, tb_member.nama as nama_member FROM tb_transaksi JOIN tb_member ON tb_transaksi.id_member = tb_member.id $additionalQuery WHERE tgl BETWEEN '$startFormatted' AND '$endFormatted' ORDER BY tb_transaksi.tgl DESC");
         $transaksiPaketData = $transaksi->query("SELECT tb_detail_transaksi.*, tb_paket.nama_paket FROM tb_detail_transaksi JOIN tb_paket ON tb_detail_transaksi.id_paket = tb_paket.id");
         $data = [
             'transaksis' => $transaksiData->getData(),
             'pakets' => $transaksiPaketData->getData(),
+            'startDate' => $startFormatted,
+            'endDate' => $endFormatted,
             'status' => $status
         ];
     } else {
         $data = [
             'transaksis' => [],
             'pakets' => [],
+            'startDate' => '',
+            'endDate' => '',
             'status' => ''
         ];
 

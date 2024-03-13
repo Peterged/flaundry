@@ -6,7 +6,7 @@ $myRoute = end($myRoute);
 
 <div class="panel-navbar">
     <div class="header">
-        <div class="title">
+        <div class="header-title">
             <p><?= ucfirst($myRoute) ?></p>
         </div>
         <div class="breadcrumb">
@@ -162,7 +162,7 @@ $myRoute = end($myRoute);
             }
         });
 
-        
+
     } catch (e) {
         // console.log(e);
     }

@@ -14,7 +14,7 @@ use App\Services\FlashMessage as fm;
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/global.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/form/minimalisticForm.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
-    <title>Edit Outlet</title>
+    <title>Edit Paket | FLaundry</title>
 </head>
 
 <body>
@@ -31,14 +31,14 @@ use App\Services\FlashMessage as fm;
     <div class="container">
         <form method="post" class="wrapper" id="form-login">
             <h1 class="title">Edit Paket</h1>
-            
+
             <div class="input-group">
                 <label for="nama">Nama Paket</label> <input autofocus type="text" name="nama" id="nama" placeholder="Nama Outlet" autocomplete="off" required value="<?= $currentPaket['nama_paket'] ?>">
             </div>
             <div class="input-group">
                 <label for="jenis_paket">Jenis Paket</label>
                 <select name="jenis_paket" id="jenis_paket" required>
-                    <?php 
+                    <?php
                         $currentJenis = $currentPaket['jenis'];
                         $jenisOptions = ['kiloan', 'selimut', 'bed_cover', 'kaos', 'lain'];
                         foreach ($jenisOptions as $jenis) {

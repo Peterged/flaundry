@@ -34,7 +34,7 @@ class Paket extends Model
         $this->setRequiredProperties(['id_outlet', 'nama_paket', 'jenis', 'harga']);
 
         $result = new SaveResult();
-        
+
         $this->validateSave();
 
         $this->tryCatchWrapper(function () use (&$result) {
@@ -47,7 +47,7 @@ class Paket extends Model
                 'jenis' => $this->jenis,
                 'harga' => $this->harga
             ]);
-            
+
             $data = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? [[]];
 
             $result->setData($data);
@@ -63,23 +63,30 @@ class Paket extends Model
         $namaPaketMaxLength = 36;
         $daftarJenisPaket = ['kiloan', 'selimut', 'bed_cover', 'kaos', 'lain'];
 
+        // BLA BLA BLA
+        $harga = $this->harga ?? 0;
+        $jenis = $this->jenis ?? '';
+        $nama_paket = $this->nama_paket ?? '';
         try {
-            if(!is_null($body)) {
-                $this->nama_paket = $body['nama'];
-                $this->jenis = $body['jenis_paket'];
-                $this->harga = $body['harga'];
+            if (!is_null($body)) {
+                $harga = $body['harga'];
+                $jenis = $body['jenis_paket'];
+                $nama_paket = $body['nama'];
             }
-            if (!v::stringType()->length($namaPaketMinLength, $namaPaketMaxLength)->validate($this->nama_paket)) {
+            if (!v::stringType()->length($namaPaketMinLength, $namaPaketMaxLength)->validate($nama_paket)) {
                 throw new ValidationException("Nama paket harus diantara $namaPaketMinLength dan $namaPaketMaxLength karakter", FLASH_ERROR);
             }
-            
-            if(!v::in($daftarJenisPaket)->validate($this->jenis)) {
+
+            if (!v::in($daftarJenisPaket)->validate($jenis)) {
                 throw new ValidationException('Jenis paket harus diantara' . implode(', ', $daftarJenisPaket) . '!', FLASH_ERROR);
             }
 
-            if (!v::number()->min(0)->validate($this->harga)) {
+            if (!v::number()->min(0)->validate($harga)) {
                 throw new ValidationException('Harga harus berupa angka dan lebih dari 0!', FLASH_ERROR);
             }
+            $this->nama_paket = $nama_paket;
+            $this->jenis = $jenis;
+            $this->harga = $harga;
         } catch (\Exception $e) {
             if ($e instanceof ValidationException) {
                 if ($e->getErrorDisplayType() === FLASH_ERROR) {
@@ -90,8 +97,7 @@ class Paket extends Model
                         'context' => 'paket_message'
                     ]);
                 }
-            }
-            else {
+            } else {
                 fm::addMessage([
                     'type' => 'error',
                     'title' => 'Something went wrong',
@@ -99,7 +105,7 @@ class Paket extends Model
                     'context' => 'paket_message'
                 ]);
             }
-            
+
             return false;
         }
 
