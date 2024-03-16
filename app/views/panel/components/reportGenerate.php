@@ -117,7 +117,7 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
                 <th class="width-small">Kode Invoice</th>
                 <th class="width-small">Pelanggan</th>
                 <th class="width-medium">Paket</th>
-                <th class="width-large">Batas Pengambilan</th>
+                <th class="width-large">Batas Pembayaran</th>
                 <th class="width-small">Status</th>
                 <th class="width-medium">Actions</th>
             </tr>

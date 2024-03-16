@@ -14,6 +14,52 @@ $apiRouter->get('/about', function ($req, $res) { // /about
     $res->render('/pages/about');
 });
 
+$apiRouter->get('/panel/dashboard', function ($req, $res) use ($con) { // /panel/dashboard
+    $day = date('w');
+    $week_start = date('Y-m-d 00:00:00', strtotime('-' . $day . ' days'));
+    $week_end = date('Y-m-d 23:59:59', strtotime('+' . (6 - $day) . ' days'));
+    // SQL QUERY
+    // $queryTest = "SELECT * FROM tb_transaksi WHERE tgl BETWEEN '$week_start' AND '$week_end'";
+    $query = "SELECT tb_transaksi.tgl AS tgl_transaksi, tb_detail_transaksi.total_harga AS total_harga FROM tb_transaksi INNER JOIN tb_detail_transaksi ON tb_transaksi.id = tb_detail_transaksi.id_transaksi WHERE tb_transaksi.dibayar = 'dibayar' AND tb_transaksi.tgl BETWEEN '$week_start' AND '$week_end' ORDER BY tb_transaksi.tgl";
+    $stmt = $con->prepare($query);
+    $stmt->execute();
+    $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+
+
+    $dataPendapatan = [];
+    $date = "";
+    $idx = 0;
+
+    foreach($data as $transaksi) {
+        $transaksi['tgl_transaksi'] = date('Y-m-d', strtotime($transaksi['tgl_transaksi']));
+
+        if(!strlen($date) || $date === $transaksi['tgl_transaksi']) {
+            if (!isset($dataPendapatan[$idx])) {
+                $dataPendapatan[$idx] = 0;
+            }
+            $dataPendapatan[$idx] += $transaksi['total_harga'];
+        }
+        else {
+            $idx++;
+            if (!isset($dataPendapatan[$idx])) {
+                $dataPendapatan[$idx] = 0;
+            }
+            $dataPendapatan[$idx] += $transaksi['total_harga'];
+        }
+        $date = $transaksi['tgl_transaksi'];
+    }
+
+    $total_transaksi = count($data);
+    $total_pendapatan = 0;
+    foreach ($data as $transaksi) {
+        $total_pendapatan += $transaksi['total_harga'];
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode(['total_transaksi' => $total_transaksi, 'data' => $dataPendapatan], JSON_PRETTY_PRINT);
+});
+
 
 
 $apiRouter->get('/users/robots', function ($req, $res) use ($con) {
@@ -47,23 +93,22 @@ $apiRouter->post('/session', function ($req, $res) {
             if (isset($jsonData['key']) && isset($jsonData['value'])) {
 
                 $oldValue = $jsonData['old_value'] ?? '';
-                if(json_validate($jsonData['old_value'])) {
+                if (json_validate($jsonData['old_value'])) {
                     return;
                 }
 
                 $old_key = null;
-                if(isset($jsonData['old_key'])) {
+                if (isset($jsonData['old_key'])) {
                     $old_key = $jsonData['old_key'];
                 }
                 $key = $jsonData['key'];
                 $value = $jsonData['value'];
-                if(isset($_SESSION[$old_key]) && $old_key != $key && $old_key) {
+                if (isset($_SESSION[$old_key]) && $old_key != $key && $old_key) {
                     unset($_SESSION[$old_key]);
                 }
-                if(strlen($key) == 0) {
+                if (strlen($key) == 0) {
                     unset($_SESSION[$old_key]);
-                }
-                else {
+                } else {
                     $_SESSION[$key] = $value;
                 }
             }

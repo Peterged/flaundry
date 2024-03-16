@@ -33,6 +33,7 @@ function formatRupiah(int | float $angka)
 <?php
 $transaksis = $data['transaksis'] ?? [];
 $transaksiPakets = $data['pakets'] ?? [];
+
 ?>
 
 <?php includeFile("$base/panel/inc/sidebar.php") ?>
@@ -76,7 +77,7 @@ $transaksiPakets = $data['pakets'] ?? [];
                 <th class="width-small">Pelanggan</th>
                 <th class="width-medium">Paket</th>
                 <th class="width-medium">Tanggal</th>
-                <th class="width-large">Batas Pengambilan</th>
+                <th class="width-large">Batas Pembayaran</th>
                 <th class="width-small">Status</th>
                 <th class="width-small">Actions</th>
             </tr>

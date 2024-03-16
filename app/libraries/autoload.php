@@ -34,9 +34,6 @@ if (isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] == 'production') {
     });
 }
 
-$createCookieFileContent = file_get_contents(__DIR__ . "/../../public/js/createCookie.js");
-echo "<script defer>$createCookieFileContent</script>";
-
 set_include_path('app/views/errors/');
 // Set the include path to its default value
 ini_set('include_path', get_include_path());
