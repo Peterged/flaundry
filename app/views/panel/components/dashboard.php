@@ -197,86 +197,87 @@ fm::displayPopMessagesByContext('welcome-message', 'bottom-right', 5000);
         })
         .then((response) => response.json())
         .then((data) => {
-                console.log(data);
-                var ctx = document.querySelector('canvas.report-income-statistics');
-                let delayed;
-                let curr = new Date();
-                let first = curr.getDate() - curr.getDay();
-                let last = first + 6;
-                var firstDay = new Date(curr.setDate(first)).toLocaleDateString();
-                let lastDay = new Date(curr.setDate(last)).toLocaleDateString();
-                var chart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
-                        datasets: [{
-                            label: `Penghasilan dari ${firstDay} - ${lastDay}`,
-                            data: [...data.data],
-                            backgroundColor: '#4895ef', // Set the background color for the bars
-                            borderWidth: 0, // Remove the border width,
-                            barThickness: 30,
-                            barPercentage: 1,
-                            borderSkipped: false,
-                            barBorderRadius: 7,
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        responsiveAnimationDuration: 5000,
-                        animation: {
-                            onComplete: () => {
-                                delayed = true;
-                            },
-                            delay: (context) => {
-                                let delay = 0;
-                                if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                                    delay = context.dataIndex * 500 + context.datasetIndex * 350;
-                                }
-                                return delay;
-                            },
+            console.log(data);
+            var ctx = document.querySelector('canvas.report-income-statistics');
+            let delayed;
+            let curr = new Date();
+            let first = curr.getDate() - curr.getDay();
+            let last = first + 6;
+            var firstDay = new Date(curr.setDate(first)).toLocaleDateString();
+            let lastDay = new Date(curr.setDate(last)).toLocaleDateString();
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: `Penghasilan dari ${firstDay} - ${lastDay}`,
+                        data: [...data.data],
+                        backgroundColor: gradient,
+                        borderColor: '#4895ef',
+                        pointBackgroundColor: "#fff",
+                        pointBorderColor: "#4C8EF0",
+                        pointBorderWidth: 2,
+                        borderWidth: 2,
+                        tension: 0.5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    responsiveAnimationDuration: 5000,
+                    animation: {
+                        onComplete: () => {
+                            delayed = true;
                         },
-                        plugins: {
-                            legend: {
-                                // display: false,
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: ((tooltipItem, data) => {
+                        delay: (context) => {
+                            let delay = 0;
+                            if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                                delay = context.dataIndex * 500 + context.datasetIndex * 350;
+                            }
+                            return delay;
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            // display: false,
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: ((tooltipItem, data) => {
 
-                                        return `Rp. ${tooltipItem.formattedValue}`
-                                    })
-                                }
+                                    return `Rp. ${tooltipItem.formattedValue}`
+                                })
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            border: {
+                                display: false
+                            },
+                            grid: {
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                            },
+                            ticks: {
+                                padding: 10
                             }
                         },
-                        scales: {
-                            x: {
-                                border: {
-                                    display: false
-                                },
-                                grid: {
-                                    display: false,
-                                    drawOnChartArea: false,
-                                    drawTicks: false,
-                                },
-                                ticks: {
-                                    padding: 10
-                                }
+                        y: {
+                            border: {
+                                display: false
                             },
-                            y: {
-                                border: {
-                                    display: false
-                                },
-                                grid: {
-                                    display: false,
-                                    drawOnChartArea: false,
-                                    drawTicks: false,
-                                },
-                                ticks: {
-                                    display: false
-                                }
+                            grid: {
+                                // display: false,
+                                // drawOnChartArea: false,
+                                // drawTicks: false,
+                            },
+                            ticks: {
+                                display: false
                             }
                         }
                     }
-                });
-            })
+                }
+            });
+        })
 </script>

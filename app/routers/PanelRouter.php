@@ -1012,7 +1012,7 @@ function reportGenerate($req, $res, $con)
         $transaksi = new Transaksi($con);
         $transaksiData = $transaksi->query("SELECT * FROM tb_transaksi ");
 
-        $transaksiData = $transaksi->query("SELECT tb_transaksi.*, tb_member.nama as nama_member FROM tb_transaksi JOIN tb_member ON tb_transaksi.id_member = tb_member.id $additionalQuery WHERE tgl BETWEEN '$startFormatted' AND '$endFormatted' ORDER BY tb_transaksi.tgl DESC");
+        $transaksiData = $transaksi->query("SELECT tb_transaksi.*, tb_member.nama as nama_member, tb_outlet.nama as nama_outlet FROM tb_transaksi JOIN tb_member ON tb_transaksi.id_member = tb_member.id JOIN tb_outlet ON tb_transaksi.id_outlet = tb_outlet.id $additionalQuery WHERE tgl BETWEEN '$startFormatted' AND '$endFormatted' ORDER BY tb_transaksi.tgl DESC");
         $transaksiPaketData = $transaksi->query("SELECT tb_detail_transaksi.*, tb_paket.nama_paket FROM tb_detail_transaksi JOIN tb_paket ON tb_detail_transaksi.id_paket = tb_paket.id");
         $data = [
             'transaksis' => $transaksiData->getData(),

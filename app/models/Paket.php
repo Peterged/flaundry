@@ -13,7 +13,7 @@ use App\Utils\MyLodash as _;
 
 
 
-class Paket extends Model
+class   Paket extends Model
 {
     public string $id;
     public int $id_outlet;

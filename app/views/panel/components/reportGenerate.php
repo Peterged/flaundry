@@ -70,7 +70,7 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
                                 'parts' => 2,
                                 'join' => ', '
                             ]);
-                        $humanReadableOldestTransaction = Carbon::parse($oldestTransactionDate, $timezone)->locale('id')->diffForHumans([
+                            $humanReadableOldestTransaction = Carbon::parse($oldestTransactionDate, $timezone)->locale('id')->diffForHumans([
                                 'parts' => 2,
                                 'join' => ', '
                             ]);
@@ -88,37 +88,44 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
         <span class='divider'></span>
 
         <?php
-            if(isset($latestTransactionDate) && isset($oldestTransactionDate) && ($latestTransactionDate !== $oldestTransactionDate)) {
+        if (isset($latestTransactionDate) && isset($oldestTransactionDate) && ($latestTransactionDate !== $oldestTransactionDate)) {
         ?>
-        <div class="title-text-box-info info-blue" style="gap: 0.5rem">
-            <div class="title-text-wrapper-column">
-                <div class="title-text-description">
-                    <p class="text-medium font-large">Transaksi Terkini</p>
+            <div class="title-text-box-info info-blue" style="gap: 0.5rem">
+                <div class="title-text-wrapper-column">
+                    <div class="title-text-description">
+                        <p class="text-medium font-large">Transaksi Terkini</p>
+                    </div>
+                    <div class="title-text-description">
+                        <p class="text-light font-small"><span class="text-regular"><?= $latestTransaction['kode_invoice'] ?></span> - <?= "$latestTransactionDate" ?></p>
+                    </div>
                 </div>
-                <div class="title-text-description">
-                    <p class="text-light font-small"><span class="text-regular"><?= $latestTransaction['kode_invoice'] ?></span> - <?= "$latestTransactionDate" ?></p>
+                <div class="title-text-wrapper-column">
+                    <div class="title-text-description">
+                        <p class="text-medium font-large">Transaksi Terlama</p>
+                    </div>
+                    <div class="title-text-description">
+                        <p class="text-light font-small"><span class="text-regular"><?= $oldestTransaction['kode_invoice'] ?></span> - <?= "$oldestTransactionDate" ?></p>
+                    </div>
                 </div>
             </div>
-            <div class="title-text-wrapper-column">
-                <div class="title-text-description">
-                    <p class="text-medium font-large">Transaksi Terlama</p>
-                </div>
-                <div class="title-text-description">
-                    <p class="text-light font-small"><span class="text-regular"><?= $oldestTransaction['kode_invoice'] ?></span> - <?= "$oldestTransactionDate" ?></p>
-                </div>
-            </div>
-        </div>
         <?php
-            }
+        }
         ?>
 
         <table class="data-table">
-            <tr>
+            <!-- <tr>
                 <th class="width-small">Kode Invoice</th>
                 <th class="width-small">Pelanggan</th>
                 <th class="width-medium">Paket</th>
                 <th class="width-large">Batas Pembayaran</th>
                 <th class="width-small">Status</th>
+                <th class="width-medium">Actions</th>
+            </tr> -->
+            <tr>
+                <th class="width-small">Kode Invoice</th>
+                <th class="width-small">Pelanggan</th>
+                <th class="width-medium">Paket</th>
+                <th class="width-large">Batas Pembayaran</th>
                 <th class="width-medium">Actions</th>
             </tr>
 
@@ -144,7 +151,9 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
 
 
                 $sudah_lewat = strtotime($batas_waktu) < strtotime($today);
-                if ($sudah_lewat) {
+                if ($transaksi['dibayar'] == 'dibayar') {
+                    $batas_waktu_str = "<p class='data-bold'>Lunas</p>";
+                } elseif ($sudah_lewat) {
                     $batas_waktu_str = "<p class='data-bold'>Batas waktu sudah lewat</p><small>$humanReadableDate2 | $batas_waktu_tanggal - $batas_waktu_jam</small>";
                 } else {
                     $batas_waktu_str = "<p class='data-bold'>$batas_waktu_tanggal<span> - $batas_waktu_jam</span></p><small>$humanReadableDate</small";
@@ -159,15 +168,38 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
 
                     ";
 
+                $total_harga = 0;
                 foreach ($transaksiPakets as $transaksiPaket) {
                     if ($transaksiPaket['id_transaksi'] == $transaksi['id']) {
-                        $total_harga = formatRupiah($transaksiPaket['total_harga']);
-                        echo "<p class='data-bold'>{$transaksiPaket['nama_paket']}</p>";
-                        echo "<small> {$transaksiPaket['qty']}x • $total_harga</small>";
+                        $total_harga += $transaksiPaket['total_harga'];
                     }
                 }
 
+                $occurrences = [];
+                global $occurences;
+
+                foreach ($transaksiPakets as $transaksiPaket) {
+                    if ($transaksi['id'] == $transaksiPaket['id_transaksi']) {
+                        $currentIdStr = $transaksi['id'];
+                        $currentPackageName = $transaksiPaket['nama_paket'];
+                        if (isset($occurences[$currentIdStr][$currentPackageName])) {
+                            $occurences[$currentIdStr][$currentPackageName]['qty'] += $transaksiPaket['qty'];
+                        } else {
+                            $occurences[$currentIdStr][$transaksiPaket['nama_paket']] = $transaksiPaket;
+                        }
+                    }
+                }
+
+                foreach ($occurences as $transaksiPaket) {
+                    foreach($transaksiPaket as $key => $value) {
+                        if ($value['id_transaksi'] == $transaksi['id']) {
+                            echo "<p>{$value['qty']}x<span style='color: rgba(0, 0, 0, 0.15)'> • </span>{$key}</p>";
+                        }
+                    }
+                }
+                $total_harga = formatRupiah($total_harga);
                 echo "
+                            <h3 class='data-bold' style='margin-top: 0.5rem'>$total_harga</h3>
                             </td>
                             <td>
                                 $batas_waktu_str
@@ -175,13 +207,6 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
                     ";
 
             ?>
-                <td>
-                    <?php
-
-                    echo "<p style='font-weight: bold'>" . ucfirst($transaksi['status']) . "</p>";
-                    ?>
-
-                </td>
                 <td>
                     <a href='<?= "$currentRoute/detail-transaksi/$transaksi[id]" ?>'>LIHAT DETAIL</a>
                 </td>

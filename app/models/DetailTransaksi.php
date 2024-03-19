@@ -35,7 +35,7 @@ class DetailTransaksi extends Model
         $this->setRequiredProperties(['id_transaksi', 'id_paket', 'qty', 'keterangan', 'total_harga']);
 
         $result = new SaveResult();
-        
+
         $this->validateSave();
 
         $this->tryCatchWrapper(function () use (&$result) {
@@ -49,7 +49,7 @@ class DetailTransaksi extends Model
                 'keterangan' => $this->keterangan,
                 'total_harga' => $this->total_harga
             ]);
-            
+
             $data = $stmt->fetchAll(\PDO::FETCH_ASSOC) ?? [[]];
 
             $result->setData($data);
@@ -64,7 +64,7 @@ class DetailTransaksi extends Model
         $keteranganMinLength = 0;
         $keteranganMaxLength = 100;
         $qtyMin = 1;
-        $qtyMax = 9999;
+        $qtyMax = 999999999999999999;
         $totalHargaMin = 0;
 
         try {
@@ -94,8 +94,8 @@ class DetailTransaksi extends Model
             if (!v::number()->min(0)->validate($this->id_paket)) {
                 throw new ValidationException('Id paket harus berupa angka dan lebih dari 0!', FLASH_ERROR);
             }
-            
-        
+
+
         } catch (\Exception $e) {
             if ($e instanceof ValidationException) {
                 if ($e->getErrorDisplayType() === FLASH_ERROR) {
@@ -115,7 +115,7 @@ class DetailTransaksi extends Model
                     'context' => 'detail_transaksi_message'
                 ]);
             }
-            
+
             return false;
         }
 

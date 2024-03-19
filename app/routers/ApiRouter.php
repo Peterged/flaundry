@@ -16,8 +16,8 @@ $apiRouter->get('/about', function ($req, $res) { // /about
 
 $apiRouter->get('/panel/dashboard', function ($req, $res) use ($con) { // /panel/dashboard
     $day = date('w');
-    $week_start = date('Y-m-d 00:00:00', strtotime('-' . $day . ' days'));
-    $week_end = date('Y-m-d 23:59:59', strtotime('+' . (6 - $day) . ' days'));
+    $week_start = date('Y-m-d 00:00:00');
+    $week_end = date('Y-m-d 23:59:59');
     // SQL QUERY
     // $queryTest = "SELECT * FROM tb_transaksi WHERE tgl BETWEEN '$week_start' AND '$week_end'";
     $query = "SELECT tb_transaksi.tgl AS tgl_transaksi, tb_detail_transaksi.total_harga AS total_harga FROM tb_transaksi INNER JOIN tb_detail_transaksi ON tb_transaksi.id = tb_detail_transaksi.id_transaksi WHERE tb_transaksi.dibayar = 'dibayar' AND tb_transaksi.tgl BETWEEN '$week_start' AND '$week_end' ORDER BY tb_transaksi.tgl";
