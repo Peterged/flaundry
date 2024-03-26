@@ -981,8 +981,8 @@ function report($req, $res, $con)
 function reportGenerate($req, $res, $con)
 {
     validateUserSession($req, $res);
+    
     $datetime = $req->getQuery('datetimes');
-
 
     if ($datetime) {
         $statusList = [
@@ -1010,13 +1010,23 @@ function reportGenerate($req, $res, $con)
         $endFormatted = date("Y-m-d H:i", $end);
 
         $transaksi = new Transaksi($con);
-        $transaksiData = $transaksi->query("SELECT * FROM tb_transaksi ");
+        
 
         $transaksiData = $transaksi->query("SELECT tb_transaksi.*, tb_member.nama as nama_member, tb_outlet.nama as nama_outlet FROM tb_transaksi JOIN tb_member ON tb_transaksi.id_member = tb_member.id JOIN tb_outlet ON tb_transaksi.id_outlet = tb_outlet.id $additionalQuery WHERE tgl BETWEEN '$startFormatted' AND '$endFormatted' ORDER BY tb_transaksi.tgl DESC");
-        $transaksiPaketData = $transaksi->query("SELECT tb_detail_transaksi.*, tb_paket.nama_paket FROM tb_detail_transaksi JOIN tb_paket ON tb_detail_transaksi.id_paket = tb_paket.id");
+        $transaksiPaketData = [];
+        if($transaksiData->getData()) {
+            $transaksiPaketData = $transaksi->query("SELECT tb_detail_transaksi.*, tb_paket.nama_paket FROM tb_detail_transaksi JOIN tb_paket ON tb_detail_transaksi.id_paket = tb_paket.id");
+        }
+
+        // PRODUK TERLARIS
+        $produkTerlaris = [];
+
+        $produkTerlaris = $transaksi->query("SELECT tb_paket.nama_paket, SUM(tb_detail_transaksi.qty) as qty, SUM(tb_detail_transaksi.total_harga) as total_harga FROM tb_detail_transaksi JOIN tb_paket ON tb_detail_transaksi.id_paket = tb_paket.id WHERE tb_detail_transaksi.id_transaksi IN (SELECT tb_transaksi.id FROM tb_transaksi WHERE tgl BETWEEN '$startFormatted' AND '$endFormatted') GROUP BY tb_paket.nama_paket ORDER BY qty DESC");
+
         $data = [
             'transaksis' => $transaksiData->getData(),
-            'pakets' => $transaksiPaketData->getData(),
+            'pakets' => $transaksiPaketData == [] ? [] : $transaksiPaketData->getData(),
+            'produkTerlaris' => $produkTerlaris->getData(),
             'startDate' => $startFormatted,
             'endDate' => $endFormatted,
             'status' => $status
@@ -1045,13 +1055,15 @@ function reportGenerate($req, $res, $con)
 }
 
 
+/**
+ * @param \App\Libraries\Request $req
+ * @param \App\Libraries\Response $res
+ * @param \App\Libraries\Database $con
+ */
 function reportGeneratePost($req, $res, $con)
 {
     validateUserSession($req, $res);
-    $body = $req->getBody();
-    $date = $body['datetimes'];
-
-    $date = "3/12 03:00 PM - 3/12 09:00 PM";
+    $date = $req->getQuery('datetimes');
 
     // Extract the start and end dates from the string
     $dates = explode(" - ", $date);

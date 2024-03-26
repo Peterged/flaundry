@@ -2,3 +2,18 @@
     padding: 0.25rem 0.5rem;
     outline: none;
 }
+
+
+@media print {
+    .noprint {
+        display: none !important;
+    }
+
+    .print {
+        display: block !important;
+    }
+
+    body {
+        padding: 0 !important;
+    }
+}

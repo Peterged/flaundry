@@ -4,7 +4,7 @@ $myRoute = end($myRoute);
 
 ?>
 
-<div class="panel-navbar">
+<div class="panel-navbar noprint">
     <div class="header">
         <div class="header-title">
             <p><?= ucfirst($myRoute) ?></p>

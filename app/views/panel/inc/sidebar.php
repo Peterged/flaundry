@@ -17,6 +17,7 @@ $role = $_SESSION['role'];
         </div>
     </div>
     <!-- <span class="line"></span> -->
+    
     <div class="btn-group">
         <span class="section-title">MAIN MENU</span>
         <a class="btn" href="<?= routeTo('/panel/dashboard') ?>">
@@ -119,25 +120,6 @@ $role = $_SESSION['role'];
 
             Logout
         </a>
-        <a class="btn" href="<?= routeTo('/auth/register') ?>">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                <path d="M19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20C20 20.5523 19.5523 21 19 21ZM6 19H18V9.15745L12 3.7029L6 9.15745V19Z"></path>
-            </svg>
-
-            Register
-        </a>
-
-        <span class="section-title section-title--xl-margin">EXPERIMENTAL</span>
-        <a class="btn --disabled" href="<?= routeTo('/') ?>">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0.539587 3.87024L0.500031 3C0.500031 1.89543 1.39546 1 2.50003 1H6.1716C6.70204 1 7.21074 1.21071 7.58582 1.58579L8.41424 2.41421C8.78932 2.78929 9.29803 3 9.82846 3H13.81C14.986 3 15.9082 4.00984 15.8018 5.18107L15.1654 12.1811C15.0717 13.2112 14.208 14 13.1736 14H2.82647C1.79206 14 0.928332 13.2112 0.834681 12.1811L0.198318 5.18107C0.154263 4.69647 0.286313 4.23949 0.539587 3.87024ZM2.1901 4C1.60207 4 1.14097 4.50492 1.19421 5.09054L1.83057 12.0905C1.8774 12.6056 2.30926 13 2.82647 13H13.1736C13.6908 13 14.1227 12.6056 14.1695 12.0905L14.8059 5.09054C14.8591 4.50492 14.398 4 13.81 4H2.1901ZM6.87871 2.29289C6.69117 2.10536 6.43682 2 6.1716 2H2.50003C1.95405 2 1.51027 2.43755 1.50021 2.98112L1.5065 3.11964C1.7193 3.04231 1.94939 3 2.1901 3H7.58582L6.87871 2.29289Z" fill="black" />
-            </svg>
-
-
-
-            File Manager
-        </a>
-
     </div>
 </div>
 

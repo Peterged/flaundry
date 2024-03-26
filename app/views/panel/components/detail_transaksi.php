@@ -193,7 +193,7 @@ try {
                                         ?>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class="noprint">
                                     <td>Status</td>
                                     <!-- <td>:</td> -->
                                     <td>
@@ -414,14 +414,12 @@ try {
                             $detailTransaksiBayarRoute = routeTo("/panel/detail-transaksi/bayar/$idtransaksi");
                             ?>
                             <form action="<?= $detailTransaksiBayarRoute ?>" method="post">
-                                <?php
-                                if ($data_transaksi['dibayar'] == 'dibayar') {
-                                ?>
+                                
                                     <button type="button" name="bayar_sekarang" onclick="window.print()">
                                         Print
                                     </button>
                                 <?php
-                                }
+                                
                                 if ($data_transaksi['dibayar'] !== 'dibayar' || $_SESSION['role'] == 'owner') {
                                 ?>
                                 <input type="submit" value="Bayar" name="bayar_sekarang" onclick="return confirm('Really want to pay?')" >

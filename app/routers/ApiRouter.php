@@ -14,18 +14,16 @@ $apiRouter->get('/about', function ($req, $res) { // /about
     $res->render('/pages/about');
 });
 
-$apiRouter->get('/panel/dashboard', function ($req, $res) use ($con) { // /panel/dashboard
-    $day = date('w');
-    $week_start = date('Y-m-d 00:00:00');
-    $week_end = date('Y-m-d 23:59:59');
+$apiRouter->get('/panel/dashboard', function ($req, $res) use ($con) { // /api/panel/dashboard
+    $week_start = date('Y-m-d 00:00:00', strtotime('monday this week'));
+    $week_end = date('Y-m-d 23:59:59', strtotime('sunday this week'));
+    
     // SQL QUERY
     // $queryTest = "SELECT * FROM tb_transaksi WHERE tgl BETWEEN '$week_start' AND '$week_end'";
     $query = "SELECT tb_transaksi.tgl AS tgl_transaksi, tb_detail_transaksi.total_harga AS total_harga FROM tb_transaksi INNER JOIN tb_detail_transaksi ON tb_transaksi.id = tb_detail_transaksi.id_transaksi WHERE tb_transaksi.dibayar = 'dibayar' AND tb_transaksi.tgl BETWEEN '$week_start' AND '$week_end' ORDER BY tb_transaksi.tgl";
     $stmt = $con->prepare($query);
     $stmt->execute();
     $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-
 
     $dataPendapatan = [];
     $date = "";
@@ -59,8 +57,6 @@ $apiRouter->get('/panel/dashboard', function ($req, $res) use ($con) { // /panel
     header('Content-Type: application/json');
     echo json_encode(['total_transaksi' => $total_transaksi, 'data' => $dataPendapatan], JSON_PRETTY_PRINT);
 });
-
-
 
 $apiRouter->get('/users/robots', function ($req, $res) use ($con) {
     // $query = "SELECT * FROM tb_user";

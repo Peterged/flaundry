@@ -57,6 +57,45 @@ class MyLodash
         return $result;
     }
 
+    public static function groupBy(array $array, string $key) {
+        $result = static::tryCatch(function () use ($array, $key) {
+            $result = [];
+            foreach ($array as $item) {
+                $result[$item[$key]][] = $item;
+            }
+            return $result;
+        });
+        return $result;
+    }
+
+    public static function sortBy(array $array, callable $callback)
+    {
+        $result = static::tryCatch(function () use ($array, $callback) {
+            $result = $array;
+            usort($result, $callback);
+            return $result;
+        });
+        return $result;
+    }
+
+    public static function groupByMerge(array $array, string $key) {
+        
+        $result = static::tryCatch(function () use ($array, $key) {
+            $result = [];
+            foreach ($array as $item) {
+                if(isset($result[$item[$key]])) {
+                    array_push($result[$item[$key]], $item);
+                }
+                else {
+                    $result[$item[$key]] = array($item);
+                }
+
+            }
+            return $result;
+        });
+        return $result;
+    }
+
     public static function uniq(array $array)
     {
         $result = static::tryCatch(function () use ($array) {

@@ -30,7 +30,7 @@ use App\Services\FlashMessage as fm;
         <form method="post" class="wrapper" id="form-login">
             <h1 class="title">Edit Member</h1>
             <div class="input-group">
-                <label for="nama">Nama Member</label> <input autofocus type="text" name="nama" id="nama" placeholder="Nama Member" autocomplete="off" required value="<?= $currentMember['nama'] ?>">
+                <label for="nama">Nama Member</label> <input autofocus type="text" name="nama" id="nama" placeholder="Nama Member" autocomplete="off" value="<?= $currentMember['nama'] ?>">
             </div>
             <div class="input-group">
                 <label for="alamat">Alamat</label>

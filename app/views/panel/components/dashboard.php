@@ -4,6 +4,7 @@ use App\Services\FlashMessage as fm;
 use App\Libraries\Essentials\Session;
 
 Session::startToken();
+$role = Session::get('role');
 
 ?>
 
@@ -56,52 +57,7 @@ Session::startToken();
             </div>
         </div>
 
-        <div class="first-column">
-            <div class="card card-1">
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <p>Today's Income</p>
-                        </div>
-                        <div class="card-description" style="aspect-ratio: 16/9">
-                            <canvas class="income"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <p>Outlet Terlaris</p>
-                        </div>
-                        <div class="card-description">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi atque consequuntur alias dolores quae iure sit consequatur, enim ab sapiente asperiores, distinctio optio culpa illum, in ullam totam porro eos.</p>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="card-button-link">Lihat Outlet</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <p>Aktivitas Terkini</p>
-                        </div>
-                        <div class="card-description">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium tempore ab saepe corrupti consectetur libero modi voluptatibus ad ratione quae repudiandae alias qui itaque, ipsam fugiat sequi. Eum, sequi deleniti!</p>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="card-button-link">Lihat Aktivitas</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
+        
         <div class="second-column">
 
         </div>
@@ -116,76 +72,15 @@ fm::displayPopMessagesByContext('welcome-message', 'bottom-right', 5000);
 <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageCloseDelay.js"></script>
 <!-- Random Shit -->
 <script>
-    var ctx = document.querySelector('canvas.income').getContext('2d');
+    var ctx = document.querySelector('canvas.report-income-statistics').getContext('2d');
     let gradient = ctx.createLinearGradient(0, 0, 0, 400);
     gradient.addColorStop(0, "rgba(72, 149, 239, 0.22)");
     gradient.addColorStop(1, "transparent");
-    var chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei'],
-            datasets: [{
-                label: 'Income',
-                data: [100, 200, 150, 300, 250, 400, 350],
-                fill: true,
-                backgroundColor: gradient,
-                borderColor: '#4895ef',
-                pointBackgroundColor: "#fff",
-                pointBorderColor: "#4C8EF0",
-                pointBorderWidth: 2,
-                borderWidth: 2,
-                tension: 0.5
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    display: false,
-                },
-            },
-            radius: 5,
-            hitRadius: 30,
-            hoverRadius: 12,
-            scales: {
-                y: {
-                    ticks: {
-                        display: false,
-                        beginAtZero: false,
-                        fontColor: '#fff',
-                        fontSize: 10,
-                        padding: 10,
-                        fontFamily: 'Poppins'
-                    },
-
-                    border: {
-                        display: false
-                    },
-                },
-                x: {
-                    ticks: {
-
-                        beginAtZero: false,
-                        color: 'rgba(0, 0, 0, 0.45)',
-                        fontSize: 10,
-                        padding: 10,
-                        fontFamily: 'Poppins'
-                    },
-                    grid: {
-                        display: false,
-                        drawOnChartArea: false,
-                        drawTicks: false,
-                    },
-                    border: {
-                        display: false
-                    }
-                }
-            },
-
-        }
-    });
+    
 </script>
 
 <!-- Welcome column chart -->
+<?php if($role == 'admin'): ?>
 <script>
     const baseProjectFolder = "/flaundry";
     // console.log(window.location.origin + `${baseProjectFolder}/api/panel/dashboard`);
@@ -201,17 +96,19 @@ fm::displayPopMessagesByContext('welcome-message', 'bottom-right', 5000);
             var ctx = document.querySelector('canvas.report-income-statistics');
             let delayed;
             let curr = new Date();
-            let first = curr.getDate() - curr.getDay();
+            
+            let first = curr.getDate() - (curr.getDay() === 0 ? 6 : curr.getDay() - 1);
             let last = first + 6;
             var firstDay = new Date(curr.setDate(first)).toLocaleDateString();
             let lastDay = new Date(curr.setDate(last)).toLocaleDateString();
+            
             var chart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: [],
+                    labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
                     datasets: [{
                         label: `Penghasilan dari ${firstDay} - ${lastDay}`,
-                        data: [...data.data],
+                        data: [...data.data],   
                         backgroundColor: gradient,
                         borderColor: '#4895ef',
                         pointBackgroundColor: "#fff",
@@ -281,3 +178,4 @@ fm::displayPopMessagesByContext('welcome-message', 'bottom-right', 5000);
             });
         })
 </script>
+<?php endif; ?>

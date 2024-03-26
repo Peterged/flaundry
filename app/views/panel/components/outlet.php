@@ -42,7 +42,7 @@ use App\Services\FlashMessage as fm;
         </div>
         <table class="data-table">
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th class="width-large">NAMA OUTLET</th>
                     <th class="width-large">ALAMAT</th>
                     <th class="width-large">TELPON</th>
@@ -50,11 +50,12 @@ use App\Services\FlashMessage as fm;
                 </tr>
 
                 <?php
+                    $no = 1;
                     foreach($data['outlets'] as $outlet) {
                         $currentRoute = routeTo("/panel");
                         echo "
                         <tr>
-                            <td>{$outlet['id']}</td>
+                            <td>{$no}</td>
                             <td>{$outlet['nama']}</td>
                             <td>{$outlet['alamat']}</td>
                             <td>{$outlet['tlp']}</td>
@@ -64,6 +65,7 @@ use App\Services\FlashMessage as fm;
                             </td>
                         </tr>
                         ";
+                        $no++;
                     }
                 ?>
 
