@@ -3,6 +3,21 @@
     outline: none;
 }
 
+.font-small {
+    font-size: 0.75rem;
+}
+
+.text-gray-100 {
+    color: hsl(0, 0%, 60%);
+}
+
+.text-gray-light {
+    color: hsl(0, 0, 40%);
+}
+
+.text-bold {
+    color: hsl(0, 0, 30%);
+}
 
 @media print {
     .noprint {

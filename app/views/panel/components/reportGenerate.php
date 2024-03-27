@@ -182,8 +182,15 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
 
             foreach ($groupedTransaksisBasedOnNamaOutlet as $nama_outlet => $transaksiGroupArray) {
 
-                echo "<tr><th class='width-large' colspan='2'>$nama_outlet</th></tr>";
+                echo <<<HTML
+                    <tr>
+                        <th class="width-large" colspan="2">$nama_outlet</th>
+                    </tr>
+                HTML;
+                
+                
                 $no = 1;
+                $totalKeseluruhan = 0;
 
                 foreach ($transaksiGroupArray as $transaksi) {
 
@@ -227,6 +234,7 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
                             $total_harga += $transaksiPaket['total_harga'];
                         }
                     }
+                    $totalKeseluruhan += $total_harga;
 
                     $occurrences = [];
                     global $occurences;
@@ -269,6 +277,19 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
                     </tr>
             <?php
                 }
+                $pajakKeseluruhan = formatRupiah($totalKeseluruhan * 0.0075);
+                $totalKeseluruhan = formatRupiah($totalKeseluruhan);
+                echo <<<HTML
+                    <tr>
+                        <th colspan="4" style="text-align: right;">TOTAL</th>
+                        <th style="text-align: left;">
+                            <span>$totalKeseluruhan</span>
+                            <br>
+                            <span class="">Pajak - $pajakKeseluruhan</span>
+                        </th>
+                    </tr>
+
+                HTML;
             }
             ?>
 
