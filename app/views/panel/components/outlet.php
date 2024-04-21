@@ -19,8 +19,8 @@ use App\Services\FlashMessage as fm;
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Outlet | FLaundry</title>
 </head>
-<?php 
-    $tableColumns = $data['tableColumns'];
+<?php
+$tableColumns = $data['tableColumns'];
 ?>
 <?php includeFile("$base/panel/inc/sidebar.php") ?>
 <?php includeFile("$base/panel/inc/navbar.php", compact('tableColumns')) ?>
@@ -41,19 +41,26 @@ use App\Services\FlashMessage as fm;
             <a href="<?= routeTo("/panel/outlet/add") ?>" class="add-btn add-outlet-btn">Tambah Outlet</a>
         </div>
         <table class="data-table">
-                <tr>
-                    <th>#</th>
-                    <th class="width-large">NAMA OUTLET</th>
-                    <th class="width-large">ALAMAT</th>
-                    <th class="width-large">TELPON</th>
-                    <th class="width-medium">Actions</th>
-                </tr>
+            <tr>
+                <th>#</th>
+                <th class="width-large">NAMA OUTLET</th>
+                <th class="width-large">ALAMAT</th>
+                <th class="width-large">TELPON</th>
+                <th class="width-medium">Actions</th>
+            </tr>
 
-                <?php
-                    $no = 1;
-                    foreach($data['outlets'] as $outlet) {
-                        $currentRoute = routeTo("/panel");
-                        echo "
+            <?php
+            $no = 1;
+            foreach ($data['outlets'] as $outlet) {
+                $currentRoute = routeTo("/panel");
+                $model = $data['model'];
+                $hide_delete1 = $model->query("SELECT COUNT(*) as total FROM tb_outlet INNER JOIN tb_user ON tb_outlet.id=tb_user.id_outlet WHERE tb_outlet.id='$outlet[id]'")->getData()[0];
+                $hide_delete2 = $model->query("SELECT COUNT(*) as total FROM tb_outlet INNER JOIN tb_paket ON tb_outlet.id=tb_paket.id_outlet WHERE tb_outlet.id='$outlet[id]'")->getData()[0];
+                $hide_delete3 = $model->query("SELECT COUNT(*) as total FROM tb_outlet INNER JOIN tb_transaksi ON tb_outlet.id=tb_transaksi.id_outlet WHERE tb_outlet.id='$outlet[id]'")->getData()[0];
+
+                $deletable = $hide_delete1['total'] == '0' && $hide_delete2['total'] == '0' && $hide_delete3['total'] == '0';
+                $deleteBtn = !$deletable ? "<a href='$currentRoute/outlet/delete/{$outlet["id"]}'>DELETE</a>" : "-";
+                echo "
                         <tr>
                             <td>{$no}</td>
                             <td>{$outlet['nama']}</td>
@@ -61,15 +68,18 @@ use App\Services\FlashMessage as fm;
                             <td>{$outlet['tlp']}</td>
                             <td>
                                 <a href='$currentRoute/outlet/edit/{$outlet["id"]}'>EDIT</a>
-                                <a href='$currentRoute/outlet/delete/{$outlet["id"]}'>DELETE</a>
-                            </td>
-                        </tr>
+                                {$deleteBtn}
+                                </td>
+                            </tr>
                         ";
-                        $no++;
-                    }
-                ?>
 
-                <!-- <tr>
+                $model = $data['model'];
+
+                $no++;
+            }
+            ?>
+
+            <!-- <tr>
                     <td align="center">1</td>
                     <td>Testing</td>
                     <td>Ja</td>

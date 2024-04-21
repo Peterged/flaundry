@@ -33,6 +33,7 @@ function formatRupiah(int | float $angka)
 <?php
 $transaksis = $data['transaksis'] ?? [];
 $transaksiPakets = $data['pakets'] ?? [];
+$role = $_SESSION['role'];
 
 ?>
 
@@ -51,9 +52,15 @@ $transaksiPakets = $data['pakets'] ?? [];
             </div>
         </div>
         <span class='divider'></span>
+        <?php 
+            if(in_array($role, ['admin', 'kasir'])) {
+        ?>
         <div class="add-btn-wrapper">
             <a href="<?= routeTo("/panel/transaksi") ?>" class="add-btn add-outlet-btn">Tambah Transaksi</a>
         </div>
+        <?php
+            }
+        ?>
         <form target="_blank" id="filter-date-report-generation" action="<?= routeTo("/panel/report/generate") ?>" class="table-filter-box">
             <div class="input-group-group">
                 <?php
@@ -81,18 +88,8 @@ $transaksiPakets = $data['pakets'] ?? [];
                 <th class="width-small">Status</th>
                 <th class="width-small"></th>
             </tr>
-            <!-- <tr>
-                <th class="width-small">Kode Invoice</th>
-                <th class="width-small">Pelanggan</th>
-                <th class="width-medium">Paket</th>
-                <th class="width-medium">Tanggal</th>
-                <th class="width-large">Batas Pembayaran</th>
-                <th class="width-small">Status</th>
-                <th class="width-small">Actions</th>
-            </tr> -->
 
             <?php
-
             $timezone = Cookie::get('clientTimezone', 'Asia/Makassar');
 
             foreach ($transaksis as $transaksi) {
@@ -123,11 +120,10 @@ $transaksiPakets = $data['pakets'] ?? [];
                 echo "
                         <tr>
                             <td>
-                                <p class='data-bold'>{$transaksi['kode_invoice']}</p>
+                                <p class='data-bold break-word'>{$transaksi['kode_invoice']}</p>
                             </td>
-                            <td>{$transaksi['nama_member']}</td>
-                            <td>
-
+                            <td class='data-bold break-word'>{$transaksi['nama_member']}</td>
+                        <td>
                     ";
 
                 foreach ($transaksiPakets as $transaksiPaket) {
@@ -151,7 +147,6 @@ $transaksiPakets = $data['pakets'] ?? [];
                                 $batas_waktu_str
                             </td>
                     ";
-
             ?>
                 <td>
                     <?php
@@ -161,7 +156,15 @@ $transaksiPakets = $data['pakets'] ?? [];
 
                 </td>
                 <td>
-                    <a href='<?= "$currentRoute/detail-transaksi/$transaksi[id]" ?>'>LIHAT DETAIL</a>
+                    <a class="break-word" href='<?= "$currentRoute/detail-transaksi/$transaksi[id]" ?>'>LIHAT DETAIL</a>
+                    <br>
+                    <?php
+                        if(in_array($role, ['admin', 'kasir'])) {
+                    ?>
+                    <a href="<?= "$currentRoute/transaksi/delete/$transaksi[id]" ?>" href="" onclick="return confirm('Apakah ingin menghapus transaksi ini?')">DELETE</a>
+                    <?php
+                        }
+                    ?>
                 </td>
                 </tr>
             <?php

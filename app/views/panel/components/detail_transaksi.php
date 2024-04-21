@@ -201,18 +201,18 @@ try {
                                         $statusChangeRoute = routeTo("/panel/transaksi_status_handler");
 
                                         ?>
-                                            <select <?php
-                                                    if ($_SESSION['role'] == 'owner') {
-                                                        echo "disabled";
-                                                    } ?> onchange="pilihStatus(this.options[this.selectedIndex].value, '<?= $idtransaksi ?>')">
-                                                    <?php
-                                                        $statusArray = ['baru', 'proses', 'selesai', 'diambil'];
-                                                        foreach($statusArray as $statusItem) {
-                                                            $selected = $statusItem == $data_transaksi['status'] ? "selected" : "";
-                                                            echo "<option value='$statusItem' $selected>$statusItem</option>";
-                                                        }
-                                                    ?>
-                                            </select>
+                                        <select <?php
+                                                if ($_SESSION['role'] == 'owner') {
+                                                    echo "disabled";
+                                                } ?> onchange="pilihStatus(this.options[this.selectedIndex].value, '<?= $idtransaksi ?>')">
+                                            <?php
+                                            $statusArray = ['baru', 'proses', 'selesai', 'diambil'];
+                                            foreach ($statusArray as $statusItem) {
+                                                $selected = $statusItem == $data_transaksi['status'] ? "selected" : "";
+                                                echo "<option value='$statusItem' $selected>$statusItem</option>";
+                                            }
+                                            ?>
+                                        </select>
 
                                         <script>
                                             function pilihStatus(value, id) {
@@ -224,7 +224,11 @@ try {
                                 </tr>
                             </table>
                         </div>
+
                     </div>
+                    <a href="#" onclick="history.back()" type="button" name="bayar_sekarang" class="noprint link-tag-blue">
+                        KEMBALI
+                    </a>
                     <?php
                     if ($data_transaksi['dibayar'] == 'belum_dibayar') {
                     ?>
@@ -414,15 +418,15 @@ try {
                             $detailTransaksiBayarRoute = routeTo("/panel/detail-transaksi/bayar/$idtransaksi");
                             ?>
                             <form action="<?= $detailTransaksiBayarRoute ?>" method="post">
-                                
-                                    <button type="button" name="bayar_sekarang" onclick="window.print()">
-                                        Print
-                                    </button>
+
+                                <button type="button" name="bayar_sekarang" onclick="window.print()">
+                                    Print
+                                </button>
                                 <?php
-                                
-                                if ($data_transaksi['dibayar'] !== 'dibayar' || $_SESSION['role'] == 'owner') {
+
+                                if ($data_transaksi['dibayar'] !== 'dibayar' || $_SESSION['role'] != 'owner') {
                                 ?>
-                                <input type="submit" value="Bayar" name="bayar_sekarang" onclick="return confirm('Really want to pay?')" >
+                                    <input type="submit" value="Bayar" name="bayar_sekarang" onclick="return confirm('Really want to pay?')">
                                 <?php
                                 }
                                 ?>

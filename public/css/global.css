@@ -112,3 +112,14 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.link-tag-blue {
+    display: flex;
+    padding: 0.5rem 1rem;
+    background-color: #4895ef;
+    color: white;
+}
+
+.link-tag-blue:hover {
+    background-color: #3a7abf;
+}

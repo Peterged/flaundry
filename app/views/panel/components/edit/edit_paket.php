@@ -30,7 +30,8 @@ use App\Services\FlashMessage as fm;
     ?>
     <div class="container">
         <form method="post" class="wrapper" id="form-login">
-            <h1 class="title">Edit Paket</h1>
+            <h1 class="title small-margin">Edit Paket</h1>
+            <p class="small-description margin-bottom-lg"><?= $currentPaket['nama'] ?></p>
 
             <div class="input-group">
                 <label for="nama">Nama Paket</label> <input autofocus type="text" name="nama" id="nama" placeholder="Nama Outlet" autocomplete="off" required value="<?= $currentPaket['nama_paket'] ?>">

@@ -1,22 +1,30 @@
 <?php
 $myRoute = explode('/', $_GET['route']);
-$myRoute = end($myRoute);
+$a_date = date('Y-m-01 00:00:00');
+$e_date = date("Y-m-t 23:59:59", strtotime($a_date));
+
 
 ?>
 
 <div class="panel-navbar noprint">
     <div class="header">
         <div class="header-title">
-            <p><?= ucfirst($myRoute) ?></p>
+            <p><?= ucfirst($myRoute[0]) ?></p>
         </div>
         <div class="breadcrumb">
-            <a href="<?= routeTo("/panel/dashboard") ?>">Panel</a>
-            <span class="separator">&gt;</span>
-            <a href="<?= routeTo("/panel/$myRoute") ?>">
-                <?php
-                echo ucfirst($myRoute);
-                ?>
-            </a>
+            <?php 
+                $length = count($myRoute);
+                for($i = 0; $i < $length; $i++) {
+                    $route = $myRoute[$i];
+                    $routeTextDisplay = ucfirst($route);
+                    
+                    echo "<a href='".routeTo(PROJECT_ROOT . "/panel/$route")."'>$routeTextDisplay</a>";
+                    if($i < $length - 1) {
+                        echo "<span class='separator'>&gt;</span>";
+                    }
+                }
+            ?>
+            
         </div>
     </div>
     <?php

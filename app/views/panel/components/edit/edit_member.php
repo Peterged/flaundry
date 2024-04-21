@@ -52,7 +52,7 @@ use App\Services\FlashMessage as fm;
 
             <div class="input-group">
                 <label for="telpon">Nomor Telpon</label>
-                <input type="text" name="tlp" id="tlp" pattern="^\d{8,12}$" autocomplete="off" placeholder="Nomor Telpon" required value="<?= $currentMember['tlp'] ?>">
+                <input type="text" name="tlp" id="tlp" pattern="^\d{3,15}$" autocomplete="off" placeholder="Nomor Telpon" required value="<?= $currentMember['tlp'] ?>">
             </div>
 
             <button class="submit-btn" type="submit" form="form-login" name="submit" value="submit">EDIT MEMBER</button>

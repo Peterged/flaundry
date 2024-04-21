@@ -18,14 +18,41 @@
 .text-bold {
     color: hsl(0, 0, 30%);
 }
+.print {
+    display: none !important;
+}
+
+.break-word {
+    word-break: break-word !important;
+}
+
+.break-all {
+    word-break: break-all !important;
+}
 
 @media print {
     .noprint {
         display: none !important;
     }
 
-    .print {
+    .print-d-flex {
+        display: flex !important;
+    }
+
+    .print-d-block {
         display: block !important;
+    }
+
+    .print-p-none {
+        padding: 0 !important;
+    }
+
+    .print-text-right {
+        text-align: right !important;
+    }
+
+    .print-colspan-2 {
+        grid-column: span 2;
     }
 
     body {

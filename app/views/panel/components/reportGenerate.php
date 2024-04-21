@@ -5,6 +5,8 @@ use App\Utils\MyLodash as _;
 use App\Libraries\Essentials\Cookie;
 use Carbon\Carbon;
 
+Carbon::setLocale('id');
+
 function formatRupiah(int | float $angka)
 {
     $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
@@ -52,8 +54,8 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
 
 <div class="container">
     <div class="content-box">
-        <div class="title">
-            <div class="title-text-box noprint">
+        <div class="title noprint">
+            <div class="title-text-box">
                 <h1 class="title-text">Generate Report</h1>
                 <h1 class="title-text-description">Total <?= count($data['transaksis']) ?> transaksi ditemukan</h1>
             </div>
@@ -98,6 +100,24 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
 
             <!-- <h1 class="title-text-description"></h1> -->
         </div>
+        <div class="title noprint">
+
+            <form action="" style="display: flex; flex-direction: column">
+                <label for="status">Filter Status</label>
+                <input type="text" name="datetimes" id="" value="<?= $_GET['datetimes'] ?? '' ?>" hidden>
+                <select name="status" id="status" onchange="this.form.submit()">
+                    <?php
+                    $statusList = ['all', 'baru', 'proses', 'selesai', 'diambil'];
+
+                    foreach ($statusList as $status) {
+                        $selected = ($_GET['status'] ?? '') === $status ? 'selected' : '';
+                        echo "<option value='$status' $selected>$status</option>";
+                    }
+
+                    ?>
+                </select>
+            </form>
+        </div>
         <span class='divider noprint'></span>
 
         <?php
@@ -125,6 +145,46 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
         }
         ?>
 
+        <div class="title-text-box-info print print-d-flex print-p-none" style="border-color: transparent">
+            <div class="title-text-wrapper-column">
+                <div class="title-text-description">
+                    <p class="text-medium font-massive">Laporan Transaksi Laundry</p>
+                </div>
+                <div class="title-text-description">
+                    <p class="text-medium font-">
+                        <?php
+
+                        if ($startAndEndDateString) {
+                            if ($startDate && $endDate) {
+
+                                $startDate = Carbon::parse($startDate)->locale('id');
+                                $endDate = Carbon::parse($endDate)->locale('id');
+
+                                $formattedStartDate = $startDate->format('d M Y');
+                                $formattedEndDate = $endDate->format('d M Y');
+
+                                if ($startDate->year === $endDate->year) {
+                                    $formattedStartDate = $startDate->locale('id')->format('d M');
+                                    echo "<p class='text-medium font-medium'>$formattedStartDate - $formattedEndDate</p>";
+                                } else {
+                                    echo "<p class='text-medium font-medium'>$formattedStartDate - $formattedEndDate</p>";
+                                }
+
+                                // if ($startDate && $endDate) {
+                                //     $startDate = date('d-m-Y', strtotime($startDate));
+                                //     $endDate = date('d-m-Y', strtotime($endDate));
+                                //     echo "<p class='text-regular font-small'>$startDate - $endDate</p>";
+                                // }
+                            }
+                        } else {
+                            echo "Semua Waktu";
+                        }
+                        ?>
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <?php
         if (count($transaksis)) {
         ?>
@@ -135,21 +195,21 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
                     </div>
                     <div class="title-text-description">
                         <ol>
-                            <?php 
+                            <?php
                             $terlarisCount = 1;
                             foreach (array_slice($data['produkTerlaris'], 0, 5) as $produkTerlarisItem) : ?>
 
-                                
-                            <li >
-                                <p class="text-light font-small">
-                                    <span class="text-regular">
-                                        <?= "$terlarisCount. {$produkTerlarisItem['nama_paket']}" ?>
-                                    </span> - <?= $produkTerlarisItem['qty'] ?>x
-                                    
-                                </p>
-                            </li>
-                            <?php 
-                            $terlarisCount++;
+
+                                <li>
+                                    <p class="text-light font-small">
+                                        <span class="text-regular">
+                                            <?= "$terlarisCount. {$produkTerlarisItem['nama_paket']}" ?>
+                                        </span> - <?= $produkTerlarisItem['qty'] ?>x
+
+                                    </p>
+                                </li>
+                            <?php
+                                $terlarisCount++;
                             endforeach; ?>
                         </ol>
                     </div>
@@ -159,7 +219,7 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
         }
         ?>
 
-        <table class="data-table">
+        <table class="data-table" style="table-layout: fixed;">
             <!-- <tr>
                 <th class="width-small">Kode Invoice</th>
                 <th class="width-small">Pelanggan</th>
@@ -184,11 +244,11 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
 
                 echo <<<HTML
                     <tr>
-                        <th class="width-large" colspan="2">$nama_outlet</th>
+                        <th class="width-large" colspan="5">$nama_outlet</th>
                     </tr>
                 HTML;
-                
-                
+
+
                 $no = 1;
                 $totalKeseluruhan = 0;
 
@@ -223,7 +283,7 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
                             <td class='width-small'>
                                 <p class='data-bold'>{$no}</p>
                             </td>
-                            <td>{$transaksi['nama_member']}</td>
+                                <td class='width-large print-colspan-2' style='word-break: break-word'>{$transaksi['nama_member']}</td>
                             <td>
                     ";
 
@@ -251,10 +311,15 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
                         }
                     }
 
+                    if (is_null($occurences) || empty($occurences)) {
+                        $occurences = [];
+                        echo "<p>Tidak ada paket.</p>";
+                    }
+
                     foreach ($occurences as $transaksiPaket) {
                         foreach ($transaksiPaket as $key => $value) {
                             if ($value['id_transaksi'] == $transaksi['id']) {
-                                echo "<p>{$value['qty']}x<span style='color: rgba(0, 0, 0, 0.15)'> • </span>{$key}</p>";
+                                echo "<p style='word-break: break-word'><span style='font-weight: 600; color: rgba(0, 0, 0, 0.85)'>{$value['qty']}x</span><span style='color: rgba(0, 0, 0, 0.15)'> • </span>{$key}</p>";
                             }
                         }
                     }
@@ -262,8 +327,8 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
                     echo "
                             
                             </td>
-                            <td>
-                            <h3 class='data-bold'>$total_harga</h3>
+                            <td class='print-text-right'>
+                                <h4 class='data-medium'>$total_harga</h4>
                             </td>
                     ";
                     $no++;
@@ -278,14 +343,14 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
             <?php
                 }
                 $pajakKeseluruhan = formatRupiah($totalKeseluruhan * 0.0075);
-                $totalKeseluruhan = formatRupiah($totalKeseluruhan);
+                $totalKeseluruhan = formatRupiah($totalKeseluruhan + ($totalKeseluruhan * 0.0075));
                 echo <<<HTML
                     <tr>
                         <th colspan="4" style="text-align: right;">TOTAL</th>
                         <th style="text-align: left;">
-                            <span>$totalKeseluruhan</span>
+                            <span class="data-bold font-large">$totalKeseluruhan</span>
                             <br>
-                            <span class="">Pajak - $pajakKeseluruhan</span>
+                            <span style="font-size: 0.75rem">Pajak - $pajakKeseluruhan</span>
                         </th>
                     </tr>
 
@@ -300,15 +365,38 @@ $startAndEndDateString = $startDate && $endDate ? "$startDate sampai $endDate" :
 <?php
 fm::displayPopMessagesByContext('report_message', 'bottom-right');
 ?>
+<script>
+    function printWithImage() {
+        document.getElementById('flaundryLogoImage').src = "<?php echo PROJECT_ROOT . "/public/images/flaundry-logo.png"; ?>";
+
+        const img = document.getElementById('flaundryLogoImage');
+        img.onload = function() {
+            setTimeout(() => {
+                window.print();
+            }, 100, window);
+        }
+    }
+</script>
 <script src="<?= PROJECT_ROOT ?>/public/js/services/flashMessageClose.js"></script>
+<script src="<?= PROJECT_ROOT ?>/public/js/services/imagePrintLoader.js" defer></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script defer>
+    const queryString = window.location.search;
+    const parameters = new URLSearchParams(queryString);
+    let value = parameters.get('datetimes');
+
+    value = value?.split(" - ");
+    console.log(value);
+    console.log(moment().startOf('hour'));
+
     $(function() {
         $('input[name="datetimes"]').daterangepicker({
             timePicker: true,
             timePicker24Hour: true,
+            startDate: value?.at(0) || "",
+            endDate: value?.at(1) || moment().startOf('hour').add(32, 'hour'),
             locale: {
                 format: 'M/DD hh:mm A',
                 daysOfWeek: [

@@ -59,7 +59,15 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
 
                 <?php
                     foreach($data['members'] as $member) {
+
+                        $model = $data['model'];
+
+                        $hide_delete1 = $model->query("SELECT COUNT(*) as total FROM tb_paket INNER JOIN tb_detail_transaksi ON tb_paket.id=tb_detail_transaksi.id_paket WHERE tb_paket.id='$member[id]'")->getData()[0];
                         $currentRoute = routeTo("/panel");
+                        
+                        $deletable = $hide_delete1['total'] == '0';
+                        $deleteBtn = !$deletable ? "<a href='$currentRoute/member/delete/{$member["id"]}'>DELETE</a>" : "-";
+
                         $jenisKelamin = $member['jenis_kelamin'] == "L" ? "Laki-laki" : "Perempuan";
                         echo "
                         <tr>
@@ -70,7 +78,7 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
                             <td>{$member['tlp']}</td>
                             <td>
                                 <a href='$currentRoute/member/edit/{$member["id"]}'>EDIT</a>
-                                <a href='$currentRoute/member/delete/{$member["id"]}'>DELETE</a>
+                                {$deleteBtn}
                             </td>
                         </tr>
                         ";

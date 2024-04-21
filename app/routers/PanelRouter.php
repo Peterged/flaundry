@@ -61,10 +61,13 @@ function outlet($req, $res, $connection)
         $outletData = $outlet->get([], "");
     }
 
+    
+
 
     $data = [
         'outlets' => $outletData->getData(),
-        'tableColumns' => $outlet->getTableColumns()
+        'tableColumns' => $outlet->getTableColumns(),
+        'model' => $outlet,
     ];
 
     $res->render('/panel/components/outlet', $data);
@@ -227,7 +230,8 @@ function paket($req, $res, $connection)
 
     $data = [
         'pakets' => $paketData->getData(),
-        'tableColumns' => $paket->getTableColumns()
+        'tableColumns' => $paket->getTableColumns(),
+        'model' => $paket,
     ];
     // print_r($paket->getTableColumns(true));
 
@@ -241,6 +245,7 @@ function editPaket($req, $res, $connection)
     $idOutlet = $req->getParams()->id_outlet;
     $idPaket = $req->getParams()->id_paket;
     $paketData = $paket->query("SELECT tb_paket.*, tb_outlet.nama, tb_outlet.id as id_outlet FROM tb_paket JOIN tb_outlet ON tb_paket.id_outlet = tb_outlet.id WHERE tb_paket.id = '$idPaket' AND tb_outlet.id = '$idOutlet'");
+
 
     $data = [
         'currentPaket' => $paketData->getData(),
@@ -370,6 +375,7 @@ function member($req, $res, $connection)
 
     $data = [
         'members' => $memberData->getData(),
+        'model' => $member
     ];
 
 
@@ -499,6 +505,7 @@ function karyawan($req, $res, $connection)
     $userData = $user->query("SELECT tb_user.*, tb_outlet.nama as nama_outlet FROM tb_user JOIN tb_outlet ON tb_user.id_outlet = tb_outlet.id ORDER BY tb_outlet.nama DESC");
     $data = [
         'karyawans' => $userData->getData(),
+        'model' => $user
     ];
 
     $res->render('/panel/components/karyawan', $data);
@@ -981,8 +988,14 @@ function report($req, $res, $con)
 function reportGenerate($req, $res, $con)
 {
     validateUserSession($req, $res);
-    
+
     $datetime = $req->getQuery('datetimes');
+    $filterStatus = $req->getQuery('status');
+    $filterStatus = $filterStatus === 'all' ? '' : $filterStatus;
+
+
+
+
 
     if ($datetime) {
         $statusList = [
@@ -994,13 +1007,19 @@ function reportGenerate($req, $res, $con)
             $status = 'semua';
         }
 
-        $additionalQuery = "WHERE status = 'dibayar'";
+        $additionalQuery = "WHERE dibayar = 'dibayar'";
         if (_::some(['semua', 'belum_dibayar'], fn ($val) => $status === $val)) {
-            $additionalQuery = "WHERE status = '$status'";
+            $additionalQuery = "WHERE dibayar = '$status'";
             if ($status === 'semua') {
                 $additionalQuery = "";
             }
         }
+
+        if ($filterStatus) {
+            $additionalQuery .= " AND status = '$filterStatus'";
+        }
+
+
 
         $dates = explode(" - ", $datetime);
         $start = strtotime($dates[0]);
@@ -1010,11 +1029,11 @@ function reportGenerate($req, $res, $con)
         $endFormatted = date("Y-m-d H:i", $end);
 
         $transaksi = new Transaksi($con);
-        
+
 
         $transaksiData = $transaksi->query("SELECT tb_transaksi.*, tb_member.nama as nama_member, tb_outlet.nama as nama_outlet FROM tb_transaksi JOIN tb_member ON tb_transaksi.id_member = tb_member.id JOIN tb_outlet ON tb_transaksi.id_outlet = tb_outlet.id $additionalQuery WHERE tgl BETWEEN '$startFormatted' AND '$endFormatted' ORDER BY tb_transaksi.tgl DESC");
         $transaksiPaketData = [];
-        if($transaksiData->getData()) {
+        if ($transaksiData->getData()) {
             $transaksiPaketData = $transaksi->query("SELECT tb_detail_transaksi.*, tb_paket.nama_paket FROM tb_detail_transaksi JOIN tb_paket ON tb_detail_transaksi.id_paket = tb_paket.id");
         }
 
@@ -1047,9 +1066,6 @@ function reportGenerate($req, $res, $con)
             'description' => 'Tidak ada data yang ditemukan!'
         ]);
     }
-
-
-
 
     $res->render('/panel/components/reportGenerate', $data);
 }
@@ -1085,6 +1101,34 @@ function reportGeneratePost($req, $res, $con)
     $res->render('/panel/components/reportGenerate', $data);
 }
 
+function reportDelete($req, $res, $con)
+{
+    validateUserSession($req, $res);
+    $transaksi = new Transaksi($con);
+
+    try {
+        $transaksi->deleteOne([
+            'id' => $req->getParams()->id_transaksi
+        ]);
+
+        fm::addMessage([
+            'type' => 'success',
+            'context' => 'report_message',
+            'title' => 'DELETE',
+            'description' => 'Berhasil menghapus transaksi!'
+        ]);
+    } catch (\Exception $e) {
+        fm::addMessage([
+            'type' => 'error',
+            'context' => 'report_message',
+            'title' => 'Unknown',
+            'description' => 'Maaf, terjadi kesalahan.'
+        ]);
+    }
+
+    $res->redirect("/panel/report");
+}
+
 $panelRouter->get("/report", function ($req, $res) use ($con) {
     report($req, $res, $con);
 })
@@ -1093,4 +1137,7 @@ $panelRouter->get("/report", function ($req, $res) use ($con) {
     })
     ->post('/report/generate', function ($req, $res) use ($con) {
         reportGeneratePost($req, $res, $con);
+    })
+    ->get('/transaksi/delete/{id_transaksi}', function ($req, $res) use ($con) {
+        reportDelete($req, $res, $con);
     });

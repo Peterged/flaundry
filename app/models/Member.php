@@ -59,7 +59,7 @@ class Member extends Model
         $alamatMinLength = 5;
         $alamatMaxLength = 100;
         $jenisKelaminOptions = ["L", "P"];
-        $tlpMinLength = 10;
+        $tlpMinLength = 3;
         $tlpMaxLength = 15;
         try {
             if ($body) {
@@ -81,7 +81,7 @@ class Member extends Model
                 throw new ValidationException("Jenis Kelamin harus bernilai 'L' or 'P'", FLASH_ERROR);
             }
 
-            if (!v::stringType()->length(10)->validate($this->tlp)) {
+            if (!v::stringType()->length($tlpMinLength, $tlpMaxLength)->validate($this->tlp)) {
                 throw new ValidationException("Telepon harus diantara $tlpMinLength dan $tlpMaxLength karakter", FLASH_ERROR);
             }
         } catch (\Exception $e) {

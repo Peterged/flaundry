@@ -26,7 +26,7 @@ table.data-table td {
     font-size: 0.85rem;
 }
 
-table.data-table td.width-small,
+table.data-table th.width-small,
 table.data-table td.width-small {
     width: 100px;
 }

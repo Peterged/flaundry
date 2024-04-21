@@ -20,7 +20,7 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/services/flashMessage.css">
     <link rel="stylesheet" href="<?= PROJECT_ROOT ?>/public/css/panel/components/outlet.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Outlet | FLaundry</title>
+    <title>Paket | FLaundry</title>
 </head>
 <?php
 $tableColumns = $data['tableColumns'];
@@ -50,6 +50,8 @@ $tableColumns = $data['tableColumns'];
         // echo "</pre>";
         $grouped_array = [];
 
+        $model = $data['model'];
+
         foreach ($data['pakets'] as $item) {
             $grouped_array[$item['nama']][] = $item;
         }
@@ -66,7 +68,6 @@ $tableColumns = $data['tableColumns'];
             echo "<th class='width-medium'>Actions</th>";
             echo "</tr>";
             foreach ($value as $paket) {
-
                 $currentRoute = routeTo("/panel");
                 $harga = $paket['harga'];
                 $numf = new NumberFormatter("en", NumberFormatter::CURRENCY);
@@ -76,6 +77,11 @@ $tableColumns = $data['tableColumns'];
 
                 $jenis = str_replace('_', ' ', $paket['jenis']);
                 $jenis = ucwords($jenis);
+
+                $hide_delete1 = $model->query("SELECT COUNT(*) as total FROM tb_paket INNER JOIN tb_detail_transaksi ON tb_paket.id=tb_detail_transaksi.id_paket WHERE tb_paket.id='$paket[id]'")->getData()[0];
+
+                $deletable = $hide_delete1['total'] == '0';
+                $deleteBtn = $deletable ? "<a href='$currentRoute/paket/delete/{$paket["id"]}/{$paket["id_outlet"]}'>DELETE</a>" : "-";
 
                 echo "
                         <tr>
@@ -87,7 +93,7 @@ $tableColumns = $data['tableColumns'];
                             <td>
                                 <a href='$currentRoute/paket/edit/{$paket["id"]}/{$paket["id_outlet"]}'>EDIT</a>
                                 <span style='pointer-events: none; color: rgba(0, 0, 0, 0.1)'>•</span>
-                                <a href='$currentRoute/paket/delete/{$paket["id"]}/{$paket["id_outlet"]}'>DELETE</a>
+                                {$deleteBtn}
                             </td>
                         </tr>
                         ";
