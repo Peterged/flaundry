@@ -134,7 +134,7 @@ body {
 }
 
 .container .wrapper .input-group svg path {
-    fill: rgba(0, 0, 0, 0.35);
+  fill: rgba(0, 0, 0, 0.35);
 }
 
 .container .wrapper input,
@@ -142,7 +142,7 @@ body {
   width: 100%;
   padding: 0.65rem 2.55rem;
   font-size: 0.95rem;
-  
+
   border: 1px solid rgba(0, 0, 0, 0.15);
   outline: none;
   border-radius: 0.25rem;
@@ -179,4 +179,3 @@ body {
   color: var(--blue--chefchaouen-9);
   background-color: rgba(var(--blue-100), 0.5);
 }
-

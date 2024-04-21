@@ -59,7 +59,7 @@ $tableColumns = $data['tableColumns'];
                 $hide_delete3 = $model->query("SELECT COUNT(*) as total FROM tb_outlet INNER JOIN tb_transaksi ON tb_outlet.id=tb_transaksi.id_outlet WHERE tb_outlet.id='$outlet[id]'")->getData()[0];
 
                 $deletable = $hide_delete1['total'] == '0' && $hide_delete2['total'] == '0' && $hide_delete3['total'] == '0';
-                $deleteBtn = !$deletable ? "<a href='$currentRoute/outlet/delete/{$outlet["id"]}'>DELETE</a>" : "-";
+                $deleteBtn = $deletable ? "<a href='$currentRoute/outlet/delete/{$outlet["id"]}'>DELETE</a>" : "-";
                 echo "
                         <tr>
                             <td>{$no}</td>

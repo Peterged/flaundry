@@ -59,7 +59,7 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
 
                         $deletable = $hide_delete1['total'] == '0';
 
-                        $deleteBtn = !$deletable ? "<a href='$currentRoute/karyawan/delete/{$karyawan["id"]}'>DELETE</a>" : "-";
+                        $deleteBtn = $deletable ? "<a href='$currentRoute/karyawan/delete/{$karyawan["id"]}' onclick=\"confirm('Apakah yakin ingin menghapus data?')\">DELETE</a>" : "-";
                             
                         echo "
                         <tr>

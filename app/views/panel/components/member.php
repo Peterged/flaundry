@@ -62,11 +62,11 @@ $sessionIdOutlet = $_SESSION['id_outlet'];
 
                         $model = $data['model'];
 
-                        $hide_delete1 = $model->query("SELECT COUNT(*) as total FROM tb_paket INNER JOIN tb_detail_transaksi ON tb_paket.id=tb_detail_transaksi.id_paket WHERE tb_paket.id='$member[id]'")->getData()[0];
+                        $hide_delete1 = $model->query("SELECT COUNT(*) as total FROM tb_member INNER JOIN tb_transaksi ON tb_member.id=tb_transaksi.id_member WHERE tb_member.id='$member[id]'")->getData()[0];
                         $currentRoute = routeTo("/panel");
                         
                         $deletable = $hide_delete1['total'] == '0';
-                        $deleteBtn = !$deletable ? "<a href='$currentRoute/member/delete/{$member["id"]}'>DELETE</a>" : "-";
+                        $deleteBtn = $deletable ? "<a href='$currentRoute/member/delete/{$member["id"]}'>DELETE</a>" : "-";
 
                         $jenisKelamin = $member['jenis_kelamin'] == "L" ? "Laki-laki" : "Perempuan";
                         echo "
