@@ -4,8 +4,8 @@
 
 
 Short Description:
-A somewhat unique php MVC architecture (or maybe not).
+It was built from scratch—a somewhat unique php MVC architecture (or not).
 It's similar to express's syntax
 
 
-#### No Documentation
+PHP, HTML, CSS, and JS created this beauty (at least in my eyes)
